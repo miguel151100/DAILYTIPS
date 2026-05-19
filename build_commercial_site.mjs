@@ -164,6 +164,51 @@ const articles = [
   }
 ];
 
+const freeDocs = [
+  {
+    title: "Checklist: 30 gastos que se comen tu quincena",
+    problem: "Para detectar fugas de dinero en menos de 10 minutos.",
+    file: "daily_tips_gratis_30_gastos_quincena.xlsx",
+    category: "Finanzas personales",
+    CTA: "Descargar checklist"
+  },
+  {
+    title: "Calculadora gratis de ganancia real",
+    problem: "Para saber si un producto deja utilidad después de comisión, envío y descuento.",
+    file: "daily_tips_calculadora_ganancias.xlsx",
+    category: "Negocios y revendedores",
+    CTA: "Calcular ganancia"
+  },
+  {
+    title: "Lista rápida de herramientas IA útiles",
+    problem: "Para empezar con IA sin perderte entre apps que no necesitas.",
+    file: "daily_tips_herramientas_ia_utiles.xlsx",
+    category: "IA para principiantes",
+    CTA: "Ver herramientas"
+  },
+  {
+    title: "Mini planeador de tareas escolares",
+    problem: "Para organizar entregas, materias y pendientes de la semana.",
+    file: "daily_tips_planeador_tareas.xlsx",
+    category: "Estudiantes",
+    CTA: "Organizar tareas"
+  },
+  {
+    title: "Control express de suscripciones",
+    problem: "Para encontrar cobros mensuales que ya no usas.",
+    file: "daily_tips_control_suscripciones.xlsx",
+    category: "Finanzas personales",
+    CTA: "Revisar cobros"
+  },
+  {
+    title: "Despensa por quincena MX",
+    problem: "Para planear compras de súper sin romper el presupuesto.",
+    file: "daily_tips_despensa_por_quincena.xlsx",
+    category: "Productividad y organización",
+    CTA: "Planear despensa"
+  }
+];
+
 function byPack(pack) {
   return products.filter((product) => {
     if (pack.category) return product.category === pack.category;
@@ -171,21 +216,24 @@ function byPack(pack) {
   });
 }
 
+function packForCategory(category) {
+  return packDefs.find((pack) => pack.category === category || pack.categories?.includes(category)) ?? packDefs[0];
+}
+
+function categoryPageSlug(category) {
+  return `categoria-${slug(category)}.html`;
+}
+
+function productPageSlug(product) {
+  return `archivo-${slug(product.name)}.html`;
+}
+
 function money(value) {
   return `$${value.toLocaleString("es-MX")} MXN`;
 }
 
 function layout({ title, description, active, body, extraHead = "" }) {
-  const nav = [
-    ["Inicio", "index.html"],
-    ["Paquetes", "paquetes.html"],
-    ["Pack Total", "pack-total.html"],
-    ["Blog", "blog.html"],
-    ["Gratis", "recursos-gratis.html"],
-    ["Premium", "premium.html"],
-    ["FAQ", "faq.html"],
-    ["Contacto", "contacto.html"]
-  ];
+  const categoryGroups = globalThis.dailyTipsCatalog.categoryMeta.filter(([name]) => name !== "Todos");
   return `<!doctype html>
 <html lang="es-MX">
 <head>
@@ -210,7 +258,25 @@ function layout({ title, description, active, body, extraHead = "" }) {
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="Daily Tips inicio"><span class="brand-mark">D</span><span>Daily Tips</span></a>
     <nav aria-label="Principal">
-      ${nav.map(([label, href]) => `<a class="${active === href.replace(".html", "") ? "is-active" : ""}" href="${href}">${label}</a>`).join("")}
+      <a class="${active === "index" ? "is-active" : ""}" href="index.html">Home</a>
+      <div class="nav-dropdown">
+        <button class="${active.startsWith("categoria") ? "is-active" : ""}" type="button">Categorías</button>
+        <div class="mega-menu">
+          ${categoryGroups.map(([name, tagline]) => {
+            const items = products.filter((product) => product.category === name);
+            return `<section class="mega-group">
+              <a class="mega-title" href="${categoryPageSlug(name)}">${name}</a>
+              <p>${tagline}</p>
+              ${items.map((product) => `<a class="mega-item" href="${productPageSlug(product)}">${product.name}</a>`).join("")}
+            </section>`;
+          }).join("")}
+        </div>
+      </div>
+      <a class="${active === "paquetes" ? "is-active" : ""}" href="paquetes.html">Paquetes</a>
+      <a class="${active === "pack-total" ? "is-active" : ""}" href="pack-total.html">Pack Total</a>
+      <a class="${active === "recursos-gratis" ? "is-active" : ""}" href="recursos-gratis.html">Gratis</a>
+      <a class="${active === "blog" ? "is-active" : ""}" href="blog.html">Blog</a>
+      <a class="${active === "premium" ? "is-active" : ""}" href="premium.html">Acceso</a>
     </nav>
     <a class="topbar-cta" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar Pack Total</a>
   </header>
@@ -226,15 +292,15 @@ function layout({ title, description, active, body, extraHead = "" }) {
 
 function mockup(className = "grad-money") {
   return `<div class="pack-mockup ${className}">
-    <div class="mock-window"><span></span><span></span><span></span><div class="mock-chart"></div><div class="mock-lines"></div></div>
+    <div class="mock-window"><div class="mock-toolbar"><span></span><span></span><span></span></div><div class="mock-kpi"><strong>Daily Tips</strong><em>MX</em></div><div class="mock-chart"></div><div class="mock-lines"></div></div>
   </div>`;
 }
 
 function productMini(product) {
-  return `<article class="mini-product">
+  return `<a class="mini-product" href="${productPageSlug(product)}">
     <span class="icon-badge">${icon(product.icon)}</span>
     <div><strong>${product.name}</strong><p>${product.benefit}</p></div>
-  </article>`;
+  </a>`;
 }
 
 function packCard(pack, total = false) {
@@ -267,7 +333,7 @@ function blogCards(limit = articles.length) {
 }
 
 function slug(text) {
-  return text.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
 function home() {
@@ -277,22 +343,29 @@ function home() {
     description: "Paquetes digitales por categoría y DAILYTIPS Pack Total para México.",
     active: "index",
     body: `
-    <section class="hero hero-commercial">
+    <section class="hero hero-commercial hero-atelier">
       <div class="hero__copy">
-        <p class="eyebrow">Plataforma comercial de productos digitales</p>
-        <h1>Vende soluciones digitales, no archivos sueltos.</h1>
-        <p class="lead">Daily Tips organiza herramientas descargables en paquetes claros para finanzas, IA, negocios, contenido, productividad y estudio. Ideal para vender desde Facebook y entregar en una zona premium.</p>
+        <p class="eyebrow">Biblioteca digital para la vida real en México</p>
+        <h1>Herramientas listas para ordenar dinero, ventas, estudio y contenido.</h1>
+        <p class="lead">Daily Tips funciona como una colección curada de archivos prácticos: cada paquete resuelve un problema concreto, se compra en Gumroad y se recibe automáticamente por correo.</p>
         <div class="hero__actions">
           <a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a>
-          <a class="button button--ghost" href="paquetes.html">Explorar paquetes</a>
+          <a class="button button--ghost" href="recursos-gratis.html">Probar gratis</a>
         </div>
-        <div class="trust"><span>5 paquetes</span><span>48 herramientas</span><span>Blog público</span><span>Premium privado</span></div>
+        <div class="trust"><span>48 archivos</span><span>6 categorías</span><span>Entrega Gumroad</span><span>Recursos gratis</span></div>
       </div>
       ${mockup("grad-total")}
     </section>
     <section class="section">
-      <div class="section__title"><p class="eyebrow">Categorías visuales</p><h2>Paquetes por problema, listos para promocionar.</h2></div>
-      <div class="category-showcase">${packDefs.map((pack) => `<a class="category-tile ${pack.gradient}" href="${pack.page}"><span>${pack.badge}</span><strong>${pack.name}</strong><p>${pack.headline}</p></a>`).join("")}</div>
+      <div class="section__title"><p class="eyebrow">Categorías</p><h2>Entra por el problema que quieres resolver.</h2></div>
+      <div class="category-showcase">${globalThis.dailyTipsCatalog.categoryMeta.filter(([name]) => name !== "Todos").map(([name, tagline]) => {
+        const pack = packForCategory(name);
+        return `<a class="category-tile ${pack.gradient}" href="${categoryPageSlug(name)}"><span>${byPack(pack).length} archivos</span><strong>${name}</strong><p>${tagline}</p></a>`;
+      }).join("")}</div>
+    </section>
+    <section class="section free-strip">
+      <div class="section__title"><p class="eyebrow">Gratis para atraer compradores</p><h2>Recursos puntuales para publicar en Facebook.</h2></div>
+      <div class="free-grid">${freeDocs.slice(0, 3).map(freeDocCard).join("")}</div>
     </section>
     <section class="section">
       <div class="section__title"><p class="eyebrow">Más vendidos</p><h2>Los productos más fáciles de convertir desde Facebook.</h2></div>
@@ -379,6 +452,65 @@ function categoryPage(pack) {
   });
 }
 
+function categoryLanding(category) {
+  const items = products.filter((product) => product.category === category);
+  const pack = packForCategory(category);
+  const related = articles.filter((article) => article.category === category || article.pack === pack.name);
+  return layout({
+    title: `${category} | Categoría Daily Tips`,
+    description: `Archivos digitales de Daily Tips para ${category}.`,
+    active: `categoria-${slug(category)}`,
+    body: `<section class="page-hero category-hero">
+      <p class="eyebrow">Categoría Daily Tips</p>
+      <h1>${category}</h1>
+      <p>${globalThis.dailyTipsCatalog.categoryMeta.find(([name]) => name === category)?.[1] ?? pack.headline}</p>
+      <div class="hero__actions"><a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar paquete relacionado</a><a class="button button--ghost" href="recursos-gratis.html">Ver recursos gratis</a></div>
+    </section>
+    <section class="section product-index">
+      <div class="section__title"><p class="eyebrow">Temas y archivos</p><h2>Cada archivo tiene su propia página con explicación.</h2></div>
+      <div class="product-page-grid">${items.map(productCard).join("")}</div>
+    </section>
+    <section class="section"><div class="section__title"><p class="eyebrow">Artículos para tráfico</p><h2>Ideas conectadas a esta categoría.</h2></div><div class="article-grid">${related.length ? related.map(articleCard).join("") : blogCards(2)}</div></section>
+    <section class="section lead-free"><div><p class="eyebrow">Paquete recomendado</p><h2>${pack.name}</h2><p>${pack.headline}</p></div><div class="hero__actions"><a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar ahora</a><a class="button button--ghost" href="${pack.page}">Ver paquete</a></div></section>`
+  });
+}
+
+function productCard(product) {
+  return `<a class="product-card" href="${productPageSlug(product)}">
+    <span class="icon-badge">${icon(product.icon)}</span>
+    <span class="pill">${product.tag}</span>
+    <h3>${product.name}</h3>
+    <p>${product.desc}</p>
+    <strong>${product.benefit}</strong>
+  </a>`;
+}
+
+function productPage(product) {
+  const pack = packForCategory(product.category);
+  const siblings = products.filter((item) => item.category === product.category && item.name !== product.name).slice(0, 3);
+  return layout({
+    title: `${product.name} | Daily Tips`,
+    description: product.desc,
+    active: `archivo-${slug(product.name)}`,
+    body: `<section class="hero hero-commercial product-hero">
+      <div class="hero__copy">
+        <p class="eyebrow">${product.category}</p>
+        <h1>${product.name}</h1>
+        <p class="lead">${product.desc}</p>
+        <div class="proof-list"><span>${product.tag}</span><span>${product.benefit}</span><span>Archivo editable</span></div>
+        <div class="hero__actions"><a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar paquete</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a></div>
+      </div>
+      ${mockup(pack.gradient)}
+    </section>
+    <section class="section product-detail">
+      <div class="detail-panel"><p class="eyebrow">Para qué sirve</p><h2>Una herramienta concreta, sin explicar de más.</h2><p>${product.benefit} El archivo está pensado para llenar datos simples y revisar el resultado sin tener que construir nada desde cero.</p></div>
+      <div class="detail-panel"><p class="eyebrow">Cómo usarlo</p><ol><li>Abre el archivo en Excel o una app compatible.</li><li>Llena las celdas editables con tus datos.</li><li>Revisa el resumen, semáforos o pendientes.</li><li>Actualízalo cada semana o quincena.</li></ol></div>
+    </section>
+    <section class="section"><div class="section__title"><p class="eyebrow">Más de ${product.category}</p><h2>Archivos relacionados.</h2></div><div class="mini-grid">${siblings.map(productMini).join("")}</div></section>
+    <section class="section lead-free"><div><p class="eyebrow">Incluido en</p><h2>${pack.name}</h2><p>${pack.headline}</p></div><div class="hero__actions"><a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar ahora</a><a class="button button--ghost" href="${pack.page}">Ver paquete</a></div></section>`
+  });
+}
+
 function blog() {
   return layout({
     title: "Blog Daily Tips | Artículos para vender desde Facebook",
@@ -390,15 +522,31 @@ function blog() {
 }
 
 function recursosGratis() {
-  const free = products.filter((product) => product.type === "free").concat(products.find((p) => p.file === "daily_tips_gratis_30_gastos_quincena.xlsx")).filter(Boolean);
   return layout({
     title: "Recursos gratis Daily Tips | Captura leads",
     description: "Herramientas gratuitas para captar correo o WhatsApp antes de vender.",
     active: "recursos-gratis",
-    body: `<section class="page-hero"><p class="eyebrow">Lead magnets</p><h1>Recursos gratis para atraer compradores.</h1><p>Úsalos en Facebook: “Comenta GRATIS” y manda esta página para captar correo o WhatsApp.</p></section>
-    <section class="section newsletter"><div><h2>Recibe el recurso gratis</h2><p>Formulario demostrativo para capturar correo o WhatsApp antes de entregar descargas.</p></div><form class="newsletter-form"><input type="email" placeholder="Correo"><input type="tel" placeholder="WhatsApp"><button>Quiero mi recurso</button></form></section>
-    <section class="section"><div class="mini-grid">${free.map(productMini).join("")}</div></section>`
+    body: `<section class="page-hero free-hero"><p class="eyebrow">Documentos gratis</p><h1>Recursos puntuales para llamar la atención desde Facebook.</h1><p>Cada descarga resuelve un problema pequeño y abre la puerta a vender el paquete completo.</p></section>
+    <section class="section newsletter"><div><h2>Recibe recursos y novedades</h2><p>Formulario demostrativo para captar correo o WhatsApp antes de entregar descargas.</p></div><form class="newsletter-form"><input type="email" placeholder="Correo"><input type="tel" placeholder="WhatsApp"><button>Quiero recursos gratis</button></form></section>
+    <section class="section"><div class="free-grid">${freeDocs.map(freeDocCard).join("")}</div></section>
+    <section class="section lead-free"><div><p class="eyebrow">Siguiente paso</p><h2>Después del recurso gratis, ofrece el Pack Total.</h2><p>La estrategia es dar una solución rápida y luego mostrar la biblioteca completa.</p></div><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a></section>`
   });
+}
+
+function freeDocCard(doc) {
+  return `<article class="free-card">
+    <span>${doc.category}</span>
+    <h3>${doc.title}</h3>
+    <p>${doc.problem}</p>
+    <a class="button button--ghost" href="${doc.file}" download>${doc.CTA}</a>
+  </article>`;
+}
+
+function articleCard(article) {
+  return `<article class="article-card">
+    <div class="article-image ${article.image}"><span>${article.category}</span></div>
+    <div class="article-body"><span class="article-category">${article.category}</span><h3>${article.title}</h3><p>${article.excerpt}</p><a class="text-link" href="blog.html#${slug(article.title)}">Leer artículo</a></div>
+  </article>`;
 }
 
 function premium() {
@@ -444,6 +592,8 @@ const pages = new Map([
 ]);
 
 for (const pack of packDefs) pages.set(pack.page, categoryPage(pack));
+for (const [category] of globalThis.dailyTipsCatalog.categoryMeta.filter(([name]) => name !== "Todos")) pages.set(categoryPageSlug(category), categoryLanding(category));
+for (const product of products) pages.set(productPageSlug(product), productPage(product));
 for (const [file, html] of pages) await fs.writeFile(path.join(__dirname, file), html, "utf8");
 
 console.log(`Generated ${pages.size} pages`);
