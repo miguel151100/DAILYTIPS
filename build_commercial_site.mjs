@@ -6,7 +6,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 await import(`file://${path.join(__dirname, "catalog.js")}?v=${Date.now()}`);
 const { products, icon } = globalThis.dailyTipsCatalog;
 
-const whatsapp = "https://wa.me/?text=Hola%2C%20quiero%20comprar%20un%20paquete%20Daily%20Tips";
+const whatsapp = "https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips";
+const gumroadLinks = {
+  total: "https://gumroad.com/l/dailytips-pack-total",
+  dinero: "https://gumroad.com/l/pack-dinero-ahorro",
+  ia: "https://gumroad.com/l/pack-ia-facil",
+  negocio: "https://gumroad.com/l/pack-negocio-inteligente",
+  contenido: "https://gumroad.com/l/pack-contenido-viral",
+  reset: "https://gumroad.com/l/pack-reset-productivo"
+};
 const premiumPassword = "DAILYTIPS2026";
 
 const packDefs = [
@@ -21,6 +29,7 @@ const packDefs = [
     normal: 249,
     badge: "Más vendido",
     gradient: "grad-money",
+    gumroad: gumroadLinks.dinero,
     bullets: ["Control quincenal", "Gasto hormiga", "Ahorro", "Deudas", "Pagos mexicanos"],
     articles: ["La quincena no se pierde sola", "Cómo evitar recargos por pagos olvidados"]
   },
@@ -35,6 +44,7 @@ const packDefs = [
     normal: 299,
     badge: "Nuevo",
     gradient: "grad-ai",
+    gumroad: gumroadLinks.ia,
     bullets: ["Prompts premium", "IA para contenido", "IA para negocios", "Automatizaciones", "Estudio con IA"],
     articles: ["5 formas reales de usar ChatGPT", "Prompts que sí ayudan a vender"]
   },
@@ -49,6 +59,7 @@ const packDefs = [
     normal: 349,
     badge: "Recomendado",
     gradient: "grad-business",
+    gumroad: gumroadLinks.negocio,
     bullets: ["Inventario", "Ganancias", "Pedidos", "Clientes", "Dashboard ventas"],
     articles: ["Cómo saber si tu producto sí deja ganancia", "El error que mata a los revendedores"]
   },
@@ -63,6 +74,7 @@ const packDefs = [
     normal: 299,
     badge: "Viral",
     gradient: "grad-content",
+    gumroad: gumroadLinks.contenido,
     bullets: ["Calendario 30 días", "Hooks virales", "Guiones", "Reels", "Métricas"],
     articles: ["Publicar más no vende más", "Cómo transformar un tip en venta"]
   },
@@ -77,6 +89,7 @@ const packDefs = [
     normal: 279,
     badge: "Popular",
     gradient: "grad-reset",
+    gumroad: gumroadLinks.reset,
     bullets: ["Planner diario", "Hábitos", "Pomodoro", "Metas", "Exámenes"],
     articles: ["El método anti procrastinación", "Cómo estudiar con IA sin copiar"]
   }
@@ -90,7 +103,8 @@ const packTotal = {
   perceived: 2488,
   badge: "Mejor valor",
   headline: "Toda la biblioteca Daily Tips en un solo paquete.",
-  emotional: "La forma más completa de vender, organizar, estudiar, crear contenido y resolver problemas diarios con herramientas digitales listas."
+  emotional: "La forma más completa de vender, organizar, estudiar, crear contenido y resolver problemas diarios con herramientas digitales listas.",
+  gumroad: gumroadLinks.total
 };
 
 const articles = [
@@ -198,7 +212,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
     <nav aria-label="Principal">
       ${nav.map(([label, href]) => `<a class="${active === href.replace(".html", "") ? "is-active" : ""}" href="${href}">${label}</a>`).join("")}
     </nav>
-    <a class="topbar-cta" href="${whatsapp}" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+    <a class="topbar-cta" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar Pack Total</a>
   </header>
   <main>${body}</main>
   <footer class="footer">
@@ -233,8 +247,8 @@ function packCard(pack, total = false) {
     <div class="price"><strong>${money(pack.price)}</strong><span>normal ${money(pack.normal)}</span></div>
     <ul>${(pack.bullets ?? ["48 herramientas", "Todas las categorías", "Actualizaciones", "Zona premium"]).map((item) => `<li>${item}</li>`).join("")}</ul>
     <div class="pack-actions">
-      <a class="button" href="${whatsapp}" target="_blank" rel="noopener">Comprar</a>
-      <a class="button button--ghost" href="${pack.page}">Ver paquete</a>
+      <a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar ahora</a>
+      <a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a>
     </div>
     <small>${count} archivos incluidos</small>
   </article>`;
@@ -269,7 +283,7 @@ function home() {
         <h1>Vende soluciones digitales, no archivos sueltos.</h1>
         <p class="lead">Daily Tips organiza herramientas descargables en paquetes claros para finanzas, IA, negocios, contenido, productividad y estudio. Ideal para vender desde Facebook y entregar en una zona premium.</p>
         <div class="hero__actions">
-          <a class="button" href="pack-total.html">Ver Pack Total</a>
+          <a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a>
           <a class="button button--ghost" href="paquetes.html">Explorar paquetes</a>
         </div>
         <div class="trust"><span>5 paquetes</span><span>48 herramientas</span><span>Blog público</span><span>Premium privado</span></div>
@@ -288,6 +302,7 @@ function home() {
       <div class="section__title"><p class="eyebrow">Paquetes destacados</p><h2>Vende por categoría o sube el ticket con el Pack Total.</h2></div>
       <div class="pack-grid">${packDefs.slice(0, 3).map((pack) => packCard(pack)).join("")}${packCard(packTotal, true)}</div>
     </section>
+    ${howReceive()}
     <section class="section lead-free">
       <div><p class="eyebrow">Recurso gratis</p><h2>Capta leads antes de vender.</h2><p>Usa el archivo gratis “30 gastos que se comen tu quincena” para pedir correo o WhatsApp y después ofrecer Dinero y Ahorro o Pack Total.</p></div>
       <a class="button" href="daily_tips_gratis_30_gastos_quincena.xlsx" download>Descargar gratis</a>
@@ -315,7 +330,8 @@ function paquetes() {
         <div class="compare-row total"><span>DAILYTIPS Pack Total</span><span>48 archivos + bonos</span><span>${money(packTotal.price)}</span><span>Máximo valor y biblioteca completa</span></div>
       </div>
     </section>
-    <section class="section lead-free"><div><p class="eyebrow">Recomendado</p><h2>Si dudas, ofrece primero Pack Total.</h2><p>El valor percibido es mayor, simplifica la entrega y convierte mejor cuando el cliente quiere “todo”.</p></div><a class="button" href="pack-total.html">Ver Pack Total</a></section>`
+    ${howReceive()}
+    <section class="section lead-free"><div><p class="eyebrow">Recomendado</p><h2>Si dudas, ofrece primero Pack Total.</h2><p>El valor percibido es mayor, simplifica la entrega y convierte mejor cuando el cliente quiere “todo”.</p></div><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a></section>`
   });
 }
 
@@ -332,13 +348,14 @@ function packTotalPage() {
         <h1>${packTotal.headline}</h1>
         <p class="lead">${packTotal.emotional}</p>
         <div class="price hero-price"><strong>${money(packTotal.price)}</strong><span>Valor percibido ${money(packTotal.perceived)}</span></div>
-        <div class="hero__actions"><a class="button" href="${whatsapp}" target="_blank" rel="noopener">Comprar Pack Total</a><a class="button button--ghost" href="premium.html">Ver acceso premium</a></div>
+        <div class="hero__actions"><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a></div>
       </div>
       ${mockup("grad-total")}
     </section>
     <section class="section"><div class="section__title"><p class="eyebrow">Todo lo que incluye</p><h2>48 archivos en 6 áreas de alto interés.</h2></div><div class="category-showcase">${packDefs.map((pack) => `<a class="category-tile ${pack.gradient}" href="${pack.page}"><span>${byPack(pack).length} archivos</span><strong>${pack.name}</strong><p>${pack.headline}</p></a>`).join("")}</div></section>
     <section class="section compare-section"><div class="section__title"><p class="eyebrow">Comparación de valor</p><h2>Comprar por separado cuesta más.</h2></div><div class="value-grid"><article><strong>${money(individual)}</strong><span>Comprando paquetes por separado</span></article><article><strong>${money(packTotal.price)}</strong><span>Pack Total lanzamiento</span></article><article><strong>${money(individual - packTotal.price)}</strong><span>Ahorro estimado</span></article></div></section>
-    <section class="section"><div class="section__title"><p class="eyebrow">Beneficios</p><h2>Diseñado para compradores de Facebook.</h2></div><div class="benefit-grid"><article>Descarga inmediata desde zona premium</article><article>Productos por categorías claras</article><article>Recursos gratis para captar leads</article><article>Archivos editables en Excel</article></div></section>
+    <section class="section"><div class="section__title"><p class="eyebrow">Beneficios</p><h2>Diseñado para compradores de Facebook.</h2></div><div class="benefit-grid"><article>Pago seguro en Gumroad</article><article>Entrega automática por correo</article><article>Productos por categorías claras</article><article>Archivos editables en Excel</article></div></section>
+    ${howReceive()}
     ${faqBlock()}`
   });
 }
@@ -352,12 +369,13 @@ function categoryPage(pack) {
     active: pack.id,
     body: `
     <section class="hero hero-commercial">
-      <div class="hero__copy"><span class="pill">${pack.badge}</span><h1>${pack.name}</h1><p class="lead">${pack.emotional}</p><div class="price hero-price"><strong>${money(pack.price)}</strong><span>normal ${money(pack.normal)}</span></div><div class="hero__actions"><a class="button" href="${whatsapp}" target="_blank" rel="noopener">Comprar paquete</a><a class="button button--ghost" href="pack-total.html">Mejor: Pack Total</a></div></div>
+      <div class="hero__copy"><span class="pill">${pack.badge}</span><h1>${pack.name}</h1><p class="lead">${pack.emotional}</p><div class="price hero-price"><strong>${money(pack.price)}</strong><span>normal ${money(pack.normal)}</span></div><div class="hero__actions"><a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar ahora</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a></div></div>
       ${mockup(pack.gradient)}
     </section>
     <section class="section"><div class="section__title"><p class="eyebrow">Archivos incluidos</p><h2>${items.length} herramientas para resolver este problema.</h2></div><div class="mini-grid">${items.map(productMini).join("")}</div></section>
     <section class="section"><div class="section__title"><p class="eyebrow">Artículos relacionados</p><h2>Contenido para atraer tráfico a este paquete.</h2></div><div class="article-grid">${related.length ? related.map((article) => blogCards(articles.indexOf(article) + 1).split("</article>").slice(-2, -1)[0] + "</article>").join("") : blogCards(2)}</div></section>
-    <section class="section lead-free"><div><p class="eyebrow">Recomendación</p><h2>Si quieres más valor, compra Pack Total.</h2><p>Incluye este paquete y todos los demás por un precio más conveniente.</p></div><a class="button" href="pack-total.html">Ver Pack Total</a></section>`
+    ${howReceive()}
+    <section class="section lead-free"><div><p class="eyebrow">Recomendación</p><h2>Si quieres más valor, compra Pack Total.</h2><p>Incluye este paquete y todos los demás por un precio más conveniente.</p></div><div class="hero__actions"><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a></div></section>`
   });
 }
 
@@ -389,8 +407,12 @@ function premium() {
     description: "Zona privada de descargas para clientes Daily Tips.",
     active: "premium",
     body: `<section class="page-hero"><p class="eyebrow">Zona privada</p><h1>Acceso premium para compradores.</h1><p>Contraseña para clientes: <strong>${premiumPassword}</strong></p></section>
-    <section id="premium" class="section premium-section"><div class="premium-gate" id="premium-gate"><div><p class="eyebrow">Biblioteca privada</p><h2>Descarga tus archivos comprados.</h2><p>Introduce la contraseña enviada por Facebook o WhatsApp después de comprar.</p></div><form class="premium-form" id="premium-form"><label for="premium-password">Contraseña</label><input id="premium-password" type="password" placeholder="Contraseña"><button type="submit">Entrar</button><p class="form-error" id="premium-error"></p></form></div><div class="premium-library" id="premium-library" hidden><div class="section__title"><p class="eyebrow">Descargas</p><h2>Biblioteca premium completa.</h2><p>Descarga el ZIP o baja archivos por categoría. Llena las celdas amarillas de cada Excel.</p></div><div class="premium-actions"><a class="button" href="daily_tips_paquete_completo.zip" download>Descargar ZIP completo</a><button class="button button--ghost" id="premium-logout" type="button">Cerrar acceso</button></div><div class="premium-downloads" id="premium-downloads"></div></div></section>`
+    <section id="premium" class="section premium-section"><div class="premium-gate" id="premium-gate"><div><p class="eyebrow">Biblioteca privada</p><h2>Descarga tus archivos comprados.</h2><p>Introduce la contraseña si compraste una versión con acceso privado. En Gumroad la entrega es automática por correo.</p></div><form class="premium-form" id="premium-form"><label for="premium-password">Contraseña</label><input id="premium-password" type="password" placeholder="Contraseña"><button type="submit">Entrar</button><p class="form-error" id="premium-error"></p></form></div><div class="premium-library" id="premium-library" hidden><div class="section__title"><p class="eyebrow">Descargas</p><h2>Biblioteca premium completa.</h2><p>Descarga el ZIP o baja archivos por categoría. Llena las celdas amarillas de cada Excel.</p></div><div class="premium-actions"><a class="button" href="daily_tips_paquete_completo.zip" download>Descargar ZIP completo</a><button class="button button--ghost" id="premium-logout" type="button">Cerrar acceso</button></div><div class="premium-downloads" id="premium-downloads"></div></div></section>`
   });
+}
+
+function howReceive() {
+  return `<section class="section process-section"><div class="section__title"><p class="eyebrow">Cómo recibes tus archivos</p><h2>Compra simple, entrega automática.</h2></div><div class="process-grid"><article><span>1</span><strong>Eliges tu paquete</strong></article><article><span>2</span><strong>Pagas de forma segura en Gumroad</strong></article><article><span>3</span><strong>Recibes acceso automático por correo</strong></article><article><span>4</span><strong>Descargas tus archivos</strong></article><article><span>5</span><strong>Puedes pedir soporte por WhatsApp</strong></article></div></section>`;
 }
 
 function faqBlock() {
@@ -406,7 +428,7 @@ function contacto() {
     title: "Contacto Daily Tips",
     description: "Compra y soporte Daily Tips por Facebook o WhatsApp.",
     active: "contacto",
-    body: `<section class="page-hero"><p class="eyebrow">Contacto y soporte</p><h1>Compra por Facebook o WhatsApp y recibe acceso premium.</h1><p>Usa esta página para resolver dudas, pedir soporte y recibir instrucciones después de comprar.</p><div class="hero__actions"><a class="button" href="${whatsapp}" target="_blank" rel="noopener">Comprar por WhatsApp</a><a class="button button--ghost" href="premium.html">Ir a Premium</a></div></section><section class="section page-grid"><article><h3>Cómo funciona</h3><p>Elige paquete, compra por Facebook/WhatsApp, recibe contraseña y descarga en Premium.</p></article><article><h3>Soporte</h3><p>Envía captura si un archivo no abre o si no encuentras una descarga.</p></article><article><h3>Términos</h3><p>Uso personal. No redistribuir, revender ni compartir contraseña.</p></article><article><h3>Privacidad</h3><p>Los datos de contacto se usan para entrega, soporte y novedades.</p></article><article><h3>Después de comprar</h3><p>Guarda el enlace premium y descarga el ZIP completo como respaldo.</p></article><article><h3>Garantía técnica</h3><p>Si falta un archivo o no descarga, se corrige o se reenvía.</p></article></section>`
+    body: `<section class="page-hero"><p class="eyebrow">Contacto y soporte</p><h1>Compra en Gumroad y recibe tus archivos automáticamente.</h1><p>Usa esta página para resolver dudas por WhatsApp o encontrar acceso premium si ya compraste antes.</p><div class="hero__actions"><a class="button" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a><a class="button button--ghost" href="premium.html">Ir a Premium</a></div></section><section class="section page-grid"><article><h3>Cómo funciona</h3><p>Elige paquete, paga de forma segura en Gumroad y recibe tus archivos automáticamente por correo.</p></article><article><h3>Soporte</h3><p>Envía captura si un archivo no abre o si no encuentras una descarga.</p></article><article><h3>Términos</h3><p>Uso personal. No redistribuir, revender ni compartir contraseña.</p></article><article><h3>Privacidad</h3><p>Los datos de contacto se usan para entrega, soporte y novedades.</p></article><article><h3>Después de comprar</h3><p>Guarda el enlace premium y descarga el ZIP completo como respaldo.</p></article><article><h3>Garantía técnica</h3><p>Si falta un archivo o no descarga, se corrige o se reenvía.</p></article></section>`
   });
 }
 
