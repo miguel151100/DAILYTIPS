@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daily Tips | Biblioteca Digital de Herramientas</title>
-  <meta name="description" content="Plataforma moderna de archivos digitales para México: finanzas, IA, negocios, contenido, productividad y estudiantes.">
+  <title>Daily Tips | Plataforma de Productos Digitales</title>
+  <meta name="description" content="Blog, productos digitales y zona premium Daily Tips para vender desde Facebook y entregar archivos descargables.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,29 +22,30 @@
       <span>Daily Tips</span>
     </a>
     <nav aria-label="Principal">
-      <a href="#biblioteca">Biblioteca</a>
+      <a href="#blog">Blog</a>
+      <a href="#productos">Productos</a>
       <a href="#destacados">Destacados</a>
       <a href="#gratis">Gratis</a>
-      <a href="#newsletter">Newsletter</a>
+      <a href="#premium">Premium</a>
     </nav>
-    <a class="topbar-cta" href="daily_tips_paquete_completo.zip" download>Descargar bundle</a>
+    <a class="topbar-cta" href="#premium">Acceso premium</a>
   </header>
 
   <main id="inicio">
     <section class="hero">
       <div class="hero__copy">
-        <p class="eyebrow">Biblioteca digital premium</p>
-        <h1>Herramientas descargables para resolver problemas reales de México.</h1>
-        <p class="lead">Una plataforma de archivos Excel y recursos prácticos para finanzas, IA, negocios, creadores, productividad y estudiantes. Pensada para vender desde Facebook con contenido viral.</p>
+        <p class="eyebrow">Blog + tienda + zona premium</p>
+        <h1>Convierte publicaciones de Facebook en ventas de productos digitales.</h1>
+        <p class="lead">Daily Tips combina artículos virales, herramientas gratis, productos premium y una biblioteca privada para entregar archivos descargables después de comprar.</p>
         <div class="hero__actions">
-          <a class="button" href="#biblioteca">Explorar biblioteca</a>
-          <a class="button button--ghost" href="daily_tips_paquete_completo.zip" download>Descargar todo</a>
+          <a class="button" href="#blog">Leer artículos</a>
+          <a class="button button--ghost" href="#productos">Ver productos</a>
         </div>
         <div class="trust">
           <span><strong id="total-products">48</strong> productos</span>
           <span>6 categorías</span>
-          <span>Excel editable</span>
-          <span>Hecho para México</span>
+          <span>Blog público</span>
+          <span>Zona premium</span>
         </div>
       </div>
       <div class="hero-panel" aria-label="Resumen de plataforma">
@@ -74,7 +75,7 @@
     <section class="metrics" aria-label="Métricas">
       <div>
         <strong>48</strong>
-        <span>herramientas descargables</span>
+        <span>herramientas premium</span>
       </div>
       <div>
         <strong>6</strong>
@@ -82,7 +83,7 @@
       </div>
       <div>
         <strong>100%</strong>
-        <span>orientado a Facebook y blog</span>
+        <span>embudo blog → lead → venta</span>
       </div>
       <div>
         <strong>MX</strong>
@@ -90,20 +91,31 @@
       </div>
     </section>
 
+    <section id="blog" class="section blog-section">
+      <div class="section__title">
+        <p class="eyebrow">Blog público</p>
+        <h2>Artículos diseñados para atraer tráfico desde Facebook.</h2>
+        <p>Cada artículo conecta un problema viral con un producto recomendado, un lead magnet y una llamada a la acción.</p>
+      </div>
+      <div class="category-tabs blog-tabs" id="blog-tabs" aria-label="Filtros de artículos"></div>
+      <div class="article-grid" id="article-grid"></div>
+    </section>
+
     <section id="destacados" class="section">
       <div class="section__title">
         <p class="eyebrow">Productos destacados</p>
-        <h2>Los archivos que mejor conectan con problemas virales.</h2>
-        <p>Úsalos como gancho en publicaciones de Facebook, artículos de blog y ofertas por inbox.</p>
+        <h2>Herramientas con mayor potencial de conversión.</h2>
+        <p>Úsalas como oferta principal en anuncios, posts virales y mensajes por inbox.</p>
       </div>
       <div class="featured-grid" id="featured-grid"></div>
     </section>
 
-    <section id="biblioteca" class="section library-section">
+    <section id="productos" class="section library-section">
       <div class="library-header">
         <div class="section__title">
-          <p class="eyebrow">Biblioteca digital</p>
-          <h2>Busca, filtra y descarga herramientas por categoría.</h2>
+          <p class="eyebrow">Productos digitales</p>
+          <h2>Catálogo público para vender desde Facebook.</h2>
+          <p>Los productos premium se compran por Facebook o WhatsApp. Las herramientas gratis sirven para captar leads.</p>
         </div>
         <div class="search-shell">
           <label for="searchInput">Buscar archivo</label>
@@ -167,17 +179,101 @@
       </div>
     </section>
 
+    <section id="premium" class="section premium-section">
+      <div class="premium-gate" id="premium-gate">
+        <div>
+          <p class="eyebrow">Zona premium privada</p>
+          <h2>Acceso para clientes Daily Tips.</h2>
+          <p>Después de comprar por Facebook, envía esta página y la contraseña de acceso. El cliente podrá descargar el paquete completo o archivos individuales.</p>
+        </div>
+        <form class="premium-form" id="premium-form">
+          <label for="premium-password">Contraseña de acceso</label>
+          <input id="premium-password" type="password" placeholder="Escribe la contraseña">
+          <button type="submit">Entrar a biblioteca premium</button>
+          <small>Contraseña sugerida para clientes: <strong>DAILYTIPS2026</strong></small>
+          <p class="form-error" id="premium-error"></p>
+        </form>
+      </div>
+      <div class="premium-library" id="premium-library" hidden>
+        <div class="section__title">
+          <p class="eyebrow">Biblioteca premium</p>
+          <h2>Descargas para clientes.</h2>
+          <p>Instrucción: descarga el ZIP completo o usa las categorías para bajar un archivo específico. Abre cada Excel y llena las celdas amarillas.</p>
+        </div>
+        <div class="premium-actions">
+          <a class="button" href="daily_tips_paquete_completo.zip" download>Descargar paquete completo</a>
+          <button class="button button--ghost" type="button" id="premium-logout">Cerrar acceso</button>
+        </div>
+        <div class="premium-downloads" id="premium-downloads"></div>
+      </div>
+    </section>
+
+    <section id="conversion" class="section conversion-section">
+      <div class="conversion-card">
+        <p class="eyebrow">Sistema de conversión</p>
+        <h2>Ruta recomendada para vender sin depender solo de anuncios.</h2>
+        <ol class="steps">
+          <li><strong>Publicación viral:</strong> habla de un problema concreto: quincena, IA, deudas, tareas o ventas.</li>
+          <li><strong>Artículo del blog:</strong> manda tráfico al artículo relacionado.</li>
+          <li><strong>Producto gratis:</strong> ofrece una herramienta gratuita para captar correo o WhatsApp.</li>
+          <li><strong>Oferta premium:</strong> recomienda un producto o bundle específico.</li>
+          <li><strong>Zona premium:</strong> después de comprar, entrega contraseña y enlace de descarga.</li>
+        </ol>
+      </div>
+    </section>
+
     <section id="newsletter" class="section newsletter">
       <div>
         <p class="eyebrow">Daily Tips Lab</p>
         <h2>Recibe ideas de archivos, posts virales y nuevas herramientas.</h2>
-        <p>Usa esta sección para capturar correos cuando conectes tu formulario. Por ahora funciona como CTA para inbox de Facebook.</p>
+        <p>Capta correos o WhatsApp con recursos gratis y después ofrece el paquete premium.</p>
       </div>
       <form class="newsletter-form" onsubmit="event.preventDefault(); this.classList.add('is-done');">
         <input type="email" placeholder="tu-correo@email.com" aria-label="Correo electrónico">
-        <button type="submit">Unirme</button>
+        <input type="tel" placeholder="WhatsApp opcional" aria-label="WhatsApp">
+        <button type="submit">Quiero recursos gratis</button>
         <small>También puedes escribir por Facebook: “QUIERO DAILY TIPS”.</small>
       </form>
+    </section>
+
+    <section id="paginas" class="section pages-section">
+      <div class="section__title">
+        <p class="eyebrow">Páginas importantes</p>
+        <h2>Confianza, soporte y claridad antes de comprar.</h2>
+      </div>
+      <div class="page-grid">
+        <article><h3>Cómo funciona</h3><p>Elige un producto, compra por Facebook/WhatsApp, recibe contraseña y descarga en Premium.</p></article>
+        <article><h3>Preguntas frecuentes</h3><p>Los archivos son editables, funcionan mejor en Excel y se entregan como descarga digital.</p></article>
+        <article><h3>Contacto</h3><p>Para comprar o pedir soporte, escribe por Facebook o WhatsApp con la palabra DAILY TIPS.</p></article>
+        <article><h3>Términos de uso</h3><p>Uso personal. No se permite revender, compartir el ZIP o redistribuir la contraseña.</p></article>
+        <article><h3>Política de privacidad</h3><p>Los datos capturados en formularios deben usarse solo para contacto, entrega y soporte.</p></article>
+        <article><h3>Soporte</h3><p>Si un archivo no abre, envía captura e indica si usas Excel, celular o Google Sheets.</p></article>
+      </div>
+    </section>
+
+    <section class="section faq-section">
+      <div class="section__title">
+        <p class="eyebrow">FAQ + garantías</p>
+        <h2>Respuestas rápidas para reducir dudas antes de comprar.</h2>
+      </div>
+      <div class="faq-grid">
+        <details open><summary>¿Qué recibo al comprar?</summary><p>Acceso a la zona premium y descarga de los archivos incluidos en el paquete comprado.</p></details>
+        <details><summary>¿Necesito saber Excel?</summary><p>No. La mayoría de archivos están pensados para llenar celdas amarillas y revisar resúmenes.</p></details>
+        <details><summary>¿Hay garantía?</summary><p>Si un archivo no abre o falta una descarga, se corrige o se reenvía el archivo.</p></details>
+        <details><summary>¿Puedo compartirlo?</summary><p>No. La compra es para uso personal. Puedes recomendar la página, pero no redistribuir archivos.</p></details>
+      </div>
+    </section>
+
+    <section class="section testimonials">
+      <div class="section__title">
+        <p class="eyebrow">Testimonios</p>
+        <h2>Prueba social para Facebook.</h2>
+      </div>
+      <div class="testimonial-grid">
+        <article><p>“Por fin entendí por qué mi quincena no rendía. El control de gastos hormiga me pegó justo donde era.”</p><strong>Cliente Daily Tips</strong></article>
+        <article><p>“Uso el calendario de contenido para no publicar al azar. Me ayudó a ordenar mis ideas de venta.”</p><strong>Emprendedora digital</strong></article>
+        <article><p>“Lo abrí, llené amarillo y ya tenía resumen. Eso era lo que necesitaba.”</p><strong>Usuario de Excel básico</strong></article>
+      </div>
     </section>
   </main>
 
