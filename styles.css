@@ -201,7 +201,8 @@ h2 {
   letter-spacing: 0;
 }
 
-.grid {
+.grid,
+.product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
@@ -218,6 +219,24 @@ details,
 
 .card {
   padding: 24px;
+}
+
+.product-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card--highlight {
+  background: linear-gradient(135deg, #ffffff, #eafaf4);
+  border-color: rgba(15, 118, 110, .32);
+}
+
+.text-link {
+  display: inline-flex;
+  margin-top: 8px;
+  color: var(--teal);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 h3 {
@@ -301,6 +320,7 @@ details p {
   }
 
   .grid,
+  .product-grid,
   .strip {
     grid-template-columns: 1fr 1fr;
   }
@@ -323,6 +343,7 @@ details p {
   }
 
   .grid,
+  .product-grid,
   .strip {
     grid-template-columns: 1fr;
   }
