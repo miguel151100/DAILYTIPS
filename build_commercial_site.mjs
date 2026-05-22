@@ -209,6 +209,48 @@ const freeDocs = [
   }
 ];
 
+const hookProducts = [
+  {
+    name: "Control financiero quincenal",
+    product: "Control financiero quincenal MX",
+    benefit: "Ordena ingresos, gastos y pagos sin perder la quincena.",
+    price: "desde $49 MXN"
+  },
+  {
+    name: "Prompts de IA para vender y crear contenido",
+    product: "Prompts premium para ChatGPT",
+    benefit: "Textos, ideas y respuestas listas para vender mejor.",
+    price: "desde $49 MXN"
+  },
+  {
+    name: "Guía para crear tu primera página web con IA",
+    product: "Cómo crear páginas web con IA",
+    benefit: "Convierte una idea en estructura, textos y publicación.",
+    price: "desde $49 MXN"
+  },
+  {
+    name: "Checklist de gastos hormiga",
+    product: "Control de gastos hormiga",
+    benefit: "Encuentra fugas de dinero pequeñas antes de que pesen.",
+    price: "desde $49 MXN"
+  },
+  {
+    name: "Plantilla para organizar pagos y deudas",
+    product: "Organizador de pagos",
+    benefit: "Evita recargos y ten fechas importantes bajo control.",
+    price: "desde $49 MXN"
+  }
+];
+
+const simpleCategories = [
+  ["Dinero y ahorro", "Finanzas personales", "Presupuestos, deudas, pagos y hábitos para cuidar la quincena."],
+  ["Ventas y negocio", "Negocios y revendedores", "Inventario, clientes, pedidos y ganancias para vender con orden."],
+  ["Inteligencia artificial", "IA para principiantes", "Prompts, guías y herramientas para usar IA sin complicarte."],
+  ["Estudio y organización", "Estudiantes", "Tareas, exámenes, horarios y recursos para estudiar mejor."],
+  ["Contenido digital", "Creadores de contenido", "Ideas, guiones, calendarios y métricas para publicar con intención."],
+  ["Productividad diaria", "Productividad y organización", "Hábitos, enfoque, metas y planeación para avanzar cada semana."]
+];
+
 function byPack(pack) {
   return products.filter((product) => {
     if (pack.category) return product.category === pack.category;
@@ -246,7 +288,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="catalog.js" defer></script>
   <script src="app.js" defer></script>
@@ -263,11 +305,13 @@ function layout({ title, description, active, body, extraHead = "" }) {
         <button class="${active.startsWith("categoria") ? "is-active" : ""}" type="button">Categorías</button>
         <div class="mega-menu">
           ${categoryGroups.map(([name, tagline]) => {
-            const items = products.filter((product) => product.category === name);
+            const pack = packForCategory(name);
+            const count = products.filter((product) => product.category === name).length;
             return `<section class="mega-group">
               <a class="mega-title" href="${categoryPageSlug(name)}">${name}</a>
               <p>${tagline}</p>
-              ${items.map((product) => `<a class="mega-item" href="${productPageSlug(product)}">${product.name}</a>`).join("")}
+              <a class="mega-item" href="${categoryPageSlug(name)}">${count} archivos · Ver categoría</a>
+              <a class="mega-item" href="${pack.page}">Ver paquete</a>
             </section>`;
           }).join("")}
         </div>
@@ -339,46 +383,62 @@ function slug(text) {
 function home() {
   const best = products.filter((product) => product.tag === "Más vendido").slice(0, 4);
   return layout({
-    title: "Daily Tips | Productos digitales para vender, ahorrar y organizarte",
-    description: "Paquetes digitales por categoría y DAILYTIPS Pack Total para México.",
+    title: "DailyTips | Archivos digitales, plantillas y guías prácticas",
+    description: "Compra archivos digitales, plantillas y guías prácticas para organizar tu dinero, vender mejor, estudiar, crear contenido y usar inteligencia artificial.",
     active: "index",
     body: `
     <section class="hero hero-commercial hero-atelier">
       <div class="hero__copy">
-        <p class="eyebrow">Biblioteca digital para la vida real en México</p>
-        <h1>Herramientas listas para ordenar dinero, ventas, estudio y contenido.</h1>
-        <p class="lead">Daily Tips funciona como una colección curada de archivos prácticos: cada paquete resuelve un problema concreto, se compra en Gumroad y se recibe automáticamente por correo.</p>
+        <p class="eyebrow">Productos digitales listos para usar</p>
+        <h1>Archivos digitales listos para organizar tu dinero, vender mejor y ahorrar tiempo</h1>
+        <p class="lead">Plantillas, guías y recursos prácticos para emprender, estudiar, crear contenido y usar IA sin complicarte. Compra una vez y empieza a usarlos en minutos.</p>
         <div class="hero__actions">
-          <a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a>
-          <a class="button button--ghost" href="recursos-gratis.html">Probar gratis</a>
+          <a class="button" href="#paquetes">Ver paquetes</a>
+          <a class="button button--ghost" href="daily_tips_gratis_30_gastos_quincena.xlsx" download>Descargar recurso gratis</a>
+          <a class="button button--light" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar Pack Total</a>
         </div>
-        <div class="trust"><span>48 archivos</span><span>6 categorías</span><span>Entrega Gumroad</span><span>Recursos gratis</span></div>
+        <div class="trust"><span>Pago único</span><span>Acceso digital</span><span>Soporte por WhatsApp</span><span>Compatible con celular y computadora</span></div>
       </div>
       ${mockup("grad-total")}
     </section>
+    <section class="section offer-section" id="pack-total">
+      <div class="offer-card">
+        <div>
+          <p class="eyebrow">Oferta principal</p>
+          <h2>Pack Total DailyTips</h2>
+          <p>Accede a todos los recursos digitales en un solo paquete: finanzas, IA, ventas, estudio, productividad y contenido.</p>
+          <div class="hero__actions"><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar Pack Total</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a></div>
+        </div>
+        <div class="offer-benefits">
+          ${["48 archivos digitales", "6 categorías", "Pago único", "Acceso inmediato", "Ideal para emprendedores, estudiantes y creadores", "Recursos listos para usar"].map((item) => `<span>${item}</span>`).join("")}
+        </div>
+      </div>
+    </section>
     <section class="section">
-      <div class="section__title"><p class="eyebrow">Categorías</p><h2>Entra por el problema que quieres resolver.</h2></div>
-      <div class="category-showcase">${globalThis.dailyTipsCatalog.categoryMeta.filter(([name]) => name !== "Todos").map(([name, tagline]) => {
-        const pack = packForCategory(name);
-        return `<a class="category-tile ${pack.gradient}" href="${categoryPageSlug(name)}"><span>${byPack(pack).length} archivos</span><strong>${name}</strong><p>${tagline}</p></a>`;
+      <div class="section__title"><p class="eyebrow">Productos gancho</p><h2>Recursos de entrada para anuncios y publicaciones.</h2><p>Productos simples, fáciles de entender y con beneficio inmediato.</p></div>
+      <div class="hook-grid">${hookProducts.map(hookProductCard).join("")}</div>
+    </section>
+    <section class="section">
+      <div class="section__title"><p class="eyebrow">Categorías</p><h2>Encuentra rápido lo que necesitas.</h2></div>
+      <div class="category-showcase category-showcase--simple">${simpleCategories.map(([label, category, desc]) => {
+        const pack = packForCategory(category);
+        return `<a class="category-tile ${pack.gradient}" href="${categoryPageSlug(category)}"><span>${category}</span><strong>${label}</strong><p>${desc}</p></a>`;
       }).join("")}</div>
     </section>
-    <section class="section free-strip">
-      <div class="section__title"><p class="eyebrow">Gratis para atraer compradores</p><h2>Recursos puntuales para publicar en Facebook.</h2></div>
-      <div class="free-grid">${freeDocs.slice(0, 3).map(freeDocCard).join("")}</div>
-    </section>
-    <section class="section">
-      <div class="section__title"><p class="eyebrow">Más vendidos</p><h2>Los productos más fáciles de convertir desde Facebook.</h2></div>
-      <div class="mini-grid">${best.map(productMini).join("")}</div>
-    </section>
-    <section class="section">
-      <div class="section__title"><p class="eyebrow">Paquetes destacados</p><h2>Vende por categoría o sube el ticket con el Pack Total.</h2></div>
+    <section class="section" id="paquetes">
+      <div class="section__title"><p class="eyebrow">Paquetes</p><h2>Compra por tema o llévate todo.</h2></div>
       <div class="pack-grid">${packDefs.slice(0, 3).map((pack) => packCard(pack)).join("")}${packCard(packTotal, true)}</div>
     </section>
     ${howReceive()}
-    <section class="section lead-free">
-      <div><p class="eyebrow">Recurso gratis</p><h2>Capta leads antes de vender.</h2><p>Usa el archivo gratis “30 gastos que se comen tu quincena” para pedir correo o WhatsApp y después ofrecer Dinero y Ahorro o Pack Total.</p></div>
-      <a class="button" href="daily_tips_gratis_30_gastos_quincena.xlsx" download>Descargar gratis</a>
+    <section class="section audience-section">
+      <div class="section__title"><p class="eyebrow">Para quién es</p><h2>Este sitio es para ti si quieres avanzar sin empezar desde cero.</h2></div>
+      <div class="audience-list">
+        ${["quieres organizar mejor tu dinero", "vendes productos o servicios y quieres mejorar tus ventas", "quieres usar IA pero no sabes por dónde empezar", "estudias y necesitas organizarte", "quieres crear contenido sin perder horas", "quieres recursos listos para usar sin empezar desde cero"].map((item) => `<span>${item}</span>`).join("")}
+      </div>
+    </section>
+    <section class="section trust-section">
+      <div><p class="eyebrow">Compra segura y acceso inmediato</p><h2>Diseñado para comprar fácil y empezar rápido.</h2></div>
+      <div class="trust-grid">${["Pago único", "Sin suscripciones", "Acceso digital", "Compatible con celular y computadora", "Soporte por WhatsApp"].map((item) => `<article>${item}</article>`).join("")}</div>
     </section>
     <section class="section">
       <div class="section__title"><p class="eyebrow">Artículos recientes</p><h2>Contenido para traer tráfico desde Facebook.</h2></div>
@@ -542,6 +602,17 @@ function freeDocCard(doc) {
   </article>`;
 }
 
+function hookProductCard(item) {
+  const product = products.find((entry) => entry.name === item.product);
+  const pack = product ? packForCategory(product.category) : packTotal;
+  return `<article class="hook-card">
+    <span>${item.price}</span>
+    <h3>${item.name}</h3>
+    <p>${item.benefit}</p>
+    <div class="hook-actions"><a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar</a><a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">WhatsApp</a></div>
+  </article>`;
+}
+
 function articleCard(article) {
   return `<article class="article-card">
     <div class="article-image ${article.image}"><span>${article.category}</span></div>
@@ -560,7 +631,7 @@ function premium() {
 }
 
 function howReceive() {
-  return `<section class="section process-section"><div class="section__title"><p class="eyebrow">Cómo recibes tus archivos</p><h2>Compra simple, entrega automática.</h2></div><div class="process-grid"><article><span>1</span><strong>Eliges tu paquete</strong></article><article><span>2</span><strong>Pagas de forma segura en Gumroad</strong></article><article><span>3</span><strong>Recibes acceso automático por correo</strong></article><article><span>4</span><strong>Descargas tus archivos</strong></article><article><span>5</span><strong>Puedes pedir soporte por WhatsApp</strong></article></div></section>`;
+  return `<section class="section process-section"><div class="section__title"><p class="eyebrow">Cómo funciona</p><h2>Compra simple en 3 pasos.</h2></div><div class="process-grid"><article><span>1</span><strong>Elige tu recurso o paquete</strong></article><article><span>2</span><strong>Realiza tu pago de forma segura</strong></article><article><span>3</span><strong>Recibe el archivo y empieza a usarlo</strong></article></div></section>`;
 }
 
 function faqBlock() {
