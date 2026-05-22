@@ -7,6 +7,7 @@ await import(`file://${path.join(__dirname, "catalog.js")}?v=${Date.now()}`);
 const { products, icon } = globalThis.dailyTipsCatalog;
 
 const whatsapp = "https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips";
+const bloggerUrl = "https://dailytipsmx.blogspot.com/";
 const gumroadLinks = {
   total: "https://gumroad.com/l/dailytips-pack-total",
   dinero: "https://gumroad.com/l/pack-dinero-ahorro",
@@ -394,7 +395,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
         </div>
       </div>
       <a class="${active === "recursos-gratis" ? "is-active" : ""}" href="recursos-gratis.html">Gratis</a>
-      <a class="${active === "blog" ? "is-active" : ""}" href="blog.html">Blog</a>
+      <a class="${active === "blog" ? "is-active" : ""}" href="${bloggerUrl}" target="_blank" rel="noopener">Blog</a>
       <a class="${active === "premium" ? "is-active" : ""}" href="premium.html">Acceso</a>
       <a class="nav-cta" href="${packTotal.gumroad}" target="_blank" rel="noopener">${cartIcon()} Comprar Pack Completo</a>
     </nav>
@@ -447,7 +448,7 @@ function blogCards(limit = articles.length) {
       <span class="article-category">${article.category}</span>
       <h3>${article.title}</h3>
       <p>${article.excerpt}</p>
-      <a class="text-link" href="blog.html#${slug(article.title)}">Leer artículo</a>
+      <a class="text-link" href="${bloggerUrl}" target="_blank" rel="noopener">Leer en Blogger</a>
     </div>
   </article>`).join("");
 }
@@ -719,11 +720,10 @@ function productPage(product) {
 
 function blog() {
   return layout({
-    title: "Blog Daily Tips | Artículos para vender desde Facebook",
-    description: "Artículos públicos conectados a productos y paquetes Daily Tips.",
+    title: "Blog Daily Tips | Blogger oficial",
+    description: "Blog oficial de DailyTips en Blogger con contenido sobre productos digitales, educación, finanzas, IA y productividad.",
     active: "blog",
-    body: `<section class="page-hero"><p class="eyebrow">Blog público</p><h1>Artículos diseñados para atraer tráfico y convertir.</h1><p>Cada entrada tiene CTA, productos relacionados y una ruta clara hacia compra o recurso gratis.</p></section>
-    <section class="section blog-long">${articles.map((article) => `<article id="${slug(article.title)}" class="blog-post"><div class="article-image ${article.image}"><span>${article.category}</span></div><div><p class="eyebrow">${article.category}</p><h2>${article.title}</h2><p>${article.excerpt}</p>${article.body.map((p) => `<p>${p}</p>`).join("")}<div class="article-cta"><a class="button" href="${article.page}">Ver ${article.pack}</a><a class="button button--ghost" href="recursos-gratis.html">Descargar recurso gratis</a></div></div></article>`).join("")}</section>`
+    body: `<section class="page-hero"><p class="eyebrow">Blog oficial</p><h1>El blog de DailyTips ahora está en Blogger.</h1><p>Usa este acceso para leer publicaciones, compartir contenido en Facebook y traer tráfico hacia tus productos digitales.</p><div class="hero__actions"><a class="button" href="${bloggerUrl}" target="_blank" rel="noopener">Abrir blog en Blogger</a><a class="button button--ghost" href="index.html#productos">Ver productos</a></div></section>`
   });
 }
 
@@ -826,7 +826,7 @@ function educacion() {
 function articleCard(article) {
   return `<article class="article-card">
     <div class="article-image ${article.image}"><span>${article.category}</span></div>
-    <div class="article-body"><span class="article-category">${article.category}</span><h3>${article.title}</h3><p>${article.excerpt}</p><a class="text-link" href="blog.html#${slug(article.title)}">Leer artículo</a></div>
+    <div class="article-body"><span class="article-category">${article.category}</span><h3>${article.title}</h3><p>${article.excerpt}</p><a class="text-link" href="${bloggerUrl}" target="_blank" rel="noopener">Leer en Blogger</a></div>
   </article>`;
 }
 
