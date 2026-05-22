@@ -298,7 +298,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
   <div class="ambient ambient--one"></div>
   <div class="ambient ambient--two"></div>
   <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Daily Tips inicio"><span class="brand-mark">D</span><span>Daily Tips</span></a>
+    <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
     <nav aria-label="Principal">
       <a class="${active === "index" ? "is-active" : ""}" href="index.html">Home</a>
       <div class="nav-dropdown">
@@ -399,7 +399,9 @@ function home() {
         </div>
         <div class="trust"><span>Pago único</span><span>Acceso digital</span><span>Soporte por WhatsApp</span><span>Compatible con celular y computadora</span></div>
       </div>
-      ${mockup("grad-total")}
+      <figure class="hero-media">
+        <img src="assets/dailytips-hero-banner.png" alt="DailyTips archivos digitales, plantillas y recursos para finanzas, productividad, estudio, contenido e inteligencia artificial">
+      </figure>
     </section>
     <section class="section offer-section" id="pack-total">
       <div class="offer-card">

@@ -1,17 +1,19 @@
 :root {
-  --bg: #f8f7f3;
+  --bg: #f7faf9;
   --surface: #ffffff;
-  --surface-soft: #f1f5f7;
-  --ink: #14161a;
-  --ink-soft: #303640;
-  --muted: #66707c;
-  --line: #e3e7eb;
-  --line-strong: #cdd5dd;
-  --accent: #143b5c;
-  --accent-dark: #0f2b43;
-  --accent-soft: #edf5fa;
-  --accent-line: #c9dce9;
-  --gold: #b9904b;
+  --surface-soft: #eef7f5;
+  --ink: #071f3c;
+  --ink-soft: #173653;
+  --muted: #5e7182;
+  --line: #dbe8e8;
+  --line-strong: #bfd2d4;
+  --accent: #062a4f;
+  --accent-dark: #021d39;
+  --teal: #008f86;
+  --teal-dark: #006d68;
+  --accent-soft: #e8f7f5;
+  --accent-line: #b9dcda;
+  --gold: #c69a44;
   --danger: #9f2f2f;
   --shadow: 0 24px 70px rgba(20, 22, 26, .10);
   --shadow-soft: 0 10px 30px rgba(20, 22, 26, .06);
@@ -31,7 +33,9 @@ body {
   margin: 0;
   font-family: Manrope, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 82% 10%, rgba(0, 143, 134, .08), transparent 24rem),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #ffffff 100%);
 }
 
 ::selection {
@@ -61,8 +65,8 @@ input {
   align-items: center;
   gap: 24px;
   padding: 14px clamp(18px, 4vw, 56px);
-  border-bottom: 1px solid rgba(227, 231, 235, .88);
-  background: rgba(248, 247, 243, .9);
+  border-bottom: 1px solid rgba(219, 232, 232, .9);
+  background: rgba(255, 255, 255, .92);
   backdrop-filter: blur(16px);
 }
 
@@ -79,16 +83,12 @@ input {
   letter-spacing: -.01em;
 }
 
-.brand-mark {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  border: 1px solid rgba(23, 50, 77, .16);
-  border-radius: 12px;
-  color: var(--surface);
-  background: var(--accent);
-  font-weight: 800;
+.brand-logo {
+  width: 54px;
+  height: 42px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 10px;
 }
 
 .topbar nav {
@@ -193,7 +193,7 @@ input {
   padding: 0 14px;
   border: 1px solid var(--accent);
   border-radius: 12px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #073763);
   color: white;
   font-size: 13px;
   font-weight: 700;
@@ -269,7 +269,8 @@ h3 {
   position: relative;
   border-bottom: 1px solid var(--line);
   background:
-    radial-gradient(circle at 80% 16%, rgba(185, 144, 75, .14), transparent 23rem),
+    radial-gradient(circle at 78% 12%, rgba(0, 143, 134, .10), transparent 24rem),
+    radial-gradient(circle at 92% 30%, rgba(198, 154, 68, .12), transparent 18rem),
     linear-gradient(180deg, #ffffff 0%, #f8f7f3 100%);
 }
 
@@ -299,7 +300,7 @@ h3 {
   padding: 0 18px;
   border: 1px solid var(--accent);
   border-radius: 12px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #073c66);
   color: white;
   font-weight: 750;
   cursor: pointer;
@@ -308,7 +309,7 @@ h3 {
 
 .button:hover {
   transform: translateY(-1px);
-  background: var(--accent-dark);
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
   border-color: var(--accent-dark);
   box-shadow: 0 10px 22px rgba(20, 59, 92, .18);
 }
@@ -322,8 +323,25 @@ h3 {
 
 .button--light {
   background: #fff;
-  color: var(--accent);
+  color: var(--teal-dark);
   border-color: var(--accent-line);
+}
+
+.hero-media {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: white;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2172 / 724;
+  object-fit: cover;
 }
 
 .button--ghost:hover {
@@ -513,9 +531,9 @@ h3 {
   background: var(--surface);
 }
 
-.grad-money { border-top: 3px solid #2f7d68; }
-.grad-ai { border-top: 3px solid #143b5c; }
-.grad-business { border-top: 3px solid #b9904b; }
+.grad-money { border-top: 3px solid var(--teal); }
+.grad-ai { border-top: 3px solid var(--accent); }
+.grad-business { border-top: 3px solid var(--gold); }
 .grad-content { border-top: 3px solid #516070; }
 .grad-reset { border-top: 3px solid #476f8d; }
 .grad-study { border-top: 3px solid #7d6f55; }
@@ -1043,7 +1061,7 @@ h3 {
   margin-bottom: 18px;
   place-items: center;
   border-radius: 50%;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--teal), var(--accent));
   color: white;
   font-size: 13px;
   font-weight: 800;
