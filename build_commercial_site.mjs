@@ -301,6 +301,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
     <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
     <nav aria-label="Principal">
       <a class="${active === "index" ? "is-active" : ""}" href="index.html">Home</a>
+      <a class="${active === "blog" ? "is-active" : ""}" href="blog.html">Blog</a>
       <div class="nav-dropdown">
         <button class="${active.startsWith("categoria") ? "is-active" : ""}" type="button">Categorías</button>
         <div class="mega-menu">
@@ -316,13 +317,19 @@ function layout({ title, description, active, body, extraHead = "" }) {
           }).join("")}
         </div>
       </div>
-      <a class="${active === "paquetes" ? "is-active" : ""}" href="paquetes.html">Paquetes</a>
-      <a class="${active === "pack-total" ? "is-active" : ""}" href="pack-total.html">Pack Total</a>
-      <a class="${active === "recursos-gratis" ? "is-active" : ""}" href="recursos-gratis.html">Gratis</a>
-      <a class="${active === "blog" ? "is-active" : ""}" href="blog.html">Blog</a>
-      <a class="${active === "premium" ? "is-active" : ""}" href="premium.html">Acceso</a>
+      <div class="nav-dropdown">
+        <button class="${["paquetes", "pack-total", "recursos-gratis", "premium"].includes(active) ? "is-active" : ""}" type="button">Paquetes</button>
+        <div class="mega-menu mega-menu--compact">
+          <section class="mega-group">
+            <a class="mega-title" href="paquetes.html">Paquetes</a>
+            <p>Elige un paquete por tema o compra toda la biblioteca.</p>
+            <a class="mega-item" href="pack-total.html">Pack Total</a>
+            <a class="mega-item" href="recursos-gratis.html">Promos</a>
+            <a class="mega-item" href="premium.html">Acceso</a>
+          </section>
+        </div>
+      </div>
     </nav>
-    <a class="topbar-cta" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar Pack Total</a>
   </header>
   <main>${body}</main>
   <footer class="footer">

@@ -23,6 +23,7 @@
     <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
     <nav aria-label="Principal">
       <a class="" href="index.html">Home</a>
+      <a class="" href="blog.html">Blog</a>
       <div class="nav-dropdown">
         <button class="" type="button">Categorías</button>
         <div class="mega-menu">
@@ -59,13 +60,19 @@
             </section>
         </div>
       </div>
-      <a class="" href="paquetes.html">Paquetes</a>
-      <a class="" href="pack-total.html">Pack Total</a>
-      <a class="" href="recursos-gratis.html">Gratis</a>
-      <a class="" href="blog.html">Blog</a>
-      <a class="is-active" href="premium.html">Acceso</a>
+      <div class="nav-dropdown">
+        <button class="is-active" type="button">Paquetes</button>
+        <div class="mega-menu mega-menu--compact">
+          <section class="mega-group">
+            <a class="mega-title" href="paquetes.html">Paquetes</a>
+            <p>Elige un paquete por tema o compra toda la biblioteca.</p>
+            <a class="mega-item" href="pack-total.html">Pack Total</a>
+            <a class="mega-item" href="recursos-gratis.html">Promos</a>
+            <a class="mega-item" href="premium.html">Acceso</a>
+          </section>
+        </div>
+      </div>
     </nav>
-    <a class="topbar-cta" href="https://gumroad.com/l/dailytips-pack-total" target="_blank" rel="noopener">Comprar Pack Total</a>
   </header>
   <main><section class="page-hero"><p class="eyebrow">Zona privada</p><h1>Acceso premium para compradores.</h1><p>Contraseña para clientes: <strong>DAILYTIPS2026</strong></p></section>
     <section id="premium" class="section premium-section"><div class="premium-gate" id="premium-gate"><div><p class="eyebrow">Biblioteca privada</p><h2>Descarga tus archivos comprados.</h2><p>Introduce la contraseña si compraste una versión con acceso privado. En Gumroad la entrega es automática por correo.</p></div><form class="premium-form" id="premium-form"><label for="premium-password">Contraseña</label><input id="premium-password" type="password" placeholder="Contraseña"><button type="submit">Entrar</button><p class="form-error" id="premium-error"></p></form></div><div class="premium-library" id="premium-library" hidden><div class="section__title"><p class="eyebrow">Descargas</p><h2>Biblioteca premium completa.</h2><p>Descarga el ZIP o baja archivos por categoría. Llena las celdas amarillas de cada Excel.</p></div><div class="premium-actions"><a class="button" href="daily_tips_paquete_completo.zip" download>Descargar ZIP completo</a><button class="button button--ghost" id="premium-logout" type="button">Cerrar acceso</button></div><div class="premium-downloads" id="premium-downloads"></div></div></section></main>
