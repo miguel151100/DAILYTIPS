@@ -704,7 +704,11 @@ h3 {
 .product-page-grid,
 .free-grid,
 .hook-grid,
-.trust-grid {
+.trust-grid,
+.subject-grid,
+.edu-product-grid,
+.education-level-grid,
+.topic-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
@@ -712,10 +716,119 @@ h3 {
 
 .product-card,
 .free-card,
-.hook-card {
+.hook-card,
+.subject-card,
+.edu-product-card,
+.education-level-card,
+.topic-card {
   display: grid;
   gap: 12px;
   padding: 22px;
+}
+
+.education-preview {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 5vw, 56px);
+  align-items: start;
+  border-block: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(0, 143, 134, .07), transparent 20rem),
+    #fff;
+}
+
+.education-preview__copy {
+  max-width: 640px;
+}
+
+.education-hero .hero-media {
+  max-width: 520px;
+}
+
+.education-level-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.education-level-card,
+.subject-card,
+.edu-product-card,
+.topic-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.education-level-card {
+  min-height: 190px;
+}
+
+.education-level-card span,
+.subject-card span,
+.edu-product-card > span {
+  width: fit-content;
+  padding: 7px 10px;
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.subject-card p,
+.edu-product-card p,
+.education-level-card p,
+.topic-card span {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.education-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -8px 0 22px;
+}
+
+.education-filters button {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink-soft);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.education-filters button.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.topic-card div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topic-card span {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.edu-product-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+[data-education-tags][hidden] {
+  display: none;
 }
 
 .offer-section {
@@ -1231,7 +1344,11 @@ h3 {
   .free-grid,
   .hook-grid,
   .trust-grid,
-  .audience-list {
+  .audience-list,
+  .subject-grid,
+  .edu-product-grid,
+  .education-level-grid,
+  .topic-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -1254,7 +1371,8 @@ h3 {
   .lead-free,
   .blog-post,
   .offer-card,
-  .trust-section {
+  .trust-section,
+  .education-preview {
     grid-template-columns: 1fr;
   }
 
@@ -1281,7 +1399,11 @@ h3 {
   .free-grid,
   .hook-grid,
   .trust-grid,
-  .audience-list {
+  .audience-list,
+  .subject-grid,
+  .edu-product-grid,
+  .education-level-grid,
+  .topic-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1344,7 +1466,11 @@ h3 {
   .hook-grid,
   .trust-grid,
   .audience-list,
-  .offer-benefits {
+  .offer-benefits,
+  .subject-grid,
+  .edu-product-grid,
+  .education-level-grid,
+  .topic-grid {
     grid-template-columns: 1fr;
   }
 

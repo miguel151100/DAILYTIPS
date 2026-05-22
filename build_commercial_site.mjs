@@ -251,6 +251,44 @@ const simpleCategories = [
   ["Productividad diaria", "Productividad y organización", "Hábitos, enfoque, metas y planeación para avanzar cada semana."]
 ];
 
+const educationLevels = [
+  ["Secundaria", "Ejercicios de matemáticas, español, ciencias, historia, geografía e inglés para reforzar temas clave.", "secundaria"],
+  ["Preparatoria", "Guías y ejercicios de álgebra, física, química, biología, literatura, filosofía y más.", "preparatoria"],
+  ["Exámenes de práctica", "Simuladores, bancos de preguntas y ejercicios para preparar exámenes escolares o de ingreso.", "examenes"],
+  ["Regularización", "Material paso a paso para repasar temas desde cero y mejorar tu aprendizaje.", "regularizacion"]
+];
+
+const educationSubjects = [
+  ["Matemáticas", "Secundaria / Preparatoria", "Fracciones, porcentajes, álgebra, geometría, probabilidad y regla de tres.", "matematicas secundaria preparatoria"],
+  ["Español", "Secundaria", "Lectura, ortografía, redacción, comprensión y ejercicios de comunicación.", "humanidades secundaria"],
+  ["Física", "Preparatoria", "Velocidad, aceleración, fuerza, energía y leyes de Newton.", "ciencias preparatoria"],
+  ["Química", "Preparatoria", "Tabla periódica, enlaces químicos, balanceo y nomenclatura básica.", "ciencias preparatoria"],
+  ["Biología", "Secundaria / Preparatoria", "Células, genética, cuerpo humano, ecosistemas y evolución.", "ciencias secundaria preparatoria"],
+  ["Historia", "General", "Líneas del tiempo, hechos clave, personajes y procesos históricos.", "humanidades secundaria preparatoria"],
+  ["Geografía", "Secundaria", "Mapas, regiones, clima, población y recursos naturales.", "humanidades secundaria"],
+  ["Inglés", "General", "Vocabulario, gramática, lectura y práctica de frases.", "humanidades secundaria preparatoria"],
+  ["Literatura", "Preparatoria", "Lecturas, análisis, géneros literarios y comprensión de textos.", "humanidades preparatoria"],
+  ["Filosofía", "Preparatoria", "Conceptos, corrientes, autores y preguntas guía para estudiar.", "humanidades preparatoria"],
+  ["Administración", "General", "Conceptos básicos, organización, procesos y casos prácticos.", "general preparatoria"],
+  ["Contabilidad", "General", "Ejercicios de cargos, abonos, cuentas y registros básicos.", "matematicas general"],
+  ["Estadística", "General", "Promedios, gráficas, probabilidad y análisis de datos.", "matematicas general"]
+];
+
+const educationTopics = [
+  ["Matemáticas", ["Fracciones", "Porcentajes", "Ecuaciones", "Regla de tres", "Geometría", "Probabilidad"]],
+  ["Física", ["Velocidad", "Aceleración", "Fuerza", "Energía", "Leyes de Newton"]],
+  ["Química", ["Tabla periódica", "Enlaces químicos", "Balanceo", "Nomenclatura"]]
+];
+
+const educationProducts = [
+  ["Ejercicios de fracciones para secundaria", "Desde $29 MXN", "Práctica con fracciones, simplificación, suma, resta, multiplicación y división.", "secundaria matematicas"],
+  ["Pack Matemáticas Secundaria", "Desde $99 MXN", "Ejercicios por tema: fracciones, porcentajes, ecuaciones, geometría y regla de tres.", "secundaria matematicas"],
+  ["Álgebra básica para preparatoria", "Desde $49 MXN", "Ejercicios de operaciones algebraicas, productos notables, factorización y ecuaciones.", "preparatoria matematicas"],
+  ["Pack Física Preparatoria", "Desde $79 MXN", "Ejercicios de movimiento, fuerza, energía, velocidad, aceleración y leyes de Newton.", "preparatoria ciencias"],
+  ["Química básica", "Desde $49 MXN", "Ejercicios de tabla periódica, enlaces químicos, balanceo y nomenclatura básica.", "preparatoria ciencias"],
+  ["Simulador de examen", "Desde $59 MXN", "Banco de preguntas con respuestas para practicar antes de un examen.", "examenes secundaria preparatoria"]
+];
+
 function byPack(pack) {
   return products.filter((product) => {
     if (pack.category) return product.category === pack.category;
@@ -315,6 +353,12 @@ function layout({ title, description, active, body, extraHead = "" }) {
               <a class="mega-item" href="${pack.page}">Ver paquete</a>
             </section>`;
           }).join("")}
+          <section class="mega-group">
+            <a class="mega-title" href="educacion.html">Educación y Ejercicios</a>
+            <p>Ejercicios escolares por nivel, materia y tema.</p>
+            <a class="mega-item" href="educacion.html#materias">Ver materias</a>
+            <a class="mega-item" href="educacion.html#ejercicios">Ver ejercicios</a>
+          </section>
         </div>
       </div>
       <div class="nav-dropdown">
@@ -433,6 +477,16 @@ function home() {
         const pack = packForCategory(category);
         return `<a class="category-tile ${pack.gradient}" href="${categoryPageSlug(category)}"><span>${category}</span><strong>${label}</strong><p>${desc}</p></a>`;
       }).join("")}</div>
+    </section>
+    <section class="section education-preview">
+      <div class="education-preview__copy">
+        <p class="eyebrow">Nueva línea</p>
+        <h2>Educación y Ejercicios</h2>
+        <p>Ejercicios prácticos por materia, nivel escolar y tema para estudiar, practicar y reforzar conocimientos.</p>
+        <p>Encuentra cuadernillos, guías y ejercicios descargables para secundaria, preparatoria y regularización. Recursos listos para estudiar, imprimir o resolver desde tu dispositivo.</p>
+        <div class="hero__actions"><a class="button" href="educacion.html">Ver ejercicios</a><a class="button button--ghost" href="educacion.html#materias">Explorar materias</a></div>
+      </div>
+      <div class="education-level-grid">${educationLevels.map(educationLevelCard).join("")}</div>
     </section>
     <section class="section" id="paquetes">
       <div class="section__title"><p class="eyebrow">Paquetes</p><h2>Compra por tema o llévate todo.</h2></div>
@@ -622,6 +676,66 @@ function hookProductCard(item) {
   </article>`;
 }
 
+function educationLevelCard([title, text, tag]) {
+  return `<article class="education-level-card" data-education-tags="${tag}">
+    <span>${title}</span>
+    <p>${text}</p>
+  </article>`;
+}
+
+function educationSubjectCard([name, level, text, tags]) {
+  return `<article class="subject-card" data-education-tags="${tags}">
+    <span>${level}</span>
+    <h3>${name}</h3>
+    <p>${text}</p>
+    <a class="button button--ghost" href="educacion.html#temas">Ver temas</a>
+  </article>`;
+}
+
+function educationProductCard([name, price, text, tags]) {
+  return `<article class="edu-product-card" data-education-tags="${tags}">
+    <span>${price}</span>
+    <h3>${name}</h3>
+    <p>${text}</p>
+    <div class="hook-actions">
+      <a class="button button--ghost" href="#temas">Ver ejercicios</a>
+      <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para ${name}. -->
+      <a class="button" href="#">Comprar</a>
+      <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+  </article>`;
+}
+
+function educationFilters() {
+  return `<div class="education-filters" aria-label="Filtros de educación">
+    ${["Todos", "Secundaria", "Preparatoria", "Matemáticas", "Ciencias", "Humanidades", "Exámenes"].map((filter, index) => `<button class="${index === 0 ? "is-active" : ""}" type="button" data-education-filter="${slug(filter)}">${filter}</button>`).join("")}
+  </div>`;
+}
+
+function educacion() {
+  return layout({
+    title: "Educación y ejercicios | DailyTips",
+    description: "Ejercicios de secundaria, preparatoria, matemáticas, ciencias y guías escolares digitales para estudiar, practicar y regularizarte.",
+    active: "educacion",
+    body: `<section class="hero hero-commercial education-hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Educación y Ejercicios</p>
+        <h1>Ejercicios escolares por materia y tema</h1>
+        <p class="lead">Practica matemáticas, ciencias, español, historia, inglés y más con guías y ejercicios descargables para secundaria y preparatoria.</p>
+        <div class="hero__actions"><a class="button" href="#materias">Ver materias</a><a class="button button--ghost" href="#ejercicios">Ver paquetes</a><a class="button button--light" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a></div>
+      </div>
+      <figure class="hero-media"><img src="assets/dailytips-educacion.png" alt="DailyTips ejercicios escolares, guías de estudio y organización para estudiantes"></figure>
+    </section>
+    <section class="section"><div class="section__title"><p class="eyebrow">Por nivel</p><h2>Material para estudiar a tu ritmo.</h2></div><div class="education-level-grid">${educationLevels.map(educationLevelCard).join("")}</div></section>
+    <section class="section" id="materias"><div class="section__title"><p class="eyebrow">Explora por materia</p><h2>Ejercicios de secundaria, preparatoria y estudio general.</h2></div>${educationFilters()}<div class="subject-grid">${educationSubjects.map(educationSubjectCard).join("")}</div></section>
+    <section class="section" id="temas"><div class="section__title"><p class="eyebrow">Por tema</p><h2>Temas escolares listos para practicar.</h2></div><div class="topic-grid">${educationTopics.map(([subject, topics]) => `<article class="topic-card"><h3>${subject}</h3><div>${topics.map((topic) => `<span>${topic}</span>`).join("")}</div></article>`).join("")}</div></section>
+    <section class="section" id="ejercicios"><div class="section__title"><p class="eyebrow">Ejercicios destacados</p><h2>Productos educativos de entrada.</h2></div>${educationFilters()}<div class="edu-product-grid">${educationProducts.map(educationProductCard).join("")}</div></section>
+    <section class="section audience-section"><div class="section__title"><p class="eyebrow">Para quién es</p><h2>Recursos para aprender, enseñar o prepararte mejor.</h2></div><div class="audience-list">${["estudiantes", "padres", "maestros", "personas en regularización", "personas que preparan exámenes"].map((item) => `<span>${item}</span>`).join("")}</div></section>
+    <section class="section process-section"><div class="section__title"><p class="eyebrow">Cómo funciona</p><h2>Estudia en 3 pasos.</h2></div><div class="process-grid"><article><span>1</span><strong>Elige la materia</strong></article><article><span>2</span><strong>Descarga el recurso</strong></article><article><span>3</span><strong>Practica a tu ritmo</strong></article></div></section>
+    <section class="section faq-section"><div class="section__title"><p class="eyebrow">Preguntas frecuentes</p><h2>Dudas sobre los ejercicios.</h2></div><div class="faq-grid"><details open><summary>¿Los ejercicios incluyen respuestas?</summary><p>La idea es vender cuadernillos con respuestas o guía de solución cuando el producto lo indique.</p></details><details><summary>¿Puedo imprimirlos?</summary><p>Sí, estarán pensados para descargar, imprimir o resolver desde el dispositivo.</p></details><details><summary>¿Son para secundaria o preparatoria?</summary><p>Habrá recursos para secundaria, preparatoria, exámenes y regularización.</p></details><details><summary>¿Puedo usarlos desde el celular?</summary><p>Sí, aunque para resolver ejercicios largos se recomienda tablet o computadora.</p></details><details><summary>¿Cómo recibo el archivo?</summary><p>Cuando agregues el enlace real de compra, Gumroad o tu sistema de entrega enviará el archivo automáticamente.</p></details></div></section>`
+  });
+}
+
 function articleCard(article) {
   return `<article class="article-card">
     <div class="article-image ${article.image}"><span>${article.category}</span></div>
@@ -662,6 +776,7 @@ function contacto() {
 
 const pages = new Map([
   ["index.html", home()],
+  ["educacion.html", educacion()],
   ["paquetes.html", paquetes()],
   ["pack-total.html", packTotalPage()],
   ["blog.html", blog()],

@@ -78,4 +78,20 @@ document.querySelectorAll('a[href="#comprar"], a[data-buy]').forEach((link) => {
   link.setAttribute("target", "_blank");
   link.setAttribute("rel", "noopener");
 });
+
+document.querySelectorAll("[data-education-filter]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const section = button.closest(".section");
+    const filter = button.dataset.educationFilter;
+    if (!section || !filter) return;
+
+    section.querySelectorAll("[data-education-filter]").forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+
+    section.querySelectorAll("[data-education-tags]").forEach((card) => {
+      const tags = card.dataset.educationTags.split(/\s+/);
+      card.hidden = filter !== "todos" && !tags.includes(filter);
+    });
+  });
+});
 })();
