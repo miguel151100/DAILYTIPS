@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DailyTips | Archivos digitales, plantillas y guías prácticas</title>
-  <meta name="description" content="Compra archivos digitales, plantillas y guías prácticas para organizar tu dinero, vender mejor, estudiar, crear contenido y usar inteligencia artificial.">
-  <meta property="og:title" content="DailyTips | Archivos digitales, plantillas y guías prácticas">
-  <meta property="og:description" content="Compra archivos digitales, plantillas y guías prácticas para organizar tu dinero, vender mejor, estudiar, crear contenido y usar inteligencia artificial.">
+  <title>DailyTips | Productos digitales, plantillas y ejercicios escolares</title>
+  <meta name="description" content="Compra productos digitales, plantillas, guías y ejercicios escolares para organizar tu dinero, vender mejor, usar IA y estudiar por materia en secundaria y preparatoria.">
+  <meta property="og:title" content="DailyTips | Productos digitales, plantillas y ejercicios escolares">
+  <meta property="og:description" content="Compra productos digitales, plantillas, guías y ejercicios escolares para organizar tu dinero, vender mejor, usar IA y estudiar por materia en secundaria y preparatoria.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="catalog.js" defer></script>
@@ -19,159 +20,282 @@
 <body data-page="index">
   <div class="ambient ambient--one"></div>
   <div class="ambient ambient--two"></div>
+  <div class="site-announcement"><span aria-hidden="true">↓</span> Recursos digitales y ejercicios listos para descargar</div>
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
-    <nav aria-label="Principal">
-      <a class="is-active" href="index.html">Home</a>
-      <a class="" href="blog.html">Blog</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menú</button>
+    <nav id="primary-nav" aria-label="Principal">
+      <a class="is-active" href="index.html">Inicio</a>
       <div class="nav-dropdown">
-        <button class="" type="button">Categorías</button>
-        <div class="mega-menu">
-          <section class="mega-group">
-              <a class="mega-title" href="categoria-finanzas-personales.html">Finanzas personales</a>
-              <p>Quincena, ahorro, deudas y pagos</p>
-              <a class="mega-item" href="categoria-finanzas-personales.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="dinero-ahorro.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-ia-para-principiantes.html">IA para principiantes</a>
-              <p>Prompts, herramientas y automatización</p>
-              <a class="mega-item" href="categoria-ia-para-principiantes.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="ia-facil.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-negocios-y-revendedores.html">Negocios y revendedores</a>
-              <p>Ventas, inventario y clientes</p>
-              <a class="mega-item" href="categoria-negocios-y-revendedores.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="negocio-inteligente.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-creadores-de-contenido.html">Creadores de contenido</a>
-              <p>Ideas virales, guiones y métricas</p>
-              <a class="mega-item" href="categoria-creadores-de-contenido.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="contenido-viral.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-productividad-y-organizacion.html">Productividad y organización</a>
-              <p>Hábitos, enfoque y metas</p>
-              <a class="mega-item" href="categoria-productividad-y-organizacion.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="reset-productivo.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-estudiantes.html">Estudiantes</a>
-              <p>Tareas, estudio e IA escolar</p>
-              <a class="mega-item" href="categoria-estudiantes.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="reset-productivo.html">Ver paquete</a>
-            </section>
-          <section class="mega-group">
-            <a class="mega-title" href="educacion.html">Educación y Ejercicios</a>
-            <p>Ejercicios escolares por nivel, materia y tema.</p>
-            <a class="mega-item" href="educacion.html#materias">Ver materias</a>
-            <a class="mega-item" href="educacion.html#ejercicios">Ver ejercicios</a>
-          </section>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <button class="" type="button">Paquetes</button>
+        <button class="" type="button">Productos</button>
         <div class="mega-menu mega-menu--compact">
-          <section class="mega-group">
-            <a class="mega-title" href="paquetes.html">Paquetes</a>
-            <p>Elige un paquete por tema o compra toda la biblioteca.</p>
-            <a class="mega-item" href="pack-total.html">Pack Total</a>
-            <a class="mega-item" href="recursos-gratis.html">Promos</a>
-            <a class="mega-item" href="premium.html">Acceso</a>
-          </section>
+          <a class="mega-link" href="dinero-ahorro.html">Dinero y Ahorro</a><a class="mega-link" href="ia-facil.html">IA Fácil</a><a class="mega-link" href="negocio-inteligente.html">Ventas y Negocio</a><a class="mega-link" href="contenido-viral.html">Contenido Digital</a><a class="mega-link" href="reset-productivo.html">Productividad</a><a class="mega-link" href="paquetes.html">Todos los productos</a>
         </div>
       </div>
+      <div class="nav-dropdown">
+        <button class="" type="button">Educación</button>
+        <div class="mega-menu mega-menu--compact">
+          <a class="mega-link" href="educacion.html">Educación y Ejercicios</a><a class="mega-link" href="educacion.html#materias">Secundaria</a><a class="mega-link" href="educacion.html#materias">Preparatoria</a><a class="mega-link" href="educacion.html#materias">Matemáticas</a><a class="mega-link" href="educacion.html#materias">Ciencias</a><a class="mega-link" href="educacion.html#materias">Español e Inglés</a><a class="mega-link" href="educacion.html#ejercicios">Exámenes</a><a class="mega-link" href="educacion.html#materias">Regularización</a>
+        </div>
+      </div>
+      <a class="" href="recursos-gratis.html">Gratis</a>
+      <a class="" href="blog.html">Blog</a>
+      <a class="" href="premium.html">Acceso</a>
+      <a class="nav-cta" href="https://gumroad.com/l/dailytips-pack-total" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H7"></path></svg> Comprar Pack Completo</a>
     </nav>
   </header>
   <main>
     <section class="hero hero-commercial hero-atelier">
       <div class="hero__copy">
-        <p class="eyebrow">Productos digitales listos para usar</p>
-        <h1>Archivos digitales listos para organizar tu dinero, vender mejor y ahorrar tiempo</h1>
-        <p class="lead">Plantillas, guías y recursos prácticos para emprender, estudiar, crear contenido y usar IA sin complicarte. Compra una vez y empieza a usarlos en minutos.</p>
+        <h1>Archivos digitales y ejercicios listos para organizarte, vender mejor y estudiar con claridad.</h1>
+        <p class="lead">Plantillas, guías, recursos de IA y ejercicios escolares para secundaria, preparatoria, negocio y vida diaria.</p>
         <div class="hero__actions">
-          <a class="button" href="#paquetes">Ver paquetes</a>
-          <a class="button button--ghost" href="daily_tips_gratis_30_gastos_quincena.xlsx" download>Descargar recurso gratis</a>
-          <a class="button button--light" href="https://gumroad.com/l/dailytips-pack-total" target="_blank" rel="noopener">Comprar Pack Total</a>
+          <a class="button" href="#productos">Ver productos</a>
+          <a class="button button--ghost" href="#educacion-ejercicios">Ver educación</a>
+          <a class="button button--yellow" href="https://gumroad.com/l/dailytips-pack-total" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H7"></path></svg> Comprar Pack Completo</a>
         </div>
         <div class="trust"><span>Pago único</span><span>Acceso digital</span><span>Soporte por WhatsApp</span><span>Compatible con celular y computadora</span></div>
       </div>
       <figure class="hero-media">
-        <img src="assets/dailytips-hero-banner.png" alt="DailyTips archivos digitales, plantillas y recursos para finanzas, productividad, estudio, contenido e inteligencia artificial">
+        <img src="assets/img/educacion/educacion-ejercicios.png" alt="DailyTips productos digitales, ejercicios escolares, guías y recursos descargables">
       </figure>
     </section>
-    <section class="section offer-section" id="pack-total">
-      <div class="offer-card">
-        <div>
-          <p class="eyebrow">Oferta principal</p>
-          <h2>Pack Total DailyTips</h2>
-          <p>Accede a todos los recursos digitales en un solo paquete: finanzas, IA, ventas, estudio, productividad y contenido.</p>
-          <div class="hero__actions"><a class="button" href="https://gumroad.com/l/dailytips-pack-total" target="_blank" rel="noopener">Comprar Pack Total</a><a class="button button--ghost" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a></div>
-        </div>
-        <div class="offer-benefits">
-          <span>48 archivos digitales</span><span>6 categorías</span><span>Pago único</span><span>Acceso inmediato</span><span>Ideal para emprendedores, estudiantes y creadores</span><span>Recursos listos para usar</span>
-        </div>
-      </div>
+    <section class="section quick-choices">
+      <div class="section__title"><h2>¿Qué quieres mejorar hoy?</h2><p>Elige un camino claro y llega rápido al recurso que necesitas.</p></div>
+      <div class="choice-grid"><a class="choice-card" href="dinero-ahorro.html">
+    <strong>Organizar mi dinero</strong>
+    <span>Presupuesto, ahorro y gastos.</span>
+  </a><a class="choice-card" href="negocio-inteligente.html">
+    <strong>Vender mejor</strong>
+    <span>Clientes, inventario y ganancias.</span>
+  </a><a class="choice-card" href="ia-facil.html">
+    <strong>Usar IA</strong>
+    <span>Prompts y guías prácticas.</span>
+  </a><a class="choice-card" href="contenido-viral.html">
+    <strong>Crear contenido</strong>
+    <span>Ideas, hooks y guiones.</span>
+  </a><a class="choice-card" href="reset-productivo.html">
+    <strong>Estudiar mejor</strong>
+    <span>Rutinas, tareas y enfoque.</span>
+  </a><a class="choice-card" href="educacion.html">
+    <strong>Practicar ejercicios escolares</strong>
+    <span>Materias, temas y exámenes.</span>
+  </a></div>
     </section>
-    <section class="section">
-      <div class="section__title"><p class="eyebrow">Productos gancho</p><h2>Recursos de entrada para anuncios y publicaciones.</h2><p>Productos simples, fáciles de entender y con beneficio inmediato.</p></div>
-      <div class="hook-grid"><article class="hook-card">
-    <span>desde $49 MXN</span>
-    <h3>Control financiero quincenal</h3>
-    <p>Ordena ingresos, gastos y pagos sin perder la quincena.</p>
-    <div class="hook-actions"><a class="button" href="https://gumroad.com/l/pack-dinero-ahorro" target="_blank" rel="noopener">Comprar</a><a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">WhatsApp</a></div>
-  </article><article class="hook-card">
-    <span>desde $49 MXN</span>
-    <h3>Prompts de IA para vender y crear contenido</h3>
-    <p>Textos, ideas y respuestas listas para vender mejor.</p>
-    <div class="hook-actions"><a class="button" href="https://gumroad.com/l/pack-ia-facil" target="_blank" rel="noopener">Comprar</a><a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">WhatsApp</a></div>
-  </article><article class="hook-card">
-    <span>desde $49 MXN</span>
-    <h3>Guía para crear tu primera página web con IA</h3>
-    <p>Convierte una idea en estructura, textos y publicación.</p>
-    <div class="hook-actions"><a class="button" href="https://gumroad.com/l/pack-ia-facil" target="_blank" rel="noopener">Comprar</a><a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">WhatsApp</a></div>
-  </article><article class="hook-card">
-    <span>desde $49 MXN</span>
-    <h3>Checklist de gastos hormiga</h3>
-    <p>Encuentra fugas de dinero pequeñas antes de que pesen.</p>
-    <div class="hook-actions"><a class="button" href="https://gumroad.com/l/pack-dinero-ahorro" target="_blank" rel="noopener">Comprar</a><a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">WhatsApp</a></div>
-  </article><article class="hook-card">
-    <span>desde $49 MXN</span>
-    <h3>Plantilla para organizar pagos y deudas</h3>
-    <p>Evita recargos y ten fechas importantes bajo control.</p>
-    <div class="hook-actions"><a class="button" href="https://gumroad.com/l/pack-dinero-ahorro" target="_blank" rel="noopener">Comprar</a><a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">WhatsApp</a></div>
+    <section class="section" id="productos">
+      <div class="section__title"><p class="eyebrow">Más vendidos</p><h2>Productos digitales fáciles de entender y comprar.</h2><p>Plantillas digitales, recursos de IA, guías escolares digitales y herramientas para resolver problemas reales.</p></div>
+      <div class="visual-grid"><article class="visual-card">
+    <img src="assets/img/productos/dinero-ahorro.png" alt="Plantillas para organizar dinero y ahorro" loading="lazy">
+    <div>
+      <span class="pill">Finanzas personales</span>
+      <h3>Control financiero quincenal MX</h3>
+      <p>Organiza ingresos, gastos, ahorro y deudas por quincena con categorías mexicanas.</p>
+      <strong>Desde $49 MXN</strong>
+      <div class="card-actions">
+        <a class="button" href="https://gumroad.com/l/pack-dinero-ahorro" target="_blank" rel="noopener">Comprar</a>
+        <a class="button button--ghost" href="archivo-control-financiero-quincenal-mx.html">Ver detalles</a>
+      </div>
+    </div>
+  </article><article class="visual-card">
+    <img src="assets/img/productos/dinero-ahorro.png" alt="Plantillas para organizar dinero y ahorro" loading="lazy">
+    <div>
+      <span class="pill">Finanzas personales</span>
+      <h3>Control de deudas</h3>
+      <p>Controla TDC, préstamos, pagos mínimos, pago extra y prioridad.</p>
+      <strong>Desde $49 MXN</strong>
+      <div class="card-actions">
+        <a class="button" href="https://gumroad.com/l/pack-dinero-ahorro" target="_blank" rel="noopener">Comprar</a>
+        <a class="button button--ghost" href="archivo-control-de-deudas.html">Ver detalles</a>
+      </div>
+    </div>
+  </article><article class="visual-card">
+    <img src="assets/img/productos/ia-facil.png" alt="Recursos de inteligencia artificial para emprendedores" loading="lazy">
+    <div>
+      <span class="pill">IA para principiantes</span>
+      <h3>Prompts premium para ChatGPT</h3>
+      <p>Prompts listos para ventas, estudio, contenido, negocio y productividad.</p>
+      <strong>Desde $49 MXN</strong>
+      <div class="card-actions">
+        <a class="button" href="https://gumroad.com/l/pack-ia-facil" target="_blank" rel="noopener">Comprar</a>
+        <a class="button button--ghost" href="archivo-prompts-premium-para-chatgpt.html">Ver detalles</a>
+      </div>
+    </div>
+  </article><article class="visual-card">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
+    <div>
+      <span class="pill">Negocios y revendedores</span>
+      <h3>Sistema para revendedores</h3>
+      <p>Control de producto, precio, margen, clientes, pedidos y entregas.</p>
+      <strong>Desde $49 MXN</strong>
+      <div class="card-actions">
+        <a class="button" href="https://gumroad.com/l/pack-negocio-inteligente" target="_blank" rel="noopener">Comprar</a>
+        <a class="button button--ghost" href="archivo-sistema-para-revendedores.html">Ver detalles</a>
+      </div>
+    </div>
   </article></div>
     </section>
-    <section class="section">
-      <div class="section__title"><p class="eyebrow">Categorías</p><h2>Encuentra rápido lo que necesitas.</h2></div>
-      <div class="category-showcase category-showcase--simple"><a class="category-tile grad-money" href="categoria-finanzas-personales.html"><span>Finanzas personales</span><strong>Dinero y ahorro</strong><p>Presupuestos, deudas, pagos y hábitos para cuidar la quincena.</p></a><a class="category-tile grad-business" href="categoria-negocios-y-revendedores.html"><span>Negocios y revendedores</span><strong>Ventas y negocio</strong><p>Inventario, clientes, pedidos y ganancias para vender con orden.</p></a><a class="category-tile grad-ai" href="categoria-ia-para-principiantes.html"><span>IA para principiantes</span><strong>Inteligencia artificial</strong><p>Prompts, guías y herramientas para usar IA sin complicarte.</p></a><a class="category-tile grad-reset" href="categoria-estudiantes.html"><span>Estudiantes</span><strong>Estudio y organización</strong><p>Tareas, exámenes, horarios y recursos para estudiar mejor.</p></a><a class="category-tile grad-content" href="categoria-creadores-de-contenido.html"><span>Creadores de contenido</span><strong>Contenido digital</strong><p>Ideas, guiones, calendarios y métricas para publicar con intención.</p></a><a class="category-tile grad-reset" href="categoria-productividad-y-organizacion.html"><span>Productividad y organización</span><strong>Productividad diaria</strong><p>Hábitos, enfoque, metas y planeación para avanzar cada semana.</p></a></div>
-    </section>
-    <section class="section education-preview">
+    <section class="section education-preview" id="educacion-ejercicios">
       <div class="education-preview__copy">
-        <p class="eyebrow">Nueva línea</p>
         <h2>Educación y Ejercicios</h2>
-        <p>Ejercicios prácticos por materia, nivel escolar y tema para estudiar, practicar y reforzar conocimientos.</p>
-        <p>Encuentra cuadernillos, guías y ejercicios descargables para secundaria, preparatoria y regularización. Recursos listos para estudiar, imprimir o resolver desde tu dispositivo.</p>
-        <div class="hero__actions"><a class="button" href="educacion.html">Ver ejercicios</a><a class="button button--ghost" href="educacion.html#materias">Explorar materias</a></div>
+        <p>Ejercicios prácticos por materia, nivel y tema para secundaria, preparatoria, regularización y preparación de exámenes.</p>
+        <p>Encuentra materiales digitales listos para aprender, practicar, imprimir o resolver desde tu dispositivo. Ideal para estudiantes, padres, maestros y personas que quieren reforzar conocimientos.</p>
+        <div class="hero__actions"><a class="button" href="educacion.html">Ver educación</a><a class="button button--ghost" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a></div>
       </div>
-      <div class="education-level-grid"><article class="education-level-card" data-education-tags="secundaria">
-    <span>Secundaria</span>
-    <p>Ejercicios de matemáticas, español, ciencias, historia, geografía e inglés para reforzar temas clave.</p>
-  </article><article class="education-level-card" data-education-tags="preparatoria">
-    <span>Preparatoria</span>
-    <p>Guías y ejercicios de álgebra, física, química, biología, literatura, filosofía y más.</p>
-  </article><article class="education-level-card" data-education-tags="examenes">
-    <span>Exámenes de práctica</span>
-    <p>Simuladores, bancos de preguntas y ejercicios para preparar exámenes escolares o de ingreso.</p>
-  </article><article class="education-level-card" data-education-tags="regularizacion">
-    <span>Regularización</span>
-    <p>Material paso a paso para repasar temas desde cero y mejorar tu aprendizaje.</p>
+      <div class="education-filters" aria-label="Filtros de educación">
+    <button class="is-active" type="button" data-education-filter="todos">Todos</button><button class="" type="button" data-education-filter="secundaria">Secundaria</button><button class="" type="button" data-education-filter="preparatoria">Preparatoria</button><button class="" type="button" data-education-filter="matematicas">Matemáticas</button><button class="" type="button" data-education-filter="ciencias">Ciencias</button><button class="" type="button" data-education-filter="espanol-e-ingles">Español e Inglés</button><button class="" type="button" data-education-filter="examenes">Exámenes</button>
+  </div>
+      <div class="education-home-grid"><article class="education-card" data-education-tags="secundaria">
+    <img src="assets/img/educacion/educacion-ejercicios.png" alt="Ejercicios escolares para secundaria por materia y tema" loading="lazy">
+    <div>
+      <span class="icon-badge">SE</span>
+      <span class="pill">Secundaria</span>
+      <h3>Secundaria</h3>
+      <p>Ejercicios de matemáticas, español, ciencias, historia, geografía e inglés para reforzar temas clave.</p>
+      <div class="card-actions">
+        <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
+        <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </article><article class="education-card" data-education-tags="preparatoria">
+    <img src="assets/img/educacion/preparatoria-examenes.png" alt="Guías y simuladores para preparatoria y exámenes" loading="lazy">
+    <div>
+      <span class="icon-badge">PR</span>
+      <span class="pill">Preparatoria</span>
+      <h3>Preparatoria</h3>
+      <p>Guías y ejercicios de álgebra, física, química, biología, literatura, filosofía y más.</p>
+      <div class="card-actions">
+        <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
+        <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </article><article class="education-card" data-education-tags="matematicas secundaria preparatoria">
+    <img src="assets/img/educacion/matematicas.png" alt="Ejercicios de matemáticas para secundaria y preparatoria" loading="lazy">
+    <div>
+      <span class="icon-badge">MA</span>
+      <span class="pill">Matemáticas</span>
+      <h3>Matemáticas</h3>
+      <p>Fracciones, porcentajes, ecuaciones, geometría, regla de tres y problemas paso a paso.</p>
+      <div class="card-actions">
+        <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
+        <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </article><article class="education-card" data-education-tags="ciencias secundaria preparatoria">
+    <img src="assets/img/educacion/ciencias.png" alt="Guías de ciencias con biología física y química" loading="lazy">
+    <div>
+      <span class="icon-badge">CI</span>
+      <span class="pill">Ciencias</span>
+      <h3>Ciencias</h3>
+      <p>Biología, física y química con ejercicios por tema, fórmulas, ejemplos y práctica.</p>
+      <div class="card-actions">
+        <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
+        <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </article><article class="education-card" data-education-tags="humanidades espanol-e-ingles secundaria preparatoria">
+    <img src="assets/img/educacion/espanol-ingles.png" alt="Ejercicios de español e inglés con comprensión lectora" loading="lazy">
+    <div>
+      <span class="icon-badge">ES</span>
+      <span class="pill">Idiomas</span>
+      <h3>Español e Inglés</h3>
+      <p>Comprensión lectora, vocabulario, gramática, redacción y ejercicios de idioma.</p>
+      <div class="card-actions">
+        <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
+        <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </article><article class="education-card" data-education-tags="examenes">
+    <img src="assets/img/educacion/preparatoria-examenes.png" alt="Simuladores de examen para secundaria y preparatoria" loading="lazy">
+    <div>
+      <span class="icon-badge">EX</span>
+      <span class="pill">Exámenes</span>
+      <h3>Exámenes</h3>
+      <p>Simuladores, bancos de preguntas y ejercicios para prepararte antes de una evaluación.</p>
+      <div class="card-actions">
+        <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
+        <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </article></div>
+    </section>
+    <section class="section" id="ejercicios-destacados">
+      <div class="section__title"><p class="eyebrow">Ejercicios destacados</p><h2>Material escolar de entrada para vender por Facebook y WhatsApp.</h2></div>
+      <div class="education-filters" aria-label="Filtros de educación">
+    <button class="is-active" type="button" data-education-filter="todos">Todos</button><button class="" type="button" data-education-filter="secundaria">Secundaria</button><button class="" type="button" data-education-filter="preparatoria">Preparatoria</button><button class="" type="button" data-education-filter="matematicas">Matemáticas</button><button class="" type="button" data-education-filter="ciencias">Ciencias</button><button class="" type="button" data-education-filter="espanol-e-ingles">Español e Inglés</button><button class="" type="button" data-education-filter="examenes">Exámenes</button>
+  </div>
+      <div class="edu-product-grid"><article class="edu-product-card" data-education-tags="secundaria matematicas">
+    <img src="assets/img/educacion/matematicas.png" alt="Ejercicios de fracciones para secundaria" loading="lazy">
+    <span>Desde $29 MXN</span>
+    <h3>Ejercicios de fracciones para secundaria</h3>
+    <p>Práctica con fracciones, simplificación, suma, resta, multiplicación y división.</p>
+    <div class="hook-actions">
+      <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para Ejercicios de fracciones para secundaria. -->
+      <a class="button" href="#">Comprar</a>
+      <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
+      <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+  </article><article class="edu-product-card" data-education-tags="secundaria matematicas">
+    <img src="assets/img/educacion/matematicas.png" alt="Pack de ejercicios de matemáticas para secundaria" loading="lazy">
+    <span>Desde $99 MXN</span>
+    <h3>Pack Matemáticas Secundaria</h3>
+    <p>Ejercicios por tema: fracciones, porcentajes, ecuaciones, geometría y regla de tres.</p>
+    <div class="hook-actions">
+      <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para Pack Matemáticas Secundaria. -->
+      <a class="button" href="#">Comprar</a>
+      <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
+      <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+  </article><article class="edu-product-card" data-education-tags="preparatoria matematicas">
+    <img src="assets/img/educacion/matematicas.png" alt="Álgebra básica para preparatoria con ejercicios" loading="lazy">
+    <span>Desde $49 MXN</span>
+    <h3>Álgebra básica para preparatoria</h3>
+    <p>Operaciones algebraicas, productos notables, factorización y ecuaciones.</p>
+    <div class="hook-actions">
+      <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para Álgebra básica para preparatoria. -->
+      <a class="button" href="#">Comprar</a>
+      <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
+      <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+  </article><article class="edu-product-card" data-education-tags="preparatoria secundaria ciencias">
+    <img src="assets/img/educacion/ciencias.png" alt="Ejercicios de ciencias básicas para secundaria y preparatoria" loading="lazy">
+    <span>Desde $79 MXN</span>
+    <h3>Ciencias básicas</h3>
+    <p>Ejercicios de biología, física y química para secundaria y preparatoria.</p>
+    <div class="hook-actions">
+      <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para Ciencias básicas. -->
+      <a class="button" href="#">Comprar</a>
+      <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
+      <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+  </article><article class="edu-product-card" data-education-tags="humanidades espanol-e-ingles secundaria preparatoria">
+    <img src="assets/img/educacion/espanol-ingles.png" alt="Ejercicios de español e inglés para estudiar" loading="lazy">
+    <span>Desde $49 MXN</span>
+    <h3>Español e Inglés</h3>
+    <p>Comprensión lectora, gramática, vocabulario y redacción.</p>
+    <div class="hook-actions">
+      <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para Español e Inglés. -->
+      <a class="button" href="#">Comprar</a>
+      <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
+      <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+  </article><article class="edu-product-card" data-education-tags="examenes secundaria preparatoria">
+    <img src="assets/img/educacion/preparatoria-examenes.png" alt="Simulador de examen escolar con banco de preguntas" loading="lazy">
+    <span>Desde $59 MXN</span>
+    <h3>Simulador de examen</h3>
+    <p>Banco de preguntas con respuestas para practicar antes de un examen.</p>
+    <div class="hook-actions">
+      <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para Simulador de examen. -->
+      <a class="button" href="#">Comprar</a>
+      <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
+      <a class="text-link" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
   </article></div>
     </section>
     <section class="section" id="paquetes">
-      <div class="section__title"><p class="eyebrow">Paquetes</p><h2>Compra por tema o llévate todo.</h2></div>
+      <div class="section__title"><p class="eyebrow">Paquetes destacados</p><h2>Compra por tema o llévate todo.</h2></div>
       <div class="pack-grid"><article class="pack-card ">
     <span class="pill">Más vendido</span>
-    <div class="pack-mockup grad-money">
-    <div class="mock-window"><div class="mock-toolbar"><span></span><span></span><span></span></div><div class="mock-kpi"><strong>Daily Tips</strong><em>MX</em></div><div class="mock-chart"></div><div class="mock-lines"></div></div>
-  </div>
+    <img class="pack-image" src="assets/img/productos/dinero-ahorro.png" alt="Plantillas para organizar dinero y ahorro" loading="lazy">
     <h3>Dinero y Ahorro</h3>
     <p>Ordena tu quincena, ahorro, pagos y deudas sin enredarte.</p>
     <div class="price"><strong>$149 MXN</strong><span>normal $249 MXN</span></div>
@@ -183,9 +307,7 @@
     <small>8 archivos incluidos</small>
   </article><article class="pack-card ">
     <span class="pill">Nuevo</span>
-    <div class="pack-mockup grad-ai">
-    <div class="mock-window"><div class="mock-toolbar"><span></span><span></span><span></span></div><div class="mock-kpi"><strong>Daily Tips</strong><em>MX</em></div><div class="mock-chart"></div><div class="mock-lines"></div></div>
-  </div>
+    <img class="pack-image" src="assets/img/productos/ia-facil.png" alt="Recursos de inteligencia artificial para emprendedores" loading="lazy">
     <h3>IA Fácil</h3>
     <p>Aprende a usar IA para crear, estudiar, vender y ahorrar tiempo.</p>
     <div class="price"><strong>$179 MXN</strong><span>normal $299 MXN</span></div>
@@ -197,9 +319,7 @@
     <small>8 archivos incluidos</small>
   </article><article class="pack-card ">
     <span class="pill">Recomendado</span>
-    <div class="pack-mockup grad-business">
-    <div class="mock-window"><div class="mock-toolbar"><span></span><span></span><span></span></div><div class="mock-kpi"><strong>Daily Tips</strong><em>MX</em></div><div class="mock-chart"></div><div class="mock-lines"></div></div>
-  </div>
+    <img class="pack-image" src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <h3>Negocio Inteligente</h3>
     <p>Controla ventas, inventario, clientes y ganancias como negocio serio.</p>
     <div class="price"><strong>$199 MXN</strong><span>normal $349 MXN</span></div>
@@ -209,11 +329,21 @@
       <a class="button button--ghost" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Dudas por WhatsApp</a>
     </div>
     <small>8 archivos incluidos</small>
+  </article><article class="pack-card pack-card--education" id="pack-educacion">
+    <span class="pill">Nuevo</span>
+    <img class="pack-image" src="assets/img/educacion/educacion-ejercicios.png" alt="Pack educación con ejercicios escolares descargables" loading="lazy">
+    <h3>Pack Educación</h3>
+    <p>Ejercicios por materia para secundaria, preparatoria, regularización y preparación de exámenes.</p>
+    <div class="price"><strong>Desde $199 MXN</strong><span>paquete educativo</span></div>
+    <ul><li>Matemáticas</li><li>Ciencias</li><li>Español e Inglés</li><li>Exámenes de práctica</li><li>Guías por tema</li><li>Ejercicios descargables</li></ul>
+    <div class="pack-actions">
+      <a class="button button--ghost" href="educacion.html#ejercicios">Ver Pack Educación</a>
+      <a class="button" href="https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+    <!-- TODO: Agregar enlace real de Gumroad para Pack Educación cuando exista. -->
   </article><article class="pack-card pack-card--total">
     <span class="pill">Mejor valor</span>
-    <div class="pack-mockup grad-total">
-    <div class="mock-window"><div class="mock-toolbar"><span></span><span></span><span></span></div><div class="mock-kpi"><strong>Daily Tips</strong><em>MX</em></div><div class="mock-chart"></div><div class="mock-lines"></div></div>
-  </div>
+    <img class="pack-image" src="assets/img/productos/pack-total.png" alt="Pack completo de recursos digitales DailyTips" loading="lazy">
     <h3>DAILYTIPS Pack Total</h3>
     <p>Toda la biblioteca Daily Tips en un solo paquete.</p>
     <div class="price"><strong>$399 MXN</strong><span>normal $1,470 MXN</span></div>
@@ -225,17 +355,11 @@
     <small>48 archivos incluidos</small>
   </article></div>
     </section>
+    <section class="section lead-free">
+      <div><p class="eyebrow">Recurso gratis</p><h2>Empieza con una descarga puntual.</h2><p>Usa un recurso gratuito para resolver algo pequeño y conocer el estilo DailyTips.</p></div>
+      <div class="hero__actions"><a class="button" href="daily_tips_gratis_30_gastos_quincena.xlsx" download>Descargar recurso gratis</a><a class="button button--ghost" href="recursos-gratis.html">Ver más gratis</a></div>
+    </section>
     <section class="section process-section"><div class="section__title"><p class="eyebrow">Cómo funciona</p><h2>Compra simple en 3 pasos.</h2></div><div class="process-grid"><article><span>1</span><strong>Elige tu recurso o paquete</strong></article><article><span>2</span><strong>Realiza tu pago de forma segura</strong></article><article><span>3</span><strong>Recibe el archivo y empieza a usarlo</strong></article></div></section>
-    <section class="section audience-section">
-      <div class="section__title"><p class="eyebrow">Para quién es</p><h2>Este sitio es para ti si quieres avanzar sin empezar desde cero.</h2></div>
-      <div class="audience-list">
-        <span>quieres organizar mejor tu dinero</span><span>vendes productos o servicios y quieres mejorar tus ventas</span><span>quieres usar IA pero no sabes por dónde empezar</span><span>estudias y necesitas organizarte</span><span>quieres crear contenido sin perder horas</span><span>quieres recursos listos para usar sin empezar desde cero</span>
-      </div>
-    </section>
-    <section class="section trust-section">
-      <div><p class="eyebrow">Compra segura y acceso inmediato</p><h2>Diseñado para comprar fácil y empezar rápido.</h2></div>
-      <div class="trust-grid"><article>Pago único</article><article>Sin suscripciones</article><article>Acceso digital</article><article>Compatible con celular y computadora</article><article>Soporte por WhatsApp</article></div>
-    </section>
     <section class="section">
       <div class="section__title"><p class="eyebrow">Artículos recientes</p><h2>Contenido para traer tráfico desde Facebook.</h2></div>
       <div class="article-grid"><article class="article-card">

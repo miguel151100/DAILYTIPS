@@ -10,6 +10,7 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="catalog.js" defer></script>
@@ -19,65 +20,28 @@
 <body data-page="categoria-creadores-de-contenido">
   <div class="ambient ambient--one"></div>
   <div class="ambient ambient--two"></div>
+  <div class="site-announcement"><span aria-hidden="true">↓</span> Recursos digitales y ejercicios listos para descargar</div>
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
-    <nav aria-label="Principal">
-      <a class="" href="index.html">Home</a>
-      <a class="" href="blog.html">Blog</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menú</button>
+    <nav id="primary-nav" aria-label="Principal">
+      <a class="" href="index.html">Inicio</a>
       <div class="nav-dropdown">
-        <button class="is-active" type="button">Categorías</button>
-        <div class="mega-menu">
-          <section class="mega-group">
-              <a class="mega-title" href="categoria-finanzas-personales.html">Finanzas personales</a>
-              <p>Quincena, ahorro, deudas y pagos</p>
-              <a class="mega-item" href="categoria-finanzas-personales.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="dinero-ahorro.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-ia-para-principiantes.html">IA para principiantes</a>
-              <p>Prompts, herramientas y automatización</p>
-              <a class="mega-item" href="categoria-ia-para-principiantes.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="ia-facil.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-negocios-y-revendedores.html">Negocios y revendedores</a>
-              <p>Ventas, inventario y clientes</p>
-              <a class="mega-item" href="categoria-negocios-y-revendedores.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="negocio-inteligente.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-creadores-de-contenido.html">Creadores de contenido</a>
-              <p>Ideas virales, guiones y métricas</p>
-              <a class="mega-item" href="categoria-creadores-de-contenido.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="contenido-viral.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-productividad-y-organizacion.html">Productividad y organización</a>
-              <p>Hábitos, enfoque y metas</p>
-              <a class="mega-item" href="categoria-productividad-y-organizacion.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="reset-productivo.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-estudiantes.html">Estudiantes</a>
-              <p>Tareas, estudio e IA escolar</p>
-              <a class="mega-item" href="categoria-estudiantes.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="reset-productivo.html">Ver paquete</a>
-            </section>
-          <section class="mega-group">
-            <a class="mega-title" href="educacion.html">Educación y Ejercicios</a>
-            <p>Ejercicios escolares por nivel, materia y tema.</p>
-            <a class="mega-item" href="educacion.html#materias">Ver materias</a>
-            <a class="mega-item" href="educacion.html#ejercicios">Ver ejercicios</a>
-          </section>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <button class="" type="button">Paquetes</button>
+        <button class="is-active" type="button">Productos</button>
         <div class="mega-menu mega-menu--compact">
-          <section class="mega-group">
-            <a class="mega-title" href="paquetes.html">Paquetes</a>
-            <p>Elige un paquete por tema o compra toda la biblioteca.</p>
-            <a class="mega-item" href="pack-total.html">Pack Total</a>
-            <a class="mega-item" href="recursos-gratis.html">Promos</a>
-            <a class="mega-item" href="premium.html">Acceso</a>
-          </section>
+          <a class="mega-link" href="dinero-ahorro.html">Dinero y Ahorro</a><a class="mega-link" href="ia-facil.html">IA Fácil</a><a class="mega-link" href="negocio-inteligente.html">Ventas y Negocio</a><a class="mega-link" href="contenido-viral.html">Contenido Digital</a><a class="mega-link" href="reset-productivo.html">Productividad</a><a class="mega-link" href="paquetes.html">Todos los productos</a>
         </div>
       </div>
+      <div class="nav-dropdown">
+        <button class="" type="button">Educación</button>
+        <div class="mega-menu mega-menu--compact">
+          <a class="mega-link" href="educacion.html">Educación y Ejercicios</a><a class="mega-link" href="educacion.html#materias">Secundaria</a><a class="mega-link" href="educacion.html#materias">Preparatoria</a><a class="mega-link" href="educacion.html#materias">Matemáticas</a><a class="mega-link" href="educacion.html#materias">Ciencias</a><a class="mega-link" href="educacion.html#materias">Español e Inglés</a><a class="mega-link" href="educacion.html#ejercicios">Exámenes</a><a class="mega-link" href="educacion.html#materias">Regularización</a>
+        </div>
+      </div>
+      <a class="" href="recursos-gratis.html">Gratis</a>
+      <a class="" href="blog.html">Blog</a>
+      <a class="" href="premium.html">Acceso</a>
+      <a class="nav-cta" href="https://gumroad.com/l/dailytips-pack-total" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H7"></path></svg> Comprar Pack Completo</a>
     </nav>
   </header>
   <main><section class="page-hero category-hero">
@@ -89,48 +53,56 @@
     <section class="section product-index">
       <div class="section__title"><p class="eyebrow">Temas y archivos</p><h2>Cada archivo tiene su propia página con explicación.</h2></div>
       <div class="product-page-grid"><a class="product-card" href="archivo-calendario-de-contenido-viral.html">
+    <img src="assets/img/productos/contenido-digital.png" alt="Plantillas para contenido digital y redes sociales" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v15H5z M8 3v4 M16 3v4 M5 10h14"/></svg></span>
     <span class="pill">Más vendido</span>
     <h3>Calendario de contenido viral</h3>
     <p>30 días de ideas, ganchos, CTA, producto y métricas.</p>
     <strong>Publicar con intención de vender.</strong>
   </a><a class="product-card" href="archivo-hooks-virales-para-tiktok.html">
+    <img src="assets/img/productos/contenido-digital.png" alt="Plantillas para contenido digital y redes sociales" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></span>
     <span class="pill">Viral</span>
     <h3>Hooks virales para TikTok</h3>
     <p>Biblioteca de ganchos para videos cortos, reels y posts.</p>
     <strong>Captar atención en los primeros segundos.</strong>
   </a><a class="product-card" href="archivo-sistema-de-ideas-de-contenido.html">
+    <img src="assets/img/productos/contenido-digital.png" alt="Plantillas para contenido digital y redes sociales" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0-3 11v2h6v-2a6 6 0 0 0-3-11z M9 20h6"/></svg></span>
     <span class="pill">Destacado</span>
     <h3>Sistema de ideas de contenido</h3>
     <p>Banco de temas por problema, promesa, historia, CTA y producto.</p>
     <strong>No quedarte sin publicaciones.</strong>
   </a><a class="product-card" href="archivo-organizacion-para-creadores.html">
+    <img src="assets/img/productos/contenido-digital.png" alt="Plantillas para contenido digital y redes sociales" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4z M13 4h7v7h-7z M4 13h7v7H4z M13 13h7v7h-7z"/></svg></span>
     <span class="pill">Creator</span>
     <h3>Organización para creadores</h3>
     <p>Planea temas, grabaciones, edición, publicación y reutilización.</p>
     <strong>Crear contenido sin vivir improvisando.</strong>
   </a><a class="product-card" href="archivo-guiones-virales.html">
+    <img src="assets/img/productos/contenido-digital.png" alt="Plantillas para contenido digital y redes sociales" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16H6z M9 8h6 M9 12h6 M9 16h4"/></svg></span>
     <span class="pill">Viral</span>
     <h3>Guiones virales</h3>
     <p>Estructuras de guion para educativo, historia, venta y autoridad.</p>
     <strong>Grabar con una estructura lista.</strong>
   </a><a class="product-card" href="archivo-rastreador-de-metricas.html">
+    <img src="assets/img/productos/contenido-digital.png" alt="Plantillas para contenido digital y redes sociales" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V5 M5 19h15 M9 16V9 M13 16V6 M17 16v-4"/></svg></span>
     <span class="pill">Analytics</span>
     <h3>Rastreador de métricas</h3>
     <p>Alcance, reacciones, comentarios, mensajes, clics y ventas.</p>
     <strong>Saber qué contenido sí vende.</strong>
   </a><a class="product-card" href="archivo-planeador-de-reels.html">
+    <img src="assets/img/productos/contenido-digital.png" alt="Plantillas para contenido digital y redes sociales" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h10v12H5z M15 10l5-3v10l-5-3z"/></svg></span>
     <span class="pill">Nuevo</span>
     <h3>Planeador de Reels</h3>
     <p>Ideas, hook, escena, texto en pantalla, CTA y reutilización.</p>
     <strong>Crear reels más rápido y con objetivo.</strong>
   </a><a class="product-card" href="archivo-ideas-virales-para-facebook.html">
+    <img src="assets/img/productos/contenido-digital.png" alt="Plantillas para contenido digital y redes sociales" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v14H5z M8 9h8 M8 12h8 M8 15h5"/></svg></span>
     <span class="pill">Facebook</span>
     <h3>Ideas virales para Facebook</h3>

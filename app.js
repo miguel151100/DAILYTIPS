@@ -6,6 +6,15 @@ const { products, categoryMeta, icon } = catalog;
 const whatsapp = "https://wa.me/?text=Hola%2C%20quiero%20comprar%20un%20paquete%20Daily%20Tips";
 const premiumPassword = "DAILYTIPS2026";
 
+const menuToggle = document.querySelector(".menu-toggle");
+const topbar = document.querySelector(".topbar");
+if (menuToggle && topbar) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = topbar.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+}
+
 function renderPremiumDownloads() {
   const target = document.querySelector("#premium-downloads");
   if (!target) return;

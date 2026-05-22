@@ -252,21 +252,23 @@ const simpleCategories = [
 ];
 
 const educationLevels = [
-  ["Secundaria", "Ejercicios de matemáticas, español, ciencias, historia, geografía e inglés para reforzar temas clave.", "secundaria"],
-  ["Preparatoria", "Guías y ejercicios de álgebra, física, química, biología, literatura, filosofía y más.", "preparatoria"],
-  ["Exámenes de práctica", "Simuladores, bancos de preguntas y ejercicios para preparar exámenes escolares o de ingreso.", "examenes"],
-  ["Regularización", "Material paso a paso para repasar temas desde cero y mejorar tu aprendizaje.", "regularizacion"]
+  ["Secundaria", "Ejercicios de matemáticas, español, ciencias, historia, geografía e inglés para reforzar temas clave.", "secundaria", "assets/img/educacion/educacion-ejercicios.png", "Ejercicios escolares para secundaria por materia y tema"],
+  ["Preparatoria", "Guías y ejercicios de álgebra, física, química, biología, literatura, filosofía y más.", "preparatoria", "assets/img/educacion/preparatoria-examenes.png", "Guías y simuladores para preparatoria y exámenes"],
+  ["Matemáticas", "Fracciones, porcentajes, ecuaciones, geometría, regla de tres y problemas paso a paso.", "matematicas secundaria preparatoria", "assets/img/educacion/matematicas.png", "Ejercicios de matemáticas para secundaria y preparatoria"],
+  ["Ciencias", "Biología, física y química con ejercicios por tema, fórmulas, ejemplos y práctica.", "ciencias secundaria preparatoria", "assets/img/educacion/ciencias.png", "Guías de ciencias con biología física y química"],
+  ["Español e Inglés", "Comprensión lectora, vocabulario, gramática, redacción y ejercicios de idioma.", "humanidades espanol-e-ingles secundaria preparatoria", "assets/img/educacion/espanol-ingles.png", "Ejercicios de español e inglés con comprensión lectora"],
+  ["Exámenes", "Simuladores, bancos de preguntas y ejercicios para prepararte antes de una evaluación.", "examenes", "assets/img/educacion/preparatoria-examenes.png", "Simuladores de examen para secundaria y preparatoria"]
 ];
 
 const educationSubjects = [
   ["Matemáticas", "Secundaria / Preparatoria", "Fracciones, porcentajes, álgebra, geometría, probabilidad y regla de tres.", "matematicas secundaria preparatoria"],
-  ["Español", "Secundaria", "Lectura, ortografía, redacción, comprensión y ejercicios de comunicación.", "humanidades secundaria"],
+  ["Español", "Secundaria", "Lectura, ortografía, redacción, comprensión y ejercicios de comunicación.", "humanidades espanol-e-ingles secundaria"],
   ["Física", "Preparatoria", "Velocidad, aceleración, fuerza, energía y leyes de Newton.", "ciencias preparatoria"],
   ["Química", "Preparatoria", "Tabla periódica, enlaces químicos, balanceo y nomenclatura básica.", "ciencias preparatoria"],
   ["Biología", "Secundaria / Preparatoria", "Células, genética, cuerpo humano, ecosistemas y evolución.", "ciencias secundaria preparatoria"],
-  ["Historia", "General", "Líneas del tiempo, hechos clave, personajes y procesos históricos.", "humanidades secundaria preparatoria"],
-  ["Geografía", "Secundaria", "Mapas, regiones, clima, población y recursos naturales.", "humanidades secundaria"],
-  ["Inglés", "General", "Vocabulario, gramática, lectura y práctica de frases.", "humanidades secundaria preparatoria"],
+  ["Historia", "General", "Líneas del tiempo, hechos clave, personajes y procesos históricos.", "humanidades espanol-e-ingles secundaria preparatoria"],
+  ["Geografía", "Secundaria", "Mapas, regiones, clima, población y recursos naturales.", "humanidades espanol-e-ingles secundaria"],
+  ["Inglés", "General", "Vocabulario, gramática, lectura y práctica de frases.", "humanidades espanol-e-ingles secundaria preparatoria"],
   ["Literatura", "Preparatoria", "Lecturas, análisis, géneros literarios y comprensión de textos.", "humanidades preparatoria"],
   ["Filosofía", "Preparatoria", "Conceptos, corrientes, autores y preguntas guía para estudiar.", "humanidades preparatoria"],
   ["Administración", "General", "Conceptos básicos, organización, procesos y casos prácticos.", "general preparatoria"],
@@ -281,13 +283,34 @@ const educationTopics = [
 ];
 
 const educationProducts = [
-  ["Ejercicios de fracciones para secundaria", "Desde $29 MXN", "Práctica con fracciones, simplificación, suma, resta, multiplicación y división.", "secundaria matematicas"],
-  ["Pack Matemáticas Secundaria", "Desde $99 MXN", "Ejercicios por tema: fracciones, porcentajes, ecuaciones, geometría y regla de tres.", "secundaria matematicas"],
-  ["Álgebra básica para preparatoria", "Desde $49 MXN", "Ejercicios de operaciones algebraicas, productos notables, factorización y ecuaciones.", "preparatoria matematicas"],
-  ["Pack Física Preparatoria", "Desde $79 MXN", "Ejercicios de movimiento, fuerza, energía, velocidad, aceleración y leyes de Newton.", "preparatoria ciencias"],
-  ["Química básica", "Desde $49 MXN", "Ejercicios de tabla periódica, enlaces químicos, balanceo y nomenclatura básica.", "preparatoria ciencias"],
-  ["Simulador de examen", "Desde $59 MXN", "Banco de preguntas con respuestas para practicar antes de un examen.", "examenes secundaria preparatoria"]
+  ["Ejercicios de fracciones para secundaria", "Desde $29 MXN", "Práctica con fracciones, simplificación, suma, resta, multiplicación y división.", "secundaria matematicas", "assets/img/educacion/matematicas.png", "Ejercicios de fracciones para secundaria"],
+  ["Pack Matemáticas Secundaria", "Desde $99 MXN", "Ejercicios por tema: fracciones, porcentajes, ecuaciones, geometría y regla de tres.", "secundaria matematicas", "assets/img/educacion/matematicas.png", "Pack de ejercicios de matemáticas para secundaria"],
+  ["Álgebra básica para preparatoria", "Desde $49 MXN", "Operaciones algebraicas, productos notables, factorización y ecuaciones.", "preparatoria matematicas", "assets/img/educacion/matematicas.png", "Álgebra básica para preparatoria con ejercicios"],
+  ["Ciencias básicas", "Desde $79 MXN", "Ejercicios de biología, física y química para secundaria y preparatoria.", "preparatoria secundaria ciencias", "assets/img/educacion/ciencias.png", "Ejercicios de ciencias básicas para secundaria y preparatoria"],
+  ["Español e Inglés", "Desde $49 MXN", "Comprensión lectora, gramática, vocabulario y redacción.", "humanidades espanol-e-ingles secundaria preparatoria", "assets/img/educacion/espanol-ingles.png", "Ejercicios de español e inglés para estudiar"],
+  ["Simulador de examen", "Desde $59 MXN", "Banco de preguntas con respuestas para practicar antes de un examen.", "examenes secundaria preparatoria", "assets/img/educacion/preparatoria-examenes.png", "Simulador de examen escolar con banco de preguntas"]
 ];
+
+const productImages = {
+  dinero: ["assets/img/productos/dinero-ahorro.png", "Plantillas para organizar dinero y ahorro"],
+  ia: ["assets/img/productos/ia-facil.png", "Recursos de inteligencia artificial para emprendedores"],
+  negocio: ["assets/img/productos/ventas-negocio.png", "Recursos digitales para ventas y negocio"],
+  contenido: ["assets/img/productos/contenido-digital.png", "Plantillas para contenido digital y redes sociales"],
+  reset: ["assets/img/productos/productividad.png", "Recursos de productividad diaria y organización"],
+  total: ["assets/img/productos/pack-total.png", "Pack completo de recursos digitales DailyTips"],
+  educacion: ["assets/img/educacion/educacion-ejercicios.png", "Pack educación con ejercicios escolares por materia"]
+};
+
+const educationPack = {
+  id: "educacion",
+  name: "Pack Educación",
+  page: "educacion.html#pack-educacion",
+  price: "Desde $199 MXN",
+  headline: "Ejercicios por materia para secundaria, preparatoria, regularización y preparación de exámenes.",
+  bullets: ["Matemáticas", "Ciencias", "Español e Inglés", "Exámenes de práctica", "Guías por tema", "Ejercicios descargables"],
+  image: "assets/img/educacion/educacion-ejercicios.png",
+  alt: "Pack educación con ejercicios escolares descargables"
+};
 
 function byPack(pack) {
   return products.filter((product) => {
@@ -326,6 +349,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="catalog.js" defer></script>
@@ -335,44 +359,44 @@ function layout({ title, description, active, body, extraHead = "" }) {
 <body data-page="${active}">
   <div class="ambient ambient--one"></div>
   <div class="ambient ambient--two"></div>
+  <div class="site-announcement"><span aria-hidden="true">↓</span> Recursos digitales y ejercicios listos para descargar</div>
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
-    <nav aria-label="Principal">
-      <a class="${active === "index" ? "is-active" : ""}" href="index.html">Home</a>
-      <a class="${active === "blog" ? "is-active" : ""}" href="blog.html">Blog</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menú</button>
+    <nav id="primary-nav" aria-label="Principal">
+      <a class="${active === "index" ? "is-active" : ""}" href="index.html">Inicio</a>
       <div class="nav-dropdown">
-        <button class="${active.startsWith("categoria") ? "is-active" : ""}" type="button">Categorías</button>
-        <div class="mega-menu">
-          ${categoryGroups.map(([name, tagline]) => {
-            const pack = packForCategory(name);
-            const count = products.filter((product) => product.category === name).length;
-            return `<section class="mega-group">
-              <a class="mega-title" href="${categoryPageSlug(name)}">${name}</a>
-              <p>${tagline}</p>
-              <a class="mega-item" href="${categoryPageSlug(name)}">${count} archivos · Ver categoría</a>
-              <a class="mega-item" href="${pack.page}">Ver paquete</a>
-            </section>`;
-          }).join("")}
-          <section class="mega-group">
-            <a class="mega-title" href="educacion.html">Educación y Ejercicios</a>
-            <p>Ejercicios escolares por nivel, materia y tema.</p>
-            <a class="mega-item" href="educacion.html#materias">Ver materias</a>
-            <a class="mega-item" href="educacion.html#ejercicios">Ver ejercicios</a>
-          </section>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <button class="${["paquetes", "pack-total", "recursos-gratis", "premium"].includes(active) ? "is-active" : ""}" type="button">Paquetes</button>
+        <button class="${active.startsWith("categoria") || packDefs.some((pack) => pack.id === active) || active === "paquetes" ? "is-active" : ""}" type="button">Productos</button>
         <div class="mega-menu mega-menu--compact">
-          <section class="mega-group">
-            <a class="mega-title" href="paquetes.html">Paquetes</a>
-            <p>Elige un paquete por tema o compra toda la biblioteca.</p>
-            <a class="mega-item" href="pack-total.html">Pack Total</a>
-            <a class="mega-item" href="recursos-gratis.html">Promos</a>
-            <a class="mega-item" href="premium.html">Acceso</a>
-          </section>
+          ${[
+            ["Dinero y Ahorro", "dinero-ahorro.html"],
+            ["IA Fácil", "ia-facil.html"],
+            ["Ventas y Negocio", "negocio-inteligente.html"],
+            ["Contenido Digital", "contenido-viral.html"],
+            ["Productividad", "reset-productivo.html"],
+            ["Todos los productos", "paquetes.html"]
+          ].map(([label, href]) => `<a class="mega-link" href="${href}">${label}</a>`).join("")}
         </div>
       </div>
+      <div class="nav-dropdown">
+        <button class="${active === "educacion" ? "is-active" : ""}" type="button">Educación</button>
+        <div class="mega-menu mega-menu--compact">
+          ${[
+            ["Educación y Ejercicios", "educacion.html"],
+            ["Secundaria", "educacion.html#materias"],
+            ["Preparatoria", "educacion.html#materias"],
+            ["Matemáticas", "educacion.html#materias"],
+            ["Ciencias", "educacion.html#materias"],
+            ["Español e Inglés", "educacion.html#materias"],
+            ["Exámenes", "educacion.html#ejercicios"],
+            ["Regularización", "educacion.html#materias"]
+          ].map(([label, href]) => `<a class="mega-link" href="${href}">${label}</a>`).join("")}
+        </div>
+      </div>
+      <a class="${active === "recursos-gratis" ? "is-active" : ""}" href="recursos-gratis.html">Gratis</a>
+      <a class="${active === "blog" ? "is-active" : ""}" href="blog.html">Blog</a>
+      <a class="${active === "premium" ? "is-active" : ""}" href="premium.html">Acceso</a>
+      <a class="nav-cta" href="${packTotal.gumroad}" target="_blank" rel="noopener">${cartIcon()} Comprar Pack Completo</a>
     </nav>
   </header>
   <main>${body}</main>
@@ -400,9 +424,10 @@ function productMini(product) {
 
 function packCard(pack, total = false) {
   const count = total ? products.length : byPack(pack).length;
+  const [image, alt] = packImage(pack);
   return `<article class="pack-card ${total ? "pack-card--total" : ""}">
     <span class="pill">${pack.badge}</span>
-    ${mockup(pack.gradient ?? "grad-total")}
+    <img class="pack-image" src="${image}" alt="${alt}" loading="lazy">
     <h3>${pack.name}</h3>
     <p>${pack.headline}</p>
     <div class="price"><strong>${money(pack.price)}</strong><span>normal ${money(pack.normal)}</span></div>
@@ -431,78 +456,133 @@ function slug(text) {
   return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
+function cartIcon() {
+  return `<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H7"></path></svg>`;
+}
+
+function packImage(pack) {
+  return productImages[pack.id] ?? productImages.total;
+}
+
+function visualProductCard(product) {
+  const pack = packForCategory(product.category);
+  const [image, alt] = packImage(pack);
+  return `<article class="visual-card">
+    <img src="${image}" alt="${alt}" loading="lazy">
+    <div>
+      <span class="pill">${product.category}</span>
+      <h3>${product.name}</h3>
+      <p>${product.desc}</p>
+      <strong>${product.tag === "Gratis" ? "Gratis" : "Desde $49 MXN"}</strong>
+      <div class="card-actions">
+        <a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar</a>
+        <a class="button button--ghost" href="${productPageSlug(product)}">Ver detalles</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+function whatImproveCard([label, href, text]) {
+  return `<a class="choice-card" href="${href}">
+    <strong>${label}</strong>
+    <span>${text}</span>
+  </a>`;
+}
+
+function educationHomeCard([title, text, tag, image, alt]) {
+  const label = title === "Español e Inglés" ? "Idiomas" : title;
+  return `<article class="education-card" data-education-tags="${tag}">
+    <img src="${image}" alt="${alt}" loading="lazy">
+    <div>
+      <span class="icon-badge">${title.slice(0, 2).toUpperCase()}</span>
+      <span class="pill">${label}</span>
+      <h3>${title}</h3>
+      <p>${text}</p>
+      <div class="card-actions">
+        <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
+        <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+function educationPackCard() {
+  return `<article class="pack-card pack-card--education" id="pack-educacion">
+    <span class="pill">Nuevo</span>
+    <img class="pack-image" src="${educationPack.image}" alt="${educationPack.alt}" loading="lazy">
+    <h3>${educationPack.name}</h3>
+    <p>${educationPack.headline}</p>
+    <div class="price"><strong>${educationPack.price}</strong><span>paquete educativo</span></div>
+    <ul>${educationPack.bullets.map((item) => `<li>${item}</li>`).join("")}</ul>
+    <div class="pack-actions">
+      <a class="button button--ghost" href="educacion.html#ejercicios">Ver Pack Educación</a>
+      <a class="button" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+    <!-- TODO: Agregar enlace real de Gumroad para Pack Educación cuando exista. -->
+  </article>`;
+}
+
 function home() {
   const best = products.filter((product) => product.tag === "Más vendido").slice(0, 4);
   return layout({
-    title: "DailyTips | Archivos digitales, plantillas y guías prácticas",
-    description: "Compra archivos digitales, plantillas y guías prácticas para organizar tu dinero, vender mejor, estudiar, crear contenido y usar inteligencia artificial.",
+    title: "DailyTips | Productos digitales, plantillas y ejercicios escolares",
+    description: "Compra productos digitales, plantillas, guías y ejercicios escolares para organizar tu dinero, vender mejor, usar IA y estudiar por materia en secundaria y preparatoria.",
     active: "index",
     body: `
     <section class="hero hero-commercial hero-atelier">
       <div class="hero__copy">
-        <p class="eyebrow">Productos digitales listos para usar</p>
-        <h1>Archivos digitales listos para organizar tu dinero, vender mejor y ahorrar tiempo</h1>
-        <p class="lead">Plantillas, guías y recursos prácticos para emprender, estudiar, crear contenido y usar IA sin complicarte. Compra una vez y empieza a usarlos en minutos.</p>
+        <h1>Archivos digitales y ejercicios listos para organizarte, vender mejor y estudiar con claridad.</h1>
+        <p class="lead">Plantillas, guías, recursos de IA y ejercicios escolares para secundaria, preparatoria, negocio y vida diaria.</p>
         <div class="hero__actions">
-          <a class="button" href="#paquetes">Ver paquetes</a>
-          <a class="button button--ghost" href="daily_tips_gratis_30_gastos_quincena.xlsx" download>Descargar recurso gratis</a>
-          <a class="button button--light" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar Pack Total</a>
+          <a class="button" href="#productos">Ver productos</a>
+          <a class="button button--ghost" href="#educacion-ejercicios">Ver educación</a>
+          <a class="button button--yellow" href="${packTotal.gumroad}" target="_blank" rel="noopener">${cartIcon()} Comprar Pack Completo</a>
         </div>
         <div class="trust"><span>Pago único</span><span>Acceso digital</span><span>Soporte por WhatsApp</span><span>Compatible con celular y computadora</span></div>
       </div>
       <figure class="hero-media">
-        <img src="assets/dailytips-hero-banner.png" alt="DailyTips archivos digitales, plantillas y recursos para finanzas, productividad, estudio, contenido e inteligencia artificial">
+        <img src="assets/img/educacion/educacion-ejercicios.png" alt="DailyTips productos digitales, ejercicios escolares, guías y recursos descargables">
       </figure>
     </section>
-    <section class="section offer-section" id="pack-total">
-      <div class="offer-card">
-        <div>
-          <p class="eyebrow">Oferta principal</p>
-          <h2>Pack Total DailyTips</h2>
-          <p>Accede a todos los recursos digitales en un solo paquete: finanzas, IA, ventas, estudio, productividad y contenido.</p>
-          <div class="hero__actions"><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar Pack Total</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a></div>
-        </div>
-        <div class="offer-benefits">
-          ${["48 archivos digitales", "6 categorías", "Pago único", "Acceso inmediato", "Ideal para emprendedores, estudiantes y creadores", "Recursos listos para usar"].map((item) => `<span>${item}</span>`).join("")}
-        </div>
-      </div>
+    <section class="section quick-choices">
+      <div class="section__title"><h2>¿Qué quieres mejorar hoy?</h2><p>Elige un camino claro y llega rápido al recurso que necesitas.</p></div>
+      <div class="choice-grid">${[
+        ["Organizar mi dinero", "dinero-ahorro.html", "Presupuesto, ahorro y gastos."],
+        ["Vender mejor", "negocio-inteligente.html", "Clientes, inventario y ganancias."],
+        ["Usar IA", "ia-facil.html", "Prompts y guías prácticas."],
+        ["Crear contenido", "contenido-viral.html", "Ideas, hooks y guiones."],
+        ["Estudiar mejor", "reset-productivo.html", "Rutinas, tareas y enfoque."],
+        ["Practicar ejercicios escolares", "educacion.html", "Materias, temas y exámenes."]
+      ].map(whatImproveCard).join("")}</div>
     </section>
-    <section class="section">
-      <div class="section__title"><p class="eyebrow">Productos gancho</p><h2>Recursos de entrada para anuncios y publicaciones.</h2><p>Productos simples, fáciles de entender y con beneficio inmediato.</p></div>
-      <div class="hook-grid">${hookProducts.map(hookProductCard).join("")}</div>
+    <section class="section" id="productos">
+      <div class="section__title"><p class="eyebrow">Más vendidos</p><h2>Productos digitales fáciles de entender y comprar.</h2><p>Plantillas digitales, recursos de IA, guías escolares digitales y herramientas para resolver problemas reales.</p></div>
+      <div class="visual-grid">${best.map(visualProductCard).join("")}</div>
     </section>
-    <section class="section">
-      <div class="section__title"><p class="eyebrow">Categorías</p><h2>Encuentra rápido lo que necesitas.</h2></div>
-      <div class="category-showcase category-showcase--simple">${simpleCategories.map(([label, category, desc]) => {
-        const pack = packForCategory(category);
-        return `<a class="category-tile ${pack.gradient}" href="${categoryPageSlug(category)}"><span>${category}</span><strong>${label}</strong><p>${desc}</p></a>`;
-      }).join("")}</div>
-    </section>
-    <section class="section education-preview">
+    <section class="section education-preview" id="educacion-ejercicios">
       <div class="education-preview__copy">
-        <p class="eyebrow">Nueva línea</p>
         <h2>Educación y Ejercicios</h2>
-        <p>Ejercicios prácticos por materia, nivel escolar y tema para estudiar, practicar y reforzar conocimientos.</p>
-        <p>Encuentra cuadernillos, guías y ejercicios descargables para secundaria, preparatoria y regularización. Recursos listos para estudiar, imprimir o resolver desde tu dispositivo.</p>
-        <div class="hero__actions"><a class="button" href="educacion.html">Ver ejercicios</a><a class="button button--ghost" href="educacion.html#materias">Explorar materias</a></div>
+        <p>Ejercicios prácticos por materia, nivel y tema para secundaria, preparatoria, regularización y preparación de exámenes.</p>
+        <p>Encuentra materiales digitales listos para aprender, practicar, imprimir o resolver desde tu dispositivo. Ideal para estudiantes, padres, maestros y personas que quieren reforzar conocimientos.</p>
+        <div class="hero__actions"><a class="button" href="educacion.html">Ver educación</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a></div>
       </div>
-      <div class="education-level-grid">${educationLevels.map(educationLevelCard).join("")}</div>
+      ${educationFilters()}
+      <div class="education-home-grid">${educationLevels.map(educationHomeCard).join("")}</div>
+    </section>
+    <section class="section" id="ejercicios-destacados">
+      <div class="section__title"><p class="eyebrow">Ejercicios destacados</p><h2>Material escolar de entrada para vender por Facebook y WhatsApp.</h2></div>
+      ${educationFilters()}
+      <div class="edu-product-grid">${educationProducts.map(educationProductCard).join("")}</div>
     </section>
     <section class="section" id="paquetes">
-      <div class="section__title"><p class="eyebrow">Paquetes</p><h2>Compra por tema o llévate todo.</h2></div>
-      <div class="pack-grid">${packDefs.slice(0, 3).map((pack) => packCard(pack)).join("")}${packCard(packTotal, true)}</div>
+      <div class="section__title"><p class="eyebrow">Paquetes destacados</p><h2>Compra por tema o llévate todo.</h2></div>
+      <div class="pack-grid">${packDefs.slice(0, 3).map((pack) => packCard(pack)).join("")}${educationPackCard()}${packCard(packTotal, true)}</div>
+    </section>
+    <section class="section lead-free">
+      <div><p class="eyebrow">Recurso gratis</p><h2>Empieza con una descarga puntual.</h2><p>Usa un recurso gratuito para resolver algo pequeño y conocer el estilo DailyTips.</p></div>
+      <div class="hero__actions"><a class="button" href="daily_tips_gratis_30_gastos_quincena.xlsx" download>Descargar recurso gratis</a><a class="button button--ghost" href="recursos-gratis.html">Ver más gratis</a></div>
     </section>
     ${howReceive()}
-    <section class="section audience-section">
-      <div class="section__title"><p class="eyebrow">Para quién es</p><h2>Este sitio es para ti si quieres avanzar sin empezar desde cero.</h2></div>
-      <div class="audience-list">
-        ${["quieres organizar mejor tu dinero", "vendes productos o servicios y quieres mejorar tus ventas", "quieres usar IA pero no sabes por dónde empezar", "estudias y necesitas organizarte", "quieres crear contenido sin perder horas", "quieres recursos listos para usar sin empezar desde cero"].map((item) => `<span>${item}</span>`).join("")}
-      </div>
-    </section>
-    <section class="section trust-section">
-      <div><p class="eyebrow">Compra segura y acceso inmediato</p><h2>Diseñado para comprar fácil y empezar rápido.</h2></div>
-      <div class="trust-grid">${["Pago único", "Sin suscripciones", "Acceso digital", "Compatible con celular y computadora", "Soporte por WhatsApp"].map((item) => `<article>${item}</article>`).join("")}</div>
-    </section>
     <section class="section">
       <div class="section__title"><p class="eyebrow">Artículos recientes</p><h2>Contenido para traer tráfico desde Facebook.</h2></div>
       <div class="article-grid">${blogCards(3)}</div>
@@ -599,7 +679,10 @@ function categoryLanding(category) {
 }
 
 function productCard(product) {
+  const pack = packForCategory(product.category);
+  const [image, alt] = packImage(pack);
   return `<a class="product-card" href="${productPageSlug(product)}">
+    <img src="${image}" alt="${alt}" loading="lazy">
     <span class="icon-badge">${icon(product.icon)}</span>
     <span class="pill">${product.tag}</span>
     <h3>${product.name}</h3>
@@ -657,7 +740,10 @@ function recursosGratis() {
 }
 
 function freeDocCard(doc) {
+  const pack = packForCategory(doc.category);
+  const [image, alt] = packImage(pack);
   return `<article class="free-card">
+    <img src="${image}" alt="${alt}" loading="lazy">
     <span>${doc.category}</span>
     <h3>${doc.title}</h3>
     <p>${doc.problem}</p>
@@ -676,8 +762,9 @@ function hookProductCard(item) {
   </article>`;
 }
 
-function educationLevelCard([title, text, tag]) {
+function educationLevelCard([title, text, tag, image, alt]) {
   return `<article class="education-level-card" data-education-tags="${tag}">
+    <img src="${image}" alt="${alt}" loading="lazy">
     <span>${title}</span>
     <p>${text}</p>
   </article>`;
@@ -692,15 +779,16 @@ function educationSubjectCard([name, level, text, tags]) {
   </article>`;
 }
 
-function educationProductCard([name, price, text, tags]) {
+function educationProductCard([name, price, text, tags, image, alt]) {
   return `<article class="edu-product-card" data-education-tags="${tags}">
+    <img src="${image}" alt="${alt}" loading="lazy">
     <span>${price}</span>
     <h3>${name}</h3>
     <p>${text}</p>
     <div class="hook-actions">
-      <a class="button button--ghost" href="#temas">Ver ejercicios</a>
       <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para ${name}. -->
       <a class="button" href="#">Comprar</a>
+      <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
       <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
     </div>
   </article>`;
@@ -708,23 +796,22 @@ function educationProductCard([name, price, text, tags]) {
 
 function educationFilters() {
   return `<div class="education-filters" aria-label="Filtros de educación">
-    ${["Todos", "Secundaria", "Preparatoria", "Matemáticas", "Ciencias", "Humanidades", "Exámenes"].map((filter, index) => `<button class="${index === 0 ? "is-active" : ""}" type="button" data-education-filter="${slug(filter)}">${filter}</button>`).join("")}
+    ${["Todos", "Secundaria", "Preparatoria", "Matemáticas", "Ciencias", "Español e Inglés", "Exámenes"].map((filter, index) => `<button class="${index === 0 ? "is-active" : ""}" type="button" data-education-filter="${slug(filter)}">${filter}</button>`).join("")}
   </div>`;
 }
 
 function educacion() {
   return layout({
-    title: "Educación y ejercicios | DailyTips",
-    description: "Ejercicios de secundaria, preparatoria, matemáticas, ciencias y guías escolares digitales para estudiar, practicar y regularizarte.",
+    title: "Educación y Ejercicios | DailyTips",
+    description: "Ejercicios escolares, ejercicios de secundaria, ejercicios de preparatoria, ejercicios de matemáticas y guías escolares digitales por materia y tema.",
     active: "educacion",
     body: `<section class="hero hero-commercial education-hero">
       <div class="hero__copy">
-        <p class="eyebrow">Educación y Ejercicios</p>
         <h1>Ejercicios escolares por materia y tema</h1>
         <p class="lead">Practica matemáticas, ciencias, español, historia, inglés y más con guías y ejercicios descargables para secundaria y preparatoria.</p>
         <div class="hero__actions"><a class="button" href="#materias">Ver materias</a><a class="button button--ghost" href="#ejercicios">Ver paquetes</a><a class="button button--light" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a></div>
       </div>
-      <figure class="hero-media"><img src="assets/dailytips-educacion.png" alt="DailyTips ejercicios escolares, guías de estudio y organización para estudiantes"></figure>
+      <figure class="hero-media"><img src="assets/img/educacion/educacion-ejercicios.png" alt="Educación y ejercicios escolares por materia nivel y tema para secundaria y preparatoria"></figure>
     </section>
     <section class="section"><div class="section__title"><p class="eyebrow">Por nivel</p><h2>Material para estudiar a tu ritmo.</h2></div><div class="education-level-grid">${educationLevels.map(educationLevelCard).join("")}</div></section>
     <section class="section" id="materias"><div class="section__title"><p class="eyebrow">Explora por materia</p><h2>Ejercicios de secundaria, preparatoria y estudio general.</h2></div>${educationFilters()}<div class="subject-grid">${educationSubjects.map(educationSubjectCard).join("")}</div></section>

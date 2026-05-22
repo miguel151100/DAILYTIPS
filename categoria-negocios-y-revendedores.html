@@ -10,6 +10,7 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="catalog.js" defer></script>
@@ -19,65 +20,28 @@
 <body data-page="categoria-negocios-y-revendedores">
   <div class="ambient ambient--one"></div>
   <div class="ambient ambient--two"></div>
+  <div class="site-announcement"><span aria-hidden="true">↓</span> Recursos digitales y ejercicios listos para descargar</div>
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
-    <nav aria-label="Principal">
-      <a class="" href="index.html">Home</a>
-      <a class="" href="blog.html">Blog</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menú</button>
+    <nav id="primary-nav" aria-label="Principal">
+      <a class="" href="index.html">Inicio</a>
       <div class="nav-dropdown">
-        <button class="is-active" type="button">Categorías</button>
-        <div class="mega-menu">
-          <section class="mega-group">
-              <a class="mega-title" href="categoria-finanzas-personales.html">Finanzas personales</a>
-              <p>Quincena, ahorro, deudas y pagos</p>
-              <a class="mega-item" href="categoria-finanzas-personales.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="dinero-ahorro.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-ia-para-principiantes.html">IA para principiantes</a>
-              <p>Prompts, herramientas y automatización</p>
-              <a class="mega-item" href="categoria-ia-para-principiantes.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="ia-facil.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-negocios-y-revendedores.html">Negocios y revendedores</a>
-              <p>Ventas, inventario y clientes</p>
-              <a class="mega-item" href="categoria-negocios-y-revendedores.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="negocio-inteligente.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-creadores-de-contenido.html">Creadores de contenido</a>
-              <p>Ideas virales, guiones y métricas</p>
-              <a class="mega-item" href="categoria-creadores-de-contenido.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="contenido-viral.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-productividad-y-organizacion.html">Productividad y organización</a>
-              <p>Hábitos, enfoque y metas</p>
-              <a class="mega-item" href="categoria-productividad-y-organizacion.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="reset-productivo.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-estudiantes.html">Estudiantes</a>
-              <p>Tareas, estudio e IA escolar</p>
-              <a class="mega-item" href="categoria-estudiantes.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="reset-productivo.html">Ver paquete</a>
-            </section>
-          <section class="mega-group">
-            <a class="mega-title" href="educacion.html">Educación y Ejercicios</a>
-            <p>Ejercicios escolares por nivel, materia y tema.</p>
-            <a class="mega-item" href="educacion.html#materias">Ver materias</a>
-            <a class="mega-item" href="educacion.html#ejercicios">Ver ejercicios</a>
-          </section>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <button class="" type="button">Paquetes</button>
+        <button class="is-active" type="button">Productos</button>
         <div class="mega-menu mega-menu--compact">
-          <section class="mega-group">
-            <a class="mega-title" href="paquetes.html">Paquetes</a>
-            <p>Elige un paquete por tema o compra toda la biblioteca.</p>
-            <a class="mega-item" href="pack-total.html">Pack Total</a>
-            <a class="mega-item" href="recursos-gratis.html">Promos</a>
-            <a class="mega-item" href="premium.html">Acceso</a>
-          </section>
+          <a class="mega-link" href="dinero-ahorro.html">Dinero y Ahorro</a><a class="mega-link" href="ia-facil.html">IA Fácil</a><a class="mega-link" href="negocio-inteligente.html">Ventas y Negocio</a><a class="mega-link" href="contenido-viral.html">Contenido Digital</a><a class="mega-link" href="reset-productivo.html">Productividad</a><a class="mega-link" href="paquetes.html">Todos los productos</a>
         </div>
       </div>
+      <div class="nav-dropdown">
+        <button class="" type="button">Educación</button>
+        <div class="mega-menu mega-menu--compact">
+          <a class="mega-link" href="educacion.html">Educación y Ejercicios</a><a class="mega-link" href="educacion.html#materias">Secundaria</a><a class="mega-link" href="educacion.html#materias">Preparatoria</a><a class="mega-link" href="educacion.html#materias">Matemáticas</a><a class="mega-link" href="educacion.html#materias">Ciencias</a><a class="mega-link" href="educacion.html#materias">Español e Inglés</a><a class="mega-link" href="educacion.html#ejercicios">Exámenes</a><a class="mega-link" href="educacion.html#materias">Regularización</a>
+        </div>
+      </div>
+      <a class="" href="recursos-gratis.html">Gratis</a>
+      <a class="" href="blog.html">Blog</a>
+      <a class="" href="premium.html">Acceso</a>
+      <a class="nav-cta" href="https://gumroad.com/l/dailytips-pack-total" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H7"></path></svg> Comprar Pack Completo</a>
     </nav>
   </header>
   <main><section class="page-hero category-hero">
@@ -89,48 +53,56 @@
     <section class="section product-index">
       <div class="section__title"><p class="eyebrow">Temas y archivos</p><h2>Cada archivo tiene su propia página con explicación.</h2></div>
       <div class="product-page-grid"><a class="product-card" href="archivo-sistema-para-revendedores.html">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4-8 4z M4 8v8l8 4 8-4V8"/></svg></span>
     <span class="pill">Más vendido</span>
     <h3>Sistema para revendedores</h3>
     <p>Control de producto, precio, margen, clientes, pedidos y entregas.</p>
     <strong>Vender sin perder pedidos ni ganancias.</strong>
   </a><a class="product-card" href="archivo-control-de-inventario.html">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5z M8 8h8 M8 12h8 M8 16h5"/></svg></span>
     <span class="pill">Negocio</span>
     <h3>Control de inventario</h3>
     <p>Entradas, salidas, stock mínimo, costo y valor de inventario.</p>
     <strong>Saber qué comprar y qué ya no se mueve.</strong>
   </a><a class="product-card" href="archivo-calculadora-de-ganancias.html">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v18H7z M9 6h6v3H9z M9 12h.1 M12 12h.1 M15 12h.1 M9 16h.1 M12 16h.1 M15 16h.1"/></svg></span>
     <span class="pill">Gratis</span>
     <h3>Calculadora de ganancias</h3>
     <p>Precio, costo, comisión, envío, descuento y utilidad neta.</p>
     <strong>No vender barato sin darte cuenta.</strong>
   </a><a class="product-card" href="archivo-seguimiento-de-pedidos.html">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3z M14 11h4l3 3v2h-7z M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg></span>
     <span class="pill">Negocio</span>
     <h3>Seguimiento de pedidos</h3>
     <p>Clientes, pagos, entregas, pendientes y estado por pedido.</p>
     <strong>Dar seguimiento profesional desde Facebook o WhatsApp.</strong>
   </a><a class="product-card" href="archivo-dashboard-de-ventas.html">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13a8 8 0 1 1 16 0v6H4z M12 13l4-4"/></svg></span>
     <span class="pill">Premium</span>
     <h3>Dashboard de ventas</h3>
     <p>Ventas, ticket promedio, producto estrella, canal y utilidad.</p>
     <strong>Ver qué producto deja más dinero.</strong>
   </a><a class="product-card" href="archivo-notas-de-venta-automaticas.html">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-2-1-2 1-2-1-2 1-2-1-2 1z M9 8h6 M9 12h6 M9 16h4"/></svg></span>
     <span class="pill">Nuevo</span>
     <h3>Notas de venta automáticas</h3>
     <p>Plantilla para generar notas simples de venta, pedido y entrega.</p>
     <strong>Atender clientes con más orden y confianza.</strong>
   </a><a class="product-card" href="archivo-control-de-clientes.html">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M3 20a5 5 0 0 1 10 0 M17 11a2.5 2.5 0 1 0 0-5 M14 20a4 4 0 0 1 7 0"/></svg></span>
     <span class="pill">Negocio</span>
     <h3>Control de clientes</h3>
     <p>Historial, contacto, preferencias, compras y seguimiento.</p>
     <strong>Volver a vender a clientes que ya confiaron.</strong>
   </a><a class="product-card" href="archivo-sistema-para-pequenos-negocios.html">
+    <img src="assets/img/productos/ventas-negocio.png" alt="Recursos digitales para ventas y negocio" loading="lazy">
     <span class="icon-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9l2-5h12l2 5 M5 9h14v11H5z M8 20v-6h4v6"/></svg></span>
     <span class="pill">México</span>
     <h3>Sistema para pequeños negocios</h3>

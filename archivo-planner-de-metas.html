@@ -10,6 +10,7 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="catalog.js" defer></script>
@@ -19,65 +20,28 @@
 <body data-page="archivo-planner-de-metas">
   <div class="ambient ambient--one"></div>
   <div class="ambient ambient--two"></div>
+  <div class="site-announcement"><span aria-hidden="true">↓</span> Recursos digitales y ejercicios listos para descargar</div>
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
-    <nav aria-label="Principal">
-      <a class="" href="index.html">Home</a>
-      <a class="" href="blog.html">Blog</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menú</button>
+    <nav id="primary-nav" aria-label="Principal">
+      <a class="" href="index.html">Inicio</a>
       <div class="nav-dropdown">
-        <button class="" type="button">Categorías</button>
-        <div class="mega-menu">
-          <section class="mega-group">
-              <a class="mega-title" href="categoria-finanzas-personales.html">Finanzas personales</a>
-              <p>Quincena, ahorro, deudas y pagos</p>
-              <a class="mega-item" href="categoria-finanzas-personales.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="dinero-ahorro.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-ia-para-principiantes.html">IA para principiantes</a>
-              <p>Prompts, herramientas y automatización</p>
-              <a class="mega-item" href="categoria-ia-para-principiantes.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="ia-facil.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-negocios-y-revendedores.html">Negocios y revendedores</a>
-              <p>Ventas, inventario y clientes</p>
-              <a class="mega-item" href="categoria-negocios-y-revendedores.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="negocio-inteligente.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-creadores-de-contenido.html">Creadores de contenido</a>
-              <p>Ideas virales, guiones y métricas</p>
-              <a class="mega-item" href="categoria-creadores-de-contenido.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="contenido-viral.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-productividad-y-organizacion.html">Productividad y organización</a>
-              <p>Hábitos, enfoque y metas</p>
-              <a class="mega-item" href="categoria-productividad-y-organizacion.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="reset-productivo.html">Ver paquete</a>
-            </section><section class="mega-group">
-              <a class="mega-title" href="categoria-estudiantes.html">Estudiantes</a>
-              <p>Tareas, estudio e IA escolar</p>
-              <a class="mega-item" href="categoria-estudiantes.html">8 archivos · Ver categoría</a>
-              <a class="mega-item" href="reset-productivo.html">Ver paquete</a>
-            </section>
-          <section class="mega-group">
-            <a class="mega-title" href="educacion.html">Educación y Ejercicios</a>
-            <p>Ejercicios escolares por nivel, materia y tema.</p>
-            <a class="mega-item" href="educacion.html#materias">Ver materias</a>
-            <a class="mega-item" href="educacion.html#ejercicios">Ver ejercicios</a>
-          </section>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <button class="" type="button">Paquetes</button>
+        <button class="" type="button">Productos</button>
         <div class="mega-menu mega-menu--compact">
-          <section class="mega-group">
-            <a class="mega-title" href="paquetes.html">Paquetes</a>
-            <p>Elige un paquete por tema o compra toda la biblioteca.</p>
-            <a class="mega-item" href="pack-total.html">Pack Total</a>
-            <a class="mega-item" href="recursos-gratis.html">Promos</a>
-            <a class="mega-item" href="premium.html">Acceso</a>
-          </section>
+          <a class="mega-link" href="dinero-ahorro.html">Dinero y Ahorro</a><a class="mega-link" href="ia-facil.html">IA Fácil</a><a class="mega-link" href="negocio-inteligente.html">Ventas y Negocio</a><a class="mega-link" href="contenido-viral.html">Contenido Digital</a><a class="mega-link" href="reset-productivo.html">Productividad</a><a class="mega-link" href="paquetes.html">Todos los productos</a>
         </div>
       </div>
+      <div class="nav-dropdown">
+        <button class="" type="button">Educación</button>
+        <div class="mega-menu mega-menu--compact">
+          <a class="mega-link" href="educacion.html">Educación y Ejercicios</a><a class="mega-link" href="educacion.html#materias">Secundaria</a><a class="mega-link" href="educacion.html#materias">Preparatoria</a><a class="mega-link" href="educacion.html#materias">Matemáticas</a><a class="mega-link" href="educacion.html#materias">Ciencias</a><a class="mega-link" href="educacion.html#materias">Español e Inglés</a><a class="mega-link" href="educacion.html#ejercicios">Exámenes</a><a class="mega-link" href="educacion.html#materias">Regularización</a>
+        </div>
+      </div>
+      <a class="" href="recursos-gratis.html">Gratis</a>
+      <a class="" href="blog.html">Blog</a>
+      <a class="" href="premium.html">Acceso</a>
+      <a class="nav-cta" href="https://gumroad.com/l/dailytips-pack-total" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H7"></path></svg> Comprar Pack Completo</a>
     </nav>
   </header>
   <main><section class="hero hero-commercial product-hero">
