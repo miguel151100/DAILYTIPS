@@ -1437,7 +1437,9 @@ h3 {
 
 .visual-card,
 .education-card,
-.edu-product-card {
+.edu-product-card,
+.checkout-card,
+.checkout-summary {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 24px;
@@ -1448,7 +1450,8 @@ h3 {
 
 .visual-card:hover,
 .education-card:hover,
-.edu-product-card:hover {
+.edu-product-card:hover,
+.checkout-card:hover {
   transform: translateY(-2px);
   border-color: var(--accent-line);
   box-shadow: var(--shadow);
@@ -1459,7 +1462,8 @@ h3 {
 .edu-product-card img,
 .education-level-card img,
 .pack-image,
-.product-card img {
+.product-card img,
+.checkout-card img {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -1586,6 +1590,58 @@ h3 {
   margin-right: 8px;
 }
 
+.checkout-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 440px);
+}
+
+.checkout-summary {
+  padding: 28px;
+}
+
+.checkout-summary ol {
+  margin: 18px 0 0;
+  padding-left: 24px;
+  color: var(--ink-soft);
+  font-weight: 850;
+  line-height: 2;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.checkout-card {
+  display: grid;
+  grid-template-columns: minmax(190px, .8fr) minmax(0, 1.2fr);
+  min-height: 280px;
+}
+
+.checkout-card > div {
+  padding: 24px;
+}
+
+.checkout-card img {
+  height: 100%;
+  min-height: 280px;
+  aspect-ratio: auto;
+}
+
+.checkout-card--featured {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(260px, .9fr) minmax(0, 1.1fr);
+  border-color: rgba(255, 201, 40, .65);
+  box-shadow: 0 24px 70px rgba(255, 201, 40, .16);
+}
+
+.checkout-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
 [data-education-tags][hidden] {
   display: none !important;
 }
@@ -1616,7 +1672,8 @@ h3 {
   .topic-grid,
   .choice-grid,
   .visual-grid,
-  .education-home-grid {
+  .education-home-grid,
+  .checkout-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -1653,7 +1710,9 @@ h3 {
   .blog-post,
   .offer-card,
   .trust-section,
-  .education-preview {
+  .education-preview,
+  .checkout-card,
+  .checkout-card--featured {
     grid-template-columns: 1fr;
   }
 
@@ -1691,8 +1750,15 @@ h3 {
   .topic-grid,
   .choice-grid,
   .visual-grid,
-  .education-home-grid {
+  .education-home-grid,
+  .checkout-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .checkout-card img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
   }
 
   .mega-menu {
@@ -1769,7 +1835,8 @@ h3 {
   .topic-grid,
   .choice-grid,
   .visual-grid,
-  .education-home-grid {
+  .education-home-grid,
+  .checkout-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1784,6 +1851,11 @@ h3 {
   .button--light,
   .button--yellow {
     width: 100%;
+  }
+
+  .checkout-actions {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .site-announcement {

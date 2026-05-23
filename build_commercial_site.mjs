@@ -397,7 +397,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
       <a class="${active === "recursos-gratis" ? "is-active" : ""}" href="recursos-gratis.html">Gratis</a>
       <a class="${active === "blog" ? "is-active" : ""}" href="${bloggerUrl}" target="_blank" rel="noopener">Blog</a>
       <a class="${active === "premium" ? "is-active" : ""}" href="premium.html">Acceso</a>
-      <a class="nav-cta" href="${packTotal.gumroad}" target="_blank" rel="noopener">${cartIcon()} Comprar Pack Completo</a>
+      <a class="nav-cta" href="comprar.html#pack-total">${cartIcon()} Comprar Pack Completo</a>
     </nav>
   </header>
   <main>${body}</main>
@@ -523,6 +523,42 @@ function educationPackCard() {
   </article>`;
 }
 
+function checkoutPackCard(pack, total = false) {
+  const [image, alt] = packImage(pack);
+  const included = total ? products.length : byPack(pack).length;
+  return `<article class="checkout-card ${total ? "checkout-card--featured" : ""}" id="${total ? "pack-total" : pack.id}">
+    <img src="${image}" alt="${alt}" loading="lazy">
+    <div>
+      <span class="pill">${total ? "Mejor opción" : pack.badge}</span>
+      <h3>${pack.name}</h3>
+      <p>${pack.headline}</p>
+      <div class="price"><strong>${money(pack.price)}</strong><span>${included} archivos incluidos</span></div>
+      <div class="checkout-actions">
+        <a class="button button--yellow" href="${pack.gumroad}" target="_blank" rel="noopener">${cartIcon()} Pagar en Gumroad</a>
+        <a class="button button--ghost" href="${pack.page}">Ver detalles</a>
+        <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+function checkoutEducationCard() {
+  return `<article class="checkout-card" id="pack-educacion">
+    <img src="${educationPack.image}" alt="${educationPack.alt}" loading="lazy">
+    <div>
+      <span class="pill">Nuevo</span>
+      <h3>${educationPack.name}</h3>
+      <p>${educationPack.headline}</p>
+      <div class="price"><strong>${educationPack.price}</strong><span>enlace de compra pendiente</span></div>
+      <div class="checkout-actions">
+        <!-- TODO: Agregar enlace real de Gumroad para Pack Educación. -->
+        <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
+        <a class="button" href="${whatsapp}" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+      </div>
+    </div>
+  </article>`;
+}
+
 function home() {
   const best = products.filter((product) => product.tag === "Más vendido").slice(0, 4);
   return layout({
@@ -609,6 +645,50 @@ function paquetes() {
     </section>
     ${howReceive()}
     <section class="section lead-free"><div><p class="eyebrow">Recomendado</p><h2>Si dudas, ofrece primero Pack Total.</h2><p>El valor percibido es mayor, simplifica la entrega y convierte mejor cuando el cliente quiere “todo”.</p></div><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a></section>`
+  });
+}
+
+function comprar() {
+  return layout({
+    title: "Comprar DailyTips | Pago seguro en Gumroad",
+    description: "Elige tu paquete DailyTips, paga de forma segura en Gumroad y recibe tus archivos digitales por correo.",
+    active: "comprar",
+    body: `
+    <section class="hero hero-commercial checkout-hero">
+      <div class="hero__copy">
+        <h1>Elige tu paquete y recibe tus archivos al instante.</h1>
+        <p class="lead">Compra productos digitales DailyTips con pago seguro en Gumroad. Después del pago, Gumroad entrega el acceso automáticamente por correo.</p>
+        <div class="hero__actions">
+          <a class="button button--yellow" href="#pack-total">${cartIcon()} Comprar Pack Completo</a>
+          <a class="button button--ghost" href="#paquetes-compra">Ver paquetes</a>
+          <a class="button button--light" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a>
+        </div>
+      </div>
+      <div class="checkout-summary">
+        <span class="pill">Flujo de compra</span>
+        <ol>
+          <li>Elige tu paquete</li>
+          <li>Da clic en pagar</li>
+          <li>Gumroad abre el checkout</li>
+          <li>Recibes acceso por correo</li>
+        </ol>
+      </div>
+    </section>
+    <section class="section checkout-section" id="paquetes-compra">
+      <div class="section__title"><p class="eyebrow">Compra directa</p><h2>Paquetes disponibles.</h2><p>Los paquetes con Gumroad activo abren el checkout en una pestaña nueva. Educación queda listo para activar cuando tengas el enlace real.</p></div>
+      <div class="checkout-grid">
+        ${checkoutPackCard(packTotal, true)}
+        ${packDefs.map((pack) => checkoutPackCard(pack)).join("")}
+        ${checkoutEducationCard()}
+      </div>
+    </section>
+    <section class="section payment-trust">
+      <div class="section__title"><p class="eyebrow">Después de pagar</p><h2>Qué recibe el cliente.</h2></div>
+      <div class="trust-grid">
+        ${["Pago seguro en Gumroad", "Entrega automática por correo", "Archivos digitales descargables", "Acceso desde celular o computadora", "Soporte por WhatsApp"].map((item) => `<article>${item}</article>`).join("")}
+      </div>
+    </section>
+    ${faqBlock()}`
   });
 }
 
@@ -864,6 +944,7 @@ function contacto() {
 const pages = new Map([
   ["index.html", home()],
   ["educacion.html", educacion()],
+  ["comprar.html", comprar()],
   ["paquetes.html", paquetes()],
   ["pack-total.html", packTotalPage()],
   ["blog.html", blog()],
