@@ -156,11 +156,12 @@ input {
 
 .nav-dropdown {
   position: relative;
+  padding-block: 4px;
 }
 
 .mega-menu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 2px);
   left: 50%;
   z-index: 40;
   display: grid;
@@ -176,8 +177,17 @@ input {
   opacity: 0;
   overflow: auto;
   pointer-events: none;
-  transform: translate(-50%, 8px);
+  transform: translate(-50%, 4px);
   transition: opacity .16s ease, transform .16s ease;
+}
+
+.mega-menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
 }
 
 .mega-menu--compact {
@@ -186,7 +196,8 @@ input {
 }
 
 .nav-dropdown:hover .mega-menu,
-.nav-dropdown:focus-within .mega-menu {
+.nav-dropdown:focus-within .mega-menu,
+.nav-dropdown.is-open .mega-menu {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 0);
@@ -1777,7 +1788,8 @@ h3 {
   }
 
   .nav-dropdown:hover .mega-menu,
-  .nav-dropdown:focus-within .mega-menu {
+  .nav-dropdown:focus-within .mega-menu,
+  .nav-dropdown.is-open .mega-menu {
     display: grid;
     transform: none;
   }

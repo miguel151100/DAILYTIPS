@@ -15,6 +15,26 @@ if (menuToggle && topbar) {
   });
 }
 
+document.querySelectorAll(".nav-dropdown > button").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const dropdown = button.closest(".nav-dropdown");
+    const isOpen = dropdown.classList.contains("is-open");
+    document.querySelectorAll(".nav-dropdown.is-open").forEach((item) => item.classList.remove("is-open"));
+    if (!isOpen) dropdown.classList.add("is-open");
+  });
+});
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".nav-dropdown.is-open").forEach((item) => item.classList.remove("is-open"));
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    document.querySelectorAll(".nav-dropdown.is-open").forEach((item) => item.classList.remove("is-open"));
+  }
+});
+
 function renderPremiumDownloads() {
   const target = document.querySelector("#premium-downloads");
   if (!target) return;
