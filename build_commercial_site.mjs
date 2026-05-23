@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 await import(`file://${path.join(__dirname, "catalog.js")}?v=${Date.now()}`);
 const { products, icon } = globalThis.dailyTipsCatalog;
 
-const whatsapp = "https://wa.me/?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips";
+const whatsapp = "https://wa.me/525569862844?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips";
 const bloggerUrl = "https://dailytipsmx.blogspot.com/";
 const gumroadLinks = {
   total: "https://gumroad.com/l/dailytips-pack-total",

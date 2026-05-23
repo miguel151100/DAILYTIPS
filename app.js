@@ -3,7 +3,7 @@ const catalog = window.dailyTipsCatalog;
 if (!catalog) return;
 const { products, categoryMeta, icon } = catalog;
 
-const whatsapp = "https://wa.me/?text=Hola%2C%20quiero%20comprar%20un%20paquete%20Daily%20Tips";
+const whatsapp = "https://wa.me/525569862844?text=Hola%2C%20quiero%20comprar%20un%20paquete%20Daily%20Tips";
 const premiumPassword = "DAILYTIPS2026";
 
 const menuToggle = document.querySelector(".menu-toggle");
