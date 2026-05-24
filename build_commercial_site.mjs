@@ -8,13 +8,18 @@ const { products, icon } = globalThis.dailyTipsCatalog;
 
 const whatsapp = "https://wa.me/525569862844?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips";
 const bloggerUrl = "https://dailytipsmx.blogspot.com/";
+const mercadoPagoLinks = {
+  standard: "https://mpago.la/2J8hVw7",
+  total: "https://mpago.la/2NmAh15"
+};
+const packTotalWhatsapp = "https://wa.me/525569862844?text=Hola%2C%20quiero%20comprar%20el%20Pack%20Total%20DailyTips%20de%20%2499%20MXN";
 const gumroadLinks = {
-  total: "https://gumroad.com/l/dailytips-pack-total",
-  dinero: "https://gumroad.com/l/pack-dinero-ahorro",
-  ia: "https://gumroad.com/l/pack-ia-facil",
-  negocio: "https://gumroad.com/l/pack-negocio-inteligente",
-  contenido: "https://gumroad.com/l/pack-contenido-viral",
-  reset: "https://gumroad.com/l/pack-reset-productivo"
+  total: mercadoPagoLinks.total,
+  dinero: mercadoPagoLinks.standard,
+  ia: mercadoPagoLinks.standard,
+  negocio: mercadoPagoLinks.standard,
+  contenido: mercadoPagoLinks.standard,
+  reset: mercadoPagoLinks.standard
 };
 const premiumPassword = "DAILYTIPS2026";
 
@@ -26,7 +31,7 @@ const packDefs = [
     category: "Finanzas personales",
     headline: "Ordena tu quincena, ahorro, pagos y deudas sin enredarte.",
     emotional: "Para personas que sienten que el dinero se va antes de entender en que. Este paquete convierte la quincena en un mapa claro de decisiones.",
-    price: 149,
+    price: 35,
     normal: 249,
     badge: "Más vendido",
     gradient: "grad-money",
@@ -41,7 +46,7 @@ const packDefs = [
     category: "IA para principiantes",
     headline: "Aprende a usar IA para crear, estudiar, vender y ahorrar tiempo.",
     emotional: "Hecho para principiantes que quieren usar ChatGPT y herramientas IA sin sentirse perdidos ni técnicos.",
-    price: 179,
+    price: 35,
     normal: 299,
     badge: "Nuevo",
     gradient: "grad-ai",
@@ -56,7 +61,7 @@ const packDefs = [
     category: "Negocios y revendedores",
     headline: "Controla ventas, inventario, clientes y ganancias como negocio serio.",
     emotional: "Para revendedores, emprendedores caseros y pequeños negocios que venden por Facebook, WhatsApp o entregas locales.",
-    price: 199,
+    price: 35,
     normal: 349,
     badge: "Recomendado",
     gradient: "grad-business",
@@ -71,7 +76,7 @@ const packDefs = [
     category: "Creadores de contenido",
     headline: "Publica con intención: ideas, hooks, guiones, reels y métricas.",
     emotional: "Para creadores, vendedores y páginas de Facebook que quieren atraer comentarios, mensajes y ventas sin publicar al azar.",
-    price: 179,
+    price: 35,
     normal: 299,
     badge: "Viral",
     gradient: "grad-content",
@@ -86,7 +91,7 @@ const packDefs = [
     categories: ["Productividad y organización", "Estudiantes"],
     headline: "Reinicia tu semana con hábitos, enfoque, estudio y metas claras.",
     emotional: "Para quien quiere dejar de procrastinar, estudiar mejor, organizar tareas y recuperar control del día.",
-    price: 169,
+    price: 35,
     normal: 279,
     badge: "Popular",
     gradient: "grad-reset",
@@ -99,8 +104,8 @@ const packDefs = [
 const packTotal = {
   name: "DAILYTIPS Pack Total",
   page: "pack-total.html",
-  price: 399,
-  normal: 1470,
+  price: 99,
+  normal: 245,
   perceived: 2488,
   badge: "Mejor valor",
   headline: "Toda la biblioteca Daily Tips en un solo paquete.",
@@ -215,31 +220,31 @@ const hookProducts = [
     name: "Control financiero quincenal",
     product: "Control financiero quincenal MX",
     benefit: "Ordena ingresos, gastos y pagos sin perder la quincena.",
-    price: "desde $49 MXN"
+    price: "desde $35 MXN"
   },
   {
     name: "Prompts de IA para vender y crear contenido",
     product: "Prompts premium para ChatGPT",
     benefit: "Textos, ideas y respuestas listas para vender mejor.",
-    price: "desde $49 MXN"
+    price: "desde $35 MXN"
   },
   {
     name: "Guía para crear tu primera página web con IA",
     product: "Cómo crear páginas web con IA",
     benefit: "Convierte una idea en estructura, textos y publicación.",
-    price: "desde $49 MXN"
+    price: "desde $35 MXN"
   },
   {
     name: "Checklist de gastos hormiga",
     product: "Control de gastos hormiga",
     benefit: "Encuentra fugas de dinero pequeñas antes de que pesen.",
-    price: "desde $49 MXN"
+    price: "desde $35 MXN"
   },
   {
     name: "Plantilla para organizar pagos y deudas",
     product: "Organizador de pagos",
     benefit: "Evita recargos y ten fechas importantes bajo control.",
-    price: "desde $49 MXN"
+    price: "desde $35 MXN"
   }
 ];
 
@@ -284,12 +289,12 @@ const educationTopics = [
 ];
 
 const educationProducts = [
-  ["Ejercicios de fracciones para secundaria", "Desde $29 MXN", "Práctica con fracciones, simplificación, suma, resta, multiplicación y división.", "secundaria matematicas", "assets/img/educacion/matematicas.png", "Ejercicios de fracciones para secundaria"],
-  ["Pack Matemáticas Secundaria", "Desde $99 MXN", "Ejercicios por tema: fracciones, porcentajes, ecuaciones, geometría y regla de tres.", "secundaria matematicas", "assets/img/educacion/matematicas.png", "Pack de ejercicios de matemáticas para secundaria"],
-  ["Álgebra básica para preparatoria", "Desde $49 MXN", "Operaciones algebraicas, productos notables, factorización y ecuaciones.", "preparatoria matematicas", "assets/img/educacion/matematicas.png", "Álgebra básica para preparatoria con ejercicios"],
-  ["Ciencias básicas", "Desde $79 MXN", "Ejercicios de biología, física y química para secundaria y preparatoria.", "preparatoria secundaria ciencias", "assets/img/educacion/ciencias.png", "Ejercicios de ciencias básicas para secundaria y preparatoria"],
-  ["Español e Inglés", "Desde $49 MXN", "Comprensión lectora, gramática, vocabulario y redacción.", "humanidades espanol-e-ingles secundaria preparatoria", "assets/img/educacion/espanol-ingles.png", "Ejercicios de español e inglés para estudiar"],
-  ["Simulador de examen", "Desde $59 MXN", "Banco de preguntas con respuestas para practicar antes de un examen.", "examenes secundaria preparatoria", "assets/img/educacion/preparatoria-examenes.png", "Simulador de examen escolar con banco de preguntas"]
+  ["Ejercicios de fracciones para secundaria", "Desde $35 MXN", "Práctica con fracciones, simplificación, suma, resta, multiplicación y división.", "secundaria matematicas", "assets/img/educacion/matematicas.png", "Ejercicios de fracciones para secundaria"],
+  ["Pack Matemáticas Secundaria", "Desde $35 MXN", "Ejercicios por tema: fracciones, porcentajes, ecuaciones, geometría y regla de tres.", "secundaria matematicas", "assets/img/educacion/matematicas.png", "Pack de ejercicios de matemáticas para secundaria"],
+  ["Álgebra básica para preparatoria", "Desde $35 MXN", "Operaciones algebraicas, productos notables, factorización y ecuaciones.", "preparatoria matematicas", "assets/img/educacion/matematicas.png", "Álgebra básica para preparatoria con ejercicios"],
+  ["Ciencias básicas", "Desde $35 MXN", "Ejercicios de biología, física y química para secundaria y preparatoria.", "preparatoria secundaria ciencias", "assets/img/educacion/ciencias.png", "Ejercicios de ciencias básicas para secundaria y preparatoria"],
+  ["Español e Inglés", "Desde $35 MXN", "Comprensión lectora, gramática, vocabulario y redacción.", "humanidades espanol-e-ingles secundaria preparatoria", "assets/img/educacion/espanol-ingles.png", "Ejercicios de español e inglés para estudiar"],
+  ["Simulador de examen", "Desde $35 MXN", "Banco de preguntas con respuestas para practicar antes de un examen.", "examenes secundaria preparatoria", "assets/img/educacion/preparatoria-examenes.png", "Simulador de examen escolar con banco de preguntas"]
 ];
 
 const productImages = {
@@ -306,7 +311,7 @@ const educationPack = {
   id: "educacion",
   name: "Pack Educación",
   page: "educacion.html#pack-educacion",
-  price: "Desde $199 MXN",
+  price: "Desde $35 MXN",
   headline: "Ejercicios por materia para secundaria, preparatoria, regularización y preparación de exámenes.",
   bullets: ["Matemáticas", "Ciencias", "Español e Inglés", "Exámenes de práctica", "Guías por tema", "Ejercicios descargables"],
   image: "assets/img/educacion/educacion-ejercicios.png",
@@ -351,7 +356,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" href="assets/dailytips-logo-cropped.png">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="catalog.js" defer></script>
   <script src="app.js" defer></script>
@@ -395,6 +400,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
         </div>
       </div>
       <a class="${active === "recursos-gratis" ? "is-active" : ""}" href="recursos-gratis.html">Gratis</a>
+      <a class="${active === "recetas" ? "is-active" : ""}" href="recetas-del-mundo.html">Recetas del Mundo</a>
       <a class="${active === "blog" ? "is-active" : ""}" href="${bloggerUrl}" target="_blank" rel="noopener">Blog</a>
       <a class="${active === "premium" ? "is-active" : ""}" href="premium.html">Acceso</a>
       <a class="nav-cta" href="comprar.html#pack-total">${cartIcon()} Comprar Pack Completo</a>
@@ -474,7 +480,7 @@ function visualProductCard(product) {
       <span class="pill">${product.category}</span>
       <h3>${product.name}</h3>
       <p>${product.desc}</p>
-      <strong>${product.tag === "Gratis" ? "Gratis" : "Desde $49 MXN"}</strong>
+      <strong>${product.tag === "Gratis" ? "Gratis" : "Desde $35 MXN"}</strong>
       <div class="card-actions">
         <a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar</a>
         <a class="button button--ghost" href="${productPageSlug(product)}">Ver detalles</a>
@@ -513,13 +519,12 @@ function educationPackCard() {
     <img class="pack-image" src="${educationPack.image}" alt="${educationPack.alt}" loading="lazy">
     <h3>${educationPack.name}</h3>
     <p>${educationPack.headline}</p>
-    <div class="price"><strong>${educationPack.price}</strong><span>paquete educativo</span></div>
+      <div class="price"><strong>${educationPack.price}</strong><span>paquete educativo</span></div>
     <ul>${educationPack.bullets.map((item) => `<li>${item}</li>`).join("")}</ul>
     <div class="pack-actions">
       <a class="button button--ghost" href="educacion.html#ejercicios">Ver Pack Educación</a>
-      <a class="button" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      <a class="button" href="${mercadoPagoLinks.standard}" target="_blank" rel="noopener">Comprar $35 MXN</a>
     </div>
-    <!-- TODO: Agregar enlace real de Gumroad para Pack Educación cuando exista. -->
   </article>`;
 }
 
@@ -534,7 +539,7 @@ function checkoutPackCard(pack, total = false) {
       <p>${pack.headline}</p>
       <div class="price"><strong>${money(pack.price)}</strong><span>${included} archivos incluidos</span></div>
       <div class="checkout-actions">
-        <a class="button button--yellow" href="${pack.gumroad}" target="_blank" rel="noopener">${cartIcon()} Pagar en Gumroad</a>
+        <a class="button button--yellow" href="${pack.gumroad}" target="_blank" rel="noopener">${cartIcon()} ${total ? "Pagar $99 MXN" : "Pagar $35 MXN"}</a>
         <a class="button button--ghost" href="${pack.page}">Ver detalles</a>
         <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a>
       </div>
@@ -549,11 +554,11 @@ function checkoutEducationCard() {
       <span class="pill">Nuevo</span>
       <h3>${educationPack.name}</h3>
       <p>${educationPack.headline}</p>
-      <div class="price"><strong>${educationPack.price}</strong><span>enlace de compra pendiente</span></div>
+      <div class="price"><strong>${educationPack.price}</strong><span>pago por Mercado Pago</span></div>
       <div class="checkout-actions">
-        <!-- TODO: Agregar enlace real de Gumroad para Pack Educación. -->
+        <a class="button button--yellow" href="${mercadoPagoLinks.standard}" target="_blank" rel="noopener">${cartIcon()} Pagar $35 MXN</a>
         <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
-        <a class="button" href="${whatsapp}" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+        <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a>
       </div>
     </div>
   </article>`;
@@ -650,32 +655,69 @@ function paquetes() {
 
 function comprar() {
   return layout({
-    title: "Comprar DailyTips | Pago seguro en Gumroad",
-    description: "Elige tu paquete DailyTips, paga de forma segura en Gumroad y recibe tus archivos digitales por correo.",
+    title: "Comprar DailyTips | Mega paquete de recetas y productos digitales",
+    description: "Compra el Mega Paquete Digital de más de 100 recetas internacionales en PDF y otros paquetes DailyTips.",
     active: "comprar",
     body: `
-    <section class="hero hero-commercial checkout-hero">
+    <section class="hero hero-commercial checkout-hero recipe-checkout-hero">
       <div class="hero__copy">
-        <h1>Elige tu paquete y recibe tus archivos al instante.</h1>
-        <p class="lead">Compra productos digitales DailyTips con pago seguro en Gumroad. Después del pago, Gumroad entrega el acceso automáticamente por correo.</p>
+        <span class="recipe-badge">Mega Paquete Digital PDF</span>
+        <h1>¡El Pasaporte Definitivo para tu Paladar!</h1>
+        <p class="lead">Más de 100 recetas internacionales explicadas con palabras comunes en México, ingredientes fáciles de conseguir en súper o mercado y pasos pensados para cocinar sin complicarte.</p>
         <div class="hero__actions">
-          <a class="button button--yellow" href="#pack-total">${cartIcon()} Comprar Pack Completo</a>
-          <a class="button button--ghost" href="#paquetes-compra">Ver paquetes</a>
+          <a class="button recipe-button" href="#pack-total">${cartIcon()} Ver oferta de $99 MXN</a>
+          <a class="button button--ghost" href="recetas-del-mundo.html">Ver muestras</a>
           <a class="button button--light" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a>
         </div>
       </div>
       <div class="checkout-summary">
-        <span class="pill">Flujo de compra</span>
+        <span class="pill">Compra y descarga</span>
         <ol>
-          <li>Elige tu paquete</li>
-          <li>Da clic en pagar</li>
-          <li>Gumroad abre el checkout</li>
-          <li>Recibes acceso por correo</li>
+          <li>Revisa las muestras</li>
+          <li>Paga el paquete completo</li>
+          <li>Descarga el PDF al instante</li>
+          <li>También llega a tu correo</li>
         </ol>
       </div>
     </section>
+    <section class="section recipe-offer" id="pack-total">
+      <div class="recipe-offer__media">
+        <img src="https://source.unsplash.com/1100x850/?mexican-food,ramen,italian-food" alt="Mesa con platillos internacionales del paquete de recetas">
+      </div>
+      <div class="recipe-offer__copy">
+        <span class="recipe-badge">Oferta especial de lanzamiento</span>
+        <h2>¡El Pasaporte Definitivo para tu Paladar!</h2>
+        <p>Convierte tu cocina en un recorrido por México, Italia, Japón y más países con recetas claras, antojables y fáciles de seguir.</p>
+        <ul class="recipe-benefits">
+          <li>Fotos reales para elegir qué cocinar.</li>
+          <li>Pasos ultra sencillos y sin palabras raras.</li>
+          <li>Ingredientes conocidos en CDMX y fáciles de buscar en cualquier súper del país.</li>
+          <li>Descarga inmediata del PDF de recetas.</li>
+        </ul>
+        <div class="recipe-price">
+          <span>Precio regular <s>$199 MXN</s></span>
+          <strong>$99 MXN</strong>
+        </div>
+        <div class="hero__actions">
+          <a class="button recipe-button" href="${mercadoPagoLinks.total}" target="_blank" rel="noopener">${cartIcon()} Pagar con Mercado Pago</a>
+          <a class="button button--ghost" href="recetas-del-mundo.html">Ver 5 recetas de muestra</a>
+          <button class="button button--light" type="button" data-recipes-buy>Simular entrega</button>
+        </div>
+        <p class="recipe-note">Pago real: Mercado Pago abre en una pestaña nueva. La descarga automática segura después del pago requiere integrar Checkout Pro con webhook/backend; el botón “Simular entrega” solo sirve para probar cómo se verá la entrega.</p>
+      </div>
+    </section>
+    <div class="success-modal" id="recipes-success-modal" hidden>
+      <div class="success-modal__panel" role="dialog" aria-modal="true" aria-labelledby="recipes-success-title">
+        <button class="success-modal__close" type="button" data-recipes-modal-close aria-label="Cerrar">×</button>
+        <span class="recipe-badge">Compra exitosa</span>
+        <h2 id="recipes-success-title">¡Pago Procesado!</h2>
+        <p>Tu paquete gastronómico se está descargando...</p>
+        <p>También enviamos el acceso al correo electrónico registrado.</p>
+        <a class="button recipe-button" href="./recetas.pdf" download>Descargar otra vez</a>
+      </div>
+    </div>
     <section class="section checkout-section" id="paquetes-compra">
-      <div class="section__title"><p class="eyebrow">Compra directa</p><h2>Paquetes disponibles.</h2><p>Los paquetes con Gumroad activo abren el checkout en una pestaña nueva. Educación queda listo para activar cuando tengas el enlace real.</p></div>
+      <div class="section__title"><p class="eyebrow">Compra directa</p><h2>Paquetes disponibles.</h2><p>Pack Total cuesta $99 MXN y los paquetes individuales cuestan $35 MXN. Mercado Pago abre el pago en una pestaña nueva.</p></div>
       <div class="checkout-grid">
         ${checkoutPackCard(packTotal, true)}
         ${packDefs.map((pack) => checkoutPackCard(pack)).join("")}
@@ -685,7 +727,7 @@ function comprar() {
     <section class="section payment-trust">
       <div class="section__title"><p class="eyebrow">Después de pagar</p><h2>Qué recibe el cliente.</h2></div>
       <div class="trust-grid">
-        ${["Pago seguro en Gumroad", "Entrega automática por correo", "Archivos digitales descargables", "Acceso desde celular o computadora", "Soporte por WhatsApp"].map((item) => `<article>${item}</article>`).join("")}
+        ${["Pago seguro con Mercado Pago", "Entrega digital preparada", "Archivos digitales descargables", "Acceso desde celular o computadora", "Soporte por WhatsApp"].map((item) => `<article>${item}</article>`).join("")}
       </div>
     </section>
     ${faqBlock()}`
@@ -711,7 +753,7 @@ function packTotalPage() {
     </section>
     <section class="section"><div class="section__title"><p class="eyebrow">Todo lo que incluye</p><h2>48 archivos en 6 áreas de alto interés.</h2></div><div class="category-showcase">${packDefs.map((pack) => `<a class="category-tile ${pack.gradient}" href="${pack.page}"><span>${byPack(pack).length} archivos</span><strong>${pack.name}</strong><p>${pack.headline}</p></a>`).join("")}</div></section>
     <section class="section compare-section"><div class="section__title"><p class="eyebrow">Comparación de valor</p><h2>Comprar por separado cuesta más.</h2></div><div class="value-grid"><article><strong>${money(individual)}</strong><span>Comprando paquetes por separado</span></article><article><strong>${money(packTotal.price)}</strong><span>Pack Total lanzamiento</span></article><article><strong>${money(individual - packTotal.price)}</strong><span>Ahorro estimado</span></article></div></section>
-    <section class="section"><div class="section__title"><p class="eyebrow">Beneficios</p><h2>Diseñado para compradores de Facebook.</h2></div><div class="benefit-grid"><article>Pago seguro en Gumroad</article><article>Entrega automática por correo</article><article>Productos por categorías claras</article><article>Archivos editables en Excel</article></div></section>
+    <section class="section"><div class="section__title"><p class="eyebrow">Beneficios</p><h2>Diseñado para compradores de Facebook.</h2></div><div class="benefit-grid"><article>Pago seguro con Mercado Pago</article><article>Entrega digital preparada</article><article>Productos por categorías claras</article><article>Archivos editables en Excel</article></div></section>
     ${howReceive()}
     ${faqBlock()}`
   });
@@ -866,8 +908,7 @@ function educationProductCard([name, price, text, tags, image, alt]) {
     <h3>${name}</h3>
     <p>${text}</p>
     <div class="hook-actions">
-      <!-- TODO: reemplazar # con el enlace real de Gumroad o descarga para ${name}. -->
-      <a class="button" href="#">Comprar</a>
+      <a class="button" href="${mercadoPagoLinks.standard}" target="_blank" rel="noopener">Comprar $35 MXN</a>
       <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
       <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
     </div>
@@ -899,7 +940,7 @@ function educacion() {
     <section class="section" id="ejercicios"><div class="section__title"><p class="eyebrow">Ejercicios destacados</p><h2>Productos educativos de entrada.</h2></div>${educationFilters()}<div class="edu-product-grid">${educationProducts.map(educationProductCard).join("")}</div></section>
     <section class="section audience-section"><div class="section__title"><p class="eyebrow">Para quién es</p><h2>Recursos para aprender, enseñar o prepararte mejor.</h2></div><div class="audience-list">${["estudiantes", "padres", "maestros", "personas en regularización", "personas que preparan exámenes"].map((item) => `<span>${item}</span>`).join("")}</div></section>
     <section class="section process-section"><div class="section__title"><p class="eyebrow">Cómo funciona</p><h2>Estudia en 3 pasos.</h2></div><div class="process-grid"><article><span>1</span><strong>Elige la materia</strong></article><article><span>2</span><strong>Descarga el recurso</strong></article><article><span>3</span><strong>Practica a tu ritmo</strong></article></div></section>
-    <section class="section faq-section"><div class="section__title"><p class="eyebrow">Preguntas frecuentes</p><h2>Dudas sobre los ejercicios.</h2></div><div class="faq-grid"><details open><summary>¿Los ejercicios incluyen respuestas?</summary><p>La idea es vender cuadernillos con respuestas o guía de solución cuando el producto lo indique.</p></details><details><summary>¿Puedo imprimirlos?</summary><p>Sí, estarán pensados para descargar, imprimir o resolver desde el dispositivo.</p></details><details><summary>¿Son para secundaria o preparatoria?</summary><p>Habrá recursos para secundaria, preparatoria, exámenes y regularización.</p></details><details><summary>¿Puedo usarlos desde el celular?</summary><p>Sí, aunque para resolver ejercicios largos se recomienda tablet o computadora.</p></details><details><summary>¿Cómo recibo el archivo?</summary><p>Cuando agregues el enlace real de compra, Gumroad o tu sistema de entrega enviará el archivo automáticamente.</p></details></div></section>`
+    <section class="section faq-section"><div class="section__title"><p class="eyebrow">Preguntas frecuentes</p><h2>Dudas sobre los ejercicios.</h2></div><div class="faq-grid"><details open><summary>¿Los ejercicios incluyen respuestas?</summary><p>La idea es vender cuadernillos con respuestas o guía de solución cuando el producto lo indique.</p></details><details><summary>¿Puedo imprimirlos?</summary><p>Sí, estarán pensados para descargar, imprimir o resolver desde el dispositivo.</p></details><details><summary>¿Son para secundaria o preparatoria?</summary><p>Habrá recursos para secundaria, preparatoria, exámenes y regularización.</p></details><details><summary>¿Puedo usarlos desde el celular?</summary><p>Sí, aunque para resolver ejercicios largos se recomienda tablet o computadora.</p></details><details><summary>¿Cómo recibo el archivo?</summary><p>El pago abre en Mercado Pago. Para entrega automática real después del pago se necesita conectar Mercado Pago Checkout Pro con webhook/backend.</p></details></div></section>`
   });
 }
 
@@ -916,7 +957,7 @@ function premium() {
     description: "Zona privada de descargas para clientes Daily Tips.",
     active: "premium",
     body: `<section class="page-hero"><p class="eyebrow">Zona privada</p><h1>Acceso premium para compradores.</h1><p>Contraseña para clientes: <strong>${premiumPassword}</strong></p></section>
-    <section id="premium" class="section premium-section"><div class="premium-gate" id="premium-gate"><div><p class="eyebrow">Biblioteca privada</p><h2>Descarga tus archivos comprados.</h2><p>Introduce la contraseña si compraste una versión con acceso privado. En Gumroad la entrega es automática por correo.</p></div><form class="premium-form" id="premium-form"><label for="premium-password">Contraseña</label><input id="premium-password" type="password" placeholder="Contraseña"><button type="submit">Entrar</button><p class="form-error" id="premium-error"></p></form></div><div class="premium-library" id="premium-library" hidden><div class="section__title"><p class="eyebrow">Descargas</p><h2>Biblioteca premium completa.</h2><p>Descarga el ZIP o baja archivos por categoría. Llena las celdas amarillas de cada Excel.</p></div><div class="premium-actions"><a class="button" href="daily_tips_paquete_completo.zip" download>Descargar ZIP completo</a><button class="button button--ghost" id="premium-logout" type="button">Cerrar acceso</button></div><div class="premium-downloads" id="premium-downloads"></div></div></section>`
+    <section id="premium" class="section premium-section"><div class="premium-gate" id="premium-gate"><div><p class="eyebrow">Biblioteca privada</p><h2>Descarga tus archivos comprados.</h2><p>Introduce la contraseña si compraste una versión con acceso privado. Para entrega automática real con Mercado Pago se necesita webhook/backend.</p></div><form class="premium-form" id="premium-form"><label for="premium-password">Contraseña</label><input id="premium-password" type="password" placeholder="Contraseña"><button type="submit">Entrar</button><p class="form-error" id="premium-error"></p></form></div><div class="premium-library" id="premium-library" hidden><div class="section__title"><p class="eyebrow">Descargas</p><h2>Biblioteca premium completa.</h2><p>Descarga el ZIP o baja archivos por categoría. Llena las celdas amarillas de cada Excel.</p></div><div class="premium-actions"><a class="button" href="daily_tips_paquete_completo.zip" download>Descargar ZIP completo</a><button class="button button--ghost" id="premium-logout" type="button">Cerrar acceso</button></div><div class="premium-downloads" id="premium-downloads"></div></div></section>`
   });
 }
 
@@ -937,7 +978,7 @@ function contacto() {
     title: "Contacto Daily Tips",
     description: "Compra y soporte Daily Tips por Facebook o WhatsApp.",
     active: "contacto",
-    body: `<section class="page-hero"><p class="eyebrow">Contacto y soporte</p><h1>Compra en Gumroad y recibe tus archivos automáticamente.</h1><p>Usa esta página para resolver dudas por WhatsApp o encontrar acceso premium si ya compraste antes.</p><div class="hero__actions"><a class="button" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a><a class="button button--ghost" href="premium.html">Ir a Premium</a></div></section><section class="section page-grid"><article><h3>Cómo funciona</h3><p>Elige paquete, paga de forma segura en Gumroad y recibe tus archivos automáticamente por correo.</p></article><article><h3>Soporte</h3><p>Envía captura si un archivo no abre o si no encuentras una descarga.</p></article><article><h3>Términos</h3><p>Uso personal. No redistribuir, revender ni compartir contraseña.</p></article><article><h3>Privacidad</h3><p>Los datos de contacto se usan para entrega, soporte y novedades.</p></article><article><h3>Después de comprar</h3><p>Guarda el enlace premium y descarga el ZIP completo como respaldo.</p></article><article><h3>Garantía técnica</h3><p>Si falta un archivo o no descarga, se corrige o se reenvía.</p></article></section>`
+    body: `<section class="page-hero"><p class="eyebrow">Contacto y soporte</p><h1>Compra con Mercado Pago y recibe soporte por WhatsApp.</h1><p>Usa esta página para resolver dudas por WhatsApp o encontrar acceso premium si ya compraste antes.</p><div class="hero__actions"><a class="button" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a><a class="button button--ghost" href="premium.html">Ir a Premium</a></div></section><section class="section page-grid"><article><h3>Cómo funciona</h3><p>Elige paquete, paga de forma segura con Mercado Pago y recibe indicaciones de descarga o acceso premium.</p></article><article><h3>Soporte</h3><p>Envía captura si un archivo no abre o si no encuentras una descarga.</p></article><article><h3>Términos</h3><p>Uso personal. No redistribuir, revender ni compartir contraseña.</p></article><article><h3>Privacidad</h3><p>Los datos de contacto se usan para entrega, soporte y novedades.</p></article><article><h3>Después de comprar</h3><p>Guarda el enlace premium y descarga el ZIP completo como respaldo.</p></article><article><h3>Garantía técnica</h3><p>Si falta un archivo o no descarga, se corrige o se reenvía.</p></article></section>`
   });
 }
 

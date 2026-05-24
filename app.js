@@ -123,4 +123,42 @@ document.querySelectorAll("[data-education-filter]").forEach((button) => {
     });
   });
 });
+
+const recipesBuyButton = document.querySelector("[data-recipes-buy]");
+const recipesModal = document.querySelector("#recipes-success-modal");
+const recipesModalClose = document.querySelector("[data-recipes-modal-close]");
+
+function startRecipesDownload() {
+  const link = document.createElement("a");
+  link.href = "./recetas.pdf";
+  link.download = "recetas.pdf";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+recipesBuyButton?.addEventListener("click", () => {
+  // Prueba visual de entrega. La entrega automática real con Mercado Pago requiere Checkout Pro + webhook/backend.
+  recipesModal.hidden = false;
+  window.setTimeout(startRecipesDownload, 900);
+});
+
+recipesModalClose?.addEventListener("click", () => {
+  recipesModal.hidden = true;
+});
+
+recipesModal?.addEventListener("click", (event) => {
+  if (event.target === recipesModal) recipesModal.hidden = true;
+});
+
+document.querySelectorAll("[data-recipe-filter]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const filter = button.dataset.recipeFilter;
+    document.querySelectorAll("[data-recipe-filter]").forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+    document.querySelectorAll("[data-recipe-category]").forEach((card) => {
+      card.hidden = filter !== "todos" && card.dataset.recipeCategory !== filter;
+    });
+  });
+});
 })();
