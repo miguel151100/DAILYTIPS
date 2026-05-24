@@ -2,10 +2,10 @@
 
 Este sitio ya tiene las páginas necesarias para el regreso del cliente después de pagar:
 
-- Pago aprobado: `https://miguel151100.github.io/DAILYTIPS/pago-exitoso.html`
-- Pago pendiente: `https://miguel151100.github.io/DAILYTIPS/pago-pendiente.html`
-- Pago rechazado: `https://miguel151100.github.io/DAILYTIPS/pago-rechazado.html`
-- Entrega digital: `https://miguel151100.github.io/DAILYTIPS/entrega-digital.html`
+- Pago aprobado: `https://dailytips.lat/pago-exitoso.html`
+- Pago pendiente: `https://dailytips.lat/pago-pendiente.html`
+- Pago rechazado: `https://dailytips.lat/pago-rechazado.html`
+- Entrega digital: `https://dailytips.lat/entrega-digital.html`
 
 ## Flujo recomendado
 

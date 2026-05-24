@@ -1,4 +1,4 @@
-const SITE_URL = process.env.SITE_URL || "https://miguel151100.github.io/DAILYTIPS";
+const SITE_URL = process.env.SITE_URL || "https://dailytips.lat";
 const API_PUBLIC_URL = process.env.API_PUBLIC_URL || "";
 const DELIVERY_ACCESS_CODE = process.env.DELIVERY_ACCESS_CODE || "DAILYTIPS2026";
 

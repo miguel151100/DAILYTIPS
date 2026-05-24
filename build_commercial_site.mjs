@@ -26,90 +26,171 @@ const premiumPassword = "DAILYTIPS2026";
 const packDefs = [
   {
     id: "dinero",
-    name: "Dinero y Ahorro",
+    name: "Pack Finanzas en Orden MX",
     page: "dinero-ahorro.html",
     category: "Finanzas personales",
-    headline: "Ordena tu quincena, ahorro, pagos y deudas sin enredarte.",
-    emotional: "Para personas que sienten que el dinero se va antes de entender en que. Este paquete convierte la quincena en un mapa claro de decisiones.",
+    headline: "Toma control de tu dinero sin complicarte.",
+    hook: "Toma control de tu dinero sin complicarte.",
+    commercialDescription: "Organiza tu quincena, tus gastos, tus deudas y tus metas financieras con plantillas pensadas para la vida real en México. Este pack te ayuda a dejar de gastar sin darte cuenta y empezar a ver con claridad a dónde se va tu dinero.",
+    audience: "Personas que quieren ahorrar, organizar sus pagos, salir de deudas y mejorar su control financiero.",
+    mainBenefit: "Deja de sentir que la quincena desaparece sola y entiende exactamente qué hacer con tu dinero.",
+    cta: "Empieza hoy a ordenar tu dinero y deja de sentir que la quincena desaparece sola.",
     price: 35,
     normal: 249,
     badge: "Más vendido",
     gradient: "grad-money",
     gumroad: gumroadLinks.dinero,
-    bullets: ["Control quincenal", "Gasto hormiga", "Ahorro", "Deudas", "Pagos mexicanos"],
+    bullets: ["Control financiero quincenal MX", "Control de gastos hormiga", "Planificador de ahorro", "Control de deudas", "Calculadora de metas financieras", "Presupuesto mensual automático", "Organizador de pagos", "Dashboard financiero premium"],
+    previewLabels: ["Dashboard de presupuesto", "Tracker de gastos", "Calendario de pagos"],
+    previewImages: ["assets/img/productos/dinero-ahorro.png", "assets/hero-planificador-mexico.png", "assets/dailytips-hero-banner.png"],
     articles: ["La quincena no se pierde sola", "Cómo evitar recargos por pagos olvidados"]
   },
   {
     id: "ia",
-    name: "IA Fácil",
+    name: "Pack IA Fácil",
     page: "ia-facil.html",
     category: "IA para principiantes",
-    headline: "Aprende a usar IA para crear, estudiar, vender y ahorrar tiempo.",
-    emotional: "Hecho para principiantes que quieren usar ChatGPT y herramientas IA sin sentirse perdidos ni técnicos.",
+    headline: "Aprende a usar inteligencia artificial de forma práctica, incluso si empiezas desde cero.",
+    hook: "Aprende a usar inteligencia artificial de forma práctica, incluso si empiezas desde cero.",
+    commercialDescription: "Este pack reúne guías, prompts y recursos listos para ayudarte a usar IA en tu vida diaria, negocio, estudios y creación de contenido.",
+    audience: "Principiantes, emprendedores, estudiantes y creadores.",
+    mainBenefit: "Convierte la IA en una herramienta útil para estudiar, crear contenido, vender y ahorrar tiempo.",
+    cta: "Descubre cómo usar la IA a tu favor y conviértela en una herramienta real para estudiar, crear y vender.",
     price: 35,
     normal: 299,
     badge: "Nuevo",
     gradient: "grad-ai",
     gumroad: gumroadLinks.ia,
-    bullets: ["Prompts premium", "IA para contenido", "IA para negocios", "Automatizaciones", "Estudio con IA"],
+    bullets: ["Guía para ganar dinero con IA", "Prompts premium para ChatGPT", "Cómo crear páginas web con IA", "Herramientas IA más útiles", "Automatizaciones fáciles", "IA para crear contenido", "IA para negocios pequeños", "IA para estudiantes"],
+    previewLabels: ["Prompts listos", "Guías prácticas", "Automatizaciones"],
+    previewImages: ["assets/img/productos/ia-facil.png", "assets/dailytips-hero-banner.png", "assets/img/productos/contenido-digital.png"],
     articles: ["5 formas reales de usar ChatGPT", "Prompts que sí ayudan a vender"]
   },
   {
     id: "negocio",
-    name: "Negocio Inteligente",
+    name: "Pack Negocio Inteligente",
     page: "negocio-inteligente.html",
     category: "Negocios y revendedores",
-    headline: "Controla ventas, inventario, clientes y ganancias como negocio serio.",
-    emotional: "Para revendedores, emprendedores caseros y pequeños negocios que venden por Facebook, WhatsApp o entregas locales.",
+    headline: "Haz que tu negocio se vea más ordenado, profesional y rentable.",
+    hook: "Haz que tu negocio se vea más ordenado, profesional y rentable.",
+    commercialDescription: "Si vendes por Facebook, WhatsApp, catálogo o desde casa, este pack te ayuda a controlar inventario, pedidos, clientes, ventas y ganancias.",
+    audience: "Revendedores, emprendedores y negocios pequeños.",
+    mainBenefit: "Centraliza ventas, clientes, pedidos e inventario para vender con más control y confianza.",
+    cta: "Organiza tu negocio como un verdadero sistema y vende con más orden, control y confianza.",
     price: 35,
     normal: 349,
     badge: "Recomendado",
     gradient: "grad-business",
     gumroad: gumroadLinks.negocio,
-    bullets: ["Inventario", "Ganancias", "Pedidos", "Clientes", "Dashboard ventas"],
+    bullets: ["Sistema para revendedores", "Control de inventario", "Calculadora de ganancias", "Seguimiento de pedidos", "Dashboard de ventas", "Notas de venta automáticas", "Control de clientes", "Sistema para pequeños negocios"],
+    previewLabels: ["Dashboard de ventas", "Inventario", "Clientes y pedidos"],
+    previewImages: ["assets/img/productos/ventas-negocio.png", "assets/dailytips-hero-banner.png", "assets/img/productos/dinero-ahorro.png"],
     articles: ["Cómo saber si tu producto sí deja ganancia", "El error que mata a los revendedores"]
   },
   {
     id: "contenido",
-    name: "Contenido Viral",
+    name: "Pack Contenido Viral",
     page: "contenido-viral.html",
     category: "Creadores de contenido",
-    headline: "Publica con intención: ideas, hooks, guiones, reels y métricas.",
-    emotional: "Para creadores, vendedores y páginas de Facebook que quieren atraer comentarios, mensajes y ventas sin publicar al azar.",
+    headline: "Deja de improvisar y empieza a crear contenido con estrategia.",
+    hook: "Deja de improvisar y empieza a crear contenido con estrategia.",
+    commercialDescription: "Este pack está diseñado para personas que quieren publicar contenido que conecte, atraiga atención y ayude a vender.",
+    audience: "Creadores de contenido, emprendedores y vendedores digitales.",
+    mainBenefit: "Transforma ideas sueltas en publicaciones con intención, ganchos claros y llamados a la acción.",
+    cta: "Crea contenido con intención, conecta con tu audiencia y conviértelo en una herramienta para vender más.",
     price: 35,
     normal: 299,
     badge: "Viral",
     gradient: "grad-content",
     gumroad: gumroadLinks.contenido,
-    bullets: ["Calendario 30 días", "Hooks virales", "Guiones", "Reels", "Métricas"],
+    bullets: ["Calendario de contenido viral", "Hooks virales para TikTok", "Sistema de ideas de contenido", "Organización para creadores", "Guiones virales", "Rastreador de métricas", "Planeador de Reels", "Ideas virales para Facebook"],
+    previewLabels: ["Calendario de contenido", "Hooks y guiones", "Métricas"],
+    previewImages: ["assets/img/productos/contenido-digital.png", "assets/dailytips-hero-banner.png", "assets/img/productos/ia-facil.png"],
     articles: ["Publicar más no vende más", "Cómo transformar un tip en venta"]
   },
   {
-    id: "reset",
-    name: "Reset Productivo",
-    page: "reset-productivo.html",
-    categories: ["Productividad y organización", "Estudiantes"],
-    headline: "Reinicia tu semana con hábitos, enfoque, estudio y metas claras.",
-    emotional: "Para quien quiere dejar de procrastinar, estudiar mejor, organizar tareas y recuperar control del día.",
+    id: "vida",
+    name: "Pack Organiza tu Vida",
+    page: "organiza-tu-vida.html",
+    category: "Productividad y organización",
+    headline: "Pon orden en tu día, tus hábitos y tus metas.",
+    hook: "Pon orden en tu día, tus hábitos y tus metas.",
+    commercialDescription: "Este pack te ayuda a organizar tu vida personal de manera simple: tareas, prioridades, metas, hábitos, enfoque y rutinas.",
+    audience: "Personas que buscan orden personal y productividad.",
+    mainBenefit: "Reduce el caos diario y convierte tus metas en acciones visibles y fáciles de seguir.",
+    cta: "Organiza tu tiempo, tus metas y tus días con un sistema práctico que te ayude a avanzar de verdad.",
     price: 35,
     normal: 279,
     badge: "Popular",
     gradient: "grad-reset",
-    gumroad: gumroadLinks.reset,
-    bullets: ["Planner diario", "Hábitos", "Pomodoro", "Metas", "Exámenes"],
-    articles: ["El método anti procrastinación", "Cómo estudiar con IA sin copiar"]
+    gumroad: "checkout.html?pack=standard&category=vida",
+    bullets: ["Planner diario premium", "Sistema de hábitos", "Organización semanal", "Planner de metas", "Método anti procrastinación", "Sistema de enfoque", "Planeador mensual", "Rutinas y objetivos"],
+    previewLabels: ["Planner diario", "Hábitos", "Metas"],
+    previewImages: ["assets/img/productos/productividad.png", "assets/dailytips-hero-banner.png", "assets/img/educacion/educacion-ejercicios.png"],
+    articles: ["El método anti procrastinación", "Cómo recuperar control de la semana"]
+  },
+  {
+    id: "estudiante",
+    name: "Pack Estudiante Pro",
+    page: "estudiante-pro.html",
+    category: "Estudiantes",
+    headline: "Estudia con más orden, menos estrés y mejores resultados.",
+    hook: "Estudia con más orden, menos estrés y mejores resultados.",
+    commercialDescription: "Este pack reúne herramientas para ayudar a estudiantes a organizar tareas, estudiar mejor, prepararse para exámenes y apoyarse con IA.",
+    audience: "Estudiantes, padres y personas en secundaria o preparatoria.",
+    mainBenefit: "Convierte tareas, horarios y exámenes en un sistema claro para avanzar sin tanto estrés.",
+    cta: "Haz que estudiar sea más fácil, más claro y más organizado con herramientas diseñadas para avanzar mejor.",
+    price: 35,
+    normal: 279,
+    badge: "Estudio",
+    gradient: "grad-study",
+    gumroad: "checkout.html?pack=standard&category=estudiante",
+    bullets: ["Organizador escolar", "Planeador de tareas", "Sistema de estudio inteligente", "Prompts IA para estudiar", "Horario escolar premium", "Resúmenes automáticos", "Método Pomodoro", "Planeador de exámenes"],
+    previewLabels: ["Horario escolar", "Plan de estudio", "Exámenes"],
+    previewImages: ["assets/img/educacion/educacion-ejercicios.png", "assets/img/educacion/matematicas.png", "assets/img/productos/productividad.png"],
+    articles: ["Cómo estudiar con IA sin copiar", "Organiza tus tareas sin perder entregas"]
+  },
+  {
+    id: "emprendedor",
+    name: "Pack Emprendedor Digital",
+    page: "emprendedor-digital.html",
+    categories: ["IA para principiantes", "Negocios y revendedores", "Creadores de contenido"],
+    headline: "Todo lo que necesitas para crear, vender y crecer en digital.",
+    hook: "Todo lo que necesitas para crear, vender y crecer en digital.",
+    commercialDescription: "Este pack combina IA, negocio y contenido para personas que quieren emprender o vender por internet.",
+    audience: "Emprendedores digitales y personas que quieren empezar online.",
+    mainBenefit: "Une creación, ventas y contenido para empezar con más estrategia desde el primer día.",
+    cta: "Empieza tu camino digital con un pack pensado para ayudarte a crear, vender y crecer con más estrategia.",
+    price: 35,
+    normal: 399,
+    badge: "Bundle",
+    gradient: "grad-business",
+    gumroad: "checkout.html?pack=standard&category=emprendedor",
+    bullets: ["Pack IA Fácil", "Pack Negocio Inteligente", "Pack Contenido Viral", "Prompts", "Inventario", "Clientes", "Calendario de contenido", "Guiones de venta"],
+    previewLabels: ["IA para vender", "Sistema de negocio", "Contenido viral"],
+    previewImages: ["assets/img/productos/ia-facil.png", "assets/img/productos/ventas-negocio.png", "assets/img/productos/contenido-digital.png"],
+    articles: ["Prompts que sí ayudan a vender", "Publicar más no vende más"]
   }
 ];
 
 const packTotal = {
-  name: "DAILYTIPS Pack Total",
+  id: "total",
+  name: "Pack Completo DailyTips",
   page: "pack-total.html",
   price: 99,
   normal: 245,
   perceived: 2488,
   badge: "Mejor valor",
-  headline: "Toda la biblioteca Daily Tips en un solo paquete.",
-  emotional: "La forma más completa de vender, organizar, estudiar, crear contenido y resolver problemas diarios con herramientas digitales listas.",
+  headline: "La biblioteca más completa de DailyTips en un solo acceso.",
+  hook: "La biblioteca más completa de DailyTips en un solo acceso.",
+  emotional: "Este pack reúne la colección completa de recursos digitales DailyTips para finanzas, IA, negocio, contenido, productividad y estudio.",
+  commercialDescription: "Este pack reúne la colección completa de recursos digitales DailyTips para finanzas, IA, negocio, contenido, productividad y estudio.",
+  audience: "Personas que quieren todo el contenido en una sola compra.",
+  mainBenefit: "Accede a una biblioteca completa de herramientas digitales listas para usar sin comprar paquete por paquete.",
+  cta: "Llévate todo DailyTips y accede a una biblioteca completa de herramientas digitales listas para usar.",
+  bullets: ["Finanzas en Orden MX", "IA Fácil", "Negocio Inteligente", "Contenido Viral", "Organiza tu Vida", "Estudiante Pro", "Recetas del Mundo", "Actualizaciones"],
+  previewLabels: ["Biblioteca completa", "Plantillas", "Recetas y recursos"],
+  previewImages: ["assets/img/productos/pack-total.png", "assets/dailytips-hero-banner.png", "assets/img/educacion/educacion-ejercicios.png"],
   gumroad: gumroadLinks.total
 };
 
@@ -303,6 +384,9 @@ const productImages = {
   negocio: ["assets/img/productos/ventas-negocio.png", "Recursos digitales para ventas y negocio"],
   contenido: ["assets/img/productos/contenido-digital.png", "Plantillas para contenido digital y redes sociales"],
   reset: ["assets/img/productos/productividad.png", "Recursos de productividad diaria y organización"],
+  vida: ["assets/img/productos/productividad.png", "Pack Organiza tu Vida con planners y hábitos"],
+  estudiante: ["assets/img/educacion/educacion-ejercicios.png", "Pack Estudiante Pro con guías y horarios"],
+  emprendedor: ["assets/img/productos/ventas-negocio.png", "Pack Emprendedor Digital para vender online"],
   total: ["assets/img/productos/pack-total.png", "Pack completo de recursos digitales DailyTips"],
   educacion: ["assets/img/educacion/educacion-ejercicios.png", "Pack educación con ejercicios escolares por materia"]
 };
@@ -320,8 +404,10 @@ const educationPack = {
 
 function byPack(pack) {
   return products.filter((product) => {
+    if (pack.productNames) return pack.productNames.includes(product.name);
     if (pack.category) return product.category === pack.category;
-    return pack.categories.includes(product.category);
+    if (pack.categories) return pack.categories.includes(product.category);
+    return true;
   });
 }
 
@@ -393,7 +479,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
             ["IA Fácil", "ia-facil.html"],
             ["Ventas y Negocio", "negocio-inteligente.html"],
             ["Contenido Digital", "contenido-viral.html"],
-            ["Productividad", "reset-productivo.html"],
+            ["Productividad", "organiza-tu-vida.html"],
             ["Todos los productos", "paquetes.html"]
           ].map(([label, href]) => `<a class="mega-link" href="${href}">${label}</a>`).join("")}
         </div>
@@ -443,21 +529,36 @@ function productMini(product) {
   </a>`;
 }
 
+function packPreviewGallery(pack) {
+  const images = pack.previewImages?.length ? pack.previewImages : [packImage(pack)[0], "assets/dailytips-hero-banner.png", "assets/img/educacion/educacion-ejercicios.png"];
+  const labels = pack.previewLabels?.length ? pack.previewLabels : ["Dashboard", "Plantilla", "Guía"];
+  return `<div class="pack-preview-gallery">${images.slice(0, 3).map((src, index) => `<figure><img src="${src}" alt="Vista previa de ${pack.name}: ${labels[index] ?? "recurso"}" loading="lazy"><figcaption>${labels[index] ?? "Vista previa"}</figcaption></figure>`).join("")}</div>`;
+}
+
 function packCard(pack, total = false) {
   const count = total ? products.length : byPack(pack).length;
   const [image, alt] = packImage(pack);
-  return `<article class="pack-card ${total ? "pack-card--total" : ""}">
-    <span class="pill">${pack.badge}</span>
-    <img class="pack-image" src="${image}" alt="${alt}" loading="lazy">
-    <h3>${pack.name}</h3>
-    <p>${pack.headline}</p>
-    <div class="price"><strong>${money(pack.price)}</strong><span>normal ${money(pack.normal)}</span></div>
-    <ul>${(pack.bullets ?? ["48 herramientas", "Todas las categorías", "Actualizaciones", "Zona premium"]).map((item) => `<li>${item}</li>`).join("")}</ul>
-    <div class="pack-actions">
-      <a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar ahora</a>
-      <a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a>
+  return `<article class="pack-card pack-card--commercial ${total ? "pack-card--total" : ""}">
+    <div class="pack-card__media"><img class="pack-image" src="${image}" alt="${alt}" loading="lazy"></div>
+    <div class="pack-card__content">
+      <span class="pill">${pack.badge}</span>
+      <h3>${pack.name}</h3>
+      <p class="pack-hook">${pack.hook ?? pack.headline}</p>
+      <p>${pack.commercialDescription ?? pack.emotional ?? pack.headline}</p>
+      <div class="price"><strong>${money(pack.price)}</strong><span>${total ? "Pack completo" : `normal ${money(pack.normal)}`}</span></div>
+      <div class="pack-benefit"><strong>Problema que resuelve</strong><span>${pack.mainBenefit ?? pack.headline}</span></div>
+      ${packPreviewGallery(pack)}
+      <div class="pack-mini-sections">
+        <section><h4>¿Para quién es?</h4><p>${pack.audience ?? "Personas que quieren recursos prácticos listos para usar."}</p></section>
+        <section><h4>¿Qué incluye?</h4><ul>${(pack.bullets ?? ["Herramientas digitales", "Plantillas", "Guías", "Recursos listos"]).map((item) => `<li>${item}</li>`).join("")}</ul></section>
+      </div>
+      <p class="pack-cta-copy">${pack.cta ?? "Empieza hoy con recursos digitales listos para usar."}</p>
+      <div class="pack-actions">
+        <a class="button" href="${pack.gumroad}">Comprar ahora</a>
+        <a class="button button--ghost" href="${pack.page}">Ver detalles</a>
+      </div>
+      <small>${count} archivos incluidos</small>
     </div>
-    <small>${count} archivos incluidos</small>
   </article>`;
 }
 
@@ -607,7 +708,7 @@ function home() {
         ["Vender mejor", "negocio-inteligente.html", "Clientes, inventario y ganancias."],
         ["Usar IA", "ia-facil.html", "Prompts y guías prácticas."],
         ["Crear contenido", "contenido-viral.html", "Ideas, hooks y guiones."],
-        ["Estudiar mejor", "reset-productivo.html", "Rutinas, tareas y enfoque."],
+        ["Estudiar mejor", "estudiante-pro.html", "Rutinas, tareas y enfoque."],
         ["Practicar ejercicios escolares", "educacion.html", "Materias, temas y exámenes."]
       ].map(whatImproveCard).join("")}</div>
     </section>
@@ -648,22 +749,22 @@ function home() {
 
 function paquetes() {
   return layout({
-    title: "Paquetes Daily Tips | Compra por categoría",
-    description: "Paquetes digitales por categoría y comparación contra el Pack Total.",
+    title: "Paquetes Daily Tips | Productos digitales profesionales",
+    description: "Packs digitales DailyTips con plantillas, guías, previews y compra por Mercado Pago.",
     active: "paquetes",
     body: `
-    <section class="page-hero"><p class="eyebrow">Paquetes comerciales</p><h1>Elige un paquete o llévate toda la biblioteca.</h1><p>La estrategia es simple: paquetes por problema para vender fácil y Pack Total para maximizar valor.</p></section>
-    <section class="section"><div class="pack-grid">${packDefs.map((pack) => packCard(pack)).join("")}</div></section>
+    <section class="page-hero packs-hero"><p class="eyebrow">Paquetes comerciales</p><h1>Elige el pack que resuelve justo lo que necesitas.</h1><p>Cada paquete está diseñado como producto digital completo: problema claro, recursos incluidos, previews visuales y compra directa.</p><div class="hero__actions"><a class="button" href="#packs">Ver packs</a><a class="button button--ghost" href="checkout.html?pack=total">Comprar Pack Completo</a></div></section>
+    <section class="section" id="packs"><div class="section__title"><p class="eyebrow">Catálogo DailyTips</p><h2>Packs listos para vender por Facebook, WhatsApp y anuncios.</h2><p>Todos los packs individuales cuestan $35 MXN. El Pack Completo cuesta $99 MXN.</p></div><div class="pack-showcase-grid">${packDefs.map((pack) => packCard(pack)).join("")}${packCard(packTotal, true)}</div></section>
     <section class="section compare-section">
-      <div class="section__title"><p class="eyebrow">Comparativa</p><h2>Por qué recomendar el Pack Total.</h2></div>
+      <div class="section__title"><p class="eyebrow">Comparativa</p><h2>Compra por problema o llévate todo.</h2></div>
       <div class="compare-table">
         <div class="compare-row head"><span>Opción</span><span>Incluye</span><span>Precio</span><span>Mejor para</span></div>
-        ${packDefs.map((pack) => `<div class="compare-row"><span>${pack.name}</span><span>${byPack(pack).length} archivos</span><span>${money(pack.price)}</span><span>Resolver un problema específico</span></div>`).join("")}
-        <div class="compare-row total"><span>DAILYTIPS Pack Total</span><span>48 archivos + bonos</span><span>${money(packTotal.price)}</span><span>Máximo valor y biblioteca completa</span></div>
+        ${packDefs.map((pack) => `<div class="compare-row"><span>${pack.name}</span><span>${byPack(pack).length} recursos</span><span>${money(pack.price)}</span><span>${pack.audience}</span></div>`).join("")}
+        <div class="compare-row total"><span>${packTotal.name}</span><span>Biblioteca completa + bonos</span><span>${money(packTotal.price)}</span><span>Quienes quieren todo en una sola compra</span></div>
       </div>
     </section>
     ${howReceive()}
-    <section class="section lead-free"><div><p class="eyebrow">Recomendado</p><h2>Si dudas, ofrece primero Pack Total.</h2><p>El valor percibido es mayor, simplifica la entrega y convierte mejor cuando el cliente quiere “todo”.</p></div><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a></section>`
+    <section class="section lead-free"><div><p class="eyebrow">Recomendado</p><h2>${packTotal.cta}</h2><p>${packTotal.commercialDescription}</p></div><a class="button" href="${packTotal.gumroad}">Comprar Pack Completo</a></section>`
   });
 }
 
@@ -765,7 +866,7 @@ function packTotalPage() {
       </div>
       ${mockup("grad-total")}
     </section>
-    <section class="section"><div class="section__title"><p class="eyebrow">Todo lo que incluye</p><h2>48 archivos en 6 áreas de alto interés.</h2></div><div class="category-showcase">${packDefs.map((pack) => `<a class="category-tile ${pack.gradient}" href="${pack.page}"><span>${byPack(pack).length} archivos</span><strong>${pack.name}</strong><p>${pack.headline}</p></a>`).join("")}</div></section>
+    <section class="section"><div class="section__title"><p class="eyebrow">Todo lo que incluye</p><h2>Una biblioteca completa por áreas de alto interés.</h2></div><div class="category-showcase">${packDefs.map((pack) => `<a class="category-tile ${pack.gradient}" href="${pack.page}"><span>${byPack(pack).length} recursos</span><strong>${pack.name}</strong><p>${pack.headline}</p></a>`).join("")}</div></section>
     <section class="section compare-section"><div class="section__title"><p class="eyebrow">Comparación de valor</p><h2>Comprar por separado cuesta más.</h2></div><div class="value-grid"><article><strong>${money(individual)}</strong><span>Comprando paquetes por separado</span></article><article><strong>${money(packTotal.price)}</strong><span>Pack Total lanzamiento</span></article><article><strong>${money(individual - packTotal.price)}</strong><span>Ahorro estimado</span></article></div></section>
     <section class="section"><div class="section__title"><p class="eyebrow">Beneficios</p><h2>Diseñado para compradores de Facebook.</h2></div><div class="benefit-grid"><article>Pago seguro con Mercado Pago</article><article>Entrega digital preparada</article><article>Productos por categorías claras</article><article>Archivos editables en Excel</article></div></section>
     ${howReceive()}
@@ -775,20 +876,34 @@ function packTotalPage() {
 
 function categoryPage(pack) {
   const items = byPack(pack);
-  const related = articles.filter((article) => article.pack === pack.name);
+  const related = articles.filter((article) => article.pack === pack.name || pack.categories?.includes(article.category) || article.category === pack.category);
+  const [image, alt] = packImage(pack);
   return layout({
     title: `${pack.name} | Paquete Daily Tips`,
-    description: pack.headline,
+    description: pack.commercialDescription ?? pack.headline,
     active: pack.id,
     body: `
-    <section class="hero hero-commercial">
-      <div class="hero__copy"><span class="pill">${pack.badge}</span><h1>${pack.name}</h1><p class="lead">${pack.emotional}</p><div class="price hero-price"><strong>${money(pack.price)}</strong><span>normal ${money(pack.normal)}</span></div><div class="hero__actions"><a class="button" href="${pack.gumroad}" target="_blank" rel="noopener">Comprar ahora</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a></div></div>
-      ${mockup(pack.gradient)}
+    <section class="hero hero-commercial pack-detail-hero">
+      <div class="hero__copy">
+        <span class="pill">${pack.badge}</span>
+        <h1>${pack.name}</h1>
+        <p class="lead">${pack.hook ?? pack.headline}</p>
+        <p>${pack.commercialDescription ?? pack.emotional}</p>
+        <div class="price hero-price"><strong>${money(pack.price)}</strong><span>Pago único</span></div>
+        <div class="hero__actions"><a class="button" href="${pack.gumroad}">Comprar ahora</a><a class="button button--ghost" href="#incluye">Ver qué incluye</a></div>
+      </div>
+      <figure class="pack-detail-media"><img src="${image}" alt="${alt}" loading="lazy">${packPreviewGallery(pack)}</figure>
     </section>
-    <section class="section"><div class="section__title"><p class="eyebrow">Archivos incluidos</p><h2>${items.length} herramientas para resolver este problema.</h2></div><div class="mini-grid">${items.map(productMini).join("")}</div></section>
-    <section class="section"><div class="section__title"><p class="eyebrow">Artículos relacionados</p><h2>Contenido para atraer tráfico a este paquete.</h2></div><div class="article-grid">${related.length ? related.map((article) => blogCards(articles.indexOf(article) + 1).split("</article>").slice(-2, -1)[0] + "</article>").join("") : blogCards(2)}</div></section>
+    <section class="section pack-detail-sections">
+      <article><p class="eyebrow">¿Para quién es?</p><h2>Hecho para resolver un problema real.</h2><p>${pack.audience}</p></article>
+      <article><p class="eyebrow">Beneficio principal</p><h2>${pack.mainBenefit}</h2><p>${pack.cta}</p></article>
+    </section>
+    <section class="section" id="incluye"><div class="section__title"><p class="eyebrow">¿Qué incluye?</p><h2>${items.length} herramientas y recursos listos para usar.</h2><p>Vista clara del contenido antes de comprar.</p></div><div class="mini-grid">${items.map(productMini).join("")}</div></section>
+    <section class="section pack-includes"><div class="section__title"><p class="eyebrow">Contenido del pack</p><h2>Lista completa de recursos.</h2></div><div class="benefit-grid">${pack.bullets.map((item) => `<article>${item}</article>`).join("")}</div></section>
+    <section class="section"><div class="section__title"><p class="eyebrow">Vista previa</p><h2>Ejemplos visuales del contenido.</h2></div>${packPreviewGallery(pack)}</section>
+    <section class="section"><div class="section__title"><p class="eyebrow">Artículos relacionados</p><h2>Contenido para atraer tráfico a este paquete.</h2></div><div class="article-grid">${related.length ? related.map(articleCard).join("") : blogCards(2)}</div></section>
     ${howReceive()}
-    <section class="section lead-free"><div><p class="eyebrow">Recomendación</p><h2>Si quieres más valor, compra Pack Total.</h2><p>Incluye este paquete y todos los demás por un precio más conveniente.</p></div><div class="hero__actions"><a class="button" href="${packTotal.gumroad}" target="_blank" rel="noopener">Comprar ahora</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a></div></section>`
+    <section class="section lead-free"><div><p class="eyebrow">CTA</p><h2>${pack.cta}</h2><p>${pack.commercialDescription}</p></div><div class="hero__actions"><a class="button" href="${pack.gumroad}">Comprar ahora</a><a class="button button--ghost" href="checkout.html?pack=total">Ver Pack Completo</a></div></section>`
   });
 }
 
