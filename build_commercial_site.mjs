@@ -341,6 +341,20 @@ function money(value) {
   return `$${value.toLocaleString("es-MX")} MXN`;
 }
 
+function photoRail(active) {
+  const photos = [
+    ["https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=900", "Mesa con recetas y comida casera para producto digital"],
+    ["https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=900", "Tacos y comida mexicana para recetas por estados"],
+    ["https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=900", "Pasta internacional para catálogo de recetas"],
+    ["https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=900", "Desayunos y postres fáciles para cocinar en casa"]
+  ];
+  return `<section class="section web-photo-rail" aria-label="Vista visual de recursos DailyTips">
+    <div class="section__title"><p class="eyebrow">Vista previa visual</p><h2>${active === "recetas" || active === "comprar" ? "Fotos para imaginar lo que vas a cocinar." : "Recursos digitales con una experiencia más visual."}</h2></div>
+    <div class="web-photo-rail__grid">${photos.map(([src, alt]) => `<img src="${src}" alt="${alt}" loading="lazy">`).join("")}</div>
+    <p class="photo-credit">Imágenes de bancos gratuitos como Pexels, usadas como apoyo visual. Revisa licencias antes de imprimir o redistribuir como material final.</p>
+  </section>`;
+}
+
 function layout({ title, description, active, body, extraHead = "" }) {
   const categoryGroups = globalThis.dailyTipsCatalog.categoryMeta.filter(([name]) => name !== "Todos");
   return `<!doctype html>
@@ -406,7 +420,7 @@ function layout({ title, description, active, body, extraHead = "" }) {
       <a class="nav-cta" href="comprar.html#pack-total">${cartIcon()} Comprar Pack Completo</a>
     </nav>
   </header>
-  <main>${body}</main>
+  <main>${body}${photoRail(active)}</main>
   <footer class="footer">
     <p><strong>Daily Tips</strong> · Plataforma de productos digitales para México.</p>
     <p>Archivos editables y recursos de organización. No sustituyen asesoría financiera, legal, fiscal ni médica.</p>
@@ -703,7 +717,7 @@ function comprar() {
           <a class="button button--ghost" href="recetas-del-mundo.html">Ver 5 recetas de muestra</a>
           <button class="button button--light" type="button" data-recipes-buy>Simular entrega</button>
         </div>
-        <p class="recipe-note">Pago real: Mercado Pago abre en una pestaña nueva. La descarga automática segura después del pago requiere integrar Checkout Pro con webhook/backend; el botón “Simular entrega” solo sirve para probar cómo se verá la entrega.</p>
+        <p class="recipe-note">Pago real: Mercado Pago abre en una pestaña nueva. La descarga automática segura después del pago requiere integrar Checkout Pro con webhook/backend; el botón “Simular entrega” descarga el ZIP de prueba con el catálogo de 112 recetas.</p>
       </div>
     </section>
     <div class="success-modal" id="recipes-success-modal" hidden>
@@ -712,8 +726,8 @@ function comprar() {
         <span class="recipe-badge">Compra exitosa</span>
         <h2 id="recipes-success-title">¡Pago Procesado!</h2>
         <p>Tu paquete gastronómico se está descargando...</p>
-        <p>También enviamos el acceso al correo electrónico registrado.</p>
-        <a class="button recipe-button" href="./recetas.pdf" download>Descargar otra vez</a>
+        <p>También se mostraría el acceso por correo cuando conectemos el webhook real de Mercado Pago.</p>
+        <a class="button recipe-button" href="./recetas-del-mundo-pack.zip" download>Descargar ZIP de recetas</a>
       </div>
     </div>
     <section class="section checkout-section" id="paquetes-compra">

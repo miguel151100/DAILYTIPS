@@ -130,8 +130,8 @@ const recipesModalClose = document.querySelector("[data-recipes-modal-close]");
 
 function startRecipesDownload() {
   const link = document.createElement("a");
-  link.href = "./recetas.pdf";
-  link.download = "recetas.pdf";
+  link.href = "./recetas-del-mundo-pack.zip";
+  link.download = "recetas-del-mundo-pack.zip";
   document.body.appendChild(link);
   link.click();
   link.remove();

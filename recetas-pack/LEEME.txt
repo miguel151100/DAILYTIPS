@@ -1,0 +1,10 @@
+DailyTips Recetas del Mundo
+
+Incluye 112 recetas:
+- 64 recetas de México divididas por estado
+- 48 recetas internacionales divididas por país
+
+Abre recetas-catalogo-completo.html para ver el catálogo con fotos.
+Abre recetas-catalogo.csv para editar o filtrar en Excel/Google Sheets.
+
+Nota sobre fotos: las páginas usan enlaces externos de bancos gratuitos como Pexels. Revisa licencias si vas a redistribuir el material impreso o editarlo como producto final.
