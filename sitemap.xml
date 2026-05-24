@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Páginas principales -->
+  <url><loc>https://dailytips.lat/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://dailytips.lat/paquetes.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://dailytips.lat/pack-total.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Categorías de productos -->
+  <url><loc>https://dailytips.lat/dinero-ahorro.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/ia-facil.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/negocio-inteligente.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/contenido-viral.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/organiza-tu-vida.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/estudiante-pro.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/reset-productivo.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Educación -->
+  <url><loc>https://dailytips.lat/educacion.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+
+  <!-- Recetas -->
+  <url><loc>https://dailytips.lat/recetas-del-mundo.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/recetas-pack/recetas-catalogo-completo.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/recetas-pack/recetas-mexico-por-estados.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/recetas-pack/recetas-internacionales-por-pais.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Recursos gratuitos y soporte -->
+  <url><loc>https://dailytips.lat/recursos-gratis.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/faq.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://dailytips.lat/contacto.html</loc><priority>0.5</priority><changefreq>yearly</changefreq></url>
+
+  <!-- Archivos individuales — Finanzas -->
+  <url><loc>https://dailytips.lat/archivo-control-financiero-quincenal-mx.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-control-de-deudas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-control-de-gastos-hormiga.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-planificador-de-ahorro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-calculadora-de-metas-financieras.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-presupuesto-mensual-automatico.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-organizador-de-pagos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-dashboard-financiero-premium.html</loc><priority>0.6</priority></url>
+
+  <!-- Archivos individuales — IA -->
+  <url><loc>https://dailytips.lat/archivo-prompts-premium-para-chatgpt.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-guia-para-ganar-dinero-con-ia.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-herramientas-ia-mas-utiles.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-automatizaciones-faciles.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-ia-para-crear-contenido.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-ia-para-negocios-pequenos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-ia-para-estudiantes.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-como-crear-paginas-web-con-ia.html</loc><priority>0.6</priority></url>
+
+  <!-- Archivos individuales — Negocio -->
+  <url><loc>https://dailytips.lat/archivo-sistema-para-revendedores.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-control-de-inventario.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-calculadora-de-ganancias.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-seguimiento-de-pedidos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-dashboard-de-ventas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-notas-de-venta-automaticas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-control-de-clientes.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-sistema-para-pequenos-negocios.html</loc><priority>0.6</priority></url>
+
+  <!-- Archivos individuales — Contenido -->
+  <url><loc>https://dailytips.lat/archivo-calendario-de-contenido-viral.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-hooks-virales-para-tiktok.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-guiones-virales.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-ideas-virales-para-facebook.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-planeador-de-reels.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-rastreador-de-metricas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-sistema-de-ideas-de-contenido.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-organizacion-para-creadores.html</loc><priority>0.6</priority></url>
+
+  <!-- Archivos individuales — Productividad -->
+  <url><loc>https://dailytips.lat/archivo-planner-diario-premium.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-rutinas-y-objetivos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-sistema-de-habitos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-metodo-anti-procrastinacion.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-metodo-pomodoro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-sistema-de-enfoque.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-planner-de-metas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-organizacion-semanal.html</loc><priority>0.6</priority></url>
+  <url><loc>https://dailytips.lat/archivo-planeador-mensual.html</loc><priority>0.6</priority></url>
+
+</urlset>
