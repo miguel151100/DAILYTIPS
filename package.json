@@ -7,6 +7,6 @@
     "check": "node --check build_commercial_site.mjs && node --check app.js && node --check checkout.js && node --check payment-result.js && node --check api/_products.js && node --check api/create-preference.js && node --check api/mercadopago-webhook.js && node --check api/verify-payment.js && node --check api/health.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": "20.x"
   }
 }
