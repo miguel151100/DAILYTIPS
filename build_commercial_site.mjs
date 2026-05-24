@@ -970,13 +970,13 @@ function premium() {
     title: "Acceso Premium Daily Tips | Descargas para clientes",
     description: "Zona privada de descargas para clientes Daily Tips.",
     active: "premium",
-    body: `<section class="page-hero"><p class="eyebrow">Zona privada</p><h1>Acceso premium para compradores.</h1><p>Contraseña para clientes: <strong>${premiumPassword}</strong></p></section>
+    body: `<section class="page-hero"><p class="eyebrow">Zona privada</p><h1>Acceso premium para compradores.</h1><p>Ingresa el código de acceso que recibiste después de comprar.</p></section>
     <section id="premium" class="section premium-section"><div class="premium-gate" id="premium-gate"><div><p class="eyebrow">Biblioteca privada</p><h2>Descarga tus archivos comprados.</h2><p>Introduce la contraseña si compraste una versión con acceso privado. Para entrega automática real con Mercado Pago se necesita webhook/backend.</p></div><form class="premium-form" id="premium-form"><label for="premium-password">Contraseña</label><input id="premium-password" type="password" placeholder="Contraseña"><button type="submit">Entrar</button><p class="form-error" id="premium-error"></p></form></div><div class="premium-library" id="premium-library" hidden><div class="section__title"><p class="eyebrow">Descargas</p><h2>Biblioteca premium completa.</h2><p>Descarga el ZIP o baja archivos por categoría. Llena las celdas amarillas de cada Excel.</p></div><div class="premium-actions"><a class="button" href="daily_tips_paquete_completo.zip" download>Descargar ZIP completo</a><button class="button button--ghost" id="premium-logout" type="button">Cerrar acceso</button></div><div class="premium-downloads" id="premium-downloads"></div></div></section>`
   });
 }
 
 function howReceive() {
-  return `<section class="section process-section"><div class="section__title"><p class="eyebrow">Cómo funciona</p><h2>Compra simple en 3 pasos.</h2></div><div class="process-grid"><article><span>1</span><strong>Elige tu recurso o paquete</strong></article><article><span>2</span><strong>Realiza tu pago de forma segura</strong></article><article><span>3</span><strong>Recibe el archivo y empieza a usarlo</strong></article></div></section>`;
+  return `<section class="section process-section"><div class="section__title"><p class="eyebrow">Cómo funciona</p><h2>Compra simple y entrega digital.</h2></div><div class="process-grid"><article><span>1</span><strong>Elige tu recurso o paquete</strong></article><article><span>2</span><strong>Paga de forma segura con Mercado Pago</strong></article><article><span>3</span><strong>Entra a entrega digital con tu código</strong></article><article><span>4</span><strong>Descarga y empieza a usarlo</strong></article></div></section>`;
 }
 
 function faqBlock() {
@@ -996,10 +996,88 @@ function contacto() {
   });
 }
 
+function paymentFlowNotice() {
+  return `<section class="section delivery-notice">
+    <div>
+      <p class="eyebrow">Automatización de entrega</p>
+      <h2>Flujo listo para entregar archivos.</h2>
+      <p>Después de pagar, el cliente puede regresar a la página de entrega, ingresar su código y descargar sus recursos. Si el pago tarda en aprobarse, puede mandar comprobante por WhatsApp.</p>
+    </div>
+    <div class="delivery-url-list"><code>pago-exitoso.html</code><code>pago-pendiente.html</code><code>pago-rechazado.html</code><code>entrega-digital.html</code></div>
+  </section>`;
+}
+
+function pagoExitoso() {
+  return layout({
+    title: "Pago aprobado | DailyTips",
+    description: "Página de retorno para compradores con pago aprobado en Mercado Pago.",
+    active: "comprar",
+    body: `<section class="page-hero payment-result payment-result--success">
+      <p class="eyebrow">Pago aprobado</p><h1>Gracias por tu compra.</h1>
+      <p>Tu pago aparece como aprobado. Continúa a la entrega digital para descargar tus archivos o solicita soporte por WhatsApp si necesitas ayuda.</p>
+      <div class="hero__actions"><a class="button" href="entrega-digital.html">Ir a descarga</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Soporte por WhatsApp</a></div>
+    </section>
+    <section class="section process-section"><div class="section__title"><p class="eyebrow">Siguiente paso</p><h2>Cómo recibe el cliente sus archivos.</h2></div><div class="process-grid"><article><span>1</span><strong>Pago aprobado</strong></article><article><span>2</span><strong>Acceso a entrega digital</strong></article><article><span>3</span><strong>Descarga del ZIP o archivos</strong></article></div></section>
+    ${paymentFlowNotice()}`
+  });
+}
+
+function pagoPendiente() {
+  return layout({
+    title: "Pago pendiente | DailyTips",
+    description: "Página de retorno para pagos pendientes en Mercado Pago.",
+    active: "comprar",
+    body: `<section class="page-hero payment-result payment-result--pending">
+      <p class="eyebrow">Pago pendiente</p><h1>Tu pago está en revisión.</h1>
+      <p>Algunos pagos tardan unos minutos. Guarda esta página y revisa tu correo o Mercado Pago. Si ya se descontó, escríbenos por WhatsApp con tu comprobante.</p>
+      <div class="hero__actions"><a class="button" href="${whatsapp}" target="_blank" rel="noopener">Enviar comprobante</a><a class="button button--ghost" href="comprar.html">Volver a compra</a></div>
+    </section>${paymentFlowNotice()}`
+  });
+}
+
+function pagoRechazado() {
+  return layout({
+    title: "Pago no completado | DailyTips",
+    description: "Página de retorno para pagos rechazados o cancelados en Mercado Pago.",
+    active: "comprar",
+    body: `<section class="page-hero payment-result payment-result--failure">
+      <p class="eyebrow">Pago no completado</p><h1>No se completó el pago.</h1>
+      <p>Puedes intentar de nuevo con Mercado Pago o escribirnos por WhatsApp si el cargo sí aparece en tu cuenta.</p>
+      <div class="hero__actions"><a class="button" href="comprar.html#pack-total">Intentar de nuevo</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Hablar por WhatsApp</a></div>
+    </section>`
+  });
+}
+
+function entregaDigital() {
+  return layout({
+    title: "Entrega digital | DailyTips",
+    description: "Descarga de archivos digitales DailyTips después del pago.",
+    active: "premium",
+    body: `<section class="page-hero delivery-hero">
+      <p class="eyebrow">Entrega digital</p><h1>Descarga tus archivos DailyTips.</h1>
+      <p>Ingresa el código de acceso que recibirás después de comprar para ver las descargas.</p>
+    </section>
+    <section class="section delivery-gate" id="delivery-gate">
+      <div><p class="eyebrow">Código de acceso</p><h2>Protege tus descargas.</h2><p>Cuando conectemos Mercado Pago con webhook/backend, este acceso se podrá enviar por correo de forma automática después de validar el pago.</p></div>
+      <form class="premium-form" id="delivery-form"><label for="delivery-password">Código recibido</label><input id="delivery-password" type="password" placeholder="Código de acceso"><button type="submit">Entrar a descargas</button><p class="form-error" id="delivery-error"></p></form>
+    </section>
+    <section class="section delivery-library" id="delivery-library" hidden>
+      <div class="section__title"><p class="eyebrow">Descargas listas</p><h2>Elige el archivo que compraste.</h2><p>Para Pack Total descarga todo. Para Recetas del Mundo descarga el ZIP de recetas.</p></div>
+      <div class="delivery-download-grid"><a class="delivery-download" href="daily_tips_paquete_completo.zip" download><strong>DAILYTIPS Pack Total</strong><span>ZIP con plantillas y archivos digitales.</span></a><a class="delivery-download" href="recetas-del-mundo-pack.zip" download><strong>Recetas del Mundo</strong><span>ZIP con 112 recetas por estado y país.</span></a><a class="delivery-download" href="recetas-pack/recetas-catalogo-completo.html"><strong>Catálogo completo</strong><span>Ver recetas con fotos en navegador.</span></a><a class="delivery-download" href="premium.html"><strong>Biblioteca premium</strong><span>Descargar archivos individuales por categoría.</span></a></div>
+      <div class="hero__actions"><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Necesito ayuda</a></div>
+    </section>
+    ${paymentFlowNotice()}`
+  });
+}
+
 const pages = new Map([
   ["index.html", home()],
   ["educacion.html", educacion()],
   ["comprar.html", comprar()],
+  ["pago-exitoso.html", pagoExitoso()],
+  ["pago-pendiente.html", pagoPendiente()],
+  ["pago-rechazado.html", pagoRechazado()],
+  ["entrega-digital.html", entregaDigital()],
   ["paquetes.html", paquetes()],
   ["pack-total.html", packTotalPage()],
   ["blog.html", blog()],

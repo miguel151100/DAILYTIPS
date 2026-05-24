@@ -1844,6 +1844,76 @@ body[data-page="comprar"] .recipe-offer {
   max-width: var(--container);
 }
 
+.delivery-notice,
+.delivery-gate {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.delivery-notice {
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.delivery-url-list,
+.delivery-download-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.delivery-url-list code {
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--ink);
+  padding: 12px 14px;
+}
+
+.delivery-download-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.delivery-download {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--soft-shadow);
+  color: var(--ink);
+  padding: 22px;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.delivery-download:hover {
+  box-shadow: 0 18px 50px rgba(6, 21, 46, .12);
+  transform: translateY(-3px);
+}
+
+.delivery-download strong,
+.delivery-download span {
+  display: block;
+}
+
+.delivery-download span {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.payment-result--success {
+  background: linear-gradient(135deg, rgba(0, 140, 134, .14), rgba(255, 253, 249, 1));
+}
+
+.payment-result--pending {
+  background: linear-gradient(135deg, rgba(255, 210, 46, .22), rgba(255, 253, 249, 1));
+}
+
+.payment-result--failure {
+  background: linear-gradient(135deg, rgba(255, 90, 54, .14), rgba(255, 253, 249, 1));
+}
+
 .recipe-hero {
   display: grid;
   grid-template-columns: minmax(0, .86fr) minmax(300px, 1.14fr);
@@ -2166,6 +2236,12 @@ body[data-page="comprar"] .recipe-offer {
 
   .web-photo-rail__grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .delivery-notice,
+  .delivery-gate,
+  .delivery-download-grid {
+    grid-template-columns: 1fr;
   }
 
   .pack-actions,

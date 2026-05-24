@@ -95,6 +95,32 @@ if (premiumForm) {
   if (localStorage.getItem("dailyTipsPremium") === "yes") unlockPremium();
 }
 
+const deliveryForm = document.querySelector("#delivery-form");
+if (deliveryForm) {
+  const deliveryPasswordInput = document.querySelector("#delivery-password");
+  const deliveryError = document.querySelector("#delivery-error");
+  const deliveryGate = document.querySelector("#delivery-gate");
+  const deliveryLibrary = document.querySelector("#delivery-library");
+
+  function unlockDelivery() {
+    deliveryGate.hidden = true;
+    deliveryLibrary.hidden = false;
+    localStorage.setItem("dailyTipsDelivery", "yes");
+  }
+
+  deliveryForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (deliveryPasswordInput.value.trim().toUpperCase() === premiumPassword) {
+      deliveryError.textContent = "";
+      unlockDelivery();
+    } else {
+      deliveryError.textContent = "Código incorrecto. Revisa el mensaje que recibiste después de comprar.";
+    }
+  });
+
+  if (localStorage.getItem("dailyTipsDelivery") === "yes") unlockDelivery();
+}
+
 document.querySelectorAll(".newsletter-form").forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
