@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="styles.css">
   <script src="catalog.js" defer></script>
   <script src="app.js" defer></script>
-  
+  <script src="payment-config.js" defer></script>
+  <script src="payment-result.js" defer></script>
 </head>
 <body data-page="comprar">
   <div class="ambient ambient--one"></div>
@@ -47,15 +48,20 @@
   </header>
   <main><section class="page-hero payment-result payment-result--success">
       <p class="eyebrow">Pago aprobado</p><h1>Gracias por tu compra.</h1>
-      <p>Tu pago aparece como aprobado. Continúa a la entrega digital para descargar tus archivos o solicita soporte por WhatsApp si necesitas ayuda.</p>
+      <p>Estamos preparando tu entrega digital. Si compraste con el checkout automático, esta página verificará el pago y mostrará tus descargas.</p>
       <div class="hero__actions"><a class="button" href="entrega-digital.html">Ir a descarga</a><a class="button button--ghost" href="https://wa.me/525569862844?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Soporte por WhatsApp</a></div>
+    </section>
+    <section class="section payment-auto-delivery" aria-live="polite">
+      <div class="section__title"><p class="eyebrow">Entrega automática</p><h2>Validación y descargas.</h2><p id="payment-verification-status">Preparando verificación de pago...</p></div>
+      <div class="payment-code" id="payment-access-code" hidden></div>
+      <div class="delivery-download-grid" id="payment-downloads" hidden></div>
     </section>
     <section class="section process-section"><div class="section__title"><p class="eyebrow">Siguiente paso</p><h2>Cómo recibe el cliente sus archivos.</h2></div><div class="process-grid"><article><span>1</span><strong>Pago aprobado</strong></article><article><span>2</span><strong>Acceso a entrega digital</strong></article><article><span>3</span><strong>Descarga del ZIP o archivos</strong></article></div></section>
     <section class="section delivery-notice">
     <div>
       <p class="eyebrow">Automatización de entrega</p>
       <h2>Flujo listo para entregar archivos.</h2>
-      <p>Después de pagar, el cliente puede regresar a la página de entrega, ingresar su código y descargar sus recursos. Si el pago tarda en aprobarse, puede mandar comprobante por WhatsApp.</p>
+      <p>Con el backend publicado, Mercado Pago valida el pago, el comprador vuelve a esta página, ve sus descargas y recibe un correo automático con acceso. Si el pago tarda en aprobarse, puede mandar comprobante por WhatsApp.</p>
     </div>
     <div class="delivery-url-list"><code>pago-exitoso.html</code><code>pago-pendiente.html</code><code>pago-rechazado.html</code><code>entrega-digital.html</code></div>
   </section><section class="section web-photo-rail" aria-label="Vista visual de recursos DailyTips">

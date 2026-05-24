@@ -2,6 +2,41 @@ const SITE_URL = process.env.SITE_URL || "https://dailytips.lat";
 const API_PUBLIC_URL = process.env.API_PUBLIC_URL || "";
 const DELIVERY_ACCESS_CODE = process.env.DELIVERY_ACCESS_CODE || "DAILYTIPS2026";
 
+const standardCategories = {
+  dinero: {
+    title: "Pack Finanzas en Orden MX",
+    description: "Plantillas para quincena, gastos, deudas y ahorro"
+  },
+  ia: {
+    title: "Pack IA Fácil",
+    description: "Guías, prompts y recursos de inteligencia artificial para principiantes"
+  },
+  negocio: {
+    title: "Pack Negocio Inteligente",
+    description: "Control de inventario, pedidos, clientes, ventas y ganancias"
+  },
+  contenido: {
+    title: "Pack Contenido Viral",
+    description: "Calendarios, hooks, guiones e ideas para crear contenido"
+  },
+  reset: {
+    title: "Pack Reset Productivo",
+    description: "Herramientas de enfoque, hábitos, metas y organización personal"
+  },
+  vida: {
+    title: "Pack Organiza tu Vida",
+    description: "Planners, hábitos, rutinas y objetivos para organizar tu día"
+  },
+  estudiante: {
+    title: "Pack Estudiante Pro",
+    description: "Organizadores, horarios, Pomodoro y planeadores de examen"
+  },
+  emprendedor: {
+    title: "Pack Emprendedor Digital",
+    description: "Recursos de IA, negocio y contenido para empezar online"
+  }
+};
+
 const products = {
   standard: {
     id: "standard",
@@ -33,14 +68,57 @@ const products = {
   }
 };
 
-function getProduct(id) {
-  return products[id] || products.standard;
+function getProduct(id, categoryId = "") {
+  const product = products[id] || products.standard;
+  const category = standardCategories[categoryId];
+
+  if (product.id !== "standard" || !category) return product;
+
+  return {
+    ...product,
+    title: category.title,
+    description: category.description,
+    category_id: categoryId
+  };
+}
+
+function getDeliveryLinks(product) {
+  const links = [
+    {
+      label: "Abrir entrega digital",
+      url: `${SITE_URL}/entrega-digital.html`,
+      description: "Ingresa tu código para ver las descargas protegidas."
+    }
+  ];
+
+  if (product.id === "recipes") {
+    links.push({
+      label: "Descargar Recetas del Mundo",
+      url: `${SITE_URL}/recetas-del-mundo-pack.zip`,
+      description: "ZIP con 112 recetas por estados de México y países."
+    });
+  }
+
+  if (product.id === "total") {
+    links.push({
+      label: "Descargar Pack Total",
+      url: `${SITE_URL}/daily_tips_paquete_completo.zip`,
+      description: "ZIP con la biblioteca completa DailyTips."
+    });
+  }
+
+  links.push({
+    label: "Biblioteca premium",
+    url: `${SITE_URL}/premium.html`,
+    description: "Descarga recursos individuales por categoría."
+  });
+
+  return links;
 }
 
 function deliveryEmailHtml({ product, paymentId }) {
   const deliveryUrl = `${SITE_URL}/entrega-digital.html`;
-  const recipesUrl = `${SITE_URL}/recetas-del-mundo-pack.zip`;
-  const totalUrl = `${SITE_URL}/daily_tips_paquete_completo.zip`;
+  const links = getDeliveryLinks(product);
 
   return `
     <div style="font-family:Arial,sans-serif;line-height:1.6;color:#06152e">
@@ -52,8 +130,7 @@ function deliveryEmailHtml({ product, paymentId }) {
       <p><a href="${deliveryUrl}" style="background:#ff5a36;color:white;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:bold">Abrir entrega digital</a></p>
       <p>Enlaces rápidos:</p>
       <ul>
-        <li><a href="${totalUrl}">Descargar DAILYTIPS Pack Total</a></li>
-        <li><a href="${recipesUrl}">Descargar Recetas del Mundo</a></li>
+        ${links.map((link) => `<li><a href="${link.url}">${link.label}</a> - ${link.description}</li>`).join("")}
       </ul>
       <p>Si tienes dudas, responde este correo o escribe por WhatsApp.</p>
     </div>
@@ -65,6 +142,8 @@ module.exports = {
   DELIVERY_ACCESS_CODE,
   SITE_URL,
   deliveryEmailHtml,
+  getDeliveryLinks,
   getProduct,
-  products
+  products,
+  standardCategories
 };

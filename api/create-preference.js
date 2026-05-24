@@ -25,7 +25,8 @@ module.exports = async function handler(req, res) {
   }
 
   const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
-  const product = getProduct(body.pack);
+  const categoryId = String(body.category || "").trim();
+  const product = getProduct(body.pack, categoryId);
   const buyerEmail = String(body.email || "").trim();
   const buyerName = String(body.name || "").trim();
   const publicApiUrl = API_PUBLIC_URL || `https://${req.headers.host}`;
@@ -49,9 +50,10 @@ module.exports = async function handler(req, res) {
     },
     auto_return: "approved",
     notification_url: process.env.MP_WEBHOOK_URL || `${publicApiUrl}/api/mercadopago-webhook`,
-    external_reference: `${product.id}-${Date.now()}`,
+    external_reference: `${product.id}:${categoryId || "general"}-${Date.now()}`,
     metadata: {
       pack_id: product.id,
+      category_id: categoryId,
       buyer_email: buyerEmail,
       buyer_name: buyerName
     }

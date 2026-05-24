@@ -30,9 +30,55 @@
     }
   };
 
+  const standardCategories = {
+    dinero: {
+      title: "Pack Finanzas en Orden MX",
+      description: "Organiza tu quincena, gastos, deudas y metas financieras.",
+      summary: "Finanzas"
+    },
+    ia: {
+      title: "Pack IA Fácil",
+      description: "Guías, prompts y recursos para usar inteligencia artificial desde cero.",
+      summary: "IA para principiantes"
+    },
+    negocio: {
+      title: "Pack Negocio Inteligente",
+      description: "Controla inventario, pedidos, clientes, ventas y ganancias.",
+      summary: "Ventas y negocio"
+    },
+    contenido: {
+      title: "Pack Contenido Viral",
+      description: "Calendarios, hooks, guiones e ideas para publicar con estrategia.",
+      summary: "Contenido digital"
+    },
+    reset: {
+      title: "Pack Reset Productivo",
+      description: "Herramientas para ordenar tu día, metas, hábitos y enfoque.",
+      summary: "Productividad"
+    },
+    vida: {
+      title: "Pack Organiza tu Vida",
+      description: "Planners, hábitos, rutinas y objetivos para avanzar con más claridad.",
+      summary: "Organización personal"
+    },
+    estudiante: {
+      title: "Pack Estudiante Pro",
+      description: "Organizadores, horarios, prompts de estudio y planeadores de examen.",
+      summary: "Estudiantes"
+    },
+    emprendedor: {
+      title: "Pack Emprendedor Digital",
+      description: "Recursos de IA, negocio y contenido para crear, vender y crecer online.",
+      summary: "Emprendimiento"
+    }
+  };
+
   const params = new URLSearchParams(window.location.search);
   const packId = products[params.get("pack")] ? params.get("pack") : "standard";
-  const product = products[packId];
+  const categoryId = params.get("category") || "";
+  const product = packId === "standard" && standardCategories[categoryId]
+    ? { ...products.standard, ...standardCategories[categoryId] }
+    : products[packId];
   const config = window.DAILYTIPS_PAYMENT_CONFIG || {};
   const fallback = config.fallbackLinks?.[packId] || config.fallbackLinks?.standard || "#";
   const apiBase = (config.apiBaseUrl || "").replace(/\/$/, "");
@@ -74,7 +120,7 @@
       const response = await fetch(`${apiBase}/api/create-preference`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pack: product.id, email, name })
+        body: JSON.stringify({ pack: product.id, category: categoryId, email, name })
       });
 
       const data = await response.json();

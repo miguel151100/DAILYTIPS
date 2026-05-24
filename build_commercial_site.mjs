@@ -1116,7 +1116,7 @@ function paymentFlowNotice() {
     <div>
       <p class="eyebrow">Automatización de entrega</p>
       <h2>Flujo listo para entregar archivos.</h2>
-      <p>Después de pagar, el cliente puede regresar a la página de entrega, ingresar su código y descargar sus recursos. Si el pago tarda en aprobarse, puede mandar comprobante por WhatsApp.</p>
+      <p>Con el backend publicado, Mercado Pago valida el pago, el comprador vuelve a esta página, ve sus descargas y recibe un correo automático con acceso. Si el pago tarda en aprobarse, puede mandar comprobante por WhatsApp.</p>
     </div>
     <div class="delivery-url-list"><code>pago-exitoso.html</code><code>pago-pendiente.html</code><code>pago-rechazado.html</code><code>entrega-digital.html</code></div>
   </section>`;
@@ -1127,10 +1127,17 @@ function pagoExitoso() {
     title: "Pago aprobado | DailyTips",
     description: "Página de retorno para compradores con pago aprobado en Mercado Pago.",
     active: "comprar",
+    extraHead: `<script src="payment-config.js" defer></script>
+  <script src="payment-result.js" defer></script>`,
     body: `<section class="page-hero payment-result payment-result--success">
       <p class="eyebrow">Pago aprobado</p><h1>Gracias por tu compra.</h1>
-      <p>Tu pago aparece como aprobado. Continúa a la entrega digital para descargar tus archivos o solicita soporte por WhatsApp si necesitas ayuda.</p>
+      <p>Estamos preparando tu entrega digital. Si compraste con el checkout automático, esta página verificará el pago y mostrará tus descargas.</p>
       <div class="hero__actions"><a class="button" href="entrega-digital.html">Ir a descarga</a><a class="button button--ghost" href="${whatsapp}" target="_blank" rel="noopener">Soporte por WhatsApp</a></div>
+    </section>
+    <section class="section payment-auto-delivery" aria-live="polite">
+      <div class="section__title"><p class="eyebrow">Entrega automática</p><h2>Validación y descargas.</h2><p id="payment-verification-status">Preparando verificación de pago...</p></div>
+      <div class="payment-code" id="payment-access-code" hidden></div>
+      <div class="delivery-download-grid" id="payment-downloads" hidden></div>
     </section>
     <section class="section process-section"><div class="section__title"><p class="eyebrow">Siguiente paso</p><h2>Cómo recibe el cliente sus archivos.</h2></div><div class="process-grid"><article><span>1</span><strong>Pago aprobado</strong></article><article><span>2</span><strong>Acceso a entrega digital</strong></article><article><span>3</span><strong>Descarga del ZIP o archivos</strong></article></div></section>
     ${paymentFlowNotice()}`
@@ -1173,7 +1180,7 @@ function entregaDigital() {
       <p>Ingresa el código de acceso que recibirás después de comprar para ver las descargas.</p>
     </section>
     <section class="section delivery-gate" id="delivery-gate">
-      <div><p class="eyebrow">Código de acceso</p><h2>Protege tus descargas.</h2><p>Cuando conectemos Mercado Pago con webhook/backend, este acceso se podrá enviar por correo de forma automática después de validar el pago.</p></div>
+      <div><p class="eyebrow">Código de acceso</p><h2>Protege tus descargas.</h2><p>El checkout automático puede mostrar este código y enviarlo por correo después de validar el pago con Mercado Pago.</p></div>
       <form class="premium-form" id="delivery-form"><label for="delivery-password">Código recibido</label><input id="delivery-password" type="password" placeholder="Código de acceso"><button type="submit">Entrar a descargas</button><p class="form-error" id="delivery-error"></p></form>
     </section>
     <section class="section delivery-library" id="delivery-library" hidden>

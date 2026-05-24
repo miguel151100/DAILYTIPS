@@ -1,6 +1,7 @@
 window.DAILYTIPS_PAYMENT_CONFIG = {
-  // Cuando despliegues el backend en Vercel o Render, pon aquí su URL pública.
+  // Para entrega 100% automática, despliega el backend y pega aquí su URL pública.
   // Ejemplo: "https://dailytips-payments.vercel.app"
+  // Si queda vacío, la página usa los links directos de Mercado Pago y no puede verificar pagos.
   apiBaseUrl: "",
   fallbackLinks: {
     standard: "https://mpago.la/2J8hVw7",

@@ -63,8 +63,10 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const packId = payment.metadata?.pack_id || payment.external_reference?.split("-")[0] || "standard";
-  const product = getProduct(packId);
+  const [referencePack = "standard", referenceCategory = ""] = String(payment.external_reference || "").split("-")[0].split(":");
+  const packId = payment.metadata?.pack_id || referencePack;
+  const categoryId = payment.metadata?.category_id || referenceCategory;
+  const product = getProduct(packId, categoryId);
   const email = payment.metadata?.buyer_email || payment.payer?.email;
 
   if (!email) {

@@ -50,6 +50,8 @@ Archivos agregados:
 
 - `api/create-preference.js`: crea el Checkout Pro de Mercado Pago.
 - `api/mercadopago-webhook.js`: recibe notificaciones de Mercado Pago, consulta el pago y envía el correo de entrega si está aprobado.
+- `api/verify-payment.js`: permite que `pago-exitoso.html` consulte el pago y muestre descargas automáticas si está aprobado.
+- `api/health.js`: endpoint rápido para confirmar si el backend tiene Mercado Pago y correo configurados.
 - `api/_products.js`: define productos, precios y correo de entrega.
 - `checkout.html`: página de checkout que usa el backend cuando esté configurado y si no usa los links directos actuales.
 - `payment-config.js`: aquí se pega la URL pública del backend cuando esté desplegado.
@@ -87,6 +89,7 @@ Desde ese momento:
 - el botón de compra entra a `checkout.html`;
 - `checkout.html` crea una preferencia real de Mercado Pago;
 - Mercado Pago regresa al comprador a `pago-exitoso.html`, `pago-pendiente.html` o `pago-rechazado.html`;
+- `pago-exitoso.html` verifica el pago y muestra código/descargas cuando el pago está aprobado;
 - el webhook valida pagos aprobados;
 - el cliente recibe por correo el código de acceso y los links de descarga.
 
@@ -95,5 +98,26 @@ Desde ese momento:
 - crear preferencias de pago de $35 MXN y $99 MXN;
 - recibir webhooks de Mercado Pago;
 - consultar el pago con el Access Token;
+- verificar pagos desde la página de éxito;
 - enviar email automático al comprador;
 - mandar el código de descarga configurado en `DELIVERY_ACCESS_CODE`.
+
+## Prueba después de desplegar
+
+Abre:
+
+```text
+https://TU-BACKEND.vercel.app/api/health
+```
+
+Debe responder:
+
+```json
+{
+  "ok": true,
+  "mercadoPagoConfigured": true,
+  "emailConfigured": true
+}
+```
+
+Si alguno aparece como `false`, falta esa variable de entorno en Vercel.
