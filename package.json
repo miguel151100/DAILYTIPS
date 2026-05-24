@@ -1,0 +1,12 @@
+{
+  "name": "dailytips-payments",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build_commercial_site.mjs",
+    "check": "node --check build_commercial_site.mjs && node --check app.js && node --check checkout.js && node --check api/_products.js && node --check api/create-preference.js && node --check api/mercadopago-webhook.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

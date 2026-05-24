@@ -1653,6 +1653,38 @@ h3 {
   margin-top: 18px;
 }
 
+.checkout-live-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
+}
+
+.checkout-live-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--soft-shadow);
+  display: grid;
+  gap: 12px;
+  padding: clamp(22px, 4vw, 34px);
+}
+
+.checkout-live-card label {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.checkout-live-card input {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  font: inherit;
+  padding: 14px 15px;
+}
+
+.checkout-live-card button:disabled {
+  cursor: wait;
+  opacity: .72;
+}
+
 [data-education-tags][hidden] {
   display: none !important;
 }

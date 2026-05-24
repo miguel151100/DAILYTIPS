@@ -44,9 +44,56 @@ Archivos entregables actuales:
 
 ## Siguiente paso recomendado
 
-Crear un backend pequeño en Vercel o Render para:
+El backend pequeño ya quedó preparado en la carpeta `api/`.
+
+Archivos agregados:
+
+- `api/create-preference.js`: crea el Checkout Pro de Mercado Pago.
+- `api/mercadopago-webhook.js`: recibe notificaciones de Mercado Pago, consulta el pago y envía el correo de entrega si está aprobado.
+- `api/_products.js`: define productos, precios y correo de entrega.
+- `checkout.html`: página de checkout que usa el backend cuando esté configurado y si no usa los links directos actuales.
+- `payment-config.js`: aquí se pega la URL pública del backend cuando esté desplegado.
+- `.env.example`: variables necesarias para producción.
+
+## Cómo activarlo
+
+1. Despliega este proyecto en Vercel o despliega solo la carpeta `api`.
+2. Configura estas variables de entorno en Vercel:
+   - `MP_ACCESS_TOKEN`
+   - `SITE_URL`
+   - `API_PUBLIC_URL`
+   - `MP_WEBHOOK_URL`
+   - `DELIVERY_ACCESS_CODE`
+   - `RESEND_API_KEY`
+   - `MAIL_FROM`
+3. Copia la URL pública de Vercel.
+4. Abre `payment-config.js`.
+5. Cambia:
+
+```js
+apiBaseUrl: ""
+```
+
+por:
+
+```js
+apiBaseUrl: "https://TU-BACKEND.vercel.app"
+```
+
+6. Sube el cambio a GitHub.
+
+Desde ese momento:
+
+- el botón de compra entra a `checkout.html`;
+- `checkout.html` crea una preferencia real de Mercado Pago;
+- Mercado Pago regresa al comprador a `pago-exitoso.html`, `pago-pendiente.html` o `pago-rechazado.html`;
+- el webhook valida pagos aprobados;
+- el cliente recibe por correo el código de acceso y los links de descarga.
+
+## Lo que hace el backend preparado
 
 - crear preferencias de pago de $35 MXN y $99 MXN;
 - recibir webhooks de Mercado Pago;
+- consultar el pago con el Access Token;
 - enviar email automático al comprador;
-- generar un código de descarga único por compra.
+- mandar el código de descarga configurado en `DELIVERY_ACCESS_CODE`.

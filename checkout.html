@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout DailyTips | Pago y entrega digital</title>
+  <meta name="description" content="Paga tu paquete DailyTips con Mercado Pago y recibe acceso digital a tus descargas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/dailytips-logo-cropped.png">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="payment-config.js" defer></script>
+  <script src="checkout.js" defer></script>
+</head>
+<body data-page="checkout">
+  <div class="site-announcement"><span aria-hidden="true">↓</span> Pago seguro y entrega digital preparada</div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips recursos digitales"><span>Daily Tips</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menú</button>
+    <nav id="primary-nav" aria-label="Principal">
+      <a href="index.html">Inicio</a>
+      <a href="paquetes.html">Productos</a>
+      <a href="educacion.html">Educación</a>
+      <a href="recetas-del-mundo.html">Recetas del Mundo</a>
+      <a href="entrega-digital.html">Entrega digital</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero hero-commercial checkout-live-hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Checkout</p>
+        <h1 id="checkout-title">Preparando tu compra...</h1>
+        <p class="lead" id="checkout-description">Confirma tus datos para continuar a Mercado Pago.</p>
+        <div class="trust"><span>Pago con Mercado Pago</span><span>Entrega digital</span><span>Soporte WhatsApp</span></div>
+      </div>
+      <form class="checkout-live-card" id="checkout-form">
+        <span class="pill" id="checkout-badge">Paquete digital</span>
+        <div class="price hero-price"><strong id="checkout-price">$0 MXN</strong><span id="checkout-summary">Archivo digital</span></div>
+        <label for="buyer-name">Nombre</label>
+        <input id="buyer-name" name="name" autocomplete="name" placeholder="Tu nombre">
+        <label for="buyer-email">Correo para recibir acceso</label>
+        <input id="buyer-email" name="email" type="email" autocomplete="email" placeholder="tu-correo@email.com">
+        <button class="button button--yellow" type="submit" id="checkout-submit">Pagar con Mercado Pago</button>
+        <a class="button button--ghost" id="checkout-fallback" href="#" target="_blank" rel="noopener">Pagar con link directo</a>
+        <p class="form-error" id="checkout-message"></p>
+      </form>
+    </section>
+    <section class="section process-section">
+      <div class="section__title"><p class="eyebrow">Después de pagar</p><h2>Entrega preparada en 3 pasos.</h2></div>
+      <div class="process-grid"><article><span>1</span><strong>Mercado Pago procesa tu pago</strong></article><article><span>2</span><strong>Regresas a la página de éxito</strong></article><article><span>3</span><strong>Descargas tus archivos con tu código</strong></article></div>
+    </section>
+  </main>
+  <footer class="footer"><p><strong>Daily Tips</strong> · Pago y entrega digital.</p></footer>
+</body>
+</html>

@@ -14,12 +14,12 @@ const mercadoPagoLinks = {
 };
 const packTotalWhatsapp = "https://wa.me/525569862844?text=Hola%2C%20quiero%20comprar%20el%20Pack%20Total%20DailyTips%20de%20%2499%20MXN";
 const gumroadLinks = {
-  total: mercadoPagoLinks.total,
-  dinero: mercadoPagoLinks.standard,
-  ia: mercadoPagoLinks.standard,
-  negocio: mercadoPagoLinks.standard,
-  contenido: mercadoPagoLinks.standard,
-  reset: mercadoPagoLinks.standard
+  total: "checkout.html?pack=total",
+  dinero: "checkout.html?pack=standard&category=dinero",
+  ia: "checkout.html?pack=standard&category=ia",
+  negocio: "checkout.html?pack=standard&category=negocio",
+  contenido: "checkout.html?pack=standard&category=contenido",
+  reset: "checkout.html?pack=standard&category=reset"
 };
 const premiumPassword = "DAILYTIPS2026";
 
@@ -537,7 +537,7 @@ function educationPackCard() {
     <ul>${educationPack.bullets.map((item) => `<li>${item}</li>`).join("")}</ul>
     <div class="pack-actions">
       <a class="button button--ghost" href="educacion.html#ejercicios">Ver Pack Educación</a>
-      <a class="button" href="${mercadoPagoLinks.standard}" target="_blank" rel="noopener">Comprar $35 MXN</a>
+      <a class="button" href="checkout.html?pack=education">Comprar $35 MXN</a>
     </div>
   </article>`;
 }
@@ -570,7 +570,7 @@ function checkoutEducationCard() {
       <p>${educationPack.headline}</p>
       <div class="price"><strong>${educationPack.price}</strong><span>pago por Mercado Pago</span></div>
       <div class="checkout-actions">
-        <a class="button button--yellow" href="${mercadoPagoLinks.standard}" target="_blank" rel="noopener">${cartIcon()} Pagar $35 MXN</a>
+        <a class="button button--yellow" href="checkout.html?pack=education">${cartIcon()} Pagar $35 MXN</a>
         <a class="button button--ghost" href="educacion.html#ejercicios">Ver ejercicios</a>
         <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Dudas por WhatsApp</a>
       </div>
@@ -713,7 +713,7 @@ function comprar() {
           <strong>$99 MXN</strong>
         </div>
         <div class="hero__actions">
-          <a class="button recipe-button" href="${mercadoPagoLinks.total}" target="_blank" rel="noopener">${cartIcon()} Pagar con Mercado Pago</a>
+          <a class="button recipe-button" href="checkout.html?pack=recipes">${cartIcon()} Pagar con Mercado Pago</a>
           <a class="button button--ghost" href="recetas-del-mundo.html">Ver 5 recetas de muestra</a>
           <button class="button button--light" type="button" data-recipes-buy>Simular entrega</button>
         </div>
@@ -922,7 +922,7 @@ function educationProductCard([name, price, text, tags, image, alt]) {
     <h3>${name}</h3>
     <p>${text}</p>
     <div class="hook-actions">
-      <a class="button" href="${mercadoPagoLinks.standard}" target="_blank" rel="noopener">Comprar $35 MXN</a>
+      <a class="button" href="checkout.html?pack=education">Comprar $35 MXN</a>
       <a class="button button--ghost" href="educacion.html#temas">Ver detalles</a>
       <a class="text-link" href="${whatsapp}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
     </div>
