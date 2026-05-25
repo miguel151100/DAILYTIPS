@@ -14,8 +14,228 @@
   <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://sdk.mercadopago.com/js/v2" defer></script>
   <script src="payment-config.js" defer></script>
   <script src="checkout.js" defer></script>
+  <style>
+    /* ── Payment Modal ─────────────────────────────────────── */
+    #payment-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    #payment-modal[hidden] { display: none; }
+
+    #modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 20, .60);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .modal-panel {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 500px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, .22), 0 0 0 1px rgba(0,0,0,.06);
+      padding: 1.75rem;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .75rem;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-header__info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .modal-header__title {
+      margin: 0 0 .2rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .modal-header__price {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .modal-header__badge {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    #modal-close {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--ink-soft);
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .15s ease, color .15s ease;
+    }
+    #modal-close:hover {
+      background: var(--line);
+      color: var(--ink);
+    }
+
+    #brick-loading {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .brick-loading-spinner {
+      width: 2rem;
+      height: 2rem;
+      border: 3px solid var(--line);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto .75rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .brick-error {
+      padding: 1rem;
+      background: #FFF1F2;
+      border-radius: .75rem;
+      color: var(--danger);
+      font-size: .875rem;
+      text-align: center;
+    }
+    .brick-error a { color: var(--accent); text-decoration: underline; }
+
+    /* ── Success panel ─────────────────────────────────────── */
+    #payment-success {
+      text-align: center;
+      padding: .5rem 0 .25rem;
+    }
+    #payment-success[hidden] { display: none; }
+
+    .success-icon {
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+
+    .success-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: .25rem;
+      color: var(--ink);
+    }
+
+    .success-subtitle {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .success-links {
+      display: flex;
+      flex-direction: column;
+      gap: .625rem;
+    }
+
+    .success-code {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: .5rem 1rem;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-line);
+      border-radius: .75rem;
+      color: var(--accent-dark);
+      font-size: .875rem;
+      font-weight: 700;
+    }
+
+    /* ── Pending panel ─────────────────────────────────────── */
+    #payment-pending {
+      text-align: center;
+      padding: 1rem .5rem;
+    }
+    #payment-pending[hidden] { display: none; }
+
+    .pending-icon {
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+
+    .pending-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: .25rem;
+      color: var(--ink);
+    }
+
+    .pending-body {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .pending-ticket-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-weight: 750;
+      font-size: .95rem;
+    }
+    .pending-ticket-link[hidden] { display: none; }
+
+    /* ── Mobile adjustments ────────────────────────────────── */
+    @media (max-width: 540px) {
+      .modal-panel {
+        padding: 1.25rem;
+        border-radius: 1rem;
+        max-height: 96vh;
+      }
+    }
+  </style>
 </head>
 <body data-page="checkout">
   <div class="site-announcement"><span aria-hidden="true">↓</span> Pago seguro y entrega digital preparada</div>
@@ -35,7 +255,7 @@
       <div class="hero__copy">
         <p class="eyebrow">Checkout</p>
         <h1 id="checkout-title">Preparando tu compra...</h1>
-        <p class="lead" id="checkout-description">Confirma tus datos para continuar a Mercado Pago.</p>
+        <p class="lead" id="checkout-description">Ingresa tu correo y elige cómo pagar, sin salir del sitio.</p>
         <div class="trust"><span>Pago con Mercado Pago</span><span>Entrega digital</span><span>Soporte WhatsApp</span></div>
       </div>
       <form class="checkout-live-card" id="checkout-form">
@@ -45,16 +265,63 @@
         <input id="buyer-name" name="name" autocomplete="name" placeholder="Tu nombre">
         <label for="buyer-email">Correo para recibir acceso</label>
         <input id="buyer-email" name="email" type="email" autocomplete="email" placeholder="tu-correo@email.com" required>
-        <button class="button button--yellow" type="submit" id="checkout-submit">Pagar con Mercado Pago</button>
+        <button class="button button--yellow" type="submit" id="checkout-submit">Continuar al pago</button>
         <a class="button button--ghost" id="checkout-fallback" href="#" target="_blank" rel="noopener">Pagar con link directo</a>
         <p class="form-error" id="checkout-message"></p>
       </form>
     </section>
     <section class="section process-section">
       <div class="section__title"><p class="eyebrow">Después de pagar</p><h2>Entrega preparada en 3 pasos.</h2></div>
-      <div class="process-grid"><article><span>1</span><strong>Mercado Pago procesa tu pago</strong></article><article><span>2</span><strong>Regresas a la página de éxito</strong></article><article><span>3</span><strong>Descargas tus archivos con tu código</strong></article></div>
+      <div class="process-grid"><article><span>1</span><strong>Ingresa tu correo y elige método de pago</strong></article><article><span>2</span><strong>Paga con tarjeta o Mercado Pago sin salir del sitio</strong></article><article><span>3</span><strong>Descarga tus archivos al instante</strong></article></div>
     </section>
   </main>
+
+  <!-- ── Payment Modal ──────────────────────────────────────────────────── -->
+  <div id="payment-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
+    <div id="modal-backdrop"></div>
+    <div class="modal-panel">
+
+      <div class="modal-header">
+        <div class="modal-header__info">
+          <p class="modal-header__badge">Pago seguro · Mercado Pago</p>
+          <p class="modal-header__title" id="modal-product-title"></p>
+          <p class="modal-header__price" id="modal-product-price"></p>
+        </div>
+        <button id="modal-close" type="button" aria-label="Cerrar modal de pago">&#x2715;</button>
+      </div>
+
+      <div id="brick-loading">
+        <div class="brick-loading-spinner"></div>
+        Cargando opciones de pago...
+      </div>
+
+      <div id="paymentBrick_container"></div>
+
+      <!-- Pago aprobado -->
+      <div id="payment-success" hidden>
+        <div class="success-icon">&#x2705;</div>
+        <p class="success-title">¡Pago aprobado!</p>
+        <p class="success-subtitle">Tu acceso está listo. Descarga tus archivos ahora.</p>
+        <div class="success-links"></div>
+        <p class="success-code"></p>
+      </div>
+
+      <!-- Pago pendiente (OXXO / ticket) -->
+      <div id="payment-pending" hidden>
+        <div class="pending-icon">&#x1F4CB;</div>
+        <p class="pending-title">Pago registrado</p>
+        <p class="pending-body">
+          Tu pago está pendiente de confirmación.<br>
+          Te enviaremos tu acceso por correo en cuanto se procese.
+        </p>
+        <a class="pending-ticket-link" id="pending-ticket-link" href="#" target="_blank" rel="noopener" hidden>
+          Ver ficha de pago
+        </a>
+      </div>
+
+    </div>
+  </div>
+
   <footer class="footer">
     <p><strong>Daily Tips</strong> · Pago y entrega digital.</p>
     <p><a href="faq.html">FAQ</a> · <a href="contacto.html">Contacto</a> · <a href="https://wa.me/525569862844?text=Hola%2C%20tengo%20dudas%20sobre%20un%20paquete%20Daily%20Tips" target="_blank" rel="noopener">Soporte por WhatsApp</a> · <a href="premium.html">Mis Descargas</a></p>

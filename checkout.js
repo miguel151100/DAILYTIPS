@@ -83,6 +83,7 @@
   const fallback = config.fallbackLinks?.[packId] || config.fallbackLinks?.standard || "#";
   const apiBase = (config.apiBaseUrl || "").replace(/\/$/, "");
 
+  // DOM refs — step 1 (form)
   const title = document.querySelector("#checkout-title");
   const description = document.querySelector("#checkout-description");
   const badge = document.querySelector("#checkout-badge");
@@ -93,12 +94,27 @@
   const message = document.querySelector("#checkout-message");
   const submit = document.querySelector("#checkout-submit");
 
+  // DOM refs — modal
+  const modal = document.querySelector("#payment-modal");
+  const modalClose = document.querySelector("#modal-close");
+  const modalBackdrop = document.querySelector("#modal-backdrop");
+  const brickLoading = document.querySelector("#brick-loading");
+  const brickContainer = document.querySelector("#paymentBrick_container");
+  const successPanel = document.querySelector("#payment-success");
+  const pendingPanel = document.querySelector("#payment-pending");
+
   title.textContent = product.title;
-  description.textContent = product.description;
+  description.textContent = "Ingresa tu correo y elige cómo pagar, sin salir del sitio.";
   badge.textContent = product.summary;
   price.textContent = `$${product.price} MXN`;
   summary.textContent = "Pago único";
   fallbackLink.href = fallback;
+
+  // Populate modal header
+  document.querySelector("#modal-product-title").textContent = product.title;
+  document.querySelector("#modal-product-price").textContent = `$${product.price} MXN`;
+
+  // ── Step 1: form submit → create preference ──────────────────────────────
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -107,14 +123,20 @@
     const email = document.querySelector("#buyer-email").value.trim();
     const name = document.querySelector("#buyer-name").value.trim();
 
+    if (!email) {
+      message.textContent = "Ingresa tu correo para continuar.";
+      document.querySelector("#buyer-email").focus();
+      return;
+    }
+
     if (!apiBase) {
-      message.textContent = "Backend no configurado todavía. Te llevamos al link directo de Mercado Pago.";
+      message.textContent = "Backend no configurado. Te llevamos al link directo de Mercado Pago.";
       window.location.href = fallback;
       return;
     }
 
     submit.disabled = true;
-    submit.textContent = "Creando checkout...";
+    submit.textContent = "Preparando pago...";
 
     try {
       const response = await fetch(`${apiBase}/api/create-preference`, {
@@ -124,14 +146,148 @@
       });
 
       const data = await response.json();
-      if (!response.ok || !data.init_point) throw new Error(data.error || "No se pudo crear el checkout");
-      window.location.href = data.init_point;
-    } catch (error) {
-      message.textContent = "No se pudo crear el checkout automático. Puedes usar el link directo de Mercado Pago.";
+      if (!response.ok || !data.id) throw new Error(data.error || "Sin preferenceId");
+
+      openPaymentModal({ preferenceId: data.id, email, name });
+    } catch {
+      message.textContent = "No se pudo iniciar el checkout. Usa el link directo de Mercado Pago.";
       fallbackLink.focus();
     } finally {
       submit.disabled = false;
-      submit.textContent = "Pagar con Mercado Pago";
+      submit.textContent = "Continuar al pago";
     }
+  });
+
+  // ── Step 2: open modal + initialize Payment Brick ────────────────────────
+
+  let brickController = null;
+
+  function openPaymentModal({ preferenceId, email, name }) {
+    // Reset modal state
+    brickContainer.hidden = false;
+    brickContainer.innerHTML = "";
+    successPanel.hidden = true;
+    pendingPanel.hidden = true;
+    brickLoading.hidden = false;
+
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+
+    const mpKey = config.mpPublicKey;
+    if (!mpKey || !window.MercadoPago) {
+      brickLoading.hidden = true;
+      brickContainer.innerHTML = `<p class="brick-error">SDK de Mercado Pago no disponible. <a href="${fallback}" target="_blank" rel="noopener">Pagar con link directo</a>.</p>`;
+      return;
+    }
+
+    const mp = new window.MercadoPago(mpKey, { locale: "es-MX" });
+
+    mp.bricks().create("payment", "paymentBrick_container", {
+      initialization: {
+        amount: product.price,
+        preferenceId
+      },
+      customization: {
+        paymentMethods: {
+          creditCard: "all",
+          debitCard: "all",
+          mercadoPago: "all",
+          ticket: "all"
+        }
+      },
+      callbacks: {
+        onReady: () => {
+          brickLoading.hidden = true;
+        },
+        onSubmit: ({ formData: brickFormData }) => {
+          return new Promise((resolve, reject) => {
+            fetch(`${apiBase}/api/process-payment`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                formData: brickFormData,
+                pack: product.id,
+                category: categoryId,
+                buyerName: name
+              })
+            })
+              .then(r => r.json())
+              .then(data => {
+                if (data.approved) {
+                  resolve();
+                  setTimeout(() => showSuccess(data), 600);
+                } else if (data.pending) {
+                  resolve();
+                  setTimeout(() => showPending(data), 600);
+                } else {
+                  reject();
+                }
+              })
+              .catch(() => reject());
+          });
+        },
+        onError: (error) => {
+          console.error("Payment Brick error:", error);
+        }
+      }
+    }).then(controller => {
+      brickController = controller;
+    });
+  }
+
+  function showSuccess(data) {
+    brickContainer.hidden = true;
+
+    const linksEl = successPanel.querySelector(".success-links");
+    linksEl.innerHTML = "";
+
+    if (data.downloads?.length) {
+      data.downloads.forEach(link => {
+        const a = document.createElement("a");
+        a.className = "button button--yellow";
+        a.href = link.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = link.label;
+        linksEl.appendChild(a);
+      });
+    }
+
+    if (data.accessCode) {
+      successPanel.querySelector(".success-code").textContent = `Código de acceso: ${data.accessCode}`;
+    }
+
+    successPanel.hidden = false;
+  }
+
+  function showPending(data) {
+    brickContainer.hidden = true;
+
+    if (data.ticketUrl) {
+      const link = pendingPanel.querySelector(".pending-ticket-link");
+      link.href = data.ticketUrl;
+      link.hidden = false;
+    }
+
+    pendingPanel.hidden = false;
+  }
+
+  // ── Close modal ───────────────────────────────────────────────────────────
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = "";
+    if (brickController) {
+      brickController.unmount();
+      brickController = null;
+    }
+    brickContainer.innerHTML = "";
+  }
+
+  modalClose.addEventListener("click", closeModal);
+  modalBackdrop.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) closeModal();
   });
 })();
