@@ -83,6 +83,16 @@
   const fallback = config.fallbackLinks?.[packId] || config.fallbackLinks?.standard || "#";
   const apiBase = (config.apiBaseUrl || "").replace(/\/$/, "");
 
+  // Carga la clave pública desde el backend en cuanto carga la página.
+  // El override manual en payment-config.js tiene prioridad si está presente.
+  let cachedMpPublicKey = config.mpPublicKey || null;
+  if (!cachedMpPublicKey && apiBase) {
+    fetch(`${apiBase}/api/public-config`)
+      .then(r => r.json())
+      .then(data => { if (data.mpPublicKey) cachedMpPublicKey = data.mpPublicKey; })
+      .catch(() => {});
+  }
+
   // DOM refs — step 1 (form)
   const title = document.querySelector("#checkout-title");
   const description = document.querySelector("#checkout-description");
@@ -173,7 +183,7 @@
     modal.hidden = false;
     document.body.style.overflow = "hidden";
 
-    const mpKey = config.mpPublicKey;
+    const mpKey = cachedMpPublicKey;
     if (!mpKey || !window.MercadoPago) {
       brickLoading.hidden = true;
       brickContainer.innerHTML = `<p class="brick-error">SDK de Mercado Pago no disponible. <a href="${fallback}" target="_blank" rel="noopener">Pagar con link directo</a>.</p>`;

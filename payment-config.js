@@ -3,8 +3,9 @@ window.DAILYTIPS_PAYMENT_CONFIG = {
   // Ejemplo: "https://dailytips-payments.vercel.app"
   // Si queda vacío, la página usa los links directos de Mercado Pago y no puede verificar pagos.
   apiBaseUrl: "https://dailytips-24kb-5w36v3pf6-miguel151100s-projects.vercel.app",
-  // Clave pública de Mercado Pago (empieza con APP_USR- o TEST-). Requerida para Payment Brick.
-  // Encuéntrala en https://www.mercadopago.com.mx/developers/panel/credentials
+  // Clave pública de Mercado Pago — override manual opcional.
+  // El checkout la obtiene automáticamente desde el backend (variable MP_PUBLIC_KEY en Vercel).
+  // Solo pon un valor aquí si quieres forzar una clave distinta a la del servidor.
   mpPublicKey: "",
   fallbackLinks: {
     standard: "https://mpago.la/2J8hVw7",
