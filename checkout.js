@@ -27,6 +27,13 @@
       description: "Mega paquete digital con 112 recetas por estados de México y países.",
       price: 99,
       summary: "ZIP de recetas"
+    },
+    curso: {
+      id: "curso",
+      title: "Curso Digital PDF",
+      description: "Curso digital en PDF con descarga inmediata tras el pago.",
+      price: 0,
+      summary: "PDF Descargable"
     }
   };
 
@@ -76,9 +83,19 @@
   const params = new URLSearchParams(window.location.search);
   const packId = products[params.get("pack")] ? params.get("pack") : "standard";
   const categoryId = params.get("category") || "";
-  const product = packId === "standard" && standardCategories[categoryId]
-    ? { ...products.standard, ...standardCategories[categoryId] }
-    : products[packId];
+  const courseFilename = packId === "curso" ? (params.get("filename") || "") : "";
+
+  let product;
+  if (packId === "curso") {
+    const urlTitle = params.get("title") || "Curso Digital PDF";
+    const urlPrice = parseInt(params.get("price") || "0", 10);
+    product = { ...products.curso, title: urlTitle, price: urlPrice || products.curso.price, summary: "PDF Descargable" };
+  } else {
+    product = packId === "standard" && standardCategories[categoryId]
+      ? { ...products.standard, ...standardCategories[categoryId] }
+      : products[packId];
+  }
+
   const config = window.DAILYTIPS_PAYMENT_CONFIG || {};
   const fallback = config.fallbackLinks?.[packId] || config.fallbackLinks?.standard || "#";
   const apiBase = (config.apiBaseUrl || "").replace(/\/$/, "");
@@ -152,7 +169,7 @@
       const response = await fetch(`${apiBase}/api/create-preference`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pack: product.id, category: categoryId, email, name })
+        body: JSON.stringify({ pack: product.id, category: categoryId, email, name, filename: courseFilename })
       });
 
       const data = await response.json();
@@ -218,7 +235,8 @@
                 formData: brickFormData,
                 pack: product.id,
                 category: categoryId,
-                buyerName: name
+                buyerName: name,
+                filename: courseFilename
               })
             })
               .then(r => r.json())

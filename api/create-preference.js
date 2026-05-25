@@ -1,4 +1,5 @@
 const { API_PUBLIC_URL, SITE_URL, getProduct } = require("./_products");
+const { getCourse } = require("./_courses");
 
 function setCors(res) {
   res.setHeader("Access-Control-Allow-Origin", process.env.ALLOWED_ORIGIN || "*");
@@ -26,10 +27,24 @@ module.exports = async function handler(req, res) {
 
   const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
   const categoryId = String(body.category || "").trim();
-  const product = getProduct(body.pack, categoryId);
   const buyerEmail = String(body.email || "").trim();
   const buyerName = String(body.name || "").trim();
   const publicApiUrl = API_PUBLIC_URL || `https://${req.headers.host}`;
+
+  // Determine product — cursos use _courses.js, everything else uses _products.js
+  let product;
+  let courseFilename = "";
+  if (body.pack === "curso") {
+    courseFilename = String(body.filename || "").trim();
+    const course = getCourse(courseFilename);
+    if (!course) {
+      res.status(400).json({ error: "Curso no encontrado" });
+      return;
+    }
+    product = { id: "curso", ...course };
+  } else {
+    product = getProduct(body.pack, categoryId);
+  }
 
   const preference = {
     items: [
@@ -50,10 +65,11 @@ module.exports = async function handler(req, res) {
     },
     auto_return: "approved",
     notification_url: process.env.MP_WEBHOOK_URL || `${publicApiUrl}/api/mercadopago-webhook`,
-    external_reference: `${product.id}:${categoryId || "general"}-${Date.now()}`,
+    external_reference: `${product.id}:${categoryId || courseFilename || "general"}-${Date.now()}`,
     metadata: {
       pack_id: product.id,
       category_id: categoryId,
+      curso_filename: courseFilename,
       buyer_email: buyerEmail,
       buyer_name: buyerName
     }
