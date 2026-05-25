@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node build_commercial_site.mjs",
-    "check": "node --check build_commercial_site.mjs && node --check app.js && node --check checkout.js && node --check payment-result.js && node --check api/_products.js && node --check api/_courses.js && node --check api/_supabase.js && node --check api/create-preference.js && node --check api/mercadopago-webhook.js && node --check api/verify-payment.js && node --check api/health.js && node --check api/process-payment.js && node --check api/public-config.js && node --check api/get-download-url.js"
+    "check": "node --check build_commercial_site.mjs && node --check app.js && node --check checkout.js && node --check payment-result.js && node --check api/_products.js && node --check api/_courses.js && node --check api/_supabase.js && node --check api/create-preference.js && node --check api/mercadopago-webhook.js && node --check api/verify-payment.js && node --check api/health.js && node --check api/process-payment.js && node --check api/public-config.js && node --check api/get-download-url.js && node --check api/mis-cursos.js && node --check api/admin-ventas.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4"
