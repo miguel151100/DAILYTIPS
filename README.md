@@ -1,22 +1,37 @@
-# Planificador Mensual Mexicano
+# DailyTips — Tienda de productos digitales
 
-Pagina de venta estatica para un planificador mensual de finanzas personales en Excel.
+Sitio estático + serverless functions desplegado en Vercel.  
+Dominio: **dailytips.lat**
 
-## Archivos
+## Estructura
 
-- `index.html`: pagina principal.
-- `styles.css`: estilos de la pagina.
-- `assets/hero-planificador-mexico.png`: imagen principal.
-- `planificador_mensual_mexicano_simple.xlsx`: archivo Excel descargable.
+- `index.html` y `*.html` — páginas del sitio
+- `styles.css` / `app.js` / `catalog.js` — frontend
+- `checkout.html` / `checkout.js` — checkout con Payment Brick de Mercado Pago
+- `api/*.js` — funciones serverless (pagos, webhook, entrega)
+- `assets/` — imágenes y recursos estáticos
+- `vercel.json` — configuración de deploy
 
-## Publicar en GitHub Pages
+## Deploy
 
-1. Sube estos archivos a un repositorio de GitHub.
-2. En GitHub, entra a `Settings > Pages`.
-3. En `Build and deployment`, selecciona `Deploy from a branch`.
-4. Elige la rama `main` y la carpeta `/root`.
-5. Guarda los cambios.
+El sitio se despliega automáticamente en Vercel al hacer push a `main`.
 
-El sitio quedara disponible en una URL parecida a:
+```
+git add .
+git commit -m "descripción del cambio"
+git push origin main
+```
 
-`https://TU_USUARIO.github.io/NOMBRE_DEL_REPO/`
+Vercel construye y publica en ~30 segundos. El dominio `dailytips.lat`
+apunta al deployment de producción.
+
+## Variables de entorno (configurar en Vercel Dashboard)
+
+| Variable | Descripción |
+|---|---|
+| `MP_ACCESS_TOKEN` | Token de acceso privado de Mercado Pago |
+| `MP_PUBLIC_KEY` | Clave pública de Mercado Pago (para Payment Brick) |
+| `RESEND_API_KEY` | API key de Resend para emails de entrega |
+| `SITE_URL` | URL del sitio (`https://dailytips.lat`) |
+| `DELIVERY_ACCESS_CODE` | Código de acceso para descargas |
+| `ALLOWED_ORIGIN` | Origen permitido en CORS (por defecto `*`) |
