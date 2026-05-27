@@ -1,38 +1,45 @@
 (() => {
+  // Config cargada desde payment-config.js (defer, corre antes que checkout.js)
+  const config = window.DAILYTIPS_PAYMENT_CONFIG || {};
+
+  // Precios desde payment-config.js — editar allí para cambiar en todo el sitio
+  const INDIVIDUAL_PRICE = config.INDIVIDUAL_PRICE_MXN || 35;
+  const FULL_PACK_PRICE  = config.FULL_PACK_PRICE_MXN  || 99;
+
   const products = {
     standard: {
       id: "standard",
       title: "Paquete DailyTips individual",
       description: "Un paquete digital por categoría para resolver un problema específico.",
-      price: 35,
+      price: INDIVIDUAL_PRICE,
       summary: "Paquete individual"
     },
     education: {
       id: "education",
       title: "Pack Educación",
       description: "Ejercicios escolares por materia, nivel y tema.",
-      price: 35,
+      price: INDIVIDUAL_PRICE,
       summary: "Ejercicios educativos"
     },
     total: {
       id: "total",
-      title: "DAILYTIPS Pack Total",
+      title: "Pack Completo DailyTips",
       description: "Toda la biblioteca DailyTips en un solo paquete.",
-      price: 99,
-      summary: "Biblioteca completa"
+      price: FULL_PACK_PRICE,
+      summary: "Todos los recursos incluidos"
     },
     recipes: {
       id: "recipes",
       title: "Recetas del Mundo",
       description: "Mega paquete digital con 112 recetas por estados de México y países.",
-      price: 99,
+      price: FULL_PACK_PRICE,
       summary: "ZIP de recetas"
     },
     curso: {
       id: "curso",
       title: "Curso Digital PDF",
       description: "Curso digital en PDF con descarga inmediata tras el pago.",
-      price: 0,
+      price: 0,  // se sobreescribe con el param ?price= de la URL (validado en servidor)
       summary: "PDF Descargable"
     }
   };
@@ -89,14 +96,15 @@
   if (packId === "curso") {
     const urlTitle = params.get("title") || "Curso Digital PDF";
     const urlPrice = parseInt(params.get("price") || "0", 10);
-    product = { ...products.curso, title: urlTitle, price: urlPrice || products.curso.price, summary: "PDF Descargable" };
+    // Precio viene de URL (solo para display — el servidor siempre valida con _courses.js)
+    product = { ...products.curso, title: urlTitle, price: urlPrice || INDIVIDUAL_PRICE, summary: "PDF Descargable" };
   } else {
     product = packId === "standard" && standardCategories[categoryId]
       ? { ...products.standard, ...standardCategories[categoryId] }
       : products[packId];
   }
 
-  const config = window.DAILYTIPS_PAYMENT_CONFIG || {};
+  // config ya fue leído al inicio del módulo
   const fallback = config.fallbackLinks?.[packId] || config.fallbackLinks?.standard || "#";
   const apiBase = (config.apiBaseUrl || "").replace(/\/$/, "");
 
