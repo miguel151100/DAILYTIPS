@@ -2640,3 +2640,323 @@ body[data-page="comprar"] .recipe-offer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ================================================================
+   DailyTips — Refinamiento visual 2026
+   ================================================================ */
+
+/* ── Variables adicionales ──────────────────────────────────────── */
+:root {
+  --ink: #0D1117;
+  --shadow-card: 0 2px 8px rgba(0,0,0,.06), 0 8px 28px rgba(0,0,0,.05);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,.09), 0 0 0 1px rgba(124,58,237,.12);
+  --yellow-soft: #FEF3C7;
+  --amber: #B45309;
+  --ink-footer: #0D1117;
+  --transition: .18s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Eyebrow: ámbar cálido en lugar de morado (mejor jerarquía) ── */
+.eyebrow { color: var(--amber); }
+
+/* ── Tipografía: tamaños ligeramente más compactos ──────────────── */
+h1 { font-size: clamp(32px, 4vw, 56px); line-height: 1.09; }
+h2 { font-size: clamp(24px, 3vw, 44px); line-height: 1.12; }
+h3 { font-size: 19px; line-height: 1.3; }
+.lead { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.75; }
+
+/* ── Botones: más refinados ─────────────────────────────────────── */
+.button {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .008em;
+  min-height: 48px;
+  padding: 0 22px;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.button--yellow {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  letter-spacing: .01em !important;
+  box-shadow: 0 6px 20px rgba(245,158,11,.32), 0 2px 6px rgba(245,158,11,.2) !important;
+}
+.button--yellow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(245,158,11,.38), 0 3px 8px rgba(245,158,11,.24) !important;
+}
+.button:hover { transform: translateY(-2px); }
+.button--ghost {
+  border-color: var(--line-strong);
+  font-weight: 700;
+}
+.button--ghost:hover {
+  background: var(--surface-soft);
+  border-color: var(--accent-line);
+  transform: none;
+}
+
+/* ── Nav CTA más pequeño y compacto ─────────────────────────────── */
+.nav-cta {
+  font-size: 13.5px !important;
+  padding: 0 16px !important;
+  min-height: 40px;
+  font-weight: 800;
+  gap: 6px !important;
+}
+.topbar nav a, .topbar nav button {
+  font-size: 14px;
+  padding: 8px 11px;
+  border-radius: 9px;
+  font-weight: 700;
+}
+.topbar {
+  padding: 14px clamp(16px, 4vw, 52px);
+}
+
+/* ── Hero: gradiente más profundo ───────────────────────────────── */
+.hero-atelier {
+  background:
+    radial-gradient(ellipse at 78% 0%, rgba(124,58,237,.12), transparent 38rem),
+    radial-gradient(circle at 5% 90%, rgba(124,58,237,.06), transparent 26rem),
+    linear-gradient(180deg, #ECEAFD 0%, #F5F3FF 25%, var(--bg) 65%);
+}
+
+/* ── Trust badges: fondo blanco limpio ──────────────────────────── */
+.trust span {
+  background: rgba(255,255,255,.9);
+  border-color: rgba(124,58,237,.18);
+  color: var(--ink-soft);
+  font-size: 13px;
+  padding: 7px 13px;
+  font-weight: 700;
+  letter-spacing: .005em;
+}
+
+/* ── Pills: ámbar cálido ─────────────────────────────────────────── */
+.pill {
+  background: var(--yellow-soft);
+  border-color: rgba(245,158,11,.3);
+  color: var(--amber);
+}
+
+/* ── Tarjetas: sombra más definida ──────────────────────────────── */
+.visual-card, .pack-card, .article-card, .edu-product-card,
+.education-card, .product-card, .free-card, .choice-card,
+.process-grid article, .detail-panel, .pack-detail-sections article {
+  box-shadow: var(--shadow-card);
+}
+.visual-card:hover, .pack-card:hover, .article-card:hover,
+.edu-product-card:hover, .education-card:hover, .product-card:hover,
+.free-card:hover, .choice-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent-line);
+}
+
+/* ── Pack Completo card: destacado con aura ─────────────────────── */
+.pack-card--total {
+  border-color: rgba(124,58,237,.4);
+  background: linear-gradient(160deg, #EDE9FE 0%, #FFFFFF 52%);
+  box-shadow: 0 8px 40px rgba(124,58,237,.14), 0 0 0 2px rgba(124,58,237,.1);
+  position: relative;
+  overflow: visible;
+}
+.pack-card--total::before {
+  content: "⭐ MEJOR VALOR";
+  position: absolute;
+  top: -14px;
+  left: clamp(20px, 3vw, 36px);
+  padding: 5px 14px;
+  background: var(--yellow);
+  border-radius: 999px;
+  color: #3D1F00;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .07em;
+  white-space: nowrap;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(245,158,11,.3);
+}
+
+/* ── Precio: más grande y prominente ────────────────────────────── */
+.price strong {
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--amber);
+}
+.pack-card--total .price strong { color: var(--accent); font-size: 38px; }
+
+/* ── Lead-free CTA box ──────────────────────────────────────────── */
+.lead-free {
+  background:
+    radial-gradient(circle at 92% 50%, rgba(124,58,237,.05), transparent 22rem),
+    var(--surface);
+  border-color: var(--line-strong);
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 48px);
+}
+
+/* ── Process section: badges dorados ────────────────────────────── */
+.process-grid span {
+  background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+  color: #3D1F00;
+  font-size: 15px;
+  font-weight: 900;
+}
+.process-grid article { padding: 26px 22px; }
+.process-grid strong { font-size: 16px; color: var(--ink); }
+
+/* ── Testimonios ────────────────────────────────────────────────── */
+.testimonial-grid article {
+  padding: 28px;
+}
+.testimonial-grid article > p:first-child { font-size: 19px; }
+
+/* ── Sección pack-spotlight (nueva sección Pack $99) ────────────── */
+.pack-spotlight {
+  background: var(--ink-footer);
+  border-block: 0;
+  padding-block: clamp(64px, 8vw, 100px);
+}
+.pack-spotlight .eyebrow { color: var(--yellow); }
+.pack-spotlight .section__title h2,
+.pack-spotlight h2 { color: white; }
+.pack-spotlight .lead { color: rgba(255,255,255,.68); }
+.pack-spotlight-box {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: clamp(36px, 5vw, 72px);
+  align-items: center;
+  max-width: var(--max);
+  margin-inline: auto;
+}
+.pack-spotlight-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 32px;
+  list-style: none;
+  padding: 0;
+  margin: 26px 0 0;
+  color: rgba(255,255,255,.8);
+}
+.pack-spotlight-list li {
+  font-size: 15px;
+  font-weight: 700;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.pack-spotlight-list li::before {
+  content: "✓ ";
+  color: var(--yellow);
+  font-weight: 900;
+}
+.pack-spotlight .hero__actions {
+  margin-top: 36px;
+  margin-bottom: 0;
+}
+.pack-spotlight .button--ghost {
+  border-color: rgba(255,255,255,.18);
+  color: rgba(255,255,255,.7);
+  background: transparent;
+}
+.pack-spotlight .button--ghost:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.32);
+  color: white;
+  transform: none;
+}
+.pack-spotlight-price-box {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 28px;
+  padding: clamp(28px, 4vw, 44px);
+}
+.pack-spotlight-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.pack-spotlight-comparison > div { display: flex; flex-direction: column; gap: 8px; }
+.pack-spotlight-comparison > div > span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+.pack-spotlight-comparison > div > strong {
+  font-size: clamp(40px, 6vw, 58px);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: .95;
+  color: rgba(255,255,255,.22);
+}
+.pack-spotlight-deal > strong { color: var(--yellow) !important; }
+.pack-spotlight-deal > span { color: rgba(255,255,255,.6) !important; }
+.pack-spotlight-deal em {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(245,158,11,.15);
+  border: 1px solid rgba(245,158,11,.28);
+  color: var(--yellow);
+  width: fit-content;
+  margin-top: 4px;
+}
+.pack-spotlight-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pack-spotlight-divider::before, .pack-spotlight-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,.08);
+}
+.pack-spotlight-divider span {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+
+/* ── Footer oscuro y profesional ────────────────────────────────── */
+.footer {
+  background: var(--ink-footer);
+  border-top: 0;
+  color: rgba(255,255,255,.45);
+  padding: clamp(40px, 5vw, 64px) clamp(24px, 5vw, 80px);
+}
+.footer p { margin-bottom: 12px; }
+.footer p:first-child { color: rgba(255,255,255,.75); font-weight: 700; font-size: 15px; }
+.footer strong { color: white; }
+.footer a { color: rgba(255,255,255,.55); transition: color var(--transition); }
+.footer a:hover { color: var(--yellow); }
+
+/* ── Sección padding más compacto ───────────────────────────────── */
+.section, .page-hero {
+  padding-block: clamp(52px, 7vw, 92px);
+}
+
+/* ── FAQ details: animación de apertura ─────────────────────────── */
+details > summary { user-select: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] > summary span:last-child { transform: rotate(45deg); display: inline-block; transition: transform .2s ease; }
+
+/* ── Mobile ─────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .pack-spotlight-box { grid-template-columns: 1fr; }
+  .pack-spotlight-price-box { max-width: 420px; }
+  .pack-card--total::before { left: 20px; }
+}
+@media (max-width: 640px) {
+  .pack-spotlight-list { grid-template-columns: 1fr; }
+  .footer { text-align: left; }
+  .nav-cta { font-size: 13px !important; padding: 0 14px !important; }
+  .pack-card--total::before { font-size: 10px; top: -13px; }
+  h1 { font-size: clamp(28px, 8.5vw, 38px); }
+  h2 { font-size: clamp(22px, 7vw, 32px); }
+}
