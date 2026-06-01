@@ -39,64 +39,31 @@
       id: "curso",
       title: "Curso Digital PDF",
       description: "Curso digital en PDF con descarga inmediata tras el pago.",
-      price: 0,  // se sobreescribe con el param ?price= de la URL (validado en servidor)
+      price: 0,
       summary: "PDF Descargable"
     }
   };
 
   const standardCategories = {
-    dinero: {
-      title: "Pack Finanzas en Orden MX",
-      description: "Organiza tu quincena, gastos, deudas y metas financieras.",
-      summary: "Finanzas"
-    },
-    ia: {
-      title: "Pack IA Fácil",
-      description: "Guías, prompts y recursos para usar inteligencia artificial desde cero.",
-      summary: "IA para principiantes"
-    },
-    negocio: {
-      title: "Pack Negocio Inteligente",
-      description: "Controla inventario, pedidos, clientes, ventas y ganancias.",
-      summary: "Ventas y negocio"
-    },
-    contenido: {
-      title: "Pack Contenido Viral",
-      description: "Calendarios, hooks, guiones e ideas para publicar con estrategia.",
-      summary: "Contenido digital"
-    },
-    reset: {
-      title: "Pack Reset Productivo",
-      description: "Herramientas para ordenar tu día, metas, hábitos y enfoque.",
-      summary: "Productividad"
-    },
-    vida: {
-      title: "Pack Organiza tu Vida",
-      description: "Planners, hábitos, rutinas y objetivos para avanzar con más claridad.",
-      summary: "Organización personal"
-    },
-    estudiante: {
-      title: "Pack Estudiante Pro",
-      description: "Organizadores, horarios, prompts de estudio y planeadores de examen.",
-      summary: "Estudiantes"
-    },
-    emprendedor: {
-      title: "Pack Emprendedor Digital",
-      description: "Recursos de IA, negocio y contenido para crear, vender y crecer online.",
-      summary: "Emprendimiento"
-    }
+    dinero:       { title: "Pack Finanzas en Orden MX",    description: "Organiza tu quincena, gastos, deudas y metas financieras.",                 summary: "Finanzas" },
+    ia:           { title: "Pack IA Fácil",                description: "Guías, prompts y recursos para usar inteligencia artificial desde cero.",    summary: "IA para principiantes" },
+    negocio:      { title: "Pack Negocio Inteligente",     description: "Controla inventario, pedidos, clientes, ventas y ganancias.",                summary: "Ventas y negocio" },
+    contenido:    { title: "Pack Contenido Viral",         description: "Calendarios, hooks, guiones e ideas para publicar con estrategia.",          summary: "Contenido digital" },
+    reset:        { title: "Pack Reset Productivo",        description: "Herramientas para ordenar tu día, metas, hábitos y enfoque.",                summary: "Productividad" },
+    vida:         { title: "Pack Organiza tu Vida",        description: "Planners, hábitos, rutinas y objetivos para avanzar con más claridad.",      summary: "Organización personal" },
+    estudiante:   { title: "Pack Estudiante Pro",          description: "Organizadores, horarios, prompts de estudio y planeadores de examen.",       summary: "Estudiantes" },
+    emprendedor:  { title: "Pack Emprendedor Digital",     description: "Recursos de IA, negocio y contenido para crear, vender y crecer online.",    summary: "Emprendimiento" }
   };
 
-  const params = new URLSearchParams(window.location.search);
-  const packId = products[params.get("pack")] ? params.get("pack") : "standard";
-  const categoryId = params.get("category") || "";
+  const params       = new URLSearchParams(window.location.search);
+  const packId       = products[params.get("pack")] ? params.get("pack") : "standard";
+  const categoryId   = params.get("category") || "";
   const courseFilename = packId === "curso" ? (params.get("filename") || "") : "";
 
   let product;
   if (packId === "curso") {
     const urlTitle = params.get("title") || "Curso Digital PDF";
     const urlPrice = parseInt(params.get("price") || "0", 10);
-    // Precio viene de URL (solo para display — el servidor siempre valida con _courses.js)
     product = { ...products.curso, title: urlTitle, price: urlPrice || INDIVIDUAL_PRICE, summary: "PDF Descargable" };
   } else {
     product = packId === "standard" && standardCategories[categoryId]
@@ -104,12 +71,10 @@
       : products[packId];
   }
 
-  // config ya fue leído al inicio del módulo
   const fallback = config.fallbackLinks?.[packId] || config.fallbackLinks?.standard || "#";
-  const apiBase = (config.apiBaseUrl || "").replace(/\/$/, "");
+  const apiBase  = (config.apiBaseUrl || "").replace(/\/$/, "");
 
   // Carga la clave pública desde el backend en cuanto carga la página.
-  // El override manual en payment-config.js tiene prioridad si está presente.
   let cachedMpPublicKey = config.mpPublicKey || null;
   if (!cachedMpPublicKey && apiBase) {
     fetch(`${apiBase}/api/public-config`)
@@ -118,93 +83,108 @@
       .catch(() => {});
   }
 
-  // DOM refs — step 1 (form)
-  const title = document.querySelector("#checkout-title");
-  const description = document.querySelector("#checkout-description");
-  const badge = document.querySelector("#checkout-badge");
-  const price = document.querySelector("#checkout-price");
-  const summary = document.querySelector("#checkout-summary");
+  // ── DOM refs ─────────────────────────────────────────────────────────────────
+  const titleEl     = document.querySelector("#checkout-title");
+  const descEl      = document.querySelector("#checkout-description");
+  const badgeEl     = document.querySelector("#checkout-badge");
+  const priceEl     = document.querySelector("#checkout-price");
+  const summaryEl   = document.querySelector("#checkout-summary");
   const fallbackLink = document.querySelector("#checkout-fallback");
-  const form = document.querySelector("#checkout-form");
-  const message = document.querySelector("#checkout-message");
-  const submit = document.querySelector("#checkout-submit");
+  const form        = document.querySelector("#checkout-form");
+  const messageEl   = document.querySelector("#checkout-message");
+  const submitBtn   = document.querySelector("#checkout-submit");
 
-  // DOM refs — modal
-  const modal = document.querySelector("#payment-modal");
-  const modalClose = document.querySelector("#modal-close");
-  const modalBackdrop = document.querySelector("#modal-backdrop");
-  const brickLoading = document.querySelector("#brick-loading");
+  const modal          = document.querySelector("#payment-modal");
+  const modalClose     = document.querySelector("#modal-close");
+  const modalBackdrop  = document.querySelector("#modal-backdrop");
+  const brickLoading   = document.querySelector("#brick-loading");
   const brickContainer = document.querySelector("#paymentBrick_container");
-  const successPanel = document.querySelector("#payment-success");
-  const pendingPanel = document.querySelector("#payment-pending");
+  const successPanel   = document.querySelector("#payment-success");
+  const pendingPanel   = document.querySelector("#payment-pending");
 
-  title.textContent = product.title;
-  description.textContent = "Ingresa tu correo y elige cómo pagar, sin salir del sitio.";
-  badge.textContent = product.summary;
-  price.textContent = `$${product.price} MXN`;
-  summary.textContent = "Pago único";
-  fallbackLink.href = fallback;
+  titleEl.textContent   = product.title;
+  badgeEl.textContent   = product.summary;
+  priceEl.textContent   = `$${product.price} MXN`;
+  summaryEl.textContent = "Pago único";
+  if (fallbackLink) fallbackLink.href = fallback;
 
-  // Populate modal header
   document.querySelector("#modal-product-title").textContent = product.title;
   document.querySelector("#modal-product-price").textContent = `$${product.price} MXN`;
 
-  // ── Step 1: form submit → create preference ──────────────────────────────
+  // ── Step 1: form → create order ──────────────────────────────────────────────
+
+  let currentOrderId = null;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    message.textContent = "";
+    messageEl.textContent = "";
 
     const email = document.querySelector("#buyer-email").value.trim();
-    const name = document.querySelector("#buyer-name").value.trim();
+    const name  = document.querySelector("#buyer-name").value.trim();
 
     if (!email) {
-      message.textContent = "Ingresa tu correo para continuar.";
+      messageEl.textContent = "Ingresa tu correo para continuar.";
       document.querySelector("#buyer-email").focus();
       return;
     }
 
     if (!apiBase) {
-      message.textContent = "Backend no configurado. Te llevamos al link directo de Mercado Pago.";
+      messageEl.textContent = "Backend no configurado. Te llevamos al link directo de Mercado Pago.";
       window.location.href = fallback;
       return;
     }
 
-    submit.disabled = true;
-    submit.textContent = "Preparando pago...";
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Preparando pago...";
 
     try {
-      const response = await fetch(`${apiBase}/api/create-preference`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pack: product.id, category: categoryId, email, name, filename: courseFilename })
-      });
+      // Use create-order (preferred) → fallback to create-preference
+      let preferenceId = null;
+      let orderId = null;
 
-      const data = await response.json();
-      if (!response.ok || !data.id) throw new Error(data.error || "Sin preferenceId");
+      try {
+        const r = await fetch(`${apiBase}/api/create-order`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ pack: product.id, category: categoryId, email, name, filename: courseFilename })
+        });
+        const d = await r.json();
+        if (!r.ok || !d.preferenceId) throw new Error(d.error || "Sin preferenceId");
+        preferenceId = d.preferenceId;
+        orderId = d.orderId || null;
+      } catch {
+        // Fallback: create-preference (no order tracking)
+        const r = await fetch(`${apiBase}/api/create-preference`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ pack: product.id, category: categoryId, email, name, filename: courseFilename })
+        });
+        const d = await r.json();
+        if (!r.ok || !d.id) throw new Error("Sin preferenceId del fallback");
+        preferenceId = d.id;
+      }
 
-      openPaymentModal({ preferenceId: data.id, email, name });
+      currentOrderId = orderId;
+      openPaymentModal({ preferenceId, orderId, email, name });
     } catch {
-      message.textContent = "No se pudo iniciar el checkout. Usa el link directo de Mercado Pago.";
-      fallbackLink.focus();
+      messageEl.textContent = "No se pudo iniciar el checkout. Intenta con el link directo de Mercado Pago.";
+      if (fallbackLink) fallbackLink.focus();
     } finally {
-      submit.disabled = false;
-      submit.textContent = "Continuar al pago";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Continuar al pago";
     }
   });
 
-  // ── Step 2: open modal + initialize Payment Brick ────────────────────────
+  // ── Step 2: open Payment Brick ───────────────────────────────────────────────
 
   let brickController = null;
 
-  function openPaymentModal({ preferenceId, email, name }) {
-    // Reset modal state
+  function openPaymentModal({ preferenceId, orderId, email, name }) {
     brickContainer.hidden = false;
     brickContainer.innerHTML = "";
     successPanel.hidden = true;
     pendingPanel.hidden = true;
     brickLoading.hidden = false;
-
     modal.hidden = false;
     document.body.style.overflow = "hidden";
 
@@ -231,9 +211,8 @@
         }
       },
       callbacks: {
-        onReady: () => {
-          brickLoading.hidden = true;
-        },
+        onReady: () => { brickLoading.hidden = true; },
+
         onSubmit: ({ formData: brickFormData }) => {
           return new Promise((resolve, reject) => {
             fetch(`${apiBase}/api/process-payment`, {
@@ -244,7 +223,8 @@
                 pack: product.id,
                 category: categoryId,
                 buyerName: name,
-                filename: courseFilename
+                filename: courseFilename,
+                orderId
               })
             })
               .then(r => r.json())
@@ -262,14 +242,15 @@
               .catch(() => reject());
           });
         },
+
         onError: (error) => {
           console.error("Payment Brick error:", error);
         }
       }
-    }).then(controller => {
-      brickController = controller;
-    });
+    }).then(controller => { brickController = controller; });
   }
+
+  // ── Success panel ─────────────────────────────────────────────────────────────
 
   function showSuccess(data) {
     brickContainer.hidden = true;
@@ -277,6 +258,7 @@
     const linksEl = successPanel.querySelector(".success-links");
     linksEl.innerHTML = "";
 
+    // Download links returned by API
     if (data.downloads?.length) {
       data.downloads.forEach(link => {
         const a = document.createElement("a");
@@ -284,31 +266,61 @@
         a.href = link.url;
         a.target = "_blank";
         a.rel = "noopener";
+        if (link.type === "zip" || (link.url && link.url.endsWith(".zip"))) {
+          a.setAttribute("download", "");
+        }
         a.textContent = link.label;
         linksEl.appendChild(a);
       });
     }
 
-    if (data.accessCode) {
-      successPanel.querySelector(".success-code").textContent = `Código de acceso: ${data.accessCode}`;
+    // Access token (unique per order)
+    const codeEl = successPanel.querySelector(".success-code");
+    if (data.accessToken) {
+      codeEl.textContent = `Tu código de acceso: ${data.accessToken}`;
+      codeEl.hidden = false;
     }
+
+    // "Ver mis archivos" link (if orderId available)
+    if (data.orderId) {
+      const a = document.createElement("a");
+      a.className = "button";
+      a.href = `gracias.html?order=${encodeURIComponent(data.orderId)}`;
+      a.textContent = "Ver mis archivos";
+      linksEl.appendChild(a);
+    }
+
+    // WhatsApp support
+    const wa = document.createElement("a");
+    wa.className = "button button--ghost";
+    wa.href = "https://wa.me/525569862844?text=Hola%2C%20ya%20pagu%C3%A9%20y%20necesito%20mis%20archivos%20DailyTips";
+    wa.target = "_blank";
+    wa.rel = "noopener";
+    wa.textContent = "Soporte por WhatsApp";
+    linksEl.appendChild(wa);
 
     successPanel.hidden = false;
   }
+
+  // ── Pending panel ─────────────────────────────────────────────────────────────
 
   function showPending(data) {
     brickContainer.hidden = true;
 
     if (data.ticketUrl) {
       const link = pendingPanel.querySelector(".pending-ticket-link");
-      link.href = data.ticketUrl;
-      link.hidden = false;
+      if (link) { link.href = data.ticketUrl; link.hidden = false; }
+    }
+
+    if (data.orderId) {
+      const noteEl = pendingPanel.querySelector(".pending-order-note");
+      if (noteEl) noteEl.textContent = `Número de orden: ${data.orderId}`;
     }
 
     pendingPanel.hidden = false;
   }
 
-  // ── Close modal ───────────────────────────────────────────────────────────
+  // ── Close modal ───────────────────────────────────────────────────────────────
 
   function closeModal() {
     modal.hidden = true;
@@ -320,8 +332,8 @@
     brickContainer.innerHTML = "";
   }
 
-  modalClose.addEventListener("click", closeModal);
-  modalBackdrop.addEventListener("click", closeModal);
+  if (modalClose)   modalClose.addEventListener("click", closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener("click", closeModal);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !modal.hidden) closeModal();

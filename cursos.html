@@ -3,255 +3,354 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cursos PDF | DailyTips — Aprende y vende con conocimiento práctico</title>
-  <meta name="description" content="Cursos digitales en PDF para emprender, vender, usar IA y crecer. Descarga inmediata después del pago con Mercado Pago.">
+  <title>Cursos Digitales DailyTips — Aprende y Emprende desde Casa</title>
+  <meta name="description" content="Todos los cursos digitales DailyTips en PDF. Barismo, IA para negocios, TikTok Shop, YouTube Faceless, tamales y más. Desde $99 MXN. Entrega por WhatsApp.">
   <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-futurista.css">
 </head>
-<body data-page="cursos">
-  <div class="ambient ambient--one"></div>
-  <div class="ambient ambient--two"></div>
-  <div class="site-announcement"><span aria-hidden="true">⚡</span> Cursos PDF · Descarga inmediata · Pago con Mercado Pago</div>
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Daily Tips inicio"><img class="brand-logo" src="assets/dailytips-logo-cropped.png" alt="DailyTips"><span>Daily Tips</span></a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menú</button>
-    <nav id="primary-nav" aria-label="Principal">
-      <a href="index.html">Inicio</a>
-      <div class="nav-dropdown">
-        <button type="button">Productos</button>
-        <div class="mega-menu mega-menu--compact">
-          <a class="mega-link" href="dinero-ahorro.html">💰 Dinero y Ahorro</a>
-          <a class="mega-link" href="ia-facil.html">🤖 IA Fácil</a>
-          <a class="mega-link" href="negocio-inteligente.html">📦 Ventas y Negocio</a>
-          <a class="mega-link" href="contenido-viral.html">📱 Contenido Digital</a>
-          <a class="mega-link" href="organiza-tu-vida.html">🗓️ Productividad</a>
-          <a class="mega-link" href="estudiante-pro.html">🎓 Estudiante Pro</a>
-          <a class="mega-link" href="paquetes.html">Ver todos los productos →</a>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <button type="button">Educación</button>
-        <div class="mega-menu mega-menu--compact">
-          <a class="mega-link" href="educacion.html">Educación y Ejercicios</a>
-          <a class="mega-link" href="educacion.html#materias">Secundaria</a>
-          <a class="mega-link" href="educacion.html#materias">Preparatoria</a>
-          <a class="mega-link" href="educacion.html#materias">Matemáticas</a>
-          <a class="mega-link" href="educacion.html#materias">Ciencias</a>
-          <a class="mega-link" href="educacion.html#materias">Español e Inglés</a>
-        </div>
-      </div>
-      <a class="is-active" href="cursos.html">Cursos</a>
-      <a href="recursos-gratis.html">Gratis</a>
-      <a href="recetas-del-mundo.html">Recetas</a>
-      <a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener">Blog</a>
-      <a href="premium.html">Acceso</a>
-      <a class="nav-cta" href="checkout.html?pack=total">
-        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H7"></path></svg>
-        Pack Completo $99
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-orb bg-orb--1"></div>
+  <div class="bg-orb bg-orb--2"></div>
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="assets/dailytips-logo-cropped.png" alt="DailyTips" class="brand-logo">
+        <span class="brand-name">DailyTips</span>
       </a>
-    </nav>
+      <nav class="nav" id="main-nav">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="cursos.html" class="nav-link is-active">Cursos</a>
+        <a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener" class="nav-link">Blog</a>
+        <a href="https://wa.me/525569862844?text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n+sobre+los+cursos+DailyTips" target="_blank" rel="noopener" class="btn btn--wa" style="margin-left:8px;font-size:.85rem;padding:9px 18px">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
   <main>
-    <section class="page-hero hero-atelier" style="padding:clamp(56px,8vw,96px) clamp(24px,5vw,80px)">
-      <p class="eyebrow">9 cursos disponibles</p>
-      <h1>Cursos PDF listos para descargar.</h1>
-      <p style="max-width:640px;font-size:18px;color:var(--muted);line-height:1.7">Aprende barismo, negocios de comida, IA, TikTok Shop, YouTube y más. Pago único con Mercado Pago y descarga inmediata en PDF.</p>
-      <div class="trust" style="margin-top:24px">
-        <span>✅ Pago único</span>
-        <span>⚡ Descarga inmediata</span>
-        <span>🔒 Mercado Pago</span>
-        <span>📄 Formato PDF</span>
-        <span>💬 Soporte WhatsApp</span>
+
+    <!-- ── PAGE HERO ── -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-badge" style="margin:0 auto 20px">📚 Catálogo completo</div>
+        <h1 class="hero-title">Todos los <span class="gradient-text">Cursos</span></h1>
+        <p>Elige tu curso, escríbenos y te lo enviamos en minutos. Pago fácil, entrega inmediata.</p>
       </div>
     </section>
 
-    <section class="section" id="cursos-grid">
-      <div class="section__title">
-        <p class="eyebrow">Catálogo completo</p>
-        <h2>Elige tu curso y empieza hoy.</h2>
-        <p>Todos los cursos son en formato PDF, listos para leer desde celular, tablet o computadora.</p>
-      </div>
-      <div class="visual-grid">
+    <!-- ── TABS ── -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
 
-        <!-- 1. Barismo -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#4a1d96,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:52px">☕</div>
-          <div>
-            <span class="pill">Gastronomía · Negocio</span>
-            <h3>Curso Completo de Barismo Profesional</h3>
-            <p>Técnicas de extracción, latte art, tipos de café y cómo montar tu propia cafetería.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$299 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=Curso_Completo_de_Barismo_Profesional.pdf&title=Barismo%20Profesional&price=299">Comprar $299</a>
-            </div>
-          </div>
-        </article>
+        <div class="tabs" role="tablist" aria-label="Categorías de cursos">
+          <button class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="tab-top" id="btn-top" data-tab="top">
+            ⚡ Cursos Top
+            <span class="tab-count">4</span>
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-otros" id="btn-otros" data-tab="otros">
+            📦 Otros Cursos
+            <span class="tab-count">5</span>
+          </button>
+        </div>
 
-        <!-- 2. Tamales -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#92400e,#d97706);display:flex;align-items:center;justify-content:center;font-size:52px">🫔</div>
-          <div>
-            <span class="pill">Negocio de comida</span>
-            <h3>Negocio de Tamales 2026</h3>
-            <p>Recetas, costos, canales de venta y estrategia para escalar un negocio de tamales.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$199 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=Curso_Completo_Negocio_Tamales_2026.pdf&title=Negocio%20de%20Tamales%202026&price=199">Comprar $199</a>
-            </div>
-          </div>
-        </article>
+        <!-- ── TAB: CURSOS TOP ── -->
+        <div class="tab-panel is-active" id="tab-top" role="tabpanel" aria-labelledby="btn-top">
+          <div class="courses-grid">
 
-        <!-- 3. Bubble Tea -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#831843,#db2777);display:flex;align-items:center;justify-content:center;font-size:52px">🧋</div>
-          <div>
-            <span class="pill">Bebidas · Negocio</span>
-            <h3>Bubble Tea Premium</h3>
-            <p>Recetas, preparación, equipos necesarios y modelo de negocio para vender bubble tea.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$199 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=curso-bubble-tea-premium.pdf&title=Bubble%20Tea%20Premium&price=199">Comprar $199</a>
-            </div>
-          </div>
-        </article>
+            <!-- IA Negocios -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Curso IA para Negocios 2026" loading="lazy">
+                <span class="course-card__badge badge--top">⚡ Top</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Inteligencia Artificial</span>
+                <h3 class="course-card__title">IA para Negocios 2026</h3>
+                <p class="course-card__desc">Automatiza tareas, genera contenido, analiza datos y toma mejores decisiones con IA. Herramientas gratuitas y de pago explicadas paso a paso.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$349 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+IA+para+Negocios+2026+%28%24349+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
 
-        <!-- 4. IA para Negocios -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:52px">🤖</div>
-          <div>
-            <span class="pill">IA · Emprendimiento</span>
-            <h3>IA para Negocios 2026</h3>
-            <p>Automatiza ventas, atención a clientes y marketing con herramientas de inteligencia artificial.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$349 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=Curso-Completo-IA-para-Negocios-2026.pdf&title=IA%20para%20Negocios%202026&price=349">Comprar $349</a>
-            </div>
-          </div>
-        </article>
+            <!-- TikTok Shop -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ventas TikTok Shop con IA" loading="lazy">
+                <span class="course-card__badge badge--top">⚡ Top</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Ventas &amp; Redes Sociales</span>
+                <h3 class="course-card__title">Ventas en TikTok Shop con IA</h3>
+                <p class="course-card__desc">Estrategia completa para vender en TikTok Shop: configuración de tienda, creación de contenido con IA, manejo de pedidos y escalado de ventas.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$349 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+Ventas+en+TikTok+Shop+con+IA+%28%24349+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
 
-        <!-- 5. Muebles con Pallets -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#365314,#65a30d);display:flex;align-items:center;justify-content:center;font-size:52px">🪑</div>
-          <div>
-            <span class="pill">Manualidades · Negocio</span>
-            <h3>Muebles con Pallets</h3>
-            <p>Diseños paso a paso, materiales, herramientas y cómo vender muebles hechos con pallets.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$149 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=curso-completo-muebles-con-pallets-premium.pdf&title=Muebles%20con%20Pallets&price=149">Comprar $149</a>
-            </div>
-          </div>
-        </article>
+            <!-- YouTube Faceless -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/7015034/pexels-photo-7015034.jpeg?auto=compress&cs=tinysrgb&w=600" alt="YouTube Faceless con IA 2026" loading="lazy">
+                <span class="course-card__badge badge--top">⚡ Top</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Creación de Contenido</span>
+                <h3 class="course-card__title">YouTube Faceless con IA 2026</h3>
+                <p class="course-card__desc">Crea un canal rentable sin aparecer en cámara. Genera guiones, voces, imágenes y edición con IA. Monetiza con AdSense y productos digitales.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$299 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+YouTube+Faceless+con+IA+2026+%28%24299+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
 
-        <!-- 6. Postres -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#7f1d1d,#ef4444);display:flex;align-items:center;justify-content:center;font-size:52px">🍰</div>
-          <div>
-            <span class="pill">Repostería · Negocio</span>
-            <h3>Negocio de Postres</h3>
-            <p>Recetas premium y estrategia completa para vender postres desde casa con ganancia real.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$179 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=curso-completo-postres-negocio-premium.pdf&title=Negocio%20de%20Postres&price=179">Comprar $179</a>
-            </div>
-          </div>
-        </article>
+            <!-- Barismo -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Barismo Profesional" loading="lazy">
+                <span class="course-card__badge badge--top">⚡ Top</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Gastronomía &amp; Negocio</span>
+                <h3 class="course-card__title">Barismo Profesional</h3>
+                <p class="course-card__desc">Aprende espresso, latte art, cold brew, frappés y más. Guía completa para dominar el café de especialidad y emprender tu propio negocio.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$299 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+Barismo+Profesional+%28%24299+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
 
-        <!-- 7. YouTube Faceless -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#7c1010,#ff0000);display:flex;align-items:center;justify-content:center;font-size:52px">▶️</div>
-          <div>
-            <span class="pill">YouTube · IA · Contenido</span>
-            <h3>YouTube Faceless con IA 2026</h3>
-            <p>Crea y monetiza un canal de YouTube sin aparecer en cámara usando inteligencia artificial.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$299 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=Curso-Completo-YouTube-Faceless-IA-2026.pdf&title=YouTube%20Faceless%20con%20IA%202026&price=299">Comprar $299</a>
-            </div>
           </div>
-        </article>
+        </div>
 
-        <!-- 8. TikTok Shop -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#0f172a,#334155);display:flex;align-items:center;justify-content:center;font-size:52px">🎵</div>
-          <div>
-            <span class="pill">TikTok · Ventas · IA</span>
-            <h3>Ventas en TikTok Shop con IA 2026</h3>
-            <p>Estrategia completa para vender en TikTok Shop y escalar con herramientas de IA.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$349 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=Curso-Premium-Ventas-Redes-TikTok-Shop-IA-2026.pdf&title=Ventas%20en%20TikTok%20Shop%20con%20IA&price=349">Comprar $349</a>
-            </div>
-          </div>
-        </article>
+        <!-- ── TAB: OTROS CURSOS ── -->
+        <div class="tab-panel" id="tab-otros" role="tabpanel" aria-labelledby="btn-otros">
+          <div class="courses-grid">
 
-        <!-- 9. Plantas -->
-        <article class="visual-card">
-          <div style="min-height:140px;background:linear-gradient(135deg,#14532d,#16a34a);display:flex;align-items:center;justify-content:center;font-size:52px">🌿</div>
-          <div>
-            <span class="pill">Plantas · Naturaleza</span>
-            <h3>Plantas Medicinales y Decorativas 2026</h3>
-            <p>Guía completa de cultivo, usos medicinales, cuidado y cómo vender plantas.</p>
-            <div style="margin:14px 0"><strong style="font-size:28px;color:var(--yellow)">$99 MXN</strong></div>
-            <div class="card-actions">
-              <a class="button button--yellow" href="checkout.html?pack=curso&filename=guia-completa-plantas-medicinales-decorativas-2026.pdf&title=Plantas%20Medicinales%20y%20Decorativas&price=99">Comprar $99</a>
-            </div>
+            <!-- Tamales -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/5835353/pexels-photo-5835353.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Negocio de Tamales 2026" loading="lazy">
+                <span class="course-card__badge badge--otros">📦 Disponible</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Emprendimiento &amp; Gastronomía</span>
+                <h3 class="course-card__title">Negocio de Tamales 2026</h3>
+                <p class="course-card__desc">Recetas, costos, precios, rutas de venta y estrategias para montar un negocio exitoso de tamales. Desde tu casa o puesto.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$199 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+Negocio+de+Tamales+2026+%28%24199+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
+
+            <!-- Bubble Tea -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bubble Tea Premium" loading="lazy">
+                <span class="course-card__badge badge--otros">📦 Disponible</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Bebidas &amp; Negocio</span>
+                <h3 class="course-card__title">Bubble Tea Premium</h3>
+                <p class="course-card__desc">Aprende a preparar bubble tea, tés frutales y bebidas premium. Costos, precios, presentación y cómo venderlo desde casa o en puesto.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$199 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+Bubble+Tea+Premium+%28%24199+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
+
+            <!-- Postres -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Negocio de Postres" loading="lazy">
+                <span class="course-card__badge badge--otros">📦 Disponible</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Repostería &amp; Negocio</span>
+                <h3 class="course-card__title">Negocio de Postres</h3>
+                <p class="course-card__desc">Recetas de postres para vender: cheesecakes, chocoflan, gelatinas y más. Costos, precios, presentación y canales de venta.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$179 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+Negocio+de+Postres+%28%24179+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
+
+            <!-- Muebles Pallets -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Muebles con Pallets" loading="lazy">
+                <span class="course-card__badge badge--otros">📦 Disponible</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Manualidades &amp; Negocio</span>
+                <h3 class="course-card__title">Muebles con Pallets</h3>
+                <p class="course-card__desc">Transforma pallets en muebles únicos y vendibles. Técnicas, herramientas, acabados, precios y cómo venderlos en línea o en tu zona.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$149 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+Muebles+con+Pallets+%28%24149+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
+
+            <!-- Plantas -->
+            <article class="course-card">
+              <div class="course-card__img">
+                <img src="https://images.pexels.com/photos/1084199/pexels-photo-1084199.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Plantas Medicinales y Decorativas" loading="lazy">
+                <span class="course-card__badge badge--otros">📦 Disponible</span>
+              </div>
+              <div class="course-card__body">
+                <span class="course-card__tag">Naturaleza &amp; Bienestar</span>
+                <h3 class="course-card__title">Plantas Medicinales y Decorativas</h3>
+                <p class="course-card__desc">Guía completa de plantas medicinales y decorativas en México: cultivo, cuidados, usos, recetas naturales y cómo venderlas.</p>
+              </div>
+              <div class="course-card__footer">
+                <span class="course-card__price">$99 MXN</span>
+                <a class="course-card__btn" href="https://wa.me/525569862844?text=Hola%2C+quiero+el+curso+Plantas+Medicinales+y+Decorativas+%28%2499+MXN%29.+%C2%BFC%C3%B3mo+lo+compro%3F" target="_blank" rel="noopener">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.342-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Quiero este curso
+                </a>
+              </div>
+            </article>
+
           </div>
-        </article>
+        </div>
 
       </div>
     </section>
 
-    <section class="section process-section" style="padding-block:clamp(20px,3vw,40px)">
-      <div class="process-grid">
-        <article>
-          <div style="font-size:30px;margin-bottom:12px">1️⃣</div>
-          <strong>Elige tu curso</strong>
-          <p style="color:var(--muted);font-size:14px;margin-top:8px;line-height:1.5">Selecciona el tema que quieres aprender y haz clic en Comprar.</p>
-        </article>
-        <article>
-          <div style="font-size:30px;margin-bottom:12px">2️⃣</div>
-          <strong>Paga con Mercado Pago</strong>
-          <p style="color:var(--muted);font-size:14px;margin-top:8px;line-height:1.5">Tarjeta, transferencia, OXXO o saldo de Mercado Pago.</p>
-        </article>
-        <article>
-          <div style="font-size:30px;margin-bottom:12px">3️⃣</div>
-          <strong>Descarga tu PDF</strong>
-          <p style="color:var(--muted);font-size:14px;margin-top:8px;line-height:1.5">Recibes el enlace de descarga al instante en pantalla y por correo.</p>
-        </article>
-        <article>
-          <div style="font-size:30px;margin-bottom:12px">📲</div>
-          <strong>Lee desde cualquier dispositivo</strong>
-          <p style="color:var(--muted);font-size:14px;margin-top:8px;line-height:1.5">Compatible con celular, tablet y computadora.</p>
-        </article>
+    <!-- ── CTA ── -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-eyebrow" style="margin-bottom:16px">💬 ¿Tienes dudas?</p>
+          <h2>Escríbenos, respondemos en minutos.</h2>
+          <p>Dinos cuál es tu meta y te ayudamos a elegir el curso ideal. Sin presión, sin compromisos.</p>
+          <a href="https://wa.me/525569862844?text=Hola%2C+vi+el+cat%C3%A1logo+de+DailyTips+y+quiero+informaci%C3%B3n+sobre+los+cursos" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Chatear por WhatsApp
+          </a>
+        </div>
       </div>
     </section>
 
-    <section class="section" style="background:var(--surface-soft);border-block:1px solid var(--line)">
-      <div class="section__title">
-        <p class="eyebrow">¿Tienes dudas?</p>
-        <h2>Estamos disponibles por WhatsApp.</h2>
-        <p>Si perdiste tu enlace de descarga, no recibiste el correo o tienes cualquier pregunta, escríbenos directamente.</p>
-      </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="button" href="recuperar-curso.html">🔑 Recuperar mi descarga</a>
-        <a class="button button--ghost" href="https://wa.me/525569862844?text=Hola%2C%20compré%20un%20curso%20en%20DailyTips%20y%20necesito%20ayuda" target="_blank" rel="noopener">💬 Escribir por WhatsApp</a>
-      </div>
-    </section>
   </main>
 
+  <!-- ── FOOTER ── -->
   <footer class="footer">
-    <p><strong>Daily Tips</strong> · Plataforma de productos digitales para México.</p>
-    <p>Los cursos son materiales digitales en PDF. No sustituyen formación académica ni certificaciones oficiales.</p>
-    <p><a href="faq.html">FAQ</a> · <a href="contacto.html">Contacto</a> · <a href="recuperar-curso.html">Recuperar curso</a> · <a href="aviso-privacidad.html">Aviso de privacidad</a></p>
-    <p style="margin-top:16px"><a href="https://wa.me/525569862844?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20DailyTips" target="_blank" rel="noopener">WhatsApp: +52 55 6986 2844</a> · <a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener">Blog DailyTips</a> · dailytips.lat</p>
-    <p style="margin-top:8px;font-size:12px;color:var(--muted)">© 2026 DailyTips · Todos los derechos reservados</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-name" style="display:block;margin-bottom:12px">DailyTips</span>
+          <p>Cursos digitales en PDF para emprender, aprender y crecer. Entrega inmediata por WhatsApp. México.</p>
+          <a href="https://wa.me/525569862844" target="_blank" rel="noopener" class="btn btn--wa-outline" style="margin-top:16px;width:fit-content">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            +52 55 6986 2844
+          </a>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
+            <li><a href="entrega-digital.html">Mis Descargas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="aviso-privacidad.html">Aviso de privacidad</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 DailyTips · Productos digitales para México · dailytips.lat</p>
+        <p>No se envían productos físicos. Uso personal.</p>
+      </div>
+    </div>
   </footer>
 
-  <script src="app.js" defer></script>
+  <!-- WhatsApp flotante -->
+  <a class="wa-float" href="https://wa.me/525569862844?text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n+sobre+los+cursos+DailyTips" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const nav    = document.getElementById('main-nav');
+    toggle?.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.header')) {
+        nav?.classList.remove('is-open');
+        toggle?.classList.remove('is-open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Tabs
+    const tabBtns   = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        tabBtns.forEach(b => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+        tabPanels.forEach(p => p.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById('tab-' + target)?.classList.add('is-active');
+      });
+    });
+  </script>
 </body>
 </html>

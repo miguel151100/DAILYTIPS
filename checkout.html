@@ -9,6 +9,7 @@
   <meta property="og:description" content="Paga tu paquete DailyTips con Mercado Pago y recibe acceso digital a tus descargas.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://dailytips.lat/assets/dailytips-hero-banner.png">
+  <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" href="assets/dailytips-logo-cropped.png">
@@ -496,7 +497,7 @@
         <p class="success-title">¡Pago aprobado!</p>
         <p class="success-subtitle">Tu acceso está listo. Descarga tus archivos ahora.</p>
         <div class="success-links"></div>
-        <p class="success-code"></p>
+        <p class="success-code" hidden></p>
       </div>
 
       <!-- Pago pendiente (OXXO / ticket) -->
@@ -507,6 +508,7 @@
           Tu pago está pendiente de confirmación.<br>
           Te enviaremos tu acceso por correo en cuanto se procese.
         </p>
+        <p class="pending-order-note" style="font-size:.8rem;color:var(--muted);margin:8px 0 0"></p>
         <a class="pending-ticket-link" id="pending-ticket-link" href="#" target="_blank" rel="noopener" hidden>
           Ver ficha de pago
         </a>

@@ -116,23 +116,26 @@ function getDeliveryLinks(product) {
   return links;
 }
 
-function deliveryEmailHtml({ product, paymentId }) {
+function deliveryEmailHtml({ product, paymentId, accessToken }) {
   const deliveryUrl = `${SITE_URL}/entrega-digital.html`;
   const links = getDeliveryLinks(product);
+  const codeBlock = accessToken
+    ? `<p><strong>Tu código de acceso:</strong></p><p style="font-family:monospace;background:#f5f5f5;padding:10px 16px;border-radius:8px;font-size:15px;word-break:break-all">${accessToken}</p><p style="font-size:13px;color:#666">Guarda este código para acceder a tus archivos en cualquier momento.</p>`
+    : `<p><strong>Código de acceso:</strong> ${DELIVERY_ACCESS_CODE}</p>`;
 
   return `
     <div style="font-family:Arial,sans-serif;line-height:1.6;color:#06152e">
       <h1 style="margin:0 0 12px">Gracias por tu compra DailyTips</h1>
-      <p>Tu pago fue aprobado${paymentId ? ` con referencia ${paymentId}` : ""}.</p>
+      <p>Tu pago fue aprobado${paymentId ? ` (referencia: ${paymentId})` : ""}.</p>
       <p><strong>Producto:</strong> ${product.title}</p>
-      <p><strong>Código de acceso:</strong> ${DELIVERY_ACCESS_CODE}</p>
+      ${codeBlock}
       <p>Entra aquí para descargar tus archivos:</p>
-      <p><a href="${deliveryUrl}" style="background:#ff5a36;color:white;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:bold">Abrir entrega digital</a></p>
-      <p>Enlaces rápidos:</p>
+      <p><a href="${deliveryUrl}" style="background:#7C3AED;color:white;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:bold">Ir a entrega digital</a></p>
+      <p>Descargas directas:</p>
       <ul>
-        ${links.map((link) => `<li><a href="${link.url}">${link.label}</a> - ${link.description}</li>`).join("")}
+        ${links.map((link) => `<li><a href="${link.url}">${link.label}</a> — ${link.description || ""}</li>`).join("")}
       </ul>
-      <p>Si tienes dudas, responde este correo o escribe por WhatsApp.</p>
+      <p style="color:#666;font-size:13px">Si tienes dudas, escribe por <a href="https://wa.me/525569862844">WhatsApp: +52 55 6986 2844</a></p>
     </div>
   `;
 }

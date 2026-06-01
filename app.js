@@ -4,7 +4,6 @@ if (!catalog) return;
 const { products, categoryMeta, icon } = catalog;
 
 const whatsapp = "https://wa.me/525569862844?text=Hola%2C%20quiero%20comprar%20un%20paquete%20Daily%20Tips";
-const premiumPassword = atob("REFJTFRJUFMYMDI2");
 
 const menuToggle = document.querySelector(".menu-toggle");
 const topbar = document.querySelector(".topbar");
@@ -69,57 +68,6 @@ function unlockPremium() {
   renderPremiumDownloads();
 }
 
-const premiumForm = document.querySelector("#premium-form");
-if (premiumForm) {
-  const premiumPasswordInput = document.querySelector("#premium-password");
-  const premiumError = document.querySelector("#premium-error");
-  const premiumLogout = document.querySelector("#premium-logout");
-
-  premiumForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (premiumPasswordInput.value.trim().toUpperCase() === premiumPassword) {
-      premiumError.textContent = "";
-      unlockPremium();
-    } else {
-      premiumError.textContent = "Contraseña incorrecta. Revisa el mensaje que recibiste después de comprar.";
-    }
-  });
-
-  premiumLogout?.addEventListener("click", () => {
-    localStorage.removeItem("dailyTipsPremium");
-    document.querySelector("#premium-library").hidden = true;
-    document.querySelector("#premium-gate").hidden = false;
-    premiumPasswordInput.value = "";
-  });
-
-  if (localStorage.getItem("dailyTipsPremium") === "yes") unlockPremium();
-}
-
-const deliveryForm = document.querySelector("#delivery-form");
-if (deliveryForm) {
-  const deliveryPasswordInput = document.querySelector("#delivery-password");
-  const deliveryError = document.querySelector("#delivery-error");
-  const deliveryGate = document.querySelector("#delivery-gate");
-  const deliveryLibrary = document.querySelector("#delivery-library");
-
-  function unlockDelivery() {
-    deliveryGate.hidden = true;
-    deliveryLibrary.hidden = false;
-    localStorage.setItem("dailyTipsDelivery", "yes");
-  }
-
-  deliveryForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (deliveryPasswordInput.value.trim().toUpperCase() === premiumPassword) {
-      deliveryError.textContent = "";
-      unlockDelivery();
-    } else {
-      deliveryError.textContent = "Código incorrecto. Revisa el mensaje que recibiste después de comprar.";
-    }
-  });
-
-  if (localStorage.getItem("dailyTipsDelivery") === "yes") unlockDelivery();
-}
 
 document.querySelectorAll(".newsletter-form").forEach((form) => {
   form.addEventListener("submit", (event) => {
@@ -150,32 +98,6 @@ document.querySelectorAll("[data-education-filter]").forEach((button) => {
   });
 });
 
-const recipesBuyButton = document.querySelector("[data-recipes-buy]");
-const recipesModal = document.querySelector("#recipes-success-modal");
-const recipesModalClose = document.querySelector("[data-recipes-modal-close]");
-
-function startRecipesDownload() {
-  const link = document.createElement("a");
-  link.href = "./recetas-del-mundo-pack.zip";
-  link.download = "recetas-del-mundo-pack.zip";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-}
-
-recipesBuyButton?.addEventListener("click", () => {
-  // Prueba visual de entrega. La entrega automática real con Mercado Pago requiere Checkout Pro + webhook/backend.
-  recipesModal.hidden = false;
-  window.setTimeout(startRecipesDownload, 900);
-});
-
-recipesModalClose?.addEventListener("click", () => {
-  recipesModal.hidden = true;
-});
-
-recipesModal?.addEventListener("click", (event) => {
-  if (event.target === recipesModal) recipesModal.hidden = true;
-});
 
 document.querySelectorAll("[data-recipe-filter]").forEach((button) => {
   button.addEventListener("click", () => {
