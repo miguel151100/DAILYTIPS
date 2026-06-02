@@ -10,516 +10,423 @@
   <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* ── Reset & base ─────────────────────────────── */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Space Grotesk',sans-serif;background:#0D0500;color:#F5EBE0;line-height:1.65;overflow-x:hidden}
-    a{text-decoration:none;color:inherit}
-    img{display:block;width:100%}
-
-    /* ── Background ───────────────────────────────── */
-    .bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(192,57,43,.04)1px,transparent 1px),linear-gradient(90deg,rgba(192,57,43,.04)1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
-    .bg-orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;opacity:.4}
-    .bg-orb--1{width:600px;height:600px;background:radial-gradient(circle,rgba(192,57,43,.5)0%,transparent 70%);top:-200px;left:-150px}
-    .bg-orb--2{width:500px;height:500px;background:radial-gradient(circle,rgba(255,215,0,.3)0%,transparent 70%);bottom:-150px;right:-100px}
-
-    /* ── Container ────────────────────────────────── */
-    .container{max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,48px);position:relative;z-index:1}
-
-    /* ── Header / Nav ─────────────────────────────── */
-    .header{position:sticky;top:0;z-index:100;background:rgba(13,5,0,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(192,57,43,.25)}
-    .header .container{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
-    .brand{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:800;color:#FFD700;flex-shrink:0}
-    .brand img{width:32px;height:32px;object-fit:contain}
-    .nav{display:flex;align-items:center;gap:4px}
-    .nav-link{padding:7px 14px;border-radius:8px;font-size:.88rem;font-weight:500;color:rgba(245,235,224,.65);transition:.2s}
-    .nav-link:hover,.nav-link.is-active{color:#F5EBE0;background:rgba(192,57,43,.2)}
-    .menu-toggle{display:none;flex-direction:column;gap:5px;width:40px;height:40px;padding:9px 8px;background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3);border-radius:8px;cursor:pointer}
-    .menu-toggle span{display:block;width:20px;height:2px;background:#F5EBE0;border-radius:2px;transition:.2s}
-    .menu-toggle.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-    .menu-toggle.is-open span:nth-child(2){opacity:0}
-    .menu-toggle.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-    /* ── Section base ─────────────────────────────── */
-    .section{padding:clamp(56px,7vw,88px) 0}
-
-    /* ── Gradient text ────────────────────────────── */
-    .gold{background:linear-gradient(135deg,#FFD700,#F39C12);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .red{color:#E74C3C}
-
-    /* ── Buttons ──────────────────────────────────── */
-    .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:12px;font-family:inherit;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:.2s;white-space:nowrap}
-    .btn--wa{background:#25D366;color:#fff;box-shadow:0 0 24px rgba(37,211,102,.4)}
-    .btn--wa:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 0 40px rgba(37,211,102,.6)}
-    .btn--red{background:linear-gradient(135deg,#C0392B,#922B21);color:#fff;box-shadow:0 0 24px rgba(192,57,43,.4)}
-    .btn--red:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(192,57,43,.6)}
-    .btn--ghost{background:rgba(192,57,43,.12);color:#F5EBE0;border:1.5px solid rgba(192,57,43,.4)}
-    .btn--ghost:hover{background:rgba(192,57,43,.22);border-color:rgba(192,57,43,.7)}
-    .btn--lg{padding:18px 36px;font-size:1.1rem;border-radius:14px}
-
-    /* ── WA pill ─────────────────────────────────── */
-    .wa-svg{width:20px;height:20px;fill:currentColor;flex-shrink:0}
-
-    /* ── HERO ─────────────────────────────────────── */
-    .hero{padding:clamp(64px,9vw,112px) 0 clamp(48px,6vw,80px);text-align:center;position:relative}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(192,57,43,.2);border:1px solid rgba(192,57,43,.5);border-radius:999px;font-size:.78rem;font-weight:700;color:#F39C12;letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
-    .hero-title{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:900;line-height:1.08;letter-spacing:-.02em;margin-bottom:20px}
-    .hero-sub{font-size:1.1rem;color:rgba(245,235,224,.72);max-width:580px;margin:0 auto 36px;line-height:1.7}
-    .hero-price{margin-bottom:28px}
-    .hero-price .before{font-size:.9rem;color:rgba(245,235,224,.4);text-decoration:line-through;margin-bottom:4px}
-    .hero-price .now{font-size:3.8rem;font-weight:900;line-height:1;background:linear-gradient(135deg,#FFD700,#F39C12);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-price .currency{font-size:1.4rem;font-weight:700;vertical-align:super}
-    .hero-price .sub{font-size:.82rem;color:rgba(245,235,224,.5);margin-top:4px}
-    .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-    .hero-stats{display:flex;justify-content:center;gap:clamp(16px,3vw,40px);flex-wrap:wrap}
-    .stat{text-align:center}
-    .stat strong{display:block;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#FFD700,#F39C12);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .stat span{font-size:.72rem;color:rgba(245,235,224,.55);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-    .stat-sep{width:1px;height:40px;background:rgba(192,57,43,.3);align-self:center}
-
-    /* ── Video/Mockup preview ─────────────────────── */
-    .course-preview{position:relative;max-width:700px;margin:0 auto 56px;border-radius:20px;overflow:hidden;border:1px solid rgba(192,57,43,.35);box-shadow:0 0 60px rgba(192,57,43,.3)}
-    .course-preview img{height:340px;object-fit:cover}
-    .preview-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,.85)0%,transparent 60%);display:flex;align-items:flex-end;padding:24px}
-    .preview-tag{background:rgba(192,57,43,.9);color:#FFD700;padding:6px 14px;border-radius:8px;font-size:.8rem;font-weight:700;backdrop-filter:blur(8px)}
-
-    /* ── Eyebrow ──────────────────────────────────── */
-    .eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E74C3C;margin-bottom:10px}
-
-    /* ── Section title ────────────────────────────── */
-    .section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;line-height:1.15;margin-bottom:14px}
-    .section-sub{font-size:1rem;color:rgba(245,235,224,.65);max-width:520px;line-height:1.7}
-
-    /* ── Cards base ───────────────────────────────── */
-    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
-    .card{background:rgba(30,10,5,.6);border:1px solid rgba(192,57,43,.22);border-radius:16px;padding:24px;backdrop-filter:blur(10px);transition:.25s}
-    .card:hover{border-color:rgba(192,57,43,.55);transform:translateY(-4px);box-shadow:0 0 28px rgba(192,57,43,.2)}
-    .card-icon{font-size:2rem;margin-bottom:14px}
-    .card h3{font-size:.95rem;font-weight:700;color:#F5EBE0;margin-bottom:6px}
-    .card p{font-size:.85rem;color:rgba(245,235,224,.6);line-height:1.6}
-
-    /* ── Módulos ──────────────────────────────────── */
-    .modules-list{display:flex;flex-direction:column;gap:14px}
-    .module{display:flex;gap:16px;align-items:flex-start;background:rgba(30,10,5,.6);border:1px solid rgba(192,57,43,.2);border-radius:14px;padding:20px;transition:.2s}
-    .module:hover{border-color:rgba(192,57,43,.5)}
-    .module-num{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#C0392B,#922B21);color:#FFD700;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900;flex-shrink:0;box-shadow:0 0 16px rgba(192,57,43,.4)}
-    .module-body h3{font-size:1rem;font-weight:700;color:#F5EBE0;margin-bottom:4px}
-    .module-body p{font-size:.85rem;color:rgba(245,235,224,.6);line-height:1.6}
-
-    /* ── Recipes pills ────────────────────────────── */
-    .recipes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
-    .recipe-pill{background:rgba(192,57,43,.12);border:1px solid rgba(192,57,43,.3);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;color:#F5EBE0;transition:.2s}
-    .recipe-pill:hover{background:rgba(192,57,43,.25);border-color:rgba(192,57,43,.6)}
-    .recipe-pill .ri{font-size:1.4rem}
-
-    /* ── Includes list ────────────────────────────── */
-    .includes-list{display:flex;flex-direction:column;gap:10px}
-    .include-item{display:flex;align-items:center;gap:12px;font-size:.95rem;color:rgba(245,235,224,.88)}
-    .include-item::before{content:'✓';width:24px;height:24px;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.4);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#25D366;flex-shrink:0}
-
-    /* ── Pricing box ──────────────────────────────── */
-    .pricing-box{background:rgba(192,57,43,.12);border:1.5px solid rgba(192,57,43,.4);border-radius:24px;padding:clamp(32px,5vw,56px);text-align:center;position:relative;overflow:hidden}
-    .pricing-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(192,57,43,.2)0%,transparent 65%);pointer-events:none}
-    .pricing-box .big-price{font-size:clamp(3.5rem,8vw,5.5rem);font-weight:900;line-height:1;background:linear-gradient(135deg,#FFD700,#F39C12);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin:16px 0 8px}
-    .pricing-box .price-label{font-size:1.3rem;font-weight:700;color:rgba(245,235,224,.5);text-decoration:line-through;margin-bottom:4px}
-
-    /* ── Guarantee ────────────────────────────────── */
-    .guarantee{display:flex;gap:14px;align-items:center;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.25);border-radius:14px;padding:18px 20px;margin-top:20px}
-    .guarantee-icon{font-size:2.2rem;flex-shrink:0}
-    .guarantee p{font-size:.88rem;color:rgba(245,235,224,.8);line-height:1.6}
-    .guarantee strong{color:#F5EBE0}
-
-    /* ── WA Float ─────────────────────────────────── */
-    .wa-float{position:fixed;bottom:24px;right:24px;z-index:200;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 28px rgba(37,211,102,.55);transition:.2s}
-    .wa-float:hover{transform:scale(1.1);box-shadow:0 8px 40px rgba(37,211,102,.75)}
-    .wa-float svg{width:32px;height:32px;fill:#fff}
-
-    /* ── Responsive ───────────────────────────────── */
-    @media(max-width:640px){
-      .menu-toggle{display:flex}
-      .nav{position:fixed;top:64px;left:0;right:0;background:rgba(13,5,0,.97);backdrop-filter:blur(24px);flex-direction:column;align-items:stretch;padding:12px;gap:4px;border-bottom:1px solid rgba(192,57,43,.25);transform:translateY(-110%);opacity:0;transition:transform .25s,opacity .25s;pointer-events:none;z-index:99}
-      .nav.is-open{transform:translateY(0);opacity:1;pointer-events:auto}
-      .nav-link{padding:12px 16px}
-      .hero-actions{flex-direction:column;align-items:center}
-      .btn--lg{width:100%;justify-content:center}
-      .hero-price .now{font-size:3rem}
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-shopify.css">
 </head>
 <body>
 
-  <div class="bg-grid"></div>
-  <div class="bg-orb bg-orb--1"></div>
-  <div class="bg-orb bg-orb--2"></div>
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  <div class="announce-social">
+    <a href="https://wa.me/525569862844" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    <a href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+  <div class="announce-center">
+    ⚡ Precio de lanzamiento — Curso de Tamales por solo <strong>$39 MXN</strong> · <a href="#comprar">Comprar ahora →</a>
+  </div>
+  <div class="announce-right">dailytips.lat</div>
+</div>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container">
-      <a class="brand" href="index.html">
-        <img src="assets/dailytips-logo-cropped.png" alt="DailyTips">
-        DailyTips
-      </a>
-      <nav class="nav" id="main-nav">
-        <a href="index.html" class="nav-link">Inicio</a>
-        <a href="cursos.html" class="nav-link">Cursos</a>
-        <a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener" class="nav-link">Blog</a>
-        <a href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+de+Tamales+%28%2439+MXN%29" target="_blank" rel="noopener" class="btn btn--wa" style="padding:9px 18px;font-size:.84rem;margin-left:8px">
-          <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          Comprar $39
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="assets/dailytips-logo-cropped.png" alt="DailyTips">
+      <span class="brand-name">DailyTips</span>
+    </a>
+    <nav class="nav" id="main-nav">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <div class="nav-item">
+        <a href="cursos.html" class="nav-link active">
+          Cursos
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </a>
-      </nav>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+        <div class="nav-dropdown">
+          <a href="tamales.html"><span class="d-ico">⚡</span> Curso de Tamales<span class="d-price">$39</span></a>
+          <a href="cursos.html"><span class="d-ico">🆓</span> Cursos Gratis</a>
+          <a href="cursos.html"><span class="d-ico">📚</span> Ver catálogo</a>
+        </div>
+      </div>
+      <a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener" class="nav-link">Blog</a>
+    </nav>
+    <div class="header-right">
+      <a class="btn-wa-nav" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Comprar $39
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main>
+<main>
 
-    <!-- ═══════════════════════════════════
-         HERO
-    ═══════════════════════════════════ -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-badge">🫔 Curso Digital Completo · 2026</div>
-        <h1 class="hero-title">
-          Aprende a hacer tamales,<br>
-          <span class="gold">véndelos y emprende</span><br>
-          desde casa
-        </h1>
-        <p class="hero-sub">
-          Todo lo que necesitas: recetas probadas, calculadora de ganancias, estrategias de venta, sistema de pedidos y más. Entrega inmediata por WhatsApp.
-        </p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.pexels.com/photos/5835353/pexels-photo-5835353.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Tamales mexicanos listos para vender" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="wrap hero-content">
+    <span class="hero-tag">🫔 Curso Digital Completo · 2026</span>
+    <h1>Aprende a Hacer y<br>Vender <em>Tamales</em><br>desde Casa</h1>
+    <p class="hero-sub">11 recetas probadas, calculadora de ganancias, sistema de pedidos y todo lo que necesitas para emprender. Entrega inmediata por WhatsApp.</p>
+    <div class="hero-price">
+      <span class="old">$199 MXN</span>
+      <span class="new">$39 MXN</span>
+      <span class="suf">Pago único</span>
+    </div>
+    <div class="hero-btns" style="margin-top:20px">
+      <a class="btn-hero-wa" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Quiero el curso — $39 MXN
+      </a>
+      <a class="btn-hero" href="#modulos">Ver contenido ↓</a>
+    </div>
+  </div>
+</section>
 
-        <div class="hero-price">
-          <div class="before">Antes $199 MXN</div>
-          <div class="now"><span class="currency">$</span>39 <span style="font-size:1.6rem;font-weight:700">MXN</span></div>
-          <div class="sub">Pago único · Acceso de por vida · PDF descargable</div>
-        </div>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="wrap stats-grid">
+    <div class="stat"><strong>13</strong><span>Secciones</span></div>
+    <div class="stat"><strong>11</strong><span>Recetas</span></div>
+    <div class="stat"><strong>+60</strong><span>Tips Pro</span></div>
+    <div class="stat"><strong>6</strong><span>Módulos</span></div>
+  </div>
+</div>
 
-        <div class="hero-actions">
-          <a href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFC%C3%B3mo+pago%3F" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
-            <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Quiero el curso — $39 MXN
-          </a>
-          <a href="#modulos" class="btn btn--ghost btn--lg">Ver contenido del curso ↓</a>
-        </div>
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="trust-grid wrap">
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
+      <div class="trust-text"><strong>Entrega inmediata</strong><span>PDF en tu WhatsApp en minutos</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      <div class="trust-text"><strong>Pago 100% seguro</strong><span>Transferencia, OXXO o Mercado Pago</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div>
+      <div class="trust-text"><strong>PDF descargable</strong><span>Compatible con celular, tablet y PC</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75"/></svg></div>
+      <div class="trust-text"><strong>Pago único</strong><span>Sin mensualidades ni suscripciones</span></div>
+    </div>
+  </div>
+</div>
 
-        <div class="hero-stats">
-          <div class="stat"><strong>13</strong><span>Secciones</span></div>
-          <div class="stat-sep"></div>
-          <div class="stat"><strong>11</strong><span>Recetas</span></div>
-          <div class="stat-sep"></div>
-          <div class="stat"><strong>+60</strong><span>Tips pro</span></div>
-          <div class="stat-sep"></div>
-          <div class="stat"><strong>6</strong><span>Módulos</span></div>
-          <div class="stat-sep"></div>
-          <div class="stat"><strong>100%</strong><span>Práctico</span></div>
-        </div>
+<!-- QUÉ APRENDERÁS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">¿Qué aprenderás?</span>
+      <h2 class="section-title">Todo para vender desde el <em>primer día</em></h2>
+      <p class="section-sub">Un curso completo y práctico diseñado para que empieces a generar ingresos con tamales desde tu casa, sin experiencia previa.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">🫔</div>
+        <h3>Domina las recetas</h3>
+        <p>Masa base infalible, 6 tamales clásicos y 5 recetas especiales que se venden solas. Técnicas de cocción perfecta.</p>
       </div>
-    </section>
-
-    <!-- ═══════════════════════════════════
-         FOTO PORTADA
-    ═══════════════════════════════════ -->
-    <div class="container" style="margin-bottom:0">
-      <div class="course-preview">
-        <img src="https://images.pexels.com/photos/5835353/pexels-photo-5835353.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Tamales mexicanos listos para vender">
-        <div class="preview-overlay">
-          <span class="preview-tag">🫔 Negocio de Tamales 2026 — Curso Digital Completo</span>
-        </div>
+      <div class="feature">
+        <div class="feature-icon">💰</div>
+        <h3>Calcula tus ganancias</h3>
+        <p>Calculadora de costos por lote y por pieza. Aprende a fijar precios competitivos y maximizar tu utilidad.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📱</div>
+        <h3>Vende por WhatsApp</h3>
+        <p>Guión listo para conseguir clientes, tomar pedidos por WhatsApp y fidelizar compradores frecuentes.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🍞</div>
+        <h3>Amplía tu menú</h3>
+        <p>Derivados de masa, bebidas y salsas que aumentan tu ticket de venta hasta un 40% sin más trabajo.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📷</div>
+        <h3>Fotos que venden</h3>
+        <p>Cómo fotografiar tus tamales con el celular, empaque económico de imagen profesional y etiquetas caseras.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📅</div>
+        <h3>Temporadas clave</h3>
+        <p>Cuándo vender más, qué ofrecer en cada temporada y cómo prepararte para Navidad, Día de Muertos y más.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📋</div>
+        <h3>Sistema de pedidos</h3>
+        <p>Formulario profesional para tomar pedidos. Genera el mensaje de WhatsApp listo para enviar al cliente.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⏱️</div>
+        <h3>Timer de cocción</h3>
+        <p>Timers exactos para cada tipo de cocción: vaporera, olla express y microondas. Nunca más tamales crudos.</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- ═══════════════════════════════════
-         QUÉ APRENDERÁS
-    ═══════════════════════════════════ -->
-    <section class="section">
-      <div class="container">
-        <p class="eyebrow">¿Qué aprenderás?</p>
-        <h2 class="section-title">Todo lo que necesitas para <span class="gold">vender desde el primer día</span></h2>
-        <p class="section-sub" style="margin-bottom:40px">Un curso completo y práctico diseñado para que empieces a generar ingresos con tamales desde tu casa, sin experiencia previa.</p>
-
-        <div class="card-grid">
-          <div class="card">
-            <div class="card-icon">🫔</div>
-            <h3>Domina las recetas</h3>
-            <p>Masa base infalible, 6 tamales clásicos y 5 recetas especiales que se venden solas. Técnicas de cocción perfecta.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">💰</div>
-            <h3>Calcula tus ganancias reales</h3>
-            <p>Calculadora de costos por lote y por pieza. Aprende a fijar precios competitivos y maximizar tu utilidad.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">📱</div>
-            <h3>Vende por WhatsApp y redes</h3>
-            <p>Guión listo para conseguir clientes, tomar pedidos por WhatsApp y fidelizar compradores frecuentes.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">🍞</div>
-            <h3>Amplía tu menú</h3>
-            <p>Derivados de masa, bebidas y salsas que aumentan tu ticket de venta hasta un 40% sin más trabajo.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">📷</div>
-            <h3>Fotos que venden</h3>
-            <p>Cómo fotografiar tus tamales con el celular, empaque económico de imagen profesional y etiquetas caseras.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">📅</div>
-            <h3>Temporadas y fechas clave</h3>
-            <p>Cuándo vender más, qué ofrecer en cada temporada y cómo prepararte para Navidad, Día de Muertos y más.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">📋</div>
-            <h3>Sistema de pedidos</h3>
-            <p>Formulario profesional para tomar pedidos. Genera el mensaje de WhatsApp listo para enviar al cliente.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">⏱️</div>
-            <h3>Timer de cocción integrado</h3>
-            <p>Timers exactos para cada tipo de cocción: vaporera, olla express y microondas. Nunca más tamales crudos.</p>
-          </div>
-        </div>
+<!-- SPOTLIGHT: IMAGEN + INCLUYE -->
+<section class="section section--cream">
+  <div class="wrap spotlight">
+    <div class="spotlight-img">
+      <img src="https://images.pexels.com/photos/4551832/pexels-photo-4551832.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Preparación de tamales">
+      <div class="spotlight-img-top">
+        <span class="badge badge-red">⚡ Oferta</span>
+        <span class="badge badge-gold">80% OFF</span>
       </div>
-    </section>
-
-    <!-- ═══════════════════════════════════
-         MÓDULOS
-    ═══════════════════════════════════ -->
-    <section class="section" id="modulos" style="padding-top:32px">
-      <div class="container">
-        <p class="eyebrow">Contenido del curso</p>
-        <h2 class="section-title">Los <span class="gold">6 Módulos</span> completos</h2>
-        <p class="section-sub" style="margin-bottom:36px">Cada módulo está diseñado para llevarte de cero a vender en el menor tiempo posible.</p>
-
-        <div class="modules-list">
-          <div class="module">
-            <div class="module-num">1</div>
-            <div class="module-body">
-              <h3>Bienvenida y Mentalidad Emprendedora</h3>
-              <p>Por qué los tamales son el negocio más viable desde casa, mitos que frenan a las emprendedoras y cómo empezar sin dinero ni experiencia previa.</p>
-            </div>
-          </div>
-          <div class="module">
-            <div class="module-num">2</div>
-            <div class="module-body">
-              <h3>Ingredientes, Equipo y Mise en Place</h3>
-              <p>Lista completa de ingredientes, dónde comprarlos más barato, equipo mínimo para empezar y cómo preparar todo el día anterior para no correr el día de venta.</p>
-            </div>
-          </div>
-          <div class="module">
-            <div class="module-num">3</div>
-            <div class="module-body">
-              <h3>Las Recetas que Más se Venden</h3>
-              <p>Masa base infalible con la prueba del agua, los 6 rellenos clásicos y 5 recetas especiales de alto margen. Todo con ingredientes, cantidades exactas y pasos detallados.</p>
-            </div>
-          </div>
-          <div class="module">
-            <div class="module-num">4</div>
-            <div class="module-body">
-              <h3>Costos Reales y Precios que Generan Ganancia</h3>
-              <p>Calculadora de costos por lote y por pieza. Estrategias de precios competitivos, paquetes y combos para vender más y ganar mejor desde el primer lote.</p>
-            </div>
-          </div>
-          <div class="module">
-            <div class="module-num">5</div>
-            <div class="module-body">
-              <h3>Presentación, Foto y Empaque</h3>
-              <p>Cómo fotografiar tus tamales con el celular y conseguir fotos que generan ventas. Empaque económico con imagen profesional y etiquetas caseras para diferenciarte.</p>
-            </div>
-          </div>
-          <div class="module">
-            <div class="module-num">6</div>
-            <div class="module-body">
-              <h3>Cómo Vender, Tomar Pedidos y Crecer</h3>
-              <p>Guión real para WhatsApp e Instagram, sistema de pedidos profesional y agenda semanal. Estrategia para pasar de 20 a 200 tamales por semana.</p>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div>
+      <span class="spotlight-cat">Emprendimiento · Gastronomía</span>
+      <h2 class="spotlight-title">Todo lo que necesitas <em>en un solo PDF</em></h2>
+      <div class="spotlight-price-row">
+        <span class="price-big">$39 MXN</span>
+        <span class="price-old">$199</span>
+        <span class="price-save">Ahorras $160</span>
       </div>
-    </section>
-
-    <!-- ═══════════════════════════════════
-         RECETAS
-    ═══════════════════════════════════ -->
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <p class="eyebrow">Recetas incluidas</p>
-        <h2 class="section-title"><span class="gold">11 Recetas</span> listas para hacer y vender</h2>
-        <p class="section-sub" style="margin-bottom:32px">6 clásicos que siempre se venden + 5 especiales de alto margen. Todas con ingredientes, cantidades y tiempos exactos.</p>
-
-        <div class="recipes-grid">
-          <div class="recipe-pill"><span class="ri">🥣</span> Masa Base Perfecta</div>
-          <div class="recipe-pill"><span class="ri">🔴</span> Tamales Rojos</div>
-          <div class="recipe-pill"><span class="ri">🟢</span> Tamales Verdes</div>
-          <div class="recipe-pill"><span class="ri">🫑</span> Rajas con Queso</div>
-          <div class="recipe-pill"><span class="ri">🍃</span> Oaxaqueños</div>
-          <div class="recipe-pill"><span class="ri">🌸</span> Dulce Rosa</div>
-          <div class="recipe-pill"><span class="ri">🍍</span> Tamales de Piña</div>
-          <div class="recipe-pill"><span class="ri">🌱</span> Tamales de Soya</div>
-          <div class="recipe-pill"><span class="ri">🧀</span> Rajas con Crema</div>
-          <div class="recipe-pill"><span class="ri">🌶️</span> Mole Negro</div>
-          <div class="recipe-pill"><span class="ri">🫙</span> Frijol con Puerco</div>
-        </div>
-
-        <div style="margin-top:24px;padding:18px 20px;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);border-radius:14px;font-size:.9rem;color:rgba(245,235,224,.75);line-height:1.7">
-          💡 <strong style="color:#FFD700">Bonus incluido:</strong> Salsas para acompañar (roja, verde, chipotle y de habanero), bebidas para vender junto con los tamales (atole, champurrado, café de olla) y derivados de masa para ampliar tu menú y aumentar tu ticket de venta hasta un 40%.
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════
-         QUÉ INCLUYE
-    ═══════════════════════════════════ -->
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
-          <div>
-            <p class="eyebrow">¿Qué incluye?</p>
-            <h2 class="section-title">Todo lo que necesitas <span class="gold">en un solo PDF</span></h2>
-            <div class="includes-list" style="margin-top:28px">
-              <div class="include-item">13 secciones de contenido práctico</div>
-              <div class="include-item">11 recetas completas (clásicas y especiales)</div>
-              <div class="include-item">Calculadora de costos y ganancias por lote</div>
-              <div class="include-item">Tabla de precios sugeridos por tipo de tamal</div>
-              <div class="include-item">Guía de temporadas y fechas especiales</div>
-              <div class="include-item">Recetas de 4 salsas para acompañar</div>
-              <div class="include-item">Bebidas que se venden junto con tamales</div>
-              <div class="include-item">Sistema de pedidos por WhatsApp Business</div>
-              <div class="include-item">Timer de cocción para vaporera y olla express</div>
-              <div class="include-item">Guión de ventas para WhatsApp e Instagram</div>
-              <div class="include-item">Errores más comunes y cómo evitarlos</div>
-              <div class="include-item">Checklist de avance del curso</div>
-              <div class="include-item">+60 tips profesionales de tamaleras expertas</div>
-            </div>
-          </div>
-          <div>
-            <div style="background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:20px;overflow:hidden">
-              <img src="https://images.pexels.com/photos/4551832/pexels-photo-4551832.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Preparación de tamales" style="height:280px;object-fit:cover">
-              <div style="padding:20px">
-                <div style="font-size:.8rem;color:rgba(245,235,224,.55);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Entrega inmediata</div>
-                <div style="font-size:.95rem;color:rgba(245,235,224,.85)">Después de tu pago, recibes el PDF directo en tu WhatsApp en menos de 10 minutos.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════
-         PRECIO + CTA
-    ═══════════════════════════════════ -->
-    <section class="section">
-      <div class="container">
-        <div class="pricing-box">
-          <p class="eyebrow">Oferta especial</p>
-          <h2 class="section-title">Empieza hoy por <span class="gold">solo $39 MXN</span></h2>
-          <div class="price-label">Precio regular $199 MXN</div>
-          <span class="big-price">$39 MXN</span>
-          <p style="font-size:.88rem;color:rgba(245,235,224,.55);margin-bottom:32px">Pago único · Sin mensualidades · PDF descargable · Acceso de por vida</p>
-
-          <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;position:relative">
-            <a href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
-              <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-              Comprar por WhatsApp — $39 MXN
-            </a>
-          </div>
-
-          <div class="guarantee" style="max-width:500px;margin:0 auto">
-            <div class="guarantee-icon">🛡️</div>
-            <p><strong>Entrega garantizada.</strong> Después de confirmar tu pago te enviamos el PDF directo en tu WhatsApp. Si tienes algún problema, te ayudamos hasta resolverlo.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════
-         FAQ
-    ═══════════════════════════════════ -->
-    <section class="section" style="padding-top:0">
-      <div class="container" style="max-width:680px">
-        <p class="eyebrow">Preguntas frecuentes</p>
-        <h2 class="section-title" style="margin-bottom:28px">¿Tienes <span class="gold">dudas?</span></h2>
-
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <details style="background:rgba(30,10,5,.6);border:1px solid rgba(192,57,43,.22);border-radius:14px;overflow:hidden">
-            <summary style="padding:18px 20px;cursor:pointer;font-weight:600;color:#F5EBE0;display:flex;justify-content:space-between;align-items:center;list-style:none;font-size:.95rem">¿Cómo recibo el curso? <span style="color:#C0392B;font-size:1.2rem;flex-shrink:0">＋</span></summary>
-            <div style="padding:0 20px 18px;font-size:.88rem;color:rgba(245,235,224,.7);line-height:1.8">Escríbenos por WhatsApp, confirmas tu pago (transferencia, OXXO o Mercado Pago) y te enviamos el PDF directamente en tu WhatsApp en menos de 10 minutos.</div>
-          </details>
-          <details style="background:rgba(30,10,5,.6);border:1px solid rgba(192,57,43,.22);border-radius:14px;overflow:hidden">
-            <summary style="padding:18px 20px;cursor:pointer;font-weight:600;color:#F5EBE0;display:flex;justify-content:space-between;align-items:center;list-style:none;font-size:.95rem">¿Necesito experiencia previa? <span style="color:#C0392B;font-size:1.2rem;flex-shrink:0">＋</span></summary>
-            <div style="padding:0 20px 18px;font-size:.88rem;color:rgba(245,235,224,.7);line-height:1.8">No. El curso está diseñado desde cero. El módulo 1 cubre mentalidad y el módulo 2 te enseña los ingredientes y herramientas básicas. Puedes empezar sin saber nada.</div>
-          </details>
-          <details style="background:rgba(30,10,5,.6);border:1px solid rgba(192,57,43,.22);border-radius:14px;overflow:hidden">
-            <summary style="padding:18px 20px;cursor:pointer;font-weight:600;color:#F5EBE0;display:flex;justify-content:space-between;align-items:center;list-style:none;font-size:.95rem">¿Cuánto puedo ganar vendiendo tamales? <span style="color:#C0392B;font-size:1.2rem;flex-shrink:0">＋</span></summary>
-            <div style="padding:0 20px 18px;font-size:.88rem;color:rgba(245,235,224,.7);line-height:1.8">Depende del precio y tu zona, pero con lotes de 50-100 tamales puedes ganar entre $300 y $700 MXN por tanda. El curso incluye la calculadora exacta para que lo calcules con tus costos reales.</div>
-          </details>
-          <details style="background:rgba(30,10,5,.6);border:1px solid rgba(192,57,43,.22);border-radius:14px;overflow:hidden">
-            <summary style="padding:18px 20px;cursor:pointer;font-weight:600;color:#F5EBE0;display:flex;justify-content:space-between;align-items:center;list-style:none;font-size:.95rem">¿El PDF funciona en celular? <span style="color:#C0392B;font-size:1.2rem;flex-shrink:0">＋</span></summary>
-            <div style="padding:0 20px 18px;font-size:.88rem;color:rgba(245,235,224,.7);line-height:1.8">Sí. Es 100% compatible con celular, tablet y computadora. Se abre con cualquier lector de PDF (el que ya tienes en tu teléfono sirve perfectamente).</div>
-          </details>
-          <details style="background:rgba(30,10,5,.6);border:1px solid rgba(192,57,43,.22);border-radius:14px;overflow:hidden">
-            <summary style="padding:18px 20px;cursor:pointer;font-weight:600;color:#F5EBE0;display:flex;justify-content:space-between;align-items:center;list-style:none;font-size:.95rem">¿Por qué solo $39 MXN? <span style="color:#C0392B;font-size:1.2rem;flex-shrink:0">＋</span></summary>
-            <div style="padding:0 20px 18px;font-size:.88rem;color:rgba(245,235,224,.7);line-height:1.8">Es precio de lanzamiento para que lo puedas probar sin riesgo. El precio regular es $199 MXN. Si el curso te sirve, compártelo.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════
-         CTA FINAL
-    ═══════════════════════════════════ -->
-    <section class="section" style="padding-top:0;padding-bottom:clamp(56px,7vw,96px)">
-      <div class="container" style="text-align:center">
-        <p style="font-size:2rem;margin-bottom:12px">🫔</p>
-        <h2 class="section-title">¿A qué esperas?</h2>
-        <p style="font-size:1rem;color:rgba(245,235,224,.6);max-width:440px;margin:0 auto 32px;line-height:1.7">Empieza hoy, ten tu primer lote listo este fin de semana y consigue tus primeros clientes antes de que termine el mes.</p>
-        <a href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
-          <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      <ul class="includes">
+        <li>13 secciones de contenido práctico</li>
+        <li>11 recetas completas (clásicas y especiales)</li>
+        <li>Calculadora de costos y ganancias por lote</li>
+        <li>Tabla de precios sugeridos por tipo de tamal</li>
+        <li>Guía de temporadas y fechas especiales</li>
+        <li>Recetas de 4 salsas para acompañar</li>
+        <li>Bebidas que se venden junto con tamales</li>
+        <li>Sistema de pedidos por WhatsApp Business</li>
+        <li>Timer de cocción para vaporera y olla express</li>
+        <li>Guión de ventas para WhatsApp e Instagram</li>
+        <li>Errores más comunes y cómo evitarlos</li>
+        <li>Checklist de avance del curso</li>
+        <li>+60 tips profesionales de tamaleras expertas</li>
+      </ul>
+      <div class="spotlight-cta">
+        <a class="btn-buy-lg" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           Comprar por WhatsApp — $39 MXN
         </a>
-        <p style="font-size:.8rem;color:rgba(245,235,224,.35);margin-top:14px">📥 Entrega en menos de 10 minutos · Pago único · Sin mensualidades</p>
+        <p class="spotlight-note">📥 PDF en WhatsApp en menos de 10 minutos · Sin mensualidades · Acceso de por vida</p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-  </main>
+<!-- MÓDULOS -->
+<section class="section" id="modulos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">Contenido del curso</span>
+      <h2 class="section-title">Los <em>6 Módulos</em> completos</h2>
+      <p class="section-sub">Cada módulo está diseñado para llevarte de cero a vender en el menor tiempo posible.</p>
+    </div>
+    <div class="modules-list">
+      <div class="module">
+        <div class="module-num">1</div>
+        <div class="module-body">
+          <h3>Bienvenida y Mentalidad Emprendedora</h3>
+          <p>Por qué los tamales son el negocio más viable desde casa, mitos que frenan a las emprendedoras y cómo empezar sin dinero ni experiencia previa.</p>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-num">2</div>
+        <div class="module-body">
+          <h3>Ingredientes, Equipo y Mise en Place</h3>
+          <p>Lista completa de ingredientes, dónde comprarlos más barato, equipo mínimo para empezar y cómo preparar todo el día anterior para no correr el día de venta.</p>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-num">3</div>
+        <div class="module-body">
+          <h3>Las Recetas que Más se Venden</h3>
+          <p>Masa base infalible con la prueba del agua, los 6 rellenos clásicos y 5 recetas especiales de alto margen. Todo con ingredientes, cantidades exactas y pasos detallados.</p>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-num">4</div>
+        <div class="module-body">
+          <h3>Costos Reales y Precios que Generan Ganancia</h3>
+          <p>Calculadora de costos por lote y por pieza. Estrategias de precios competitivos, paquetes y combos para vender más y ganar mejor desde el primer lote.</p>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-num">5</div>
+        <div class="module-body">
+          <h3>Presentación, Foto y Empaque</h3>
+          <p>Cómo fotografiar tus tamales con el celular y conseguir fotos que generan ventas. Empaque económico con imagen profesional y etiquetas caseras para diferenciarte.</p>
+        </div>
+      </div>
+      <div class="module">
+        <div class="module-num">6</div>
+        <div class="module-body">
+          <h3>Cómo Vender, Tomar Pedidos y Crecer</h3>
+          <p>Guión real para WhatsApp e Instagram, sistema de pedidos profesional y agenda semanal. Estrategia para pasar de 20 a 200 tamales por semana.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer style="border-top:1px solid rgba(192,57,43,.2);padding:24px 0;text-align:center;position:relative;z-index:1">
-    <p style="font-size:.8rem;color:rgba(245,235,224,.3)">© 2026 DailyTips · dailytips.lat · <a href="https://wa.me/525569862844" target="_blank" rel="noopener" style="color:rgba(245,235,224,.4)">+52 55 6986 2844</a></p>
-  </footer>
+<!-- RECETAS -->
+<section class="section section--gray">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">Recetas incluidas</span>
+      <h2 class="section-title"><em>11 Recetas</em> listas para hacer y vender</h2>
+      <p class="section-sub">6 clásicos que siempre se venden + 5 especiales de alto margen. Todas con ingredientes, cantidades y tiempos exactos.</p>
+    </div>
+    <div class="recipes-grid">
+      <div class="recipe-pill"><span class="ri">🥣</span> Masa Base Perfecta</div>
+      <div class="recipe-pill"><span class="ri">🔴</span> Tamales Rojos</div>
+      <div class="recipe-pill"><span class="ri">🟢</span> Tamales Verdes</div>
+      <div class="recipe-pill"><span class="ri">🫑</span> Rajas con Queso</div>
+      <div class="recipe-pill"><span class="ri">🍃</span> Oaxaqueños</div>
+      <div class="recipe-pill"><span class="ri">🌸</span> Dulce Rosa</div>
+      <div class="recipe-pill"><span class="ri">🍍</span> Tamales de Piña</div>
+      <div class="recipe-pill"><span class="ri">🌱</span> Tamales de Soya</div>
+      <div class="recipe-pill"><span class="ri">🧀</span> Rajas con Crema</div>
+      <div class="recipe-pill"><span class="ri">🌶️</span> Mole Negro</div>
+      <div class="recipe-pill"><span class="ri">🫙</span> Frijol con Puerco</div>
+    </div>
+    <div class="bonus-box" style="margin-top:24px">
+      <span class="bi">💡</span>
+      <p><strong>Bonus incluido:</strong> Salsas para acompañar (roja, verde, chipotle y habanero), bebidas para vender junto con los tamales (atole, champurrado, café de olla) y derivados de masa para ampliar tu menú y aumentar tu ticket de venta hasta un 40%.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- WhatsApp flotante -->
-  <a class="wa-float" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener" aria-label="Comprar curso de tamales">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-  </a>
+<!-- PRICING -->
+<section class="section" id="comprar">
+  <div class="wrap">
+    <div class="pricing-box">
+      <span class="section-label">Oferta especial</span>
+      <h2 class="section-title">Empieza hoy por solo <em>$39 MXN</em></h2>
+      <span class="price-old-lg">Precio regular $199 MXN</span>
+      <span class="price-big-lg">$39 MXN</span>
+      <span class="price-save-lg">Ahorras $160</span>
+      <p class="price-note">Pago único · Sin mensualidades · PDF descargable · Acceso de por vida</p>
+      <a class="btn-buy-lg" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Comprar por WhatsApp — $39 MXN
+      </a>
+      <div class="guarantee">
+        <div class="guarantee-ico">🛡️</div>
+        <p><strong>Entrega garantizada.</strong> Después de confirmar tu pago te enviamos el PDF directo en tu WhatsApp en menos de 10 minutos. Si tienes algún problema, te ayudamos hasta resolverlo.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // Mobile menu
-    const toggle = document.getElementById('menu-toggle');
-    const nav    = document.getElementById('main-nav');
-    toggle?.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.header')) {
-        nav?.classList.remove('is-open');
-        toggle?.classList.remove('is-open');
-        toggle?.setAttribute('aria-expanded','false');
-      }
-    });
-    // FAQ accordion arrow toggle
-    document.querySelectorAll('details').forEach(d => {
-      const arrow = d.querySelector('summary span:last-child');
-      d.addEventListener('toggle', () => {
-        if(arrow) arrow.textContent = d.open ? '－' : '＋';
-      });
-    });
-  </script>
+<!-- FAQ -->
+<section class="section section--cream">
+  <div class="wrap" style="max-width:720px;margin:0 auto">
+    <div class="section-head">
+      <span class="section-label">Preguntas frecuentes</span>
+      <h2 class="section-title">¿Tienes <em>dudas?</em></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">¿Cómo recibo el curso?</summary>
+        <div class="faq-a">Escríbenos por WhatsApp, confirmas tu pago (transferencia, OXXO o Mercado Pago) y te enviamos el PDF directamente en tu WhatsApp en menos de 10 minutos.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Necesito experiencia previa?</summary>
+        <div class="faq-a">No. El curso está diseñado desde cero. El módulo 1 cubre mentalidad y el módulo 2 te enseña los ingredientes y herramientas básicas. Puedes empezar sin saber nada.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Cuánto puedo ganar vendiendo tamales?</summary>
+        <div class="faq-a">Depende del precio y tu zona, pero con lotes de 50-100 tamales puedes ganar entre $300 y $700 MXN por tanda. El curso incluye la calculadora exacta para que lo calcules con tus costos reales.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿El PDF funciona en celular?</summary>
+        <div class="faq-a">Sí. Es 100% compatible con celular, tablet y computadora. Se abre con cualquier lector de PDF (el que ya tienes en tu teléfono sirve perfectamente).</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Por qué solo $39 MXN?</summary>
+        <div class="faq-a">Es precio de lanzamiento para que lo puedas probar sin riesgo. El precio regular es $199 MXN. Si el curso te sirve, compártelo.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="wrap">
+    <span class="section-label">Lanzamiento 2026</span>
+    <h2>¿A qué esperas?</h2>
+    <p>Empieza hoy, ten tu primer lote listo este fin de semana y consigue tus primeros clientes antes de que termine el mes.</p>
+    <div class="price-hero">$39 <span style="font-size:2rem">MXN</span></div>
+    <div class="price-note">Antes $199 · Ahorras $160 · Pago único · Sin mensualidades</div>
+    <div class="cta-btns">
+      <a class="btn-cta-wa" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Comprar por WhatsApp
+      </a>
+      <a class="btn-cta-ghost" href="cursos.html">Ver más cursos</a>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-brand-name">DailyTips</span>
+        <p class="footer-brand p">Cursos digitales para emprender, aprender y crecer desde casa. Entrega por WhatsApp. México.</p>
+        <a href="https://wa.me/525569862844" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;padding:8px 16px;background:var(--wa);color:#fff;border-radius:999px;font-size:.8rem;font-weight:700;margin-top:14px">
+          <svg class="wa-svg-sm" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          +52 55 6986 2844
+        </a>
+      </div>
+      <div class="footer-col">
+        <h4>Páginas</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="tamales.html">Curso de Tamales</a></li>
+          <li><a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Cursos Gratis</h4>
+        <ul>
+          <li><a href="curso-ia-negocios.html">IA para Negocios</a></li>
+          <li><a href="curso-barismo.html">Barismo Profesional</a></li>
+          <li><a href="cursos.html">Ver todos →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DailyTips · dailytips.lat · Productos digitales para México</p>
+      <p>No se envían productos físicos · Uso personal</p>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener" aria-label="Comprar curso por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav    = document.getElementById('main-nav');
+  toggle?.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.header')) { nav?.classList.remove('open'); toggle?.classList.remove('open'); }
+  });
+</script>
 </body>
 </html>
