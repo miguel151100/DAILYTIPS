@@ -3,466 +3,1100 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DailyTips — Cursos Digitales desde Casa</title>
+  <title>DailyTips — Cursos Digitales para Emprender desde Casa</title>
   <meta name="description" content="Aprende a vender tamales, barismo, IA y más. Cursos digitales en PDF, entrega inmediata por WhatsApp. Desde $39 MXN.">
   <link rel="icon" href="assets/dailytips-logo-cropped.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset ────────────────────────────────── */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    img{display:block;width:100%}
-    a{text-decoration:none;color:inherit}
-    button{cursor:pointer;font-family:inherit}
-    body{font-family:'DM Sans',system-ui,sans-serif;background:#fff;color:#1a1a1a;line-height:1.6;overflow-x:hidden;font-size:16px}
+/* ═══════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+img{display:block;width:100%}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background:#fff;
+  color:#111;
+  line-height:1.6;
+  overflow-x:hidden;
+  font-size:15px;
+}
 
-    /* ── Variables ────────────────────────────── */
-    :root{
-      --red:#B91C1C;
-      --red-dark:#991B1B;
-      --red-light:#FEF2F2;
-      --gold:#D97706;
-      --green:#16A34A;
-      --wa:#25D366;
-      --wa-dark:#1ebe5d;
-      --gray-50:#F9FAFB;
-      --gray-100:#F3F4F6;
-      --gray-200:#E5E7EB;
-      --gray-400:#9CA3AF;
-      --gray-600:#4B5563;
-      --gray-800:#1F2937;
-      --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
-      --shadow-md:0 4px 16px rgba(0,0,0,.10);
-      --shadow-lg:0 10px 40px rgba(0,0,0,.12);
-      --radius:8px;
-      --radius-lg:14px;
-    }
+/* ═══════════════════════════════════════════════════
+   VARIABLES
+═══════════════════════════════════════════════════ */
+:root{
+  --black:#111111;
+  --white:#ffffff;
+  --cream:#FDF8F3;
+  --cream-2:#F9F4EF;
+  --red:#B91C1C;
+  --red-dark:#991B1B;
+  --red-soft:#FEF2F2;
+  --wa:#25D366;
+  --wa-dark:#1ebe5d;
+  --gray-100:#F3F4F6;
+  --gray-200:#E5E7EB;
+  --gray-400:#9CA3AF;
+  --gray-600:#6B7280;
+  --gray-800:#374151;
+  --shadow-xs:0 1px 2px rgba(0,0,0,.06);
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08);
+  --shadow-md:0 4px 20px rgba(0,0,0,.10);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.14);
+  --r:6px;
+  --r-lg:12px;
+}
 
-    /* ── Container ────────────────────────────── */
-    .container{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+/* ═══════════════════════════════════════════════════
+   CONTAINER
+═══════════════════════════════════════════════════ */
+.wrap{max-width:1260px;margin:0 auto;padding:0 clamp(16px,3vw,48px)}
 
-    /* ── Announcement bar ─────────────────────── */
-    .announce{background:var(--red);color:#fff;text-align:center;padding:10px 16px;font-size:.82rem;font-weight:600;letter-spacing:.02em}
-    .announce a{color:#FFD97D;text-decoration:underline}
+/* ═══════════════════════════════════════════════════
+   ANNOUNCEMENT BAR  (like Starlite — thin black bar)
+═══════════════════════════════════════════════════ */
+.announce{
+  background:var(--black);
+  color:rgba(255,255,255,.85);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:9px clamp(16px,3vw,48px);
+  font-size:.75rem;
+  font-weight:500;
+  letter-spacing:.02em;
+}
+.announce-social{display:flex;align-items:center;gap:14px}
+.announce-social a{color:rgba(255,255,255,.6);transition:.15s}
+.announce-social a:hover{color:#fff}
+.announce-social svg{width:15px;height:15px;fill:currentColor}
+.announce-center{font-size:.78rem;font-weight:600;letter-spacing:.04em;text-align:center}
+.announce-center a{color:#FFD97D;text-decoration:underline;text-underline-offset:2px}
+.announce-right{font-size:.75rem;color:rgba(255,255,255,.55)}
 
-    /* ── Header ───────────────────────────────── */
-    .header{background:#fff;border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
-    .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-    .brand{display:flex;align-items:center;gap:10px;font-size:1.1rem;font-weight:700;color:var(--red);flex-shrink:0}
-    .brand img{width:34px;height:34px;object-fit:contain}
-    .nav{display:flex;align-items:center;gap:2px}
-    .nav a{padding:8px 14px;border-radius:var(--radius);font-size:.88rem;font-weight:500;color:var(--gray-600);transition:.15s}
-    .nav a:hover,.nav a.active{color:#1a1a1a;background:var(--gray-100)}
-    .header-cta{display:flex;align-items:center;gap:10px}
-    .btn-wa-sm{display:flex;align-items:center;gap:7px;padding:9px 18px;background:var(--wa);color:#fff;border-radius:var(--radius);font-size:.84rem;font-weight:700;border:none;box-shadow:0 2px 8px rgba(37,211,102,.3);transition:.15s}
-    .btn-wa-sm:hover{background:var(--wa-dark);transform:translateY(-1px)}
-    .menu-toggle{display:none;flex-direction:column;gap:5px;padding:8px;background:var(--gray-100);border:1px solid var(--gray-200);border-radius:var(--radius);width:40px;height:40px;align-items:center;justify-content:center}
-    .menu-toggle span{width:18px;height:2px;background:#1a1a1a;border-radius:2px;transition:.2s;display:block}
-    .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-    .menu-toggle.open span:nth-child(2){opacity:0}
-    .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* ═══════════════════════════════════════════════════
+   HEADER  (like Starlite — white, clean, two parts)
+═══════════════════════════════════════════════════ */
+.header{
+  background:#fff;
+  border-bottom:1px solid var(--gray-200);
+  position:sticky;
+  top:0;
+  z-index:200;
+  box-shadow:var(--shadow-xs);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:68px;
+  gap:12px;
+}
 
-    /* ── Hero ─────────────────────────────────── */
-    .hero{position:relative;height:clamp(500px,75vh,700px);overflow:hidden;display:flex;align-items:center}
-    .hero-bg{position:absolute;inset:0;z-index:0}
-    .hero-bg img{height:100%;object-fit:cover;object-position:center}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,5,0,.78)0%,rgba(10,5,0,.45)60%,rgba(10,5,0,.15)100%);z-index:1}
-    .hero-content{position:relative;z-index:2;max-width:580px}
-    .hero-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;font-size:.75rem;font-weight:700;color:#fff;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
-    .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;color:#fff;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
-    .hero h1 em{font-style:normal;color:#FFD97D}
-    .hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:rgba(255,255,255,.82);max-width:440px;margin-bottom:28px;line-height:1.65}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
-    .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--red);color:#fff;border-radius:var(--radius-lg);font-size:1rem;font-weight:700;border:none;box-shadow:0 4px 20px rgba(185,28,28,.4);transition:.2s}
-    .btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(185,28,28,.5)}
-    .btn-outline-white{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:var(--radius-lg);font-size:1rem;font-weight:600;transition:.2s}
-    .btn-outline-white:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.7)}
-    .hero-price-tag{display:inline-flex;align-items:baseline;gap:8px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 18px}
-    .hero-price-tag .old{font-size:.85rem;color:rgba(255,255,255,.55);text-decoration:line-through}
-    .hero-price-tag .new{font-size:1.5rem;font-weight:800;color:#FFD97D}
-    .hero-price-tag .label{font-size:.78rem;color:rgba(255,255,255,.65)}
+/* Logo — Playfair Display (like Starlite serif logo) */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0;
+}
+.brand-img{width:32px;height:32px;object-fit:contain}
+.brand-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.55rem;
+  font-weight:700;
+  color:var(--black);
+  letter-spacing:-.01em;
+}
 
-    /* ── Trust strip ──────────────────────────── */
-    .trust-strip{background:var(--gray-50);border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200)}
-    .trust-strip .container{display:flex;justify-content:center;gap:clamp(16px,4vw,48px);padding-top:18px;padding-bottom:18px;flex-wrap:wrap}
-    .trust-item{display:flex;align-items:center;gap:9px;font-size:.84rem;font-weight:500;color:var(--gray-600);white-space:nowrap}
-    .trust-item span.ico{font-size:1.2rem}
+/* Nav */
+.nav{display:flex;align-items:center;gap:0}
+.nav-item{position:relative}
+.nav-link{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:8px 16px;
+  font-size:.88rem;
+  font-weight:500;
+  color:var(--gray-800);
+  border-radius:var(--r);
+  transition:.15s;
+  white-space:nowrap;
+}
+.nav-link:hover,.nav-link.active{color:var(--black)}
 
-    /* ── Section ──────────────────────────────── */
-    .section{padding:clamp(56px,7vw,96px) 0}
-    .section-label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
-    .section-title{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;color:#1a1a1a;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
-    .section-sub{font-size:1rem;color:var(--gray-600);max-width:500px;line-height:1.7}
+/* Dropdown */
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown{
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  background:#fff;
+  border:1px solid var(--gray-200);
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow-md);
+  min-width:200px;
+  padding:8px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-8px);
+  transition:.2s;
+  z-index:300;
+}
+.dropdown a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:var(--r);
+  font-size:.85rem;
+  font-weight:500;
+  color:var(--gray-800);
+  transition:.15s;
+}
+.dropdown a:hover{background:var(--gray-100);color:var(--black)}
+.dropdown a .ico{font-size:1.1rem;flex-shrink:0}
 
-    /* ── Product spotlight ────────────────────── */
-    .product-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
-    .product-img-wrap{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);position:relative}
-    .product-img-wrap img{height:460px;object-fit:cover}
-    .product-badge-wrap{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:8px}
-    .badge-red{background:var(--red);color:#fff;padding:5px 12px;border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
-    .badge-gold{background:var(--gold);color:#fff;padding:5px 12px;border-radius:999px;font-size:.72rem;font-weight:800}
-    .product-info{}
-    .product-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a1a1a;letter-spacing:-.02em;margin-bottom:8px;line-height:1.2}
-    .product-price-row{display:flex;align-items:center;gap:14px;margin:16px 0 24px}
-    .price-new{font-size:2.4rem;font-weight:800;color:var(--red)}
-    .price-old{font-size:1rem;color:var(--gray-400);text-decoration:line-through}
-    .price-save{background:#FEF2F2;color:var(--red);font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px}
-    .product-desc{font-size:.95rem;color:var(--gray-600);line-height:1.7;margin-bottom:24px}
-    .includes{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
-    .includes li{display:flex;align-items:center;gap:10px;font-size:.88rem;color:#1a1a1a}
-    .includes li::before{content:'✓';width:22px;height:22px;background:#DCFCE7;color:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0}
-    .product-cta{display:flex;flex-direction:column;gap:10px}
-    .btn-buy{display:flex;align-items:center;justify-content:center;gap:9px;padding:16px 28px;background:var(--wa);color:#fff;border-radius:var(--radius-lg);font-size:1rem;font-weight:700;border:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:.2s}
-    .btn-buy:hover{background:var(--wa-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,.55)}
-    .btn-see{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;background:#1a1a1a;color:#fff;border-radius:var(--radius-lg);font-size:.95rem;font-weight:600;border:none;transition:.2s}
-    .btn-see:hover{background:#333;transform:translateY(-1px)}
-    .product-note{font-size:.78rem;color:var(--gray-400);text-align:center;margin-top:8px}
+/* Right icons (like Starlite 🔍 🛒 👤) */
+.header-right{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:var(--r);
+  color:var(--gray-800);
+  transition:.15s;
+  border:none;background:none;
+}
+.icon-btn:hover{background:var(--gray-100);color:var(--black)}
+.icon-btn svg{width:20px;height:20px}
+.btn-wa-header{
+  display:flex;align-items:center;gap:7px;
+  padding:9px 18px;
+  background:var(--wa);
+  color:#fff;
+  border-radius:999px;
+  font-size:.82rem;
+  font-weight:700;
+  border:none;
+  box-shadow:0 2px 8px rgba(37,211,102,.3);
+  transition:.15s;
+}
+.btn-wa-header:hover{background:var(--wa-dark);transform:translateY(-1px)}
+.btn-wa-header svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
 
-    /* ── Features grid ────────────────────────── */
-    .features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
-    .feature{padding:24px;background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-lg);transition:.2s;box-shadow:var(--shadow-sm)}
-    .feature:hover{border-color:var(--gray-400);box-shadow:var(--shadow-md);transform:translateY(-3px)}
-    .feature-ico{font-size:1.8rem;margin-bottom:14px}
-    .feature h3{font-size:.95rem;font-weight:700;color:#1a1a1a;margin-bottom:6px}
-    .feature p{font-size:.84rem;color:var(--gray-600);line-height:1.6}
+/* Mobile toggle */
+.menu-toggle{
+  display:none;
+  width:40px;height:40px;
+  flex-direction:column;gap:5px;
+  align-items:center;justify-content:center;
+  background:var(--gray-100);
+  border:1px solid var(--gray-200);
+  border-radius:var(--r);
+}
+.menu-toggle span{width:18px;height:2px;background:var(--black);border-radius:2px;transition:.2s;display:block}
+.menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle.open span:nth-child(2){opacity:0}
+.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-    /* ── Stats bar ─────────────────────────────── */
-    .stats-bar{background:var(--red);color:#fff;padding:clamp(24px,4vw,40px) 0}
-    .stats-bar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
-    .stat-item strong{display:block;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#FFD97D;line-height:1}
-    .stat-item span{font-size:.78rem;color:rgba(255,255,255,.75);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-top:4px;display:block}
+/* ═══════════════════════════════════════════════════
+   HERO  (like Starlite — full width, text left, image right/bg)
+═══════════════════════════════════════════════════ */
+.hero{
+  position:relative;
+  height:clamp(480px,72vh,680px);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+}
+.hero-bg img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 30%;
+}
+/* Gradient overlay — text left, clear right (like Starlite) */
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(10,5,0,.82)0%,rgba(10,5,0,.55)45%,rgba(10,5,0,.1)100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:560px;
+}
+.hero-tag{
+  display:inline-block;
+  background:var(--red);
+  color:#fff;
+  font-size:.72rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 14px;border-radius:999px;
+  margin-bottom:18px;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,5vw,3.6rem);
+  font-weight:800;
+  color:#fff;
+  line-height:1.1;
+  letter-spacing:-.01em;
+  margin-bottom:14px;
+}
+.hero h1 em{font-style:normal;color:#FFD97D}
+.hero-sub{
+  font-size:clamp(.9rem,1.8vw,1.05rem);
+  color:rgba(255,255,255,.78);
+  max-width:420px;
+  margin-bottom:28px;
+  line-height:1.65;
+}
+/* Starlite pill CTA button */
+.btn-hero{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 36px;
+  background:#fff;
+  color:var(--black);
+  border-radius:999px;
+  font-size:.92rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+  border:none;
+  box-shadow:var(--shadow-md);
+  transition:.2s;
+}
+.btn-hero:hover{background:var(--red);color:#fff;transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-hero-wa{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 36px;
+  background:var(--wa);
+  color:#fff;
+  border-radius:999px;
+  font-size:.92rem;font-weight:700;
+  letter-spacing:.04em;
+  border:none;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  transition:.2s;
+}
+.btn-hero-wa:hover{background:var(--wa-dark);transform:translateY(-2px)}
+.btn-hero-wa svg,.btn-hero svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 
-    /* ── Testimonials ─────────────────────────── */
-    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-    .testimonial{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px;position:relative}
-    .testimonial::before{content:'❝';font-size:2.5rem;color:var(--gray-200);position:absolute;top:12px;right:16px;line-height:1}
-    .testimonial-text{font-size:.9rem;color:var(--gray-600);line-height:1.7;margin-bottom:16px;font-style:italic}
-    .testimonial-author{display:flex;align-items:center;gap:10px}
-    .author-avatar{width:40px;height:40px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0}
-    .author-name{font-size:.88rem;font-weight:700;color:#1a1a1a}
-    .author-loc{font-size:.78rem;color:var(--gray-400)}
-    .stars{color:#FBBF24;font-size:.85rem;margin-bottom:10px}
+/* Price badge in hero */
+.hero-price{
+  margin-top:24px;
+  display:inline-flex;align-items:baseline;gap:8px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:10px;
+  padding:8px 16px;
+}
+.hero-price .old{font-size:.82rem;color:rgba(255,255,255,.5);text-decoration:line-through}
+.hero-price .new{font-size:1.4rem;font-weight:800;color:#FFD97D}
+.hero-price .suf{font-size:.78rem;color:rgba(255,255,255,.6)}
 
-    /* ── CTA Banner ───────────────────────────── */
-    .cta-banner{background:linear-gradient(135deg,#1a0500 0%,#7B1D1D 50%,#1a0500 100%);padding:clamp(48px,6vw,80px) 0;text-align:center;position:relative;overflow:hidden}
-    .cta-banner::before{content:'🫔';font-size:200px;position:absolute;opacity:.05;top:-40px;left:-40px;pointer-events:none}
-    .cta-banner::after{content:'🌽';font-size:200px;position:absolute;opacity:.05;bottom:-40px;right:-40px;pointer-events:none}
-    .cta-banner h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:-.02em;position:relative}
-    .cta-banner p{font-size:1.05rem;color:rgba(255,255,255,.7);max-width:440px;margin:0 auto 32px;line-height:1.7;position:relative}
-    .cta-banner .price-display{font-size:3.5rem;font-weight:800;color:#FFD97D;line-height:1;margin-bottom:8px;position:relative}
-    .cta-banner .price-label{font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:28px;position:relative}
+/* ═══════════════════════════════════════════════════
+   TRUST STRIP  (like Starlite — 4 columns, icons+text)
+═══════════════════════════════════════════════════ */
+.trust{border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200)}
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.trust-item{
+  display:flex;align-items:center;gap:14px;
+  padding:22px 24px;
+  border-right:1px solid var(--gray-200);
+}
+.trust-item:last-child{border-right:none}
+.trust-icon{
+  width:44px;height:44px;flex-shrink:0;
+  border:1.5px solid var(--gray-200);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;
+  color:var(--gray-800);
+}
+.trust-icon svg{width:22px;height:22px;stroke:currentColor;fill:none}
+.trust-text strong{display:block;font-size:.88rem;font-weight:700;color:var(--black);margin-bottom:2px}
+.trust-text span{font-size:.78rem;color:var(--gray-600);line-height:1.4;display:block}
 
-    /* ── WA Float ─────────────────────────────── */
-    .wa-float{position:fixed;bottom:22px;right:22px;z-index:200;width:56px;height:56px;background:var(--wa);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.55);transition:.2s}
-    .wa-float:hover{transform:scale(1.1);box-shadow:0 8px 36px rgba(37,211,102,.7)}
-    .wa-float svg{width:30px;height:30px;fill:#fff}
+/* ═══════════════════════════════════════════════════
+   SECTIONS BASE
+═══════════════════════════════════════════════════ */
+.section{padding:clamp(52px,6vw,88px) 0}
+.section--cream{background:var(--cream)}
+.section--dark{background:var(--black);color:#fff}
 
-    /* ── Footer ───────────────────────────────── */
-    .footer{background:var(--gray-800);color:rgba(255,255,255,.65);padding:clamp(32px,4vw,56px) 0 24px}
-    .footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
-    .footer-brand-name{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:10px}
-    .footer-brand p{font-size:.85rem;line-height:1.7;max-width:260px}
-    .footer-col h4{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:14px}
-    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-    .footer-col ul li a{font-size:.85rem;color:rgba(255,255,255,.6);transition:.15s}
-    .footer-col ul li a:hover{color:#fff}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-    .footer-bottom p{font-size:.78rem;color:rgba(255,255,255,.35)}
+.section-head{text-align:center;margin-bottom:clamp(32px,4vw,52px)}
+.section-label{
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--red);margin-bottom:10px;display:block;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.7rem,3.5vw,2.8rem);
+  font-weight:700;color:var(--black);
+  letter-spacing:-.02em;line-height:1.15;
+  margin-bottom:10px;
+}
+.section-title em{font-style:normal;color:var(--red)}
+.section-sub{font-size:.95rem;color:var(--gray-600);max-width:480px;margin:0 auto;line-height:1.7}
+.section--dark .section-title{color:#fff}
+.section--dark .section-sub{color:rgba(255,255,255,.65)}
 
-    /* ── WA SVG helper ────────────────────────── */
-    .wa-svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+/* ═══════════════════════════════════════════════════
+   COURSE CARDS  (like Starlite product cards)
+═══════════════════════════════════════════════════ */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+  gap:24px;
+}
 
-    /* ── Responsive ───────────────────────────── */
-    @media(max-width:768px){
-      .product-split{grid-template-columns:1fr}
-      .product-img-wrap img{height:280px}
-      .stats-bar .container{grid-template-columns:1fr 1fr}
-      .footer-inner{grid-template-columns:1fr 1fr}
-      .footer-bottom{flex-direction:column;text-align:center}
-    }
-    @media(max-width:600px){
-      .menu-toggle{display:flex}
-      .nav{position:fixed;top:65px;left:0;right:0;flex-direction:column;background:#fff;border-bottom:1px solid var(--gray-200);padding:12px;gap:2px;transform:translateY(-110%);opacity:0;transition:.25s;pointer-events:none;z-index:99;box-shadow:var(--shadow-md)}
-      .nav.open{transform:translateY(0);opacity:1;pointer-events:auto}
-      .nav a{padding:12px 16px}
-      .hero-actions{flex-direction:column}
-      .btn-primary,.btn-outline-white{justify-content:center}
-      .stats-bar .container{grid-template-columns:1fr 1fr}
-      .footer-inner{grid-template-columns:1fr}
-    }
+.card{
+  background:#fff;
+  border:1px solid var(--gray-200);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:.25s;
+  box-shadow:var(--shadow-xs);
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow-md);
+  border-color:var(--gray-400);
+}
+
+.card-img{position:relative;overflow:hidden}
+.card-img img{height:200px;object-fit:cover;transition:.35s}
+.card:hover .card-img img{transform:scale(1.05)}
+.card-badges{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:6px}
+.badge{font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.badge-red{background:var(--red);color:#fff}
+.badge-gold{background:#D97706;color:#fff}
+.badge-green{background:#16A34A;color:#fff}
+.badge-gray{background:var(--black);color:#fff}
+
+.card-body{padding:18px 18px 12px;flex:1;display:flex;flex-direction:column;gap:6px}
+.card-cat{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400)}
+.card-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:600;
+  color:var(--black);line-height:1.3;
+}
+.card-desc{font-size:.82rem;color:var(--gray-600);line-height:1.6;flex:1}
+
+.card-footer{
+  padding:14px 18px 18px;
+  border-top:1px solid var(--gray-100);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.card-price-wrap{}
+.card-price-old{font-size:.75rem;color:var(--gray-400);text-decoration:line-through;display:block}
+.card-price{font-size:1.2rem;font-weight:800;color:var(--red)}
+.card-price-free{font-size:1.1rem;font-weight:800;color:#16A34A}
+
+.card-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:9px 16px;
+  border-radius:999px;
+  font-size:.78rem;font-weight:700;
+  border:none;
+  transition:.15s;
+  white-space:nowrap;
+}
+.card-btn-wa{background:var(--wa);color:#fff;box-shadow:0 2px 8px rgba(37,211,102,.3)}
+.card-btn-wa:hover{background:var(--wa-dark);transform:translateY(-1px)}
+.card-btn-dl{background:var(--black);color:#fff}
+.card-btn-dl:hover{background:#333;transform:translateY(-1px)}
+.card-btn-view{background:var(--gray-100);color:var(--black)}
+.card-btn-view:hover{background:var(--gray-200)}
+.card-btn svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+
+/* ═══════════════════════════════════════════════════
+   FEATURED PRODUCT SPOTLIGHT  (Starlite product detail)
+═══════════════════════════════════════════════════ */
+.spotlight{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.spotlight-img{
+  border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:var(--shadow-lg);position:relative;
+}
+.spotlight-img img{height:480px;object-fit:cover}
+.spotlight-img-badges{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:8px}
+
+.spotlight-info{}
+.spotlight-cat{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:6px}
+.spotlight-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;
+  color:var(--black);line-height:1.15;letter-spacing:-.01em;
+  margin-bottom:8px;
+}
+.spotlight-price-row{display:flex;align-items:center;gap:12px;margin:16px 0}
+.price-big{font-size:2.2rem;font-weight:800;color:var(--red)}
+.price-old{font-size:1rem;color:var(--gray-400);text-decoration:line-through}
+.price-save{
+  background:var(--red-soft);color:var(--red);
+  font-size:.72rem;font-weight:800;letter-spacing:.04em;
+  padding:4px 10px;border-radius:999px;
+}
+.spotlight-desc{font-size:.92rem;color:var(--gray-600);line-height:1.75;margin-bottom:20px}
+.includes{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:24px}
+.includes li{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--gray-800)}
+.includes li::before{
+  content:'✓';
+  width:20px;height:20px;
+  background:#DCFCE7;color:#16A34A;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.68rem;font-weight:800;flex-shrink:0;
+}
+.spotlight-cta{display:flex;flex-direction:column;gap:10px}
+.btn-buy-lg{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  padding:15px;width:100%;
+  background:var(--wa);color:#fff;
+  border-radius:999px;font-size:.95rem;font-weight:700;
+  border:none;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+  transition:.2s;
+}
+.btn-buy-lg:hover{background:var(--wa-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,.5)}
+.btn-detail{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px;width:100%;
+  background:var(--black);color:#fff;
+  border-radius:999px;font-size:.9rem;font-weight:600;
+  border:none;transition:.2s;
+}
+.btn-detail:hover{background:#333}
+.btn-buy-lg svg,.btn-detail svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
+.spotlight-note{font-size:.75rem;color:var(--gray-400);text-align:center;margin-top:6px}
+
+/* ═══════════════════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════════════════ */
+.stats-bar{background:var(--black);padding:clamp(20px,3vw,32px) 0}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  text-align:center;
+  gap:20px;
+}
+.stat strong{
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:700;color:#FFD97D;
+  line-height:1;
+}
+.stat span{font-size:.72rem;color:rgba(255,255,255,.55);font-weight:500;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;display:block}
+
+/* ═══════════════════════════════════════════════════
+   FEATURES  (like Starlite features/policies)
+═══════════════════════════════════════════════════ */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature{
+  padding:28px;
+  background:#fff;
+  border:1px solid var(--gray-200);
+  border-radius:var(--r-lg);
+  transition:.2s;
+}
+.feature:hover{box-shadow:var(--shadow-sm);border-color:var(--gray-400);transform:translateY(-3px)}
+.feature-icon{font-size:1.8rem;margin-bottom:14px}
+.feature h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--black);margin-bottom:6px}
+.feature p{font-size:.83rem;color:var(--gray-600);line-height:1.65}
+
+/* ═══════════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════════ */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testimonial{
+  background:#fff;border:1px solid var(--gray-200);
+  border-radius:var(--r-lg);padding:24px;
+  position:relative;
+}
+.testimonial::before{content:'❝';font-size:3rem;color:var(--gray-100);position:absolute;top:10px;right:14px;line-height:1;font-family:serif}
+.stars{color:#FBBF24;font-size:.85rem;letter-spacing:1px;margin-bottom:10px}
+.testimonial p{font-size:.85rem;color:var(--gray-600);line-height:1.75;font-style:italic;margin-bottom:16px}
+.author{display:flex;align-items:center;gap:10px}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.88rem;flex-shrink:0}
+.author-name{font-size:.85rem;font-weight:700;color:var(--black)}
+.author-loc{font-size:.75rem;color:var(--gray-400)}
+
+/* ═══════════════════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════════════════ */
+.cta-banner{
+  background:linear-gradient(120deg,#1a0200 0%,#7B1D1D 50%,#1a0200 100%);
+  padding:clamp(52px,7vw,88px) 0;
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner::before,.cta-banner::after{
+  content:'🫔';font-size:220px;
+  position:absolute;opacity:.04;pointer-events:none;
+}
+.cta-banner::before{top:-50px;left:-50px}
+.cta-banner::after{bottom:-50px;right:-50px}
+.cta-banner h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,3.2rem);font-weight:700;
+  color:#fff;margin-bottom:10px;position:relative;
+}
+.cta-banner p{font-size:1rem;color:rgba(255,255,255,.65);max-width:420px;margin:0 auto 28px;line-height:1.7;position:relative}
+.price-hero{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5rem);font-weight:800;color:#FFD97D;line-height:1;margin-bottom:6px;position:relative}
+.price-note{font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:28px;position:relative}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-cta-wa{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:15px 36px;background:var(--wa);color:#fff;
+  border-radius:999px;font-size:.95rem;font-weight:700;
+  border:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:.2s;
+}
+.btn-cta-wa:hover{background:var(--wa-dark);transform:translateY(-2px)}
+.btn-cta-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:15px 32px;background:rgba(255,255,255,.1);
+  backdrop-filter:blur(8px);color:#fff;
+  border:1.5px solid rgba(255,255,255,.3);
+  border-radius:999px;font-size:.92rem;font-weight:600;transition:.2s;
+}
+.btn-cta-ghost:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.6)}
+.btn-cta-wa svg,.btn-cta-ghost svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER  (like Starlite — clean dark)
+═══════════════════════════════════════════════════ */
+.footer{background:#111;color:rgba(255,255,255,.65);padding:clamp(40px,5vw,64px) 0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand .brand-name{color:#fff;margin-bottom:12px;display:block;font-size:1.4rem}
+.footer-brand p{font-size:.83rem;line-height:1.7;max-width:260px;margin-bottom:18px}
+.footer-col h4{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:.84rem;color:rgba(255,255,255,.55);transition:.15s}
+.footer-col ul li a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.3)}
+
+/* ═══════════════════════════════════════════════════
+   WA FLOAT
+═══════════════════════════════════════════════════ */
+.wa-float{
+  position:fixed;bottom:22px;right:22px;z-index:500;
+  width:56px;height:56px;background:var(--wa);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 24px rgba(37,211,102,.55);transition:.2s;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 8px 36px rgba(37,211,102,.75)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media(max-width:900px){
+  .trust-grid{grid-template-columns:1fr 1fr}
+  .trust-item:nth-child(2){border-right:none}
+  .trust-item:nth-child(3){border-right:1px solid var(--gray-200)}
+  .trust-item:nth-child(3),.trust-item:nth-child(4){border-top:1px solid var(--gray-200)}
+  .spotlight{grid-template-columns:1fr}
+  .spotlight-img img{height:320px}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .announce-social,.announce-right{display:none}
+  .announce-center{flex:1;text-align:center}
+  .menu-toggle{display:flex}
+  .nav{
+    position:fixed;top:69px;left:0;right:0;
+    flex-direction:column;background:#fff;
+    border-bottom:1px solid var(--gray-200);
+    padding:12px;gap:2px;
+    transform:translateY(-110%);opacity:0;
+    transition:.25s;pointer-events:none;z-index:199;
+    box-shadow:var(--shadow-md);
+  }
+  .nav.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .nav-link{padding:12px 14px;width:100%}
+  .dropdown{position:static;box-shadow:none;border:none;background:var(--gray-100);margin-top:2px;border-radius:var(--r)}
+  .trust-grid{grid-template-columns:1fr}
+  .trust-item{border-right:none;border-bottom:1px solid var(--gray-200)}
+  .trust-item:last-child{border-bottom:none}
+  .features-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+  .btn-hero,.btn-hero-wa{width:100%;justify-content:center}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
   </style>
 </head>
 <body>
 
-  <!-- ANNOUNCEMENT BAR -->
-  <div class="announce">
-    🌟 Oferta de lanzamiento — Curso de Tamales por solo <strong>$39 MXN</strong> · Entrega inmediata por WhatsApp · <a href="tamales.html">Ver curso</a>
+<!-- ════════════════════════════════════
+     ANNOUNCEMENT BAR
+════════════════════════════════════ -->
+<div class="announce">
+  <div class="announce-social">
+    <!-- WhatsApp -->
+    <a href="https://wa.me/525569862844" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    <!-- Instagram (icono simple) -->
+    <a href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
   </div>
+  <div class="announce-center">
+    🌟 Oferta especial — Curso de Tamales por solo <strong>$39 MXN</strong> · <a href="tamales.html">Comprar ahora →</a>
+  </div>
+  <div class="announce-right">dailytips.lat</div>
+</div>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html">
-        <img src="assets/dailytips-logo-cropped.png" alt="DailyTips">
-        DailyTips
-      </a>
-      <nav class="nav" id="main-nav">
-        <a href="index.html" class="active">Inicio</a>
-        <a href="cursos.html">Cursos</a>
-        <a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener">Blog</a>
-      </nav>
-      <div class="header-cta">
-        <a class="btn-wa-sm" href="https://wa.me/525569862844?text=Hola%2C+quiero+informaci%C3%B3n+sobre+el+curso+de+Tamales" target="_blank" rel="noopener">
-          <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          WhatsApp
+<!-- ════════════════════════════════════
+     HEADER
+════════════════════════════════════ -->
+<header class="header">
+  <div class="wrap header-inner">
+
+    <!-- Logo -->
+    <a class="brand" href="index.html">
+      <img class="brand-img" src="assets/dailytips-logo-cropped.png" alt="DailyTips">
+      <span class="brand-name">DailyTips</span>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="nav" id="main-nav">
+      <a href="index.html" class="nav-link active">Inicio</a>
+
+      <!-- Cursos con dropdown -->
+      <div class="nav-item">
+        <a href="cursos.html" class="nav-link">
+          Cursos
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </a>
-        <button class="menu-toggle" id="menu-toggle" aria-label="Menú">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="dropdown">
+          <a href="tamales.html"><span class="ico">⚡</span> Curso de Tamales — $39</a>
+          <a href="cursos.html#gratis"><span class="ico">🆓</span> Cursos Gratis</a>
+          <a href="cursos.html"><span class="ico">📚</span> Ver todos los cursos</a>
+        </div>
+      </div>
+
+      <a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener" class="nav-link">Blog</a>
+    </nav>
+
+    <!-- Right actions -->
+    <div class="header-right">
+      <!-- Search icon -->
+      <button class="icon-btn" aria-label="Buscar" onclick="document.getElementById('search-bar').classList.toggle('visible')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <!-- WhatsApp CTA -->
+      <a class="btn-wa-header" href="https://wa.me/525569862844?text=Hola%2C+quiero+informaci%C3%B3n+sobre+el+Curso+de+Tamales" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+<!-- ════════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.pexels.com/photos/5836378/pexels-photo-5836378.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Tamales mexicanos" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="wrap hero-content">
+    <span class="hero-tag">🫔 Curso Digital · 2026</span>
+    <h1>Aprende a Hacer<br>y Vender <em>Tamales</em><br>desde Casa</h1>
+    <p class="hero-sub">11 recetas probadas, calculadora de ganancias, sistema de pedidos y todo lo que necesitas para emprender. Entrega inmediata por WhatsApp.</p>
+    <div class="hero-btns">
+      <a class="btn-hero" href="tamales.html">VER CURSO COMPLETO →</a>
+      <a class="btn-hero-wa" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+de+Tamales+por+%2439+MXN" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        COMPRAR $39 MXN
+      </a>
+    </div>
+    <div class="hero-price">
+      <span class="old">Antes $199 MXN</span>
+      <span class="new">$39</span>
+      <span class="suf">MXN · 80% OFF</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TRUST STRIP
+════════════════════════════════════ -->
+<div class="trust">
+  <div class="trust-grid wrap">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+      </div>
+      <div class="trust-text">
+        <strong>Entrega inmediata</strong>
+        <span>Recibes el PDF en WhatsApp en minutos</span>
       </div>
     </div>
-  </header>
-
-  <main>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg">
-        <img src="https://images.pexels.com/photos/5836378/pexels-photo-5836378.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Tamales mexicanos" loading="eager">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
       </div>
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
-        <div class="hero-pill">🫔 Curso digital · Entrega inmediata</div>
-        <h1>Aprende a hacer y vender<br><em>Tamales desde Casa</em></h1>
-        <p class="hero-sub">11 recetas probadas, calculadora de ganancias, sistema de pedidos y estrategias de venta. Todo en un PDF que recibes en WhatsApp hoy mismo.</p>
-        <div class="hero-actions">
-          <a class="btn-primary" href="tamales.html">
-            Ver el curso completo →
+      <div class="trust-text">
+        <strong>Pago 100% seguro</strong>
+        <span>Transferencia, OXXO o Mercado Pago</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+      </div>
+      <div class="trust-text">
+        <strong>PDF descargable</strong>
+        <span>Compatible con celular, tablet y PC</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+      </div>
+      <div class="trust-text">
+        <strong>Soporte WhatsApp</strong>
+        <span>Te acompañamos en cada paso</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     FEATURED PRODUCT
+════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">Producto destacado</span>
+      <h2 class="section-title">El Curso Más <em>Vendido</em></h2>
+    </div>
+    <div class="spotlight">
+      <div class="spotlight-img">
+        <img src="https://images.pexels.com/photos/5835353/pexels-photo-5835353.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Negocio de Tamales 2026" loading="lazy">
+        <div class="spotlight-img-badges">
+          <span class="badge badge-red">⚡ Oferta</span>
+          <span class="badge badge-gold">80% OFF</span>
+        </div>
+      </div>
+      <div class="spotlight-info">
+        <div class="spotlight-cat">Emprendimiento · Gastronomía</div>
+        <h3 class="spotlight-title">Negocio de Tamales 2026</h3>
+        <div class="spotlight-price-row">
+          <span class="price-big">$39 MXN</span>
+          <span class="price-old">$199</span>
+          <span class="price-save">Ahorras $160</span>
+        </div>
+        <p class="spotlight-desc">Todo lo que necesitas para hacer tamales de calidad, calcular ganancias reales y vender desde el primer día. Sin experiencia previa.</p>
+        <ul class="includes">
+          <li>6 módulos completos y prácticos</li>
+          <li>11 recetas (clásicas y especiales de alto margen)</li>
+          <li>Calculadora de costos y ganancias por lote</li>
+          <li>Sistema de pedidos listo para WhatsApp Business</li>
+          <li>Guía de temporadas: Navidad, Día de Muertos, Candelaria</li>
+          <li>Timer de cocción exacto (vaporera y olla express)</li>
+          <li>Salsas, bebidas y derivados para aumentar ventas 40%</li>
+          <li>Estrategia de ventas por WhatsApp e Instagram</li>
+        </ul>
+        <div class="spotlight-cta">
+          <a class="btn-buy-lg" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Comprar por WhatsApp — $39 MXN
           </a>
-          <a class="btn-outline-white" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+de+Tamales+%28%2439+MXN%29" target="_blank" rel="noopener">
-            <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Comprar $39 MXN
+          <a class="btn-detail" href="tamales.html">Ver todos los detalles del curso</a>
+          <p class="spotlight-note">📥 PDF en tu WhatsApp en menos de 10 minutos · Pago único · Sin mensualidades</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     STATS
+════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="wrap stats-grid">
+    <div class="stat"><strong>13</strong><span>Secciones</span></div>
+    <div class="stat"><strong>11</strong><span>Recetas incluidas</span></div>
+    <div class="stat"><strong>+60</strong><span>Tips profesionales</span></div>
+    <div class="stat"><strong>$39</strong><span>Precio lanzamiento</span></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     CURSOS GRATIS
+════════════════════════════════════ -->
+<section class="section section--cream">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">Disponibles ahora</span>
+      <h2 class="section-title">Cursos <em>Gratis</em></h2>
+      <p class="section-sub">8 cursos digitales en PDF completamente gratuitos. Descárgalos desde <a href="cursos.html" style="color:var(--red);font-weight:600">Cursos</a>.</p>
+    </div>
+    <div class="cards-grid">
+
+      <article class="card">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IA para Negocios" loading="lazy">
+          <div class="card-badges"><span class="badge badge-green">🆓 Gratis</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Inteligencia Artificial</span>
+          <h3 class="card-title">IA para Negocios 2026</h3>
+          <p class="card-desc">Automatiza, genera contenido y toma mejores decisiones con IA.</p>
+        </div>
+        <div class="card-footer">
+          <div><span class="card-price-free">Gratis</span></div>
+          <a class="card-btn card-btn-dl" href="Curso-Completo-IA-para-Negocios-2026.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar
           </a>
         </div>
-        <div class="hero-price-tag">
-          <span class="old">$199 MXN</span>
-          <span class="new">$39</span>
-          <span class="label">MXN · Hoy</span>
+      </article>
+
+      <article class="card">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=500" alt="TikTok Shop" loading="lazy">
+          <div class="card-badges"><span class="badge badge-green">🆓 Gratis</span></div>
         </div>
-      </div>
-    </section>
-
-    <!-- TRUST STRIP -->
-    <div class="trust-strip">
-      <div class="container">
-        <div class="trust-item"><span class="ico">⚡</span> Entrega en WhatsApp en minutos</div>
-        <div class="trust-item"><span class="ico">🔒</span> Pago 100% seguro</div>
-        <div class="trust-item"><span class="ico">📥</span> PDF descargable</div>
-        <div class="trust-item"><span class="ico">♾️</span> Acceso de por vida</div>
-        <div class="trust-item"><span class="ico">🚫</span> Sin mensualidades</div>
-      </div>
-    </div>
-
-    <!-- PRODUCT SPOTLIGHT -->
-    <section class="section">
-      <div class="container">
-        <div class="product-split">
-          <div class="product-img-wrap">
-            <img src="https://images.pexels.com/photos/5835353/pexels-photo-5835353.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Negocio de Tamales 2026" loading="lazy">
-            <div class="product-badge-wrap">
-              <span class="badge-red">⚡ OFERTA</span>
-              <span class="badge-gold">80% OFF</span>
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="section-label">Curso estrella</div>
-            <h2 class="product-title">Negocio de Tamales 2026</h2>
-            <div class="product-price-row">
-              <span class="price-new">$39 MXN</span>
-              <span class="price-old">$199</span>
-              <span class="price-save">Ahorras $160</span>
-            </div>
-            <p class="product-desc">Todo lo que necesitas para hacer tamales de calidad, calcular tus ganancias y vender desde el primer día. Sin experiencia previa requerida.</p>
-            <ul class="includes">
-              <li>6 módulos completos paso a paso</li>
-              <li>11 recetas (clásicas y especiales de alto margen)</li>
-              <li>Calculadora de costos y ganancias por lote</li>
-              <li>Sistema de pedidos listo para WhatsApp</li>
-              <li>Guía de temporadas y fechas clave para vender más</li>
-              <li>Timer de cocción para vaporera y olla express</li>
-              <li>Estrategias de venta por WhatsApp e Instagram</li>
-              <li>+60 tips profesionales</li>
-            </ul>
-            <div class="product-cta">
-              <a class="btn-buy" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFC%C3%B3mo+pago%3F" target="_blank" rel="noopener">
-                <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                Comprar por WhatsApp — $39 MXN
-              </a>
-              <a class="btn-see" href="tamales.html">Ver detalles del curso completo</a>
-              <p class="product-note">📥 Recibes el PDF en WhatsApp en menos de 10 minutos</p>
-            </div>
-          </div>
+        <div class="card-body">
+          <span class="card-cat">Ventas · Redes Sociales</span>
+          <h3 class="card-title">Ventas en TikTok Shop con IA</h3>
+          <p class="card-desc">Estrategia completa para vender en TikTok sin invertir en publicidad.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- STATS -->
-    <div class="stats-bar">
-      <div class="container">
-        <div class="stat-item"><strong>13</strong><span>Secciones</span></div>
-        <div class="stat-item"><strong>11</strong><span>Recetas incluidas</span></div>
-        <div class="stat-item"><strong>+60</strong><span>Tips profesionales</span></div>
-        <div class="stat-item"><strong>$39</strong><span>Precio de lanzamiento</span></div>
-      </div>
-    </div>
-
-    <!-- FEATURES -->
-    <section class="section" style="background:var(--gray-50)">
-      <div class="container">
-        <div class="section-label" style="text-align:center">¿Por qué elegirnos?</div>
-        <h2 class="section-title" style="text-align:center;max-width:480px;margin:0 auto 40px">Diseñado para que empieces <em style="font-style:normal;color:var(--red)">hoy mismo</em></h2>
-        <div class="features-grid">
-          <div class="feature">
-            <div class="feature-ico">🫔</div>
-            <h3>Recetas que se venden</h3>
-            <p>6 tamales clásicos + 5 especiales de alto margen. Con cantidades exactas y tiempos de cocción.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-ico">💰</div>
-            <h3>Calcula tus ganancias</h3>
-            <p>Calculadora incluida para saber tu costo por tamal, fijar precios y maximizar tu utilidad desde el primer lote.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-ico">📱</div>
-            <h3>Vende por WhatsApp</h3>
-            <p>Guión listo, sistema de pedidos y estrategia completa para conseguir clientes y fidelizarlos.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-ico">📅</div>
-            <h3>Aprovecha las temporadas</h3>
-            <p>Guía de fechas clave: Navidad, Día de Muertos, Candelaria. Cuándo vender más y qué ofrecer.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-ico">⏱️</div>
-            <h3>Timer de cocción exacto</h3>
-            <p>Nunca más tamales crudos o pasados. Tiempos precisos para vaporera, olla express y microondas.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-ico">🍞</div>
-            <h3>Amplía tu menú</h3>
-            <p>Bebidas, salsas y derivados que aumentan tu ticket de venta hasta 40% sin más esfuerzo.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="section">
-      <div class="container">
-        <div class="section-label" style="text-align:center">Lo que dicen nuestros clientes</div>
-        <h2 class="section-title" style="text-align:center;margin-bottom:36px">Resultados <em style="font-style:normal;color:var(--red)">reales</em></h2>
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">"Empecé con 20 tamales el primer fin de semana y ya los vendí todos. La calculadora me ayudó a ponerles precio justo y la sección de WhatsApp para conseguir clientes es oro."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">M</div>
-              <div><div class="author-name">María G.</div><div class="author-loc">CDMX</div></div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">"Lo mejor fue el módulo de costos. Antes le ponía precio a ojo y casi no ganaba. Con la calculadora del curso supe que estaba perdiendo dinero y lo corregí de inmediato."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">L</div>
-              <div><div class="author-name">Lucía R.</div><div class="author-loc">Guadalajara</div></div>
-            </div>
-          </div>
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">"En Navidad pedí 180 tamales. Nunca había hecho tantos pero el timer y la checklist del curso me ayudaron a organizarme. Valió cada peso el curso."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">C</div>
-              <div><div class="author-name">Carmen V.</div><div class="author-loc">Monterrey</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA BANNER -->
-    <div class="cta-banner">
-      <div class="container" style="position:relative">
-        <p class="section-label" style="color:rgba(255,215,125,.8)">Oferta de lanzamiento</p>
-        <h2>¿Lista para vender tu primer lote?</h2>
-        <p>Empieza hoy, ten tu masa lista mañana y vende este fin de semana. Todo por el precio de una comida.</p>
-        <div class="price-display">$39 <span style="font-size:1.8rem">MXN</span></div>
-        <div class="price-label">Antes $199 MXN · Ahorra $160</div>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-          <a class="btn-buy" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+Negocio+de+Tamales+2026+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener" style="font-size:1.05rem;padding:16px 36px">
-            <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Comprar por WhatsApp
+        <div class="card-footer">
+          <div><span class="card-price-free">Gratis</span></div>
+          <a class="card-btn card-btn-dl" href="Curso-Premium-Ventas-Redes-TikTok-Shop-IA-2026.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar
           </a>
-          <a href="tamales.html" style="display:inline-flex;align-items:center;padding:16px 28px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:14px;font-size:1rem;font-weight:600;transition:.2s">Ver detalles</a>
         </div>
-        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-top:16px">📥 Recibes el PDF en WhatsApp en menos de 10 minutos</p>
+      </article>
+
+      <article class="card">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/7015034/pexels-photo-7015034.jpeg?auto=compress&cs=tinysrgb&w=500" alt="YouTube Faceless" loading="lazy">
+          <div class="card-badges"><span class="badge badge-green">🆓 Gratis</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Creación de Contenido</span>
+          <h3 class="card-title">YouTube Faceless con IA 2026</h3>
+          <p class="card-desc">Canal rentable sin cámara. Guiones y voces con IA. Monetiza desde el primer mes.</p>
+        </div>
+        <div class="card-footer">
+          <div><span class="card-price-free">Gratis</span></div>
+          <a class="card-btn card-btn-dl" href="Curso-Completo-YouTube-Faceless-IA-2026.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar
+          </a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Barismo" loading="lazy">
+          <div class="card-badges"><span class="badge badge-green">🆓 Gratis</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Gastronomía · Negocio</span>
+          <h3 class="card-title">Barismo Profesional</h3>
+          <p class="card-desc">Espresso, latte art, cold brew. Emprende tu negocio de café desde casa.</p>
+        </div>
+        <div class="card-footer">
+          <div><span class="card-price-free">Gratis</span></div>
+          <a class="card-btn card-btn-dl" href="Curso_Completo_de_Barismo_Profesional.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar
+          </a>
+        </div>
+      </article>
+
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="cursos.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#fff;border:1.5px solid var(--gray-200);border-radius:999px;font-size:.88rem;font-weight:600;color:var(--black);transition:.2s">
+        Ver los 8 cursos gratis →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FEATURES
+════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">Por qué elegirnos</span>
+      <h2 class="section-title">Diseñado para que <em>Empieces Hoy</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">🫔</div>
+        <h3>Recetas que se venden</h3>
+        <p>6 tamales clásicos + 5 especiales de alto margen con cantidades exactas y tiempos de cocción comprobados.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💰</div>
+        <h3>Calculadora de ganancias</h3>
+        <p>Sabe exactamente cuánto te cuesta cada tamal, pon precios justos y maximiza tu utilidad desde el primer lote.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📱</div>
+        <h3>Sistema de pedidos WA</h3>
+        <p>Guión listo, formulario de pedidos y estrategia para conseguir clientes y fidelizarlos por WhatsApp.</p>
       </div>
     </div>
+  </div>
+</section>
 
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <div class="footer-brand-name">DailyTips</div>
-          <p>Cursos digitales para emprender desde casa. Entrega inmediata por WhatsApp. México.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Navegación</h4>
-          <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="cursos.html">Cursos</a></li>
-            <li><a href="tamales.html">Curso de Tamales</a></li>
-            <li><a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contacto</h4>
-          <ul>
-            <li><a href="https://wa.me/525569862844" target="_blank" rel="noopener">WhatsApp</a></li>
-            <li><a href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+de+Tamales" target="_blank" rel="noopener">Comprar curso</a></li>
-          </ul>
+<!-- ════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════ -->
+<section class="section section--cream">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">Lo que dicen</span>
+      <h2 class="section-title">Clientes <em>Reales</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Empecé con 20 tamales el primer fin de semana y los vendí todos. La calculadora me ayudó a fijar precio justo y la parte de WhatsApp para conseguir clientes es lo mejor."</p>
+        <div class="author">
+          <div class="avatar">M</div>
+          <div><div class="author-name">María G.</div><div class="author-loc">CDMX</div></div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 DailyTips · dailytips.lat</p>
-        <p>Productos digitales · No se envían físicos</p>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"El módulo de costos me cambió todo. Antes le ponía precio a ojo y casi no ganaba. Con la calculadora del curso supe que estaba perdiendo dinero y lo corregí de inmediato."</p>
+        <div class="author">
+          <div class="avatar">L</div>
+          <div><div class="author-name">Lucía R.</div><div class="author-loc">Guadalajara</div></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"En Navidad recibí 180 tamales de pedido. Nunca había hecho tantos, pero el timer y la checklist me organizaron perfecto. Valió cada peso del curso."</p>
+        <div class="author">
+          <div class="avatar">C</div>
+          <div><div class="author-name">Carmen V.</div><div class="author-loc">Monterrey</div></div>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- WhatsApp flotante -->
-  <a class="wa-float" href="https://wa.me/525569862844?text=Hola%2C+quiero+informaci%C3%B3n+sobre+el+Curso+de+Tamales" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-  </a>
+<!-- ════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════ -->
+<div class="cta-banner">
+  <div class="wrap">
+    <span class="section-label" style="color:rgba(255,215,125,.7)">Oferta de lanzamiento</span>
+    <h2>¿Lista para tu primer lote?</h2>
+    <p>Empieza hoy, ten la masa lista mañana y vende este fin de semana.</p>
+    <div class="price-hero">$39 <span style="font-size:2rem">MXN</span></div>
+    <div class="price-note">Antes $199 MXN · Ahorras $160 · Pago único · Sin mensualidades</div>
+    <div class="cta-btns">
+      <a class="btn-cta-wa" href="https://wa.me/525569862844?text=Hola%2C+quiero+comprar+el+Curso+de+Tamales+por+%2439+MXN.+%C2%BFc%C3%B3mo+pago%3F" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Comprar por WhatsApp
+      </a>
+      <a class="btn-cta-ghost" href="tamales.html">Ver detalles del curso</a>
+    </div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:16px;position:relative">📥 Recibes el PDF en WhatsApp en menos de 10 minutos</p>
+  </div>
+</div>
 
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const nav    = document.getElementById('main-nav');
-    toggle?.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      toggle.classList.toggle('open', open);
-    });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.header')) {
-        nav?.classList.remove('open');
-        toggle?.classList.remove('open');
-      }
-    });
-  </script>
+</main>
+
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name footer-brand-name">DailyTips</span>
+        <p>Cursos digitales para emprender, aprender y crecer desde casa. Entrega inmediata por WhatsApp. México.</p>
+        <div style="margin-top:14px;display:flex;gap:12px">
+          <a href="https://wa.me/525569862844" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:7px;padding:8px 16px;background:var(--wa);color:#fff;border-radius:999px;font-size:.8rem;font-weight:700">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            +52 55 6986 2844
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="tamales.html">Curso de Tamales</a></li>
+          <li><a href="https://dailytipsmx.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Cursos Gratis</h4>
+        <ul>
+          <li><a href="Curso-Completo-IA-para-Negocios-2026.pdf" download>IA para Negocios</a></li>
+          <li><a href="Curso_Completo_de_Barismo_Profesional.pdf" download>Barismo Profesional</a></li>
+          <li><a href="cursos.html">Ver todos →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DailyTips · dailytips.lat · Productos digitales para México</p>
+      <p>No se envían productos físicos · Solo uso personal</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WA Float -->
+<a class="wa-float" href="https://wa.me/525569862844?text=Hola%2C+quiero+informaci%C3%B3n+sobre+el+Curso+de+Tamales" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  // Mobile menu
+  const toggle = document.getElementById('menu-toggle');
+  const nav    = document.getElementById('main-nav');
+  toggle?.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.header')) {
+      nav?.classList.remove('open');
+      toggle?.classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>
