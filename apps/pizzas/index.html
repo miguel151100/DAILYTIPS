@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#c0392b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Pizzas">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Curso de Pizzas - Daily Tips MX</title>
+  <meta name="description" content="App PWA de Daily Tips MX para aprender pizzas, calcular costos y vender desde casa.">
+  <link rel="canonical" href="https://dailytips.lat/apps/pizzas/">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true">DT</span>
+        <span>Daily Tips MX</span>
+      </a>
+      <div class="top-actions">
+        <button class="ghost-btn" type="button" data-install-button>
+          <span class="icon" aria-hidden="true">↓</span>
+          Instalar app
+        </button>
+        <a class="ghost-btn whatsapp-top" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20soporte%20del%20Curso%20de%20Pizzas" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">WA</span>
+          Soporte
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-grid" id="inicio" data-section="inicio" data-title="Inicio">
+        <div class="hero-copy">
+          <p class="overline">Curso instalable Daily Tips MX</p>
+          <h1>Curso de Pizzas</h1>
+          <p>Aprende a preparar pizzas desde casa, costear cada receta y vender por Facebook, WhatsApp, pedidos locales o dark kitchen.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-go="recetas">Ver recetas</button>
+            <button class="secondary-btn" type="button" data-go="costos">Calcular costos</button>
+          </div>
+        </div>
+        <div class="hero-card pizza-hero" aria-label="Rebanada de pizza con queso derretido">
+          <div class="pizza-pan"></div>
+          <div class="pizza-slice">
+            <span class="crust"></span>
+            <span class="cheese"></span>
+            <span class="pep p1"></span>
+            <span class="pep p2"></span>
+            <span class="pep p3"></span>
+            <span class="melt m1"></span>
+            <span class="melt m2"></span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="section-tabs" aria-label="Secciones principales">
+        <button class="tab active" type="button" data-go="bienvenida">Bienvenida</button>
+        <button class="tab" type="button" data-go="herramientas">Herramientas</button>
+        <button class="tab" type="button" data-go="masa">Masa</button>
+        <button class="tab" type="button" data-go="salsas">Salsas</button>
+        <button class="tab" type="button" data-go="recetas">Recetas</button>
+        <button class="tab" type="button" data-go="costos">Costos</button>
+        <button class="tab" type="button" data-go="ganancias">Ganancias</button>
+        <button class="tab" type="button" data-go="pizzas-vender">Vender</button>
+        <button class="tab" type="button" data-go="instalar">Instalar</button>
+      </nav>
+
+      <section class="dashboard" aria-label="Panel del curso">
+        <article class="progress-panel">
+          <div class="ring" data-progress-ring><span id="progressText">0%</span></div>
+          <div>
+            <h2>Tu progreso del curso</h2>
+            <p><span id="progressCount">0</span> de <span id="totalLessons">15</span> secciones completadas</p>
+            <div class="bar"><span id="progressBar"></span></div>
+          </div>
+        </article>
+        <article class="quick-panel">
+          <h2>Accesos rápidos</h2>
+          <div class="quick-grid">
+            <button class="quick cost" type="button" data-go="costos">Calculadora de costos</button>
+            <button class="quick profit" type="button" data-go="ganancias">Calculadora de ganancias</button>
+            <button class="quick sell" type="button" data-go="facebook-whatsapp">Facebook y WhatsApp</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <aside class="lesson-list" aria-label="Índice del curso">
+          <h2>Secciones internas</h2>
+          <div id="lessonList"></div>
+        </aside>
+
+        <div class="lesson-content">
+          <article class="lesson active" id="bienvenida" data-section="bienvenida" data-base="true">
+            <div class="section-head">
+              <span class="section-number">1</span>
+              <div><h2>Bienvenida al curso</h2><p>Tu ruta para pasar de prueba casera a primeras ventas.</p></div>
+            </div>
+            <div class="cards two">
+              <div class="card"><h3>Meta principal</h3><p>Preparar pizzas consistentes, calcular costo real y vender un menú corto con margen desde tu cocina.</p></div>
+              <div class="card"><h3>Ruta de trabajo</h3><p>Equipo, masa, salsas, ingredientes, recetas, venta, dark kitchen, costos, ganancias y soporte.</p></div>
+            </div>
+            <div class="checklist" data-checklist>
+              <label><input type="checkbox" value="bienvenida"> Definí mi meta de venta</label>
+              <label><input type="checkbox" value="primer-sabor"> Elegí mi primera pizza estrella</label>
+              <label><input type="checkbox" value="primer-lote"> Programé mi primera prueba de 6 a 10 pizzas</label>
+            </div>
+          </article>
+
+          <article class="lesson" id="herramientas" data-section="herramientas" data-base="true">
+            <div class="section-head"><span class="section-number">2</span><div><h2>Herramientas básicas</h2><p>Equipo suficiente para empezar sin gastar de más.</p></div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Herramienta</th><th>Uso</th><th>Tip de compra</th></tr></thead>
+                <tbody>
+                  <tr><td>Báscula digital</td><td>Medir harina, agua, sal y levadura con precisión.</td><td>Compra una de 1 g a 5 kg.</td></tr>
+                  <tr><td>Charola, piedra o acero</td><td>Dorar base y borde en horno casero.</td><td>Una charola gruesa invertida funciona para iniciar.</td></tr>
+                  <tr><td>Raspa y bowls</td><td>Mezclar, dividir y manipular masa hidratada.</td><td>El plástico rígido evita desperdicio.</td></tr>
+                  <tr><td>Sartén con tapa</td><td>Producir pizzas personales sin horno profesional.</td><td>Elige fondo grueso para calor estable.</td></tr>
+                  <tr><td>Cajas y separadores</td><td>Entrega limpia y presentación de venta.</td><td>Compra según diámetro de tu menú.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tip">No compres horno caro antes de validar demanda. Primero vende con horno casero, sartén, charola caliente y pedidos por anticipo.</div>
+          </article>
+
+          <article class="lesson" id="masa" data-section="masa" data-base="true">
+            <div class="section-head"><span class="section-number">3</span><div><h2>Masa para pizza</h2><p>La base que define textura, sabor y margen.</p></div></div>
+            <div class="recipe-card">
+              <h3>Masa base para 4 pizzas medianas</h3>
+              <ul>
+                <li>500 g harina de trigo de fuerza o todo uso</li>
+                <li>315 ml agua tibia</li>
+                <li>12 g sal</li>
+                <li>3 g levadura seca</li>
+                <li>15 ml aceite de oliva o vegetal</li>
+              </ul>
+              <ol>
+                <li>Mezcla harina, agua y levadura; reposa 20 minutos.</li>
+                <li>Agrega sal y aceite; amasa 8 a 10 minutos.</li>
+                <li>Divide en 4 bolas, engrasa y fermenta 2 horas o refrigera 12 a 24 horas.</li>
+                <li>Saca 45 minutos antes, estira con manos y hornea sobre superficie muy caliente.</li>
+              </ol>
+            </div>
+            <div class="cards three">
+              <div class="card"><h3>Napolitana</h3><p>Menos levadura y fermentación larga para borde inflado y sabor premium.</p></div>
+              <div class="card"><h3>New York</h3><p>Flexible, rebanada grande y fácil de vender en combos.</p></div>
+              <div class="card"><h3>Pan pizza</h3><p>Alta, dorada en sartén y muy rentable para delivery.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="salsas" data-section="salsas" data-base="true">
+            <div class="section-head"><span class="section-number">4</span><div><h2>Salsas para pizza</h2><p>Recetas rápidas para diferenciar tu menú.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Tomate clásica</h3><p>Jitomate triturado, ajo, sal, orégano, aceite y pizca de azúcar. Cocina 12 minutos.</p></div>
+              <div class="card"><h3>BBQ casera</h3><p>Cátsup, piloncillo o azúcar, vinagre, paprika, ajo y salsa inglesa. Ideal para pollo.</p></div>
+              <div class="card"><h3>Pesto económico</h3><p>Cilantro o albahaca, aceite, ajo, nuez o cacahuate y queso duro. Úsala en línea premium.</p></div>
+              <div class="card"><h3>Chipotle cremosa</h3><p>Crema, chipotle, ajo, sal y limón. Funciona con pollo, elote y tocino.</p></div>
+              <div class="card"><h3>Blanca</h3><p>Crema, queso crema, pimienta y parmesano. Buena para champiñones y espinaca.</p></div>
+              <div class="card"><h3>Marinara express</h3><p>Tomate, ajo, albahaca, aceite y sal. Vende como opción ligera.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="quesos-ingredientes" data-section="quesos-ingredientes" data-base="true">
+            <div class="section-head"><span class="section-number">5</span><div><h2>Quesos e ingredientes</h2><p>Compra inteligente para sabor y utilidad.</p></div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Ingrediente</th><th>Por qué usarlo</th><th>Control de costo</th></tr></thead>
+                <tbody>
+                  <tr><td>Mozzarella</td><td>Derretido, elasticidad y apariencia clásica.</td><td>Usa 90 a 120 g por pizza mediana.</td></tr>
+                  <tr><td>Queso Oaxaca</td><td>Disponible en México y buen estiramiento.</td><td>Mezcla con mozzarella para bajar costo.</td></tr>
+                  <tr><td>Pepperoni</td><td>Foto atractiva y alta demanda.</td><td>Cuenta rebanadas por tamaño.</td></tr>
+                  <tr><td>Vegetales</td><td>Color y margen alto.</td><td>Pre-cocina champiñón y pimiento para evitar agua.</td></tr>
+                  <tr><td>Proteínas</td><td>Suben precio promedio.</td><td>Pesa pollo, tocino y carne ya cocidos.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="warning">El exceso de toppings baja margen y arruina cocción. Define gramajes por tamaño y respétalos en cada pedido.</div>
+          </article>
+
+          <article class="lesson" id="recetas" data-section="recetas" data-base="true">
+            <div class="section-head"><span class="section-number">6</span><div><h2>Recetas de pizzas</h2><p>Selecciona una receta base o genera una versión para tu lote.</p></div></div>
+            <div class="segmented" role="tablist" aria-label="Recetas">
+              <button class="segment active" type="button" data-recipe="margherita">Margherita</button>
+              <button class="segment" type="button" data-recipe="pepperoni">Pepperoni</button>
+              <button class="segment" type="button" data-recipe="hawaiana">Hawaiana</button>
+              <button class="segment" type="button" data-recipe="mexicana">Mexicana</button>
+              <button class="segment" type="button" data-recipe="bbq">BBQ</button>
+              <button class="segment" type="button" data-recipe="vegetariana">Vegetariana</button>
+            </div>
+            <div class="recipe-output" id="recipeOutput"></div>
+            <form class="tool-form" id="recipeGenerator">
+              <h3>Generador de lote rápido</h3>
+              <label>Pizza principal
+                <select id="recipeType">
+                  <option>Margherita</option><option>Pepperoni</option><option>Hawaiana</option><option>Mexicana</option><option>BBQ chicken</option><option>Vegetariana</option>
+                </select>
+              </label>
+              <label>Cantidad
+                <select id="recipeQty"><option value="4">4 pizzas</option><option value="8">8 pizzas</option><option value="12">12 pizzas</option><option value="20">20 pizzas</option></select>
+              </label>
+              <button class="primary-btn" type="submit">Generar lote</button>
+              <pre class="copy-box" id="generatedRecipe" hidden></pre>
+            </form>
+          </article>
+
+          <article class="lesson" id="pizzas-vender" data-section="pizzas-vender" data-base="true">
+            <div class="section-head"><span class="section-number">7</span><div><h2>Pizzas para vender</h2><p>Elige productos simples, rentables y fáciles de repetir.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Clásica rentable</h3><p>Pepperoni, hawaiana y queso. Baja merma, alta rotación y fotos claras.</p></div>
+              <div class="card"><h3>Premium local</h3><p>Mexicana, pastor, pollo chipotle o chorizo con elote. Cobra más por identidad.</p></div>
+              <div class="card"><h3>Personal express</h3><p>Pizza de 18 a 22 cm para lonche, oficina y promociones 2x.</p></div>
+              <div class="card"><h3>Charola familiar</h3><p>Rectangular, porciones grandes y excelente para reuniones.</p></div>
+              <div class="card"><h3>Combo</h3><p>Pizza + papas + bebida. Sube ticket sin complicar producción.</p></div>
+              <div class="card"><h3>Edición semanal</h3><p>Un sabor limitado genera urgencia y contenido para redes.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="dark-kitchen" data-section="dark-kitchen" data-base="true">
+            <div class="section-head"><span class="section-number">8</span><div><h2>Cómo hacer una dark kitchen desde casa</h2><p>Operación pequeña, limpia y lista para pedidos.</p></div></div>
+            <div class="timeline">
+              <div><span>1</span><h3>Menú corto</h3><p>Inicia con 4 pizzas, 2 tamaños y 2 combos.</p></div>
+              <div><span>2</span><h3>Horario fijo</h3><p>Abre ventanas de producción: viernes noche, sábado y domingo.</p></div>
+              <div><span>3</span><h3>Anticipo</h3><p>Confirma pedidos con 30% a 50% para evitar cancelaciones.</p></div>
+              <div><span>4</span><h3>Entrega</h3><p>Define zonas, costo de envío, empaque y hora máxima de reparto.</p></div>
+            </div>
+            <div class="tip">Para iniciar en casa: produce por preventa, no por adivinar demanda. Publica cupos limitados y cierra pedidos con horario.</div>
+          </article>
+
+          <article class="lesson" id="costos" data-section="costos" data-base="true">
+            <div class="section-head"><span class="section-number">9</span><div><h2>Calculadora de costos</h2><p>Conoce cuánto cuesta producir cada pizza.</p></div></div>
+            <form class="tool-form" id="costForm">
+              <label>Pizzas producidas <input id="costQty" type="number" min="1" value="8"></label>
+              <label>Ingredientes del lote <input id="costIngredients" type="number" min="0" step="0.01" value="520"></label>
+              <label>Empaque total <input id="costPackaging" type="number" min="0" step="0.01" value="96"></label>
+              <label>Gas, luz y comisión <input id="costGas" type="number" min="0" step="0.01" value="80"></label>
+              <button class="primary-btn" type="submit">Calcular costo</button>
+            </form>
+            <div class="result-grid" id="costResult" aria-live="polite"></div>
+          </article>
+
+          <article class="lesson" id="ganancias" data-section="ganancias" data-base="true">
+            <div class="section-head"><span class="section-number">10</span><div><h2>Calculadora de ganancias</h2><p>Simula precios antes de publicar tu menú.</p></div></div>
+            <form class="tool-form" id="profitForm">
+              <label>Pizzas vendidas <input id="profitQty" type="number" min="1" value="8"></label>
+              <label>Precio por pizza <input id="profitPrice" type="number" min="0" step="0.01" value="145"></label>
+              <label>Costo total del lote <input id="profitCost" type="number" min="0" step="0.01" value="696"></label>
+              <button class="primary-btn" type="submit">Calcular ganancia</button>
+            </form>
+            <div class="result-grid" id="profitResult" aria-live="polite"></div>
+          </article>
+
+          <article class="lesson" id="menu" data-section="menu" data-base="true">
+            <div class="section-head"><span class="section-number">11</span><div><h2>Menú sugerido para vender</h2><p>Un menú compacto para publicar rápido.</p></div></div>
+            <div class="cards two menu-cards">
+              <div class="card"><h3>Individual 22 cm</h3><p>Queso $79 · Pepperoni $89 · Hawaiana $89 · Mexicana $99</p></div>
+              <div class="card"><h3>Mediana 30 cm</h3><p>Queso $129 · Pepperoni $145 · Hawaiana $145 · BBQ chicken $165</p></div>
+              <div class="card"><h3>Familiar rectangular</h3><p>Clásica $249 · Mixta $289 · Premium local $329</p></div>
+              <div class="card"><h3>Combos</h3><p>Pizza mediana + bebida $169 · 2 individuales $159 · Familiar + papas $349</p></div>
+            </div>
+            <div class="warning">Ajusta precios con tu calculadora. Estos precios son ejemplo para practicar estructura y margen.</div>
+          </article>
+
+          <article class="lesson" id="facebook-whatsapp" data-section="facebook-whatsapp" data-base="true">
+            <div class="section-head"><span class="section-number">12</span><div><h2>Tips para vender por Facebook y WhatsApp</h2><p>Publica con claridad y cierra por mensaje.</p></div></div>
+            <form class="tool-form" id="postForm">
+              <h3>Generador de publicación</h3>
+              <label>Sabores disponibles <input id="postFlavors" type="text" value="pepperoni, hawaiana y mexicana"></label>
+              <label>Zona de entrega <input id="postZone" type="text" value="mi colonia y alrededores"></label>
+              <label>Precio desde <input id="postPrice" type="number" min="0" value="89"></label>
+              <button class="primary-btn" type="submit">Crear texto</button>
+              <pre class="copy-box" id="postOutput" hidden></pre>
+              <button class="secondary-btn" type="button" data-copy-target="postOutput" hidden>Copiar publicación</button>
+            </form>
+            <div class="tip">Usa foto real, horario de entrega, cupos, anticipo y un botón claro: “Mándame WhatsApp para apartar”.</div>
+          </article>
+
+          <article class="lesson" id="actualizaciones" data-section="actualizaciones" data-base="true">
+            <div class="section-head"><span class="section-number">13</span><div><h2>Actualizaciones incluidas</h2><p>La app queda lista para crecer con nuevas recetas y herramientas.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Nuevas recetas</h3><p>Sabores de temporada, bases alternativas, combos y promociones.</p></div>
+              <div class="card"><h3>Herramientas de venta</h3><p>Plantillas de pedidos, mensajes, costos y scripts para redes.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="soporte" data-section="soporte" data-base="true">
+            <div class="section-head"><span class="section-number">14</span><div><h2>Soporte por WhatsApp</h2><p>Acompañamiento para dudas del curso.</p></div></div>
+            <div class="support-card">
+              <h3>Mensaje sugerido</h3>
+              <p>Hola Daily Tips MX, estoy tomando el Curso de Pizzas y necesito ayuda con masa, costos o ventas.</p>
+              <a class="whatsapp-btn" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20estoy%20tomando%20el%20Curso%20de%20Pizzas%20y%20necesito%20ayuda%20con%20masa,%20costos%20o%20ventas." target="_blank" rel="noopener">Abrir WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="lesson" id="instalar" data-section="instalar" data-base="true">
+            <div class="section-head"><span class="section-number">15</span><div><h2>Instalar app</h2><p>Guarda el curso en tu celular para consultarlo rápido.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Android / Chrome</h3><p>Toca “Instalar app” en la parte superior o abre el menú del navegador y elige instalar.</p></div>
+              <div class="card"><h3>iPhone / Safari</h3><p>Abre el botón compartir, elige “Agregar a pantalla de inicio” y confirma con el nombre Pizzas.</p></div>
+            </div>
+            <button class="primary-btn" type="button" data-install-button>Instalar app</button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegación rápida">
+      <button type="button" data-go="bienvenida">Inicio</button>
+      <button type="button" data-go="recetas">Recetas</button>
+      <button type="button" data-go="costos">Costos</button>
+      <button type="button" data-go="pizzas-vender">Vender</button>
+    </nav>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

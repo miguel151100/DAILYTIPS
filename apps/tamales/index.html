@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#d35400">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Tamales">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Curso de Tamales - Daily Tips MX</title>
+  <meta name="description" content="App PWA de Daily Tips MX para aprender recetas de tamales, calcular costos y vender desde casa.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true">DT</span>
+        <span>Daily Tips MX</span>
+      </a>
+      <div class="top-actions">
+        <button class="ghost-btn" type="button" data-install-button>
+          <span class="icon" aria-hidden="true">↓</span>
+          Instalar app
+        </button>
+        <a class="ghost-btn whatsapp-top" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20soporte%20del%20Curso%20de%20Tamales" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">WA</span>
+          Soporte
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-grid" id="inicio" data-section="inicio" data-title="Inicio">
+        <div class="hero-copy">
+          <p class="overline">Curso instalable Daily Tips MX</p>
+          <h1>Curso de Tamales</h1>
+          <p>Aprende, calcula y vende tamales desde casa con recetas, costos, pedidos y herramientas listas para usar.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-go="recetas">Ver recetas</button>
+            <button class="secondary-btn" type="button" data-go="costos">Calcular costos</button>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Tamal abierto en vaporera">
+          <div class="steam steam-one"></div>
+          <div class="steam steam-two"></div>
+          <div class="pot"></div>
+          <div class="tamale">
+            <span class="husk left"></span>
+            <span class="filling"></span>
+            <span class="husk right"></span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="section-tabs" aria-label="Secciones principales">
+        <button class="tab active" type="button" data-go="inicio">Inicio</button>
+        <button class="tab" type="button" data-go="ingredientes">Ingredientes</button>
+        <button class="tab" type="button" data-go="masa">Masa</button>
+        <button class="tab" type="button" data-go="recetas">Recetas</button>
+        <button class="tab" type="button" data-go="costos">Costos</button>
+        <button class="tab" type="button" data-go="ganancias">Ganancias</button>
+        <button class="tab" type="button" data-go="ventas">Vender</button>
+        <button class="tab" type="button" data-go="soporte">Soporte</button>
+      </nav>
+
+      <section class="dashboard" aria-label="Panel del curso">
+        <article class="progress-panel">
+          <div class="ring" data-progress-ring><span id="progressText">0%</span></div>
+          <div>
+            <h2>Tu progreso del curso</h2>
+            <p><span id="progressCount">0</span> de <span id="totalLessons">13</span> secciones base completadas</p>
+            <div class="bar"><span id="progressBar"></span></div>
+          </div>
+        </article>
+        <article class="quick-panel">
+          <h2>Accesos rápidos</h2>
+          <div class="quick-grid">
+            <button class="quick cost" type="button" data-go="costos">Calculadora de costos</button>
+            <button class="quick profit" type="button" data-go="ganancias">Calculadora de ganancias</button>
+            <button class="quick sell" type="button" data-go="facebook-whatsapp">Facebook y WhatsApp</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <aside class="lesson-list" aria-label="Indice del curso">
+          <h2>Secciones del curso</h2>
+          <div id="lessonList"></div>
+        </aside>
+
+        <div class="lesson-content">
+          <article class="lesson active" id="bienvenida" data-section="bienvenida" data-base="true">
+            <div class="section-head">
+              <span class="section-number">1</span>
+              <div><h2>Bienvenida al curso</h2><p>De tu cocina a tus primeros pedidos reales.</p></div>
+            </div>
+            <div class="cards two">
+              <div class="card"><h3>Meta principal</h3><p>Preparar un primer lote de 20 a 50 tamales, calcular su costo real y venderlo con anticipo.</p></div>
+              <div class="card"><h3>Ruta de trabajo</h3><p>Aprende ingredientes, masa, rellenos, cocción, costos, ventas y seguimiento por WhatsApp.</p></div>
+            </div>
+            <div class="checklist" data-checklist>
+              <label><input type="checkbox" value="bienvenida"> Entendí la ruta del curso</label>
+              <label><input type="checkbox" value="masa-prueba"> Haré la prueba del agua con mi masa</label>
+              <label><input type="checkbox" value="primer-lote"> Definí mi primer lote de venta</label>
+            </div>
+          </article>
+
+          <article class="lesson" id="ingredientes" data-section="ingredientes" data-base="true">
+            <div class="section-head"><span class="section-number">2</span><div><h2>Ingredientes básicos</h2><p>Lo mínimo para empezar sin comprar de más.</p></div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Ingrediente</th><th>Uso</th><th>Tip de compra</th></tr></thead>
+                <tbody>
+                  <tr><td>Harina de maíz nixtamalizado</td><td>Base de masa</td><td>Compra por kilo y mide por lote.</td></tr>
+                  <tr><td>Manteca o aceite vegetal</td><td>Textura esponjosa</td><td>Bate primero para airear.</td></tr>
+                  <tr><td>Caldo sazonado</td><td>Sabor de la masa</td><td>Evita agua simple.</td></tr>
+                  <tr><td>Hojas de maíz</td><td>Envoltura</td><td>Remoja 30 a 40 minutos.</td></tr>
+                  <tr><td>Chiles, tomatillo, jitomate</td><td>Salsas y rellenos</td><td>Compra según temporada.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tip">Equipo mínimo: vaporera, batidor o pala, báscula o tazas medidoras, trapos limpios, cucharas y recipientes.</div>
+          </article>
+
+          <article class="lesson" id="masa" data-section="masa" data-base="true">
+            <div class="section-head"><span class="section-number">3</span><div><h2>Preparación de masa</h2><p>La textura correcta vende más que cualquier anuncio.</p></div></div>
+            <div class="recipe-card">
+              <h3>Masa base infalible para 24 tamales</h3>
+              <ul>
+                <li>500 g harina de maíz nixtamalizado</li>
+                <li>250 g manteca de cerdo, vegetal o mezcla con aceite</li>
+                <li>500 ml caldo tibio bien sazonado</li>
+                <li>1 cucharadita de sal y 1 cucharadita de polvo para hornear</li>
+              </ul>
+              <ol>
+                <li>Bate la manteca 5 minutos hasta que se vea clara y aireada.</li>
+                <li>Agrega harina alternando con caldo tibio.</li>
+                <li>Ajusta sal y polvo para hornear.</li>
+                <li>Haz la prueba del agua: una bolita debe flotar.</li>
+              </ol>
+            </div>
+            <div class="warning">Si la masa está seca, agrega caldo tibio poco a poco. Si está aguada, agrega harina y deja reposar 10 minutos.</div>
+          </article>
+
+          <article class="lesson" id="rellenos" data-section="rellenos" data-base="true">
+            <div class="section-head"><span class="section-number">4</span><div><h2>Rellenos</h2><p>Variedades que se venden todo el año.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Rojo</h3><p>Guajillo, ancho, jitomate asado, cebolla, ajo y pollo o cerdo deshebrado.</p></div>
+              <div class="card"><h3>Verde</h3><p>Tomatillo, serrano, cebolla, cilantro y pollo deshebrado.</p></div>
+              <div class="card"><h3>Rajas</h3><p>Poblano asado, cebolla, crema y queso Oaxaca.</p></div>
+              <div class="card"><h3>Oaxaqueño</h3><p>Mole negro o coloradito con pollo en hoja de plátano.</p></div>
+              <div class="card"><h3>Dulce</h3><p>Masa con leche, mantequilla, azúcar, canela, piña, pasas o cajeta.</p></div>
+              <div class="card"><h3>Especiales</h3><p>Camarón en chipotle, soya vegana, uchepos y chocolate con cajeta.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="recetas" data-section="recetas" data-base="true">
+            <div class="section-head"><span class="section-number">5</span><div><h2>Recetas de tamales</h2><p>Selecciona una receta o genera una personalizada.</p></div></div>
+            <div class="segmented" role="tablist" aria-label="Recetas">
+              <button class="segment active" type="button" data-recipe="rojos">Rojos</button>
+              <button class="segment" type="button" data-recipe="verdes">Verdes</button>
+              <button class="segment" type="button" data-recipe="rajas">Rajas</button>
+              <button class="segment" type="button" data-recipe="dulces">Dulces</button>
+              <button class="segment" type="button" data-recipe="especiales">Especiales</button>
+            </div>
+            <div class="recipe-output" id="recipeOutput"></div>
+            <form class="tool-form" id="recipeGenerator">
+              <h3>Generador de receta rápida</h3>
+              <label>Tipo de relleno
+                <select id="recipeFilling">
+                  <option>Pollo deshebrado</option><option>Carne de cerdo</option><option>Rajas con queso</option><option>Soya texturizada</option><option>Piña en almíbar</option><option>Cajeta con nuez</option>
+                </select>
+              </label>
+              <label>Cantidad
+                <select id="recipeQty"><option value="20">20 tamales</option><option value="50">50 tamales</option><option value="100">100 tamales</option></select>
+              </label>
+              <button class="primary-btn" type="submit">Generar receta</button>
+              <div class="result-box" id="generatedRecipe" hidden></div>
+            </form>
+          </article>
+
+          <article class="lesson" id="coccion" data-section="coccion" data-base="true">
+            <div class="section-head"><span class="section-number">6</span><div><h2>Cómo cocerlos correctamente</h2><p>Tiempo, vapor y señales de cocción.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Vaporera</h3><p>1 h 15 min a 1 h 30 min. Revisa agua cada 30 minutos. La hoja debe desprenderse limpia.</p></div>
+              <div class="card"><h3>Olla express</h3><p>45 a 55 minutos. Deja bajar la presión naturalmente antes de abrir.</p></div>
+            </div>
+            <div class="warning">No abras la vaporera antes de tiempo: el vapor cocina desde adentro y una bajada fuerte de temperatura endurece la masa.</div>
+          </article>
+
+          <article class="lesson" id="costos" data-section="costos" data-base="true">
+            <div class="section-head"><span class="section-number">7</span><div><h2>Calculadora de costos</h2><p>Calcula costo total y costo por tamal.</p></div></div>
+            <form class="tool-form" id="costForm">
+              <label>Cantidad de tamales <input id="costQty" type="number" value="50" min="0" inputmode="numeric"></label>
+              <label>Ingredientes del lote (MXN) <input id="costIngredients" type="number" value="200" min="0" inputmode="decimal"></label>
+              <label>Hojas y empaque (MXN) <input id="costPackaging" type="number" value="30" min="0" inputmode="decimal"></label>
+              <label>Gas o electricidad (MXN) <input id="costGas" type="number" value="25" min="0" inputmode="decimal"></label>
+              <button class="primary-btn" type="submit">Calcular costo</button>
+            </form>
+            <div class="finance-result" id="costResult" aria-live="polite"></div>
+          </article>
+
+          <article class="lesson" id="ganancias" data-section="ganancias" data-base="true">
+            <div class="section-head"><span class="section-number">8</span><div><h2>Calculadora de ganancias</h2><p>Define precio, margen y utilidad neta.</p></div></div>
+            <form class="tool-form" id="profitForm">
+              <label>Cantidad de tamales <input id="profitQty" type="number" value="50" min="0" inputmode="numeric"></label>
+              <label>Precio de venta por tamal (MXN) <input id="profitPrice" type="number" value="20" min="0" inputmode="decimal"></label>
+              <label>Costo total del lote (MXN) <input id="profitCost" type="number" value="255" min="0" inputmode="decimal"></label>
+              <button class="primary-btn" type="submit">Calcular ganancia</button>
+            </form>
+            <div class="finance-result green" id="profitResult" aria-live="polite"></div>
+          </article>
+
+          <article class="lesson" id="ventas" data-section="ventas" data-base="true">
+            <div class="section-head"><span class="section-number">9</span><div><h2>Cómo vender tamales desde casa</h2><p>Un sistema simple para tomar pedidos sin tienda.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Semana de venta</h3><p>Lunes publicas, martes cierras pedidos, miércoles preparas, jueves entregas y viernes pides reseñas.</p></div>
+              <div class="card"><h3>Anticipo</h3><p>Para pedidos de más de 20 piezas, pide 50% de anticipo y confirma por mensaje.</p></div>
+            </div>
+            <div class="tip">Empieza con familia, vecinas, grupos de colonia y estados de WhatsApp. La constancia pesa más que el presupuesto.</div>
+          </article>
+
+          <article class="lesson" id="facebook-whatsapp" data-section="facebook-whatsapp" data-base="true">
+            <div class="section-head"><span class="section-number">10</span><div><h2>Tips para Facebook y WhatsApp</h2><p>Mensajes listos para publicar y responder.</p></div></div>
+            <form class="tool-form" id="postForm">
+              <label>Sabores disponibles <input id="postFlavors" type="text" value="rojos, verdes, rajas y dulces"></label>
+              <label>Zona de entrega <input id="postZone" type="text" value="mi colonia y alrededores"></label>
+              <label>Precio desde (MXN) <input id="postPrice" type="number" value="20" min="0"></label>
+              <button class="primary-btn" type="submit">Generar publicación</button>
+            </form>
+            <div class="copy-box" id="postOutput" hidden></div>
+            <button class="secondary-btn copy-btn" type="button" data-copy-target="postOutput" hidden>Copiar texto</button>
+          </article>
+
+          <article class="lesson" id="actualizaciones" data-section="actualizaciones" data-base="true">
+            <div class="section-head"><span class="section-number">11</span><div><h2>Actualizaciones incluidas</h2><p>La app queda lista para crecer sin reinstalar.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Contenido vivo</h3><p>Nuevas recetas, precios de referencia, temporadas y plantillas se pueden publicar en esta misma ruta.</p></div>
+              <div class="card"><h3>Modo offline</h3><p>Después de la primera carga, el curso queda disponible aunque el teléfono pierda conexión.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="soporte" data-section="soporte" data-base="true">
+            <div class="section-head"><span class="section-number">12</span><div><h2>Soporte por WhatsApp</h2><p>Ayuda directa para dudas del curso.</p></div></div>
+            <div class="support-panel">
+              <div><h3>¿Dudas con masa, costos o pedidos?</h3><p>Abre WhatsApp con un mensaje prellenado y agrega fotos o detalles de tu lote.</p></div>
+              <a class="whatsapp-btn" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20soporte%20del%20Curso%20de%20Tamales" target="_blank" rel="noopener">Abrir WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="lesson" id="instalar" data-section="instalar" data-base="true">
+            <div class="section-head"><span class="section-number">13</span><div><h2>Instalar app</h2><p>Guarda el curso en tu pantalla de inicio.</p></div></div>
+            <div class="install-panel">
+              <button class="primary-btn" type="button" data-install-button>Instalar app</button>
+              <div id="installHelp">
+                <p><strong>iPhone:</strong> toca Compartir en Safari y elige "Agregar a pantalla de inicio".</p>
+                <p><strong>Android:</strong> toca Instalar app o el menú del navegador y elige "Agregar a pantalla principal".</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="derivados" data-section="derivados">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: derivados de masa</h2><p>Productos para aumentar ticket con la misma base.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Gorditas</h3><p>Rellena con frijol, queso o chicharrón. Precio sugerido: $15 a $25.</p></div>
+              <div class="card"><h3>Sopes</h3><p>Base gruesa con frijoles, crema, queso y salsa. Precio sugerido: $20 a $35.</p></div>
+              <div class="card"><h3>Corundas</h3><p>Tamales triangulares michoacanos para diferenciar tu menú.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="bebidas" data-section="bebidas">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: bebidas para acompañar</h2><p>Combos que suben el ticket.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Atole</h3><p>Leche, maicena disuelta en frío, azúcar y canela. Ideal para combo clásico.</p></div>
+              <div class="card"><h3>Champurrado</h3><p>Chocolate de mesa, masa disuelta y canela. Muy fuerte en temporada fría.</p></div>
+              <div class="card"><h3>Café de olla</h3><p>Café, piloncillo, canela y clavo. Bajo costo y buen margen.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="salsas" data-section="salsas">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: salsas</h2><p>Complementos que fidelizan clientes.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Roja rústica</h3><p>Jitomate asado, chile de árbol, ajo, sal y aceite.</p></div>
+              <div class="card"><h3>Verde fresca</h3><p>Tomatillo crudo, serrano, cebolla y cilantro.</p></div>
+              <div class="card"><h3>Cacahuate</h3><p>Cacahuate frito, chile morita, ajo y jitomate.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="errores" data-section="errores">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: errores y soluciones</h2><p>Diagnóstico rápido de primeros lotes.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Masa pesada</h3><p>Bate más la grasa y repite la prueba del agua.</p></div>
+              <div class="card"><h3>Tamales se abren</h3><p>Faltó cocción o la masa quedó muy húmeda. Regresa 20 minutos a vapor.</p></div>
+              <div class="card"><h3>Sin sabor</h3><p>Usa caldo sazonado y ajusta sal directo en la masa.</p></div>
+              <div class="card"><h3>Quemados abajo</h3><p>Coloca hojas al fondo y revisa agua cada 30 minutos.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="temporadas" data-section="temporadas">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: temporadas</h2><p>Qué vender durante el año.</p></div></div>
+            <div class="table-wrap"><table><thead><tr><th>Temporada</th><th>Producto fuerte</th><th>Estrategia</th></tr></thead><tbody><tr><td>Diciembre</td><td>Todos los clásicos</td><td>Pedidos desde noviembre.</td></tr><tr><td>Cuaresma</td><td>Camarón, rajas, veganos</td><td>Sin carne, precio premium.</td></tr><tr><td>Agosto a octubre</td><td>Uchepos</td><td>Aprovecha elote fresco.</td></tr><tr><td>Día de Muertos</td><td>Mole y oaxaqueños</td><td>Paquetes para ofrenda.</td></tr></tbody></table></div>
+          </article>
+
+          <article class="lesson extra" id="pedidos" data-section="pedidos">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: generador de pedido</h2><p>Confirmación lista para WhatsApp.</p></div></div>
+            <form class="tool-form" id="orderForm">
+              <label>Cliente <input id="orderName" type="text" placeholder="Señora María"></label>
+              <label>Pedido <textarea id="orderItems" rows="3" placeholder="20 rojos, 10 rajas, 10 dulces"></textarea></label>
+              <label>Entrega <input id="orderDate" type="text" placeholder="Jueves por la tarde"></label>
+              <label>Total (MXN) <input id="orderTotal" type="number" min="0" inputmode="decimal"></label>
+              <label>Anticipo (MXN) <input id="orderDeposit" type="number" min="0" inputmode="decimal"></label>
+              <button class="primary-btn" type="submit">Generar confirmación</button>
+            </form>
+            <div class="copy-box" id="orderOutput" hidden></div>
+            <button class="secondary-btn copy-btn" type="button" data-copy-target="orderOutput" hidden>Copiar pedido</button>
+          </article>
+
+          <article class="lesson extra" id="timer" data-section="timer">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: timer de cocina</h2><p>Tiempos rápidos para producción.</p></div></div>
+            <div class="timer-grid">
+              <button type="button" data-time="2100" data-name="Remojar hojas">Remojar hojas<br><span>35 min</span></button>
+              <button type="button" data-time="300" data-name="Batir manteca">Batir manteca<br><span>5 min</span></button>
+              <button type="button" data-time="5100" data-name="Vaporera">Vaporera<br><span>1 h 25 min</span></button>
+              <button type="button" data-time="3000" data-name="Olla express">Olla express<br><span>50 min</span></button>
+            </div>
+            <div class="timer-display">
+              <strong id="timerName">Elige un proceso</strong>
+              <span id="timerValue">00:00</span>
+              <div><button class="primary-btn" type="button" id="timerToggle">Iniciar</button><button class="secondary-btn" type="button" id="timerReset">Reiniciar</button></div>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="faq" data-section="faq">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: preguntas frecuentes</h2><p>Respuestas rápidas para operación diaria.</p></div></div>
+            <details><summary>¿Con cuánto dinero puedo empezar?</summary><p>Con $500 a $1,500 MXN puedes hacer un primer lote pequeño si ya tienes olla y utensilios básicos.</p></details>
+            <details><summary>¿Cuánto duran los tamales?</summary><p>A temperatura ambiente, 4 horas. En refrigerador, 5 días. En congelador, hasta 3 meses.</p></details>
+            <details><summary>¿Puedo preparar masa y rellenos antes?</summary><p>Sí. La masa se guarda 24 horas refrigerada y los rellenos 2 a 3 días en recipientes cerrados.</p></details>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <strong>Daily Tips MX</strong>
+      <span>Hecho para emprendedoras que quieren crecer desde su cocina.</span>
+      <span>https://dailytips.lat/apps/tamales/</span>
+    </footer>
+
+    <nav class="bottom-nav" aria-label="Navegación móvil">
+      <button class="active" type="button" data-go="inicio">Inicio</button>
+      <button type="button" data-go="recetas">Lecciones</button>
+      <button type="button" data-go="costos">Costos</button>
+      <button type="button" data-go="ventas">Vender</button>
+      <button type="button" data-go="soporte">Soporte</button>
+    </nav>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>
