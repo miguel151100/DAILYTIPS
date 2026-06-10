@@ -1,4 +1,4 @@
-const CACHE_NAME = "pizzas-daily-tips-v1";
+const CACHE_NAME = "pizzas-daily-tips-v2";
 const APP_SHELL = [
   "/apps/pizzas/",
   "/apps/pizzas/index.html",
@@ -6,7 +6,11 @@ const APP_SHELL = [
   "/apps/pizzas/app.js",
   "/apps/pizzas/manifest.json",
   "/apps/pizzas/icons/icon-192.png",
-  "/apps/pizzas/icons/icon-512.png"
+  "/apps/pizzas/icons/icon-512.png",
+  "/apps/pizzas/images/pizza-cheese-pull-hero.png",
+  "/apps/pizzas/images/pizza-variety-trio.png",
+  "/apps/pizzas/images/pizza-pepperoni-slice.png",
+  "/apps/pizzas/images/pizza-oven-slice.png"
 ];
 
 self.addEventListener("install", (event) => {
