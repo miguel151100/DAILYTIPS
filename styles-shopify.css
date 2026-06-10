@@ -78,7 +78,11 @@ body{
 
 /* Brand / Logo */
 .brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.brand-img{width:32px;height:32px;object-fit:contain}
+.brand-img{width:44px;height:44px;object-fit:contain;border-radius:50%}
+
+/* Brand Banner Strip */
+.brand-banner-strip{width:100%;overflow:hidden;line-height:0;background:#000}
+.brand-banner-strip img{width:100%;height:auto;display:block;max-height:420px;object-fit:cover;object-position:center}
 .brand-name{
   font-family:'Playfair Display',serif;
   font-size:1.55rem;font-weight:700;
@@ -349,6 +353,13 @@ body{
 .card-btn-red:hover{background:var(--red-dark);transform:translateY(-1px)}
 .card-btn svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
 .card-btn-stroke svg{fill:none;stroke:currentColor;stroke-width:2.5}
+
+/* Card includes list & preview link */
+.card-includes{list-style:none;display:flex;flex-direction:column;gap:5px;flex:1}
+.card-includes li{display:flex;align-items:flex-start;gap:7px;font-size:.79rem;color:var(--gray-600);line-height:1.45}
+.card-includes li::before{content:'✓';width:16px;height:16px;min-width:16px;background:#DCFCE7;color:#16A34A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;margin-top:1px}
+.card-preview-link{font-size:.72rem;font-weight:600;color:var(--gray-400);display:inline-block;margin-top:3px;transition:.15s}
+.card-preview-link:hover{color:var(--black)}
 
 /* ════════════════════════════════════════════════
    TABS
