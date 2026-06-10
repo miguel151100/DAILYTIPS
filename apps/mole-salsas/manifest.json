@@ -1,0 +1,27 @@
+{
+  "name": "Curso de Mole y Salsas - Daily Tips MX",
+  "short_name": "Mole Salsas",
+  "description": "Curso practico para preparar, envasar, costear y vender mole y salsas artesanales desde casa.",
+  "start_url": "/apps/mole-salsas/",
+  "scope": "/apps/mole-salsas/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fff8f0",
+  "theme_color": "#8e3b1f",
+  "categories": ["education", "food", "business"],
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

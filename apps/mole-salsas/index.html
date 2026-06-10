@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#8e3b1f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Mole Salsas">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Curso de Mole y Salsas - Daily Tips MX</title>
+  <meta name="description" content="App PWA de Daily Tips MX para aprender mole, salsas artesanales, costos, envasado y venta por encargo.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#bienvenida" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true">DT</span>
+        <span>Daily Tips MX</span>
+      </a>
+      <div class="top-actions">
+        <button class="ghost-btn" type="button" data-install-button>
+          <span class="icon" aria-hidden="true">↓</span>
+          Instalar app
+        </button>
+        <a class="ghost-btn whatsapp-top" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20soporte%20del%20Curso%20de%20Mole%20y%20Salsas" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">WA</span>
+          Soporte
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-grid" id="inicio" data-section="inicio" data-title="Inicio">
+        <div class="hero-copy">
+          <p class="overline">Curso instalable Daily Tips MX</p>
+          <h1>Curso de Mole y Salsas</h1>
+          <p>Aprende chiles, especias, salsas, moles tradicionales, envasado, costos y venta por encargo para convertir tu cocina en un producto rentable.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-go="recetas">Ver recetas</button>
+            <button class="secondary-btn" type="button" data-go="costos">Calcular costos</button>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Cazuela de mole con chiles secos">
+          <div class="bowl-shadow"></div>
+          <div class="bowl">
+            <span class="sauce"></span>
+            <span class="swirl swirl-one"></span>
+            <span class="swirl swirl-two"></span>
+          </div>
+          <span class="chile chile-one"></span>
+          <span class="chile chile-two"></span>
+          <span class="seed seed-one"></span>
+          <span class="seed seed-two"></span>
+        </div>
+      </section>
+
+      <nav class="section-tabs" aria-label="Secciones internas">
+        <button class="tab active" type="button" data-go="bienvenida">Bienvenida</button>
+        <button class="tab" type="button" data-go="ingredientes">Ingredientes</button>
+        <button class="tab" type="button" data-go="chiles">Chiles</button>
+        <button class="tab" type="button" data-go="salsas-basicas">Salsas basicas</button>
+        <button class="tab" type="button" data-go="salsas-vender">Salsas para vender</button>
+        <button class="tab" type="button" data-go="moles">Moles</button>
+        <button class="tab" type="button" data-go="recetas">Recetas</button>
+        <button class="tab" type="button" data-go="conservacion">Conservacion</button>
+        <button class="tab" type="button" data-go="presentacion">Presentacion</button>
+        <button class="tab" type="button" data-go="costos">Costos</button>
+        <button class="tab" type="button" data-go="ganancias">Ganancias</button>
+        <button class="tab" type="button" data-go="encargo">Por encargo</button>
+        <button class="tab" type="button" data-go="redes">Redes</button>
+        <button class="tab" type="button" data-go="actualizaciones">Actualizaciones</button>
+        <button class="tab" type="button" data-go="soporte">WhatsApp</button>
+        <button class="tab" type="button" data-go="instalar">Instalar</button>
+      </nav>
+
+      <section class="dashboard" aria-label="Panel del curso">
+        <article class="progress-panel">
+          <div class="ring" data-progress-ring><span id="progressText">0%</span></div>
+          <div>
+            <h2>Tu progreso del curso</h2>
+            <p><span id="progressCount">0</span> de <span id="totalLessons">16</span> secciones completadas</p>
+            <div class="bar"><span id="progressBar"></span></div>
+          </div>
+        </article>
+        <article class="quick-panel">
+          <h2>Accesos rapidos</h2>
+          <div class="quick-grid">
+            <button class="quick cost" type="button" data-go="costos">Calculadora de costos</button>
+            <button class="quick profit" type="button" data-go="ganancias">Calculadora de ganancias</button>
+            <button class="quick sell" type="button" data-go="encargo">Pedido por WhatsApp</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <aside class="lesson-list" aria-label="Indice del curso">
+          <h2>Secciones internas</h2>
+          <div id="lessonList"></div>
+        </aside>
+
+        <div class="lesson-content">
+          <article class="lesson active" id="bienvenida" data-section="bienvenida" data-base="true">
+            <div class="section-head">
+              <span class="section-number">1</span>
+              <div><h2>Bienvenida al curso</h2><p>Tu ruta para preparar mole y salsas que puedas vender con confianza.</p></div>
+            </div>
+            <div class="cards two">
+              <div class="card"><h3>Objetivo</h3><p>Que prepares productos con sabor constante, vida util clara, precio rentable y mensajes listos para conseguir pedidos.</p></div>
+              <div class="card"><h3>Metodo Daily Tips</h3><p>Primero dominas base, tecnica y recetas; despues calculas costos, envasas, presentas y vendes por WhatsApp o redes.</p></div>
+            </div>
+            <div class="checklist" data-checklist>
+              <label><input type="checkbox" value="bienvenida-ruta"> Entendi la ruta del curso</label>
+              <label><input type="checkbox" value="producto-inicial"> Elegi mi primer producto para vender</label>
+              <label><input type="checkbox" value="meta-semana"> Defini mi meta de frascos para esta semana</label>
+            </div>
+          </article>
+
+          <article class="lesson" id="ingredientes" data-section="ingredientes" data-base="true">
+            <div class="section-head"><span class="section-number">2</span><div><h2>Ingredientes base</h2><p>La despensa minima para moles, adobos y salsas artesanales.</p></div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Ingrediente</th><th>Funcion</th><th>Compra inteligente</th></tr></thead>
+                <tbody>
+                  <tr><td>Jitomate y tomatillo</td><td>Cuerpo, acidez y base de salsa</td><td>Compra maduro, firme y de temporada.</td></tr>
+                  <tr><td>Cebolla y ajo</td><td>Fondo aromatico</td><td>Asalos para mayor dulzor y profundidad.</td></tr>
+                  <tr><td>Ajonjoli, pepita, cacahuate</td><td>Textura, grasa natural y sabor tostado</td><td>Compra a granel y tuesta suave antes de moler.</td></tr>
+                  <tr><td>Chocolate mexicano</td><td>Equilibrio y color en moles rojos/oscuros</td><td>Usa poco; debe redondear, no volver dulce.</td></tr>
+                  <tr><td>Vinagre o limon</td><td>Acidez y conservacion corta</td><td>Agrega al final y prueba por lote.</td></tr>
+                  <tr><td>Frascos y tapas</td><td>Presentacion y vida util</td><td>Usa vidrio nuevo o en perfecto estado.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tip">Compra para una tanda pequena primero. Una salsa rentable nace de repetir el mismo sabor tres veces, no de producir mucho en el primer intento.</div>
+          </article>
+
+          <article class="lesson" id="chiles" data-section="chiles" data-base="true">
+            <div class="section-head"><span class="section-number">3</span><div><h2>Chiles y especias</h2><p>Como elegir, tostar, hidratar y combinar sin amargar el producto.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Chile ancho</h3><p>Dulce, frutal y oscuro. Base segura para mole rojo, adobo y coloradito.</p></div>
+              <div class="card"><h3>Chile guajillo</h3><p>Rojo brillante, acidez ligera y poco picor. Da color vendible a salsas y adobos.</p></div>
+              <div class="card"><h3>Chile pasilla</h3><p>Notas de pasa y cacao. Excelente para moles oscuros y salsas profundas.</p></div>
+              <div class="card"><h3>Chile mulato</h3><p>Oscuro, dulce y complejo. Da cuerpo a mole poblano y mole negro.</p></div>
+              <div class="card"><h3>Chile de arbol</h3><p>Picor directo. Usalo con medida en salsa macha y salsas rojas.</p></div>
+              <div class="card"><h3>Especias</h3><p>Canela, clavo, pimienta y comino deben sentirse al fondo, nunca dominar.</p></div>
+            </div>
+            <div class="warning">El chile quemado amarga toda la tanda. Tuesta a fuego medio por segundos, no por minutos, y remoja en agua caliente hasta que este flexible.</div>
+          </article>
+
+          <article class="lesson" id="salsas-basicas" data-section="salsas-basicas" data-base="true">
+            <div class="section-head"><span class="section-number">4</span><div><h2>Salsas basicas</h2><p>Las bases que cualquier cliente entiende y compra sin mucha explicacion.</p></div></div>
+            <div class="segmented" role="tablist" aria-label="Salsas basicas">
+              <button class="segment active" type="button" data-sauce="verde">Verde tatemada</button>
+              <button class="segment" type="button" data-sauce="roja">Roja de comal</button>
+              <button class="segment" type="button" data-sauce="molcajete">Molcajete</button>
+              <button class="segment" type="button" data-sauce="adobo">Adobo base</button>
+            </div>
+            <div class="recipe-output" id="sauceOutput"></div>
+            <ol class="steps">
+              <li>Asa verduras hasta tener manchas oscuras, no ceniza.</li>
+              <li>Muele con sal y acidez poco a poco.</li>
+              <li>Hierve 8 a 12 minutos si la venderas en frasco.</li>
+              <li>Etiqueta con fecha, picor y recomendacion de uso.</li>
+            </ol>
+          </article>
+
+          <article class="lesson" id="salsas-vender" data-section="salsas-vender" data-base="true">
+            <div class="section-head"><span class="section-number">5</span><div><h2>Salsas para vender</h2><p>Productos de bajo costo, alta recompra y fotos faciles para redes.</p></div></div>
+            <div class="cards three">
+              <div class="price-card"><strong>Salsa macha</strong><p>Chile de arbol, aceite, ajo, ajonjoli y cacahuate. Vende en frasco chico con precio premium.</p></div>
+              <div class="price-card"><strong>Salsa verde tatemada</strong><p>La mas facil para iniciar: tomatillo, serrano, cebolla, ajo y cilantro. Excelente para tacos.</p></div>
+              <div class="price-card"><strong>Chamoy artesanal</strong><p>Temporada de calor, snacks y fruta. Se vende bien por redes y paquetes escolares.</p></div>
+            </div>
+            <div class="tip">Para vender rapido, ofrece tres niveles: suave, medio y picoso. El cliente siente que puede elegir y baja la friccion de compra.</div>
+          </article>
+
+          <article class="lesson" id="moles" data-section="moles" data-base="true">
+            <div class="section-head"><span class="section-number">6</span><div><h2>Moles tradicionales</h2><p>Los moles con mejor valor percibido para vender por frasco, litro o pedido especial.</p></div></div>
+            <div class="cards three">
+              <div class="recipe-card"><h3>Mole poblano</h3><p>Chile mulato, ancho, pasilla, almendra, pasas, ajonjoli y chocolate. Ideal para comidas familiares y eventos.</p></div>
+              <div class="recipe-card"><h3>Mole negro oaxaqueno</h3><p>Complejo, oscuro y premium. Requiere paciencia, tostado controlado y venta con historia.</p></div>
+              <div class="recipe-card"><h3>Coloradito</h3><p>Rojo brillante, ahumado y dulce. Muy buen punto de entrada para vender mole artesanal.</p></div>
+              <div class="recipe-card"><h3>Mole verde</h3><p>Pepita, tomatillo, chile verde y hierbas. Fresco, diferente y atractivo para restaurantes.</p></div>
+              <div class="recipe-card"><h3>Pipian rojo</h3><p>Pepita, guajillo y ancho. Cremoso, rendidor y perfecto para tamales o enchiladas.</p></div>
+              <div class="recipe-card"><h3>Manchamanteles</h3><p>Mole agridulce con frutas. Producto especial para temporadas, regalos y clientes curiosos.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="recetas" data-section="recetas" data-base="true">
+            <div class="section-head"><span class="section-number">7</span><div><h2>Recetas paso a paso</h2><p>Recetas base listas para practicar, ajustar y vender.</p></div></div>
+            <div class="segmented" role="tablist" aria-label="Recetas">
+              <button class="segment active" type="button" data-recipe="mole-rojo">Mole rojo</button>
+              <button class="segment" type="button" data-recipe="mole-poblano">Mole poblano</button>
+              <button class="segment" type="button" data-recipe="salsa-macha">Salsa macha</button>
+              <button class="segment" type="button" data-recipe="salsa-verde">Salsa verde</button>
+              <button class="segment" type="button" data-recipe="chamoy">Chamoy</button>
+            </div>
+            <div class="recipe-output" id="recipeOutput"></div>
+            <form class="tool-form" id="batchPlanner">
+              <h3>Planificador rapido de tanda</h3>
+              <label>Producto
+                <select id="batchProduct"><option>Mole rojo</option><option>Mole poblano</option><option>Salsa macha</option><option>Salsa verde tatemada</option><option>Chamoy artesanal</option></select>
+              </label>
+              <label>Frascos
+                <input id="batchJars" type="number" min="1" value="12">
+              </label>
+              <button class="primary-btn" type="submit">Crear plan</button>
+              <div class="result-box" id="batchOutput" hidden></div>
+            </form>
+          </article>
+
+          <article class="lesson" id="conservacion" data-section="conservacion" data-base="true">
+            <div class="section-head"><span class="section-number">8</span><div><h2>Conservacion y envasado</h2><p>El proceso que convierte una receta casera en producto confiable.</p></div></div>
+            <ol class="steps">
+              <li>Lava frascos y tapas con agua caliente y jabon.</li>
+              <li>Esteriliza los frascos en agua hirviendo durante 10 minutos.</li>
+              <li>Envasa el producto caliente, dejando espacio de aire controlado.</li>
+              <li>Limpia la boca del frasco, cierra y deja enfriar sin mover.</li>
+              <li>Etiqueta con producto, lote, fecha, caducidad y modo de conservacion.</li>
+            </ol>
+            <div class="warning">Si vendes de forma formal o a tiendas, revisa requisitos locales de etiquetado e inocuidad. Para empezar, actua con higiene profesional desde el primer lote.</div>
+          </article>
+
+          <article class="lesson" id="presentacion" data-section="presentacion" data-base="true">
+            <div class="section-head"><span class="section-number">9</span><div><h2>Presentacion del producto</h2><p>Como hacer que el frasco se vea artesanal, confiable y cobrable.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Etiqueta clara</h3><p>Nombre del producto, picor, peso, fecha, ingredientes principales y tu marca. Nada saturado.</p></div>
+              <div class="card"><h3>Foto que vende</h3><p>Luz natural, frasco limpio, cucharita con textura y un plato real donde se vea el uso.</p></div>
+              <div class="card"><h3>Paquetes</h3><p>Trio de salsas, kit taquero, kit regalo, paquete familiar o litro para comida especial.</p></div>
+              <div class="card"><h3>Historia</h3><p>Cuenta si es receta familiar, estilo regional, de comal, molcajete, pepita o chiles secos seleccionados.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="costos" data-section="costos" data-base="true">
+            <div class="section-head"><span class="section-number">10</span><div><h2>Calculadora de costos</h2><p>Calcula cuanto cuesta cada frasco antes de poner precio.</p></div></div>
+            <form class="tool-form" id="costForm">
+              <label>Ingredientes ($)<input id="costIngredients" type="number" min="0" value="280"></label>
+              <label>Frascos y tapas ($)<input id="costPackaging" type="number" min="0" value="96"></label>
+              <label>Gas, luz y agua ($)<input id="costUtilities" type="number" min="0" value="45"></label>
+              <label>Etiquetas y empaque ($)<input id="costLabels" type="number" min="0" value="35"></label>
+              <label>Horas de trabajo<input id="costHours" type="number" min="0" step="0.5" value="3"></label>
+              <label>Pago por hora ($)<input id="costHourly" type="number" min="0" value="60"></label>
+              <label>Numero de frascos<input id="costQty" type="number" min="1" value="12"></label>
+              <button class="primary-btn" type="submit">Calcular costo</button>
+            </form>
+            <div class="result-grid" id="costResult"></div>
+          </article>
+
+          <article class="lesson" id="ganancias" data-section="ganancias" data-base="true">
+            <div class="section-head"><span class="section-number">11</span><div><h2>Calculadora de ganancias</h2><p>Proyecta ventas por tanda, semana y mes.</p></div></div>
+            <form class="tool-form" id="profitForm">
+              <label>Frascos vendidos<input id="profitQty" type="number" min="1" value="24"></label>
+              <label>Precio por frasco ($)<input id="profitPrice" type="number" min="0" value="120"></label>
+              <label>Costo por frasco ($)<input id="profitCost" type="number" min="0" value="55"></label>
+              <label>Tandas por mes<input id="profitBatches" type="number" min="1" value="4"></label>
+              <button class="primary-btn" type="submit">Calcular ganancia</button>
+            </form>
+            <div class="result-grid" id="profitResult"></div>
+            <div class="tip">Meta inicial realista: una tanda semanal de 12 a 24 frascos. Cuando se venda antes de producir la siguiente, subes volumen.</div>
+          </article>
+
+          <article class="lesson" id="encargo" data-section="encargo" data-base="true">
+            <div class="section-head"><span class="section-number">12</span><div><h2>Como vender por encargo</h2><p>Confirma pedidos por escrito y evita perdidas por cancelaciones.</p></div></div>
+            <form class="tool-form" id="orderForm">
+              <label>Nombre del cliente<input id="orderName" type="text" placeholder="Ej: Mariana"></label>
+              <label>Producto<textarea id="orderDesc" placeholder="Ej: 6 frascos de salsa macha 250g y 2 frascos de mole rojo 500g"></textarea></label>
+              <label>Fecha de entrega<input id="orderDate" type="date"></label>
+              <label>Punto de entrega<input id="orderDelivery" type="text" placeholder="Ej: Col. Centro o envio por moto"></label>
+              <label>Total ($)<input id="orderTotal" type="number" min="0" value="720"></label>
+              <label>Anticipo ($)<input id="orderAdvance" type="number" min="0" value="360"></label>
+              <button class="primary-btn" type="submit">Generar confirmacion</button>
+            </form>
+            <div class="result-box copy-box" id="orderOutput" hidden></div>
+            <button class="secondary-btn" type="button" data-copy-target="orderOutput" hidden>Copiar mensaje</button>
+          </article>
+
+          <article class="lesson" id="redes" data-section="redes" data-base="true">
+            <div class="section-head"><span class="section-number">13</span><div><h2>Tips para redes sociales</h2><p>Publica para que la gente entienda sabor, uso y precio sin preguntar demasiado.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Contenido proceso</h3><p>Muestra chiles en comal, molienda, burbujeo y envasado. El proceso vende autenticidad.</p></div>
+              <div class="card"><h3>Contenido uso</h3><p>Tacos, quesadillas, pollo con mole, fruta con chamoy o desayuno con salsa. La gente compra ideas.</p></div>
+              <div class="card"><h3>Contenido prueba social</h3><p>Sube entregas, reseñas y fotos de clientes. La confianza vende mas que el descuento.</p></div>
+            </div>
+            <form class="tool-form" id="socialForm">
+              <h3>Generador de publicacion</h3>
+              <label>Producto<input id="socialProduct" type="text" value="Salsa macha artesanal"></label>
+              <label>Precio desde ($)<input id="socialPrice" type="number" min="0" value="120"></label>
+              <label>Zona<input id="socialZone" type="text" value="mi colonia"></label>
+              <label>WhatsApp<input id="socialPhone" type="text" placeholder="Tu numero o link"></label>
+              <button class="primary-btn" type="submit">Generar texto</button>
+            </form>
+            <div class="result-box copy-box" id="socialOutput" hidden></div>
+            <button class="secondary-btn" type="button" data-copy-target="socialOutput" hidden>Copiar publicacion</button>
+          </article>
+
+          <article class="lesson" id="actualizaciones" data-section="actualizaciones" data-base="true">
+            <div class="section-head"><span class="section-number">14</span><div><h2>Actualizaciones incluidas</h2><p>La app queda preparada para crecer con nuevas recetas y herramientas.</p></div></div>
+            <div class="cards two">
+              <div class="support-card"><h3>Recetas nuevas</h3><p>Agrega temporadas como Navidad, Dia de Madres, fiestas patrias, salsas botaneras y kits regalo.</p></div>
+              <div class="support-card"><h3>Mejoras de negocio</h3><p>La app puede sumar plantillas de etiqueta, control de pedidos, inventario y nuevos generadores.</p></div>
+            </div>
+            <div class="tip">Cuando se publique una version nueva, abre la app con internet una vez para que el service worker guarde los archivos actualizados.</div>
+          </article>
+
+          <article class="lesson" id="soporte" data-section="soporte" data-base="true">
+            <div class="section-head"><span class="section-number">15</span><div><h2>Soporte por WhatsApp</h2><p>Acompana al alumno hasta que pueda producir, cobrar y vender.</p></div></div>
+            <div class="support-card">
+              <h3>Mensaje sugerido para soporte</h3>
+              <p>Hola Daily Tips MX, estoy tomando el Curso de Mole y Salsas. Necesito ayuda con una receta, costo, envasado o venta por encargo.</p>
+              <a class="whatsapp-btn" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20estoy%20tomando%20el%20Curso%20de%20Mole%20y%20Salsas.%20Necesito%20ayuda%20con%20una%20receta,%20costo,%20envasado%20o%20venta%20por%20encargo." target="_blank" rel="noopener">Abrir WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="lesson" id="instalar" data-section="instalar" data-base="true">
+            <div class="section-head"><span class="section-number">16</span><div><h2>Instalar app</h2><p>Guarda el curso en tu celular para consultarlo como aplicacion.</p></div></div>
+            <div class="install-card">
+              <h3>Link final</h3>
+              <p><a href="https://dailytips.lat/apps/mole-salsas/">https://dailytips.lat/apps/mole-salsas/</a></p>
+              <button class="primary-btn" type="button" data-install-button>Instalar ahora</button>
+              <p class="small-note">En iPhone: abre Safari, toca Compartir y elige Agregar a pantalla de inicio.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegacion rapida">
+      <button type="button" data-go="bienvenida">Inicio</button>
+      <button type="button" data-go="recetas">Recetas</button>
+      <button type="button" data-go="costos">Costos</button>
+      <button type="button" data-go="encargo">Pedido</button>
+    </nav>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

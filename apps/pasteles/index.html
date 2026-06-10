@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#e84393">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Pasteles">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Curso de Pasteles - Daily Tips MX</title>
+  <meta name="description" content="App PWA de Daily Tips MX para aprender reposteria, calcular costos, tomar pedidos y vender pasteles desde casa.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#bienvenida" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true">DT</span>
+        <span>Daily Tips MX</span>
+      </a>
+      <div class="top-actions">
+        <button class="ghost-btn" type="button" data-install-button>
+          <span class="icon" aria-hidden="true">↓</span>
+          Instalar app
+        </button>
+        <a class="ghost-btn whatsapp-top" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20soporte%20del%20Curso%20de%20Pasteles" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">WA</span>
+          Soporte
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-grid" id="inicio" data-section="inicio" data-title="Inicio">
+        <div class="hero-copy">
+          <p class="overline">Curso instalable Daily Tips MX</p>
+          <h1>Curso de Pasteles</h1>
+          <p>Aprende bizcochos, betunes, rellenos, decoracion, costos y ventas con herramientas listas para emprender desde casa.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-go="recetas">Ver recetas</button>
+            <button class="secondary-btn" type="button" data-go="costos">Calcular costos</button>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Pastel decorado con betun rosa">
+          <div class="cake-stand"></div>
+          <div class="cake-base"></div>
+          <div class="cake-mid"></div>
+          <div class="cake-top"></div>
+          <span class="berry berry-one"></span>
+          <span class="berry berry-two"></span>
+          <span class="spark spark-one"></span>
+          <span class="spark spark-two"></span>
+        </div>
+      </section>
+
+      <nav class="section-tabs" aria-label="Secciones internas">
+        <button class="tab active" type="button" data-go="bienvenida">Bienvenida</button>
+        <button class="tab" type="button" data-go="herramientas">Herramientas</button>
+        <button class="tab" type="button" data-go="ingredientes">Ingredientes</button>
+        <button class="tab" type="button" data-go="bizcocho">Bizcocho</button>
+        <button class="tab" type="button" data-go="betunes">Betunes</button>
+        <button class="tab" type="button" data-go="rellenos">Rellenos</button>
+        <button class="tab" type="button" data-go="recetas">Recetas</button>
+        <button class="tab" type="button" data-go="decoracion">Decoracion</button>
+        <button class="tab" type="button" data-go="vender">Para vender</button>
+        <button class="tab" type="button" data-go="costos">Costos</button>
+        <button class="tab" type="button" data-go="ganancias">Ganancias</button>
+        <button class="tab" type="button" data-go="pedidos">Pedidos</button>
+        <button class="tab" type="button" data-go="redes">Redes</button>
+        <button class="tab" type="button" data-go="actualizaciones">Actualizaciones</button>
+        <button class="tab" type="button" data-go="soporte">WhatsApp</button>
+        <button class="tab" type="button" data-go="instalar">Instalar</button>
+      </nav>
+
+      <section class="dashboard" aria-label="Panel del curso">
+        <article class="progress-panel">
+          <div class="ring" data-progress-ring><span id="progressText">0%</span></div>
+          <div>
+            <h2>Tu progreso del curso</h2>
+            <p><span id="progressCount">0</span> de <span id="totalLessons">16</span> secciones completadas</p>
+            <div class="bar"><span id="progressBar"></span></div>
+          </div>
+        </article>
+        <article class="quick-panel">
+          <h2>Accesos rapidos</h2>
+          <div class="quick-grid">
+            <button class="quick cost" type="button" data-go="costos">Calculadora de costos</button>
+            <button class="quick profit" type="button" data-go="ganancias">Calculadora de ganancias</button>
+            <button class="quick sell" type="button" data-go="pedidos">Pedido por WhatsApp</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <aside class="lesson-list" aria-label="Indice del curso">
+          <h2>Secciones internas</h2>
+          <div id="lessonList"></div>
+        </aside>
+
+        <div class="lesson-content">
+          <article class="lesson active" id="bienvenida" data-section="bienvenida" data-base="true">
+            <div class="section-head">
+              <span class="section-number">1</span>
+              <div><h2>Bienvenida al curso</h2><p>Tu ruta para hornear, costear y vender pasteles desde casa.</p></div>
+            </div>
+            <div class="cards two">
+              <div class="card"><h3>Objetivo</h3><p>Que prepares pasteles consistentes, los vendas con anticipo y sepas cuanto ganas antes de aceptar cada pedido.</p></div>
+              <div class="card"><h3>Metodo Daily Tips</h3><p>Aprendes tecnica basica, practicas con recetas vendibles y usas calculadoras para convertir cada pastel en negocio.</p></div>
+            </div>
+            <div class="checklist" data-checklist>
+              <label><input type="checkbox" value="bienvenida-ruta"> Entendi la ruta del curso</label>
+              <label><input type="checkbox" value="primer-producto"> Elegi mi primer pastel para vender</label>
+              <label><input type="checkbox" value="meta-semana"> Defini una meta de pedidos para esta semana</label>
+            </div>
+          </article>
+
+          <article class="lesson" id="herramientas" data-section="herramientas" data-base="true">
+            <div class="section-head"><span class="section-number">2</span><div><h2>Herramientas basicas de reposteria</h2><p>Compra primero lo que cambia el resultado y evita gasto innecesario.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Imprescindibles</h3><p>Bascula digital, moldes de 18 y 20 cm, espatula, miserable, globo, charola, rejilla, papel encerado y tazas medidoras.</p></div>
+              <div class="card"><h3>Para decorar</h3><p>Base giratoria, manga pastelera, duyas 1M y redonda, rasqueta, espatula acodada y alisador.</p></div>
+              <div class="card"><h3>Para vender</h3><p>Cajas, bases de carton, etiquetas, cinta, hielera de transporte y libreta o app para pedidos.</p></div>
+            </div>
+            <div class="tip">Compra una bascula antes que una batidora cara. Medir en gramos reduce fallas y te permite calcular costos reales.</div>
+          </article>
+
+          <article class="lesson" id="ingredientes" data-section="ingredientes" data-base="true">
+            <div class="section-head"><span class="section-number">3</span><div><h2>Ingredientes principales</h2><p>Lo que hace estructura, humedad, sabor y vida util.</p></div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Ingrediente</th><th>Funcion</th><th>Tip de compra</th></tr></thead>
+                <tbody>
+                  <tr><td>Harina de trigo</td><td>Estructura del bizcocho</td><td>Usa todo uso para iniciar; tamiza si hay grumos.</td></tr>
+                  <tr><td>Huevos</td><td>Volumen y union</td><td>Compra por cartera y pesa si haces lotes grandes.</td></tr>
+                  <tr><td>Mantequilla o aceite</td><td>Humedad y suavidad</td><td>Mantequilla da sabor; aceite conserva humedad.</td></tr>
+                  <tr><td>Azucar</td><td>Dulzor y textura</td><td>No la reduzcas mas de 20% sin probar.</td></tr>
+                  <tr><td>Leche o yogurt</td><td>Humedad</td><td>Yogurt mejora miga y permite vender estilo casero premium.</td></tr>
+                  <tr><td>Polvo para hornear</td><td>Elevacion</td><td>Revisa caducidad cada 3 meses.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="warning">Ingredientes frios cortan mezclas. Huevos, leche y mantequilla deben estar a temperatura ambiente para bizcochos de mantequilla.</div>
+          </article>
+
+          <article class="lesson" id="bizcocho" data-section="bizcocho" data-base="true">
+            <div class="section-head"><span class="section-number">4</span><div><h2>Bases de bizcocho</h2><p>Tres bases para cubrir la mayoria de pedidos.</p></div></div>
+            <div class="cards three">
+              <div class="recipe-card"><h3>Vainilla humeda</h3><p>Ideal para cumpleanos. Usa mantequilla, leche, vainilla y una cucharada de yogurt para miga suave.</p></div>
+              <div class="recipe-card"><h3>Chocolate intenso</h3><p>Cacao, cafe caliente y aceite. Es estable, rentable y se vende todo el ano.</p></div>
+              <div class="recipe-card"><h3>Tres leches</h3><p>Bizcocho esponja que absorbe mezcla de leches. Perfecto para charolas y ventas por rebanada.</p></div>
+            </div>
+            <ol class="steps">
+              <li>Precalienta el horno 15 minutos y engrasa el molde antes de mezclar.</li>
+              <li>Pesa ingredientes, tamiza secos y no sobrebatas cuando agregues harina.</li>
+              <li>Llena el molde a dos tercios y hornea hasta que el palillo salga limpio.</li>
+              <li>Enfria 10 minutos en molde, desmolda y deja enfriar totalmente antes de rellenar.</li>
+            </ol>
+          </article>
+
+          <article class="lesson" id="betunes" data-section="betunes" data-base="true">
+            <div class="section-head"><span class="section-number">5</span><div><h2>Betunes y coberturas</h2><p>Elige segun clima, presupuesto y tipo de entrega.</p></div></div>
+            <div class="segmented" role="tablist" aria-label="Betunes">
+              <button class="segment active" type="button" data-frosting="americano">Americano</button>
+              <button class="segment" type="button" data-frosting="queso">Queso crema</button>
+              <button class="segment" type="button" data-frosting="ganache">Ganache</button>
+              <button class="segment" type="button" data-frosting="chantilly">Chantilly</button>
+            </div>
+            <div class="recipe-output" id="frostingOutput"></div>
+            <div class="tip">Para clima caluroso, entrega frio y usa ganache o betun mas estable. Cobra manejo especial si debes transportar con hielo.</div>
+          </article>
+
+          <article class="lesson" id="rellenos" data-section="rellenos" data-base="true">
+            <div class="section-head"><span class="section-number">6</span><div><h2>Rellenos</h2><p>Rellenos faciles de vender y de controlar en costo.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>Fresa con crema</h3><p>Usa fruta fresca escurrida y crema estabilizada. Vende muy bien para cumpleanos.</p></div>
+              <div class="card"><h3>Cajeta con nuez</h3><p>Alto valor percibido. Usa poca cantidad y distribuye en capas delgadas.</p></div>
+              <div class="card"><h3>Ganache</h3><p>Firme, elegante y facil de cortar. Ideal para chocolate y eventos formales.</p></div>
+              <div class="card"><h3>Durazno</h3><p>Economico, disponible y rendidor. Seca el almibar para no humedecer de mas.</p></div>
+              <div class="card"><h3>Queso crema</h3><p>Perfecto para zanahoria, red velvet y frutos rojos. Requiere refrigeracion.</p></div>
+              <div class="card"><h3>Mermelada artesanal</h3><p>Permite sabores de temporada y margen alto si compras fruta madura.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="recetas" data-section="recetas" data-base="true">
+            <div class="section-head"><span class="section-number">7</span><div><h2>Recetas de pasteles</h2><p>Recetas base listas para practicar y vender.</p></div></div>
+            <div class="segmented" role="tablist" aria-label="Recetas">
+              <button class="segment active" type="button" data-recipe="vainilla">Vainilla</button>
+              <button class="segment" type="button" data-recipe="chocolate">Chocolate</button>
+              <button class="segment" type="button" data-recipe="zanahoria">Zanahoria</button>
+              <button class="segment" type="button" data-recipe="tres-leches">Tres leches</button>
+              <button class="segment" type="button" data-recipe="red-velvet">Red velvet</button>
+            </div>
+            <div class="recipe-output" id="recipeOutput"></div>
+            <form class="tool-form" id="recipeGenerator">
+              <h3>Generador de receta proporcional</h3>
+              <label>Molde
+                <select id="recipeSize"><option value="15">15 cm</option><option value="18">18 cm</option><option value="20" selected>20 cm</option><option value="24">24 cm</option><option value="30">30 cm</option></select>
+              </label>
+              <label>Sabor
+                <select id="recipeFlavor"><option>Vainilla clasica</option><option>Chocolate intenso</option><option>Limón</option><option>Cafe</option><option>Canela</option></select>
+              </label>
+              <button class="primary-btn" type="submit">Generar receta</button>
+              <div class="result-box" id="generatedRecipe" hidden></div>
+            </form>
+          </article>
+
+          <article class="lesson" id="decoracion" data-section="decoracion" data-base="true">
+            <div class="section-head"><span class="section-number">8</span><div><h2>Decoracion basica</h2><p>Acabados que se ven profesionales sin aprender tecnicas complicadas.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Alisado limpio</h3><p>Pastel frio, capa atrapa migas, segunda capa de betun y rasqueta en una sola direccion.</p></div>
+              <div class="card"><h3>Rosetas con duya 1M</h3><p>Practica en papel encerado 20 veces. Es la decoracion mas rapida para subir precio.</p></div>
+              <div class="card"><h3>Drip cake</h3><p>Ganache tibio sobre pastel frio. Prueba una gota atras antes de cubrir todo el borde.</p></div>
+              <div class="card"><h3>Fruta y flores</h3><p>Fresas, berries, romero y flores comestibles dan acabado premium con poco tiempo.</p></div>
+            </div>
+            <div class="warning">No prometas decoraciones complejas sin prueba previa. Cobra extra por flores, toppers, fondant, entregas largas y cambios de color personalizados.</div>
+          </article>
+
+          <article class="lesson" id="vender" data-section="vender" data-base="true">
+            <div class="section-head"><span class="section-number">9</span><div><h2>Pasteles para vender</h2><p>Menu inicial rentable para empezar sin saturarte.</p></div></div>
+            <div class="cards three">
+              <div class="price-card"><h3>Pastel familiar 20 cm</h3><strong>$350-$550</strong><p>Vainilla, chocolate o zanahoria. 10 a 12 porciones.</p></div>
+              <div class="price-card"><h3>Tres leches en charola</h3><strong>$280-$450</strong><p>Rinde porciones, ideal para oficina, escuela y reuniones.</p></div>
+              <div class="price-card"><h3>Cupcakes decorados</h3><strong>$25-$45 c/u</strong><p>Venta por docena, fiestas infantiles y regalos.</p></div>
+              <div class="price-card"><h3>Mini pastel lunchbox</h3><strong>$150-$250</strong><p>Regalos pequenos, aniversarios y entregas express.</p></div>
+              <div class="price-card"><h3>Pastel personalizado</h3><strong>$650+</strong><p>Incluye relleno especial, colores, nombre y decoracion.</p></div>
+              <div class="price-card"><h3>Rebanadas</h3><strong>$35-$65 c/u</strong><p>Buen formato para probar sabores y vender por volumen.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson" id="costos" data-section="costos" data-base="true">
+            <div class="section-head"><span class="section-number">10</span><div><h2>Calculadora de costos</h2><p>Calcula el costo real antes de publicar precio.</p></div></div>
+            <form class="tool-form" id="costForm">
+              <label>Cantidad de pasteles <input id="costQty" type="number" value="1" min="1" inputmode="numeric"></label>
+              <label>Ingredientes (MXN) <input id="costIngredients" type="number" value="160" min="0" inputmode="decimal"></label>
+              <label>Empaque y base (MXN) <input id="costPackaging" type="number" value="35" min="0" inputmode="decimal"></label>
+              <label>Gas o electricidad (MXN) <input id="costGas" type="number" value="25" min="0" inputmode="decimal"></label>
+              <label>Decoracion extra (MXN) <input id="costDecor" type="number" value="40" min="0" inputmode="decimal"></label>
+              <label>Tu tiempo (MXN) <input id="costLabor" type="number" value="120" min="0" inputmode="decimal"></label>
+              <button class="primary-btn" type="submit">Calcular costo</button>
+            </form>
+            <div class="finance-result" id="costResult" aria-live="polite"></div>
+          </article>
+
+          <article class="lesson" id="ganancias" data-section="ganancias" data-base="true">
+            <div class="section-head"><span class="section-number">11</span><div><h2>Calculadora de ganancias</h2><p>Define precio, utilidad neta y margen.</p></div></div>
+            <form class="tool-form" id="profitForm">
+              <label>Cantidad de pasteles <input id="profitQty" type="number" value="1" min="1" inputmode="numeric"></label>
+              <label>Precio de venta por pastel (MXN) <input id="profitPrice" type="number" value="550" min="0" inputmode="decimal"></label>
+              <label>Costo total por pastel (MXN) <input id="profitCost" type="number" value="380" min="0" inputmode="decimal"></label>
+              <button class="primary-btn" type="submit">Calcular ganancia</button>
+            </form>
+            <div class="finance-result green" id="profitResult" aria-live="polite"></div>
+          </article>
+
+          <article class="lesson" id="pedidos" data-section="pedidos" data-base="true">
+            <div class="section-head"><span class="section-number">12</span><div><h2>Como tomar pedidos</h2><p>Formaliza cada venta y evita malentendidos.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Datos obligatorios</h3><p>Nombre, fecha, hora, sabor, relleno, tamano, mensaje, direccion, anticipo y saldo pendiente.</p></div>
+              <div class="card"><h3>Regla de anticipo</h3><p>No apartes fecha sin anticipo. Recomienda 50% para pedidos normales y 70% si es personalizado.</p></div>
+            </div>
+            <form class="tool-form" id="orderForm">
+              <h3>Generador de confirmacion por WhatsApp</h3>
+              <label>Nombre del cliente <input id="orderName" type="text" placeholder="Ej. Maria Garcia"></label>
+              <label>Descripcion del pastel <textarea id="orderDesc" rows="3" placeholder="Pastel de vainilla, relleno de fresa, betun rosa, 20 porciones"></textarea></label>
+              <label>Fecha y hora <input id="orderDate" type="text" placeholder="Sabado 15 de junio, 4:00 pm"></label>
+              <label>Entrega <input id="orderDelivery" type="text" placeholder="Recoger en domicilio / entrega con costo"></label>
+              <label>Total (MXN) <input id="orderTotal" type="number" value="550" min="0"></label>
+              <label>Anticipo (MXN) <input id="orderAdvance" type="number" value="275" min="0"></label>
+              <button class="primary-btn" type="submit">Generar mensaje</button>
+            </form>
+            <div class="result-box copy-box" id="orderOutput" hidden></div>
+            <button class="secondary-btn copy-action" type="button" data-copy-target="orderOutput" hidden>Copiar mensaje</button>
+          </article>
+
+          <article class="lesson" id="redes" data-section="redes" data-base="true">
+            <div class="section-head"><span class="section-number">13</span><div><h2>Tips para vender por redes sociales</h2><p>Publica con claridad, fotos reales y llamados a pedido.</p></div></div>
+            <div class="cards three">
+              <div class="card"><h3>WhatsApp estados</h3><p>Sube foto, precio desde, zona, fecha de entrega y boton mental: "agenda hoy".</p></div>
+              <div class="card"><h3>Facebook grupos</h3><p>Publica en grupos de colonia con precio y anticipo. Responde rapido los comentarios.</p></div>
+              <div class="card"><h3>Instagram</h3><p>Reels de corte, decoracion y antes/despues. Guarda historias destacadas por sabor.</p></div>
+            </div>
+            <form class="tool-form" id="socialForm">
+              <h3>Generador de publicacion</h3>
+              <label>Producto
+                <select id="socialProduct"><option>Pastel de cumpleaños</option><option>Tres leches</option><option>Cupcakes decorados</option><option>Mini pastel lunchbox</option><option>Rebanadas de pastel</option></select>
+              </label>
+              <label>Precio desde (MXN) <input id="socialPrice" type="number" value="350" min="0"></label>
+              <label>Zona <input id="socialZone" type="text" placeholder="Ej. Coyoacan, CDMX"></label>
+              <label>WhatsApp <input id="socialPhone" type="text" placeholder="Ej. 55 1234 5678"></label>
+              <button class="primary-btn" type="submit">Generar publicacion</button>
+            </form>
+            <div class="result-box copy-box" id="socialOutput" hidden></div>
+            <button class="secondary-btn copy-action" type="button" data-copy-target="socialOutput" hidden>Copiar publicacion</button>
+          </article>
+
+          <article class="lesson" id="actualizaciones" data-section="actualizaciones" data-base="true">
+            <div class="section-head"><span class="section-number">14</span><div><h2>Actualizaciones incluidas</h2><p>La app queda lista para crecer sin reinstalar todo.</p></div></div>
+            <div class="cards two">
+              <div class="card"><h3>Contenido nuevo</h3><p>Podras agregar recetas de temporada, precios actualizados, nuevas plantillas de pedidos y promociones.</p></div>
+              <div class="card"><h3>Uso offline</h3><p>El service worker guarda la app para que el curso cargue aun con conexion inestable despues de abrirlo una vez.</p></div>
+            </div>
+            <div class="tip">Cuando publiques cambios en el servidor, incrementa la version del cache en `service-worker.js` para que los dispositivos reciban la actualizacion.</div>
+          </article>
+
+          <article class="lesson" id="soporte" data-section="soporte" data-base="true">
+            <div class="section-head"><span class="section-number">15</span><div><h2>Soporte por WhatsApp</h2><p>Canal directo para dudas del curso.</p></div></div>
+            <div class="support-card">
+              <h3>Daily Tips MX</h3>
+              <p>Escribe si necesitas ayuda con una receta, una calculadora, una instalacion o una duda de ventas.</p>
+              <a class="whatsapp-btn" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20soporte%20del%20Curso%20de%20Pasteles" target="_blank" rel="noopener">Abrir WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="lesson" id="instalar" data-section="instalar" data-base="true">
+            <div class="section-head"><span class="section-number">16</span><div><h2>Instalar app</h2><p>Guarda el curso en tu celular como aplicacion.</p></div></div>
+            <div class="install-card">
+              <div>
+                <h3>Curso de Pasteles - Daily Tips MX</h3>
+                <p>Link final: <a href="https://dailytips.lat/apps/pasteles/">https://dailytips.lat/apps/pasteles/</a></p>
+              </div>
+              <button class="primary-btn" type="button" data-install-button>Instalar app</button>
+            </div>
+            <div class="cards two">
+              <div class="card"><h3>iPhone Safari</h3><p>Abre el link, toca Compartir y elige "Agregar a pantalla de inicio".</p></div>
+              <div class="card"><h3>Android Chrome</h3><p>Abre el link y toca "Instalar app" cuando aparezca el aviso del navegador.</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegacion rapida">
+      <button class="active" type="button" data-go="bienvenida">Inicio</button>
+      <button type="button" data-go="recetas">Recetas</button>
+      <button type="button" data-go="costos">Costos</button>
+      <button type="button" data-go="pedidos">Pedidos</button>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

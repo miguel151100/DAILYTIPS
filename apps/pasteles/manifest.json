@@ -1,0 +1,27 @@
+{
+  "name": "Curso de Pasteles - Daily Tips MX",
+  "short_name": "Pasteles",
+  "description": "Curso practico para preparar, costear y vender pasteles desde casa con herramientas Daily Tips MX.",
+  "start_url": "/apps/pasteles/",
+  "scope": "/apps/pasteles/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fff7fb",
+  "theme_color": "#e84393",
+  "categories": ["education", "food", "business"],
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
