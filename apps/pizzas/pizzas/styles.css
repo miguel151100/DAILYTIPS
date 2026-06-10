@@ -1,52 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Prompt 1: Paleta Pizzería Italiana Gourmet ─────────────── */
 :root {
-  --brand: #c0392b;
-  --brand-dark: #8f241a;
-  --gold: #f6c453;
-  --green: #2f7d4f;
-  --ink: #181514;
-  --muted: #6d625c;
-  --line: #eadbd4;
-  --paper: #fff7f2;
-  --surface: #ffffff;
-  --soft: #f8ece5;
-  --shadow: 0 18px 48px rgba(99, 30, 20, 0.14);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --brand:      #9a1f1f;
+  --brand-dark: #7a1818;
+  --gold:       #e8a923;
+  --green:      #2f7d4f;
+  --ink:        #1e2022;
+  --muted:      #6b6560;
+  --line:       #e8ddd6;
+  --paper:      #fdfbf7;
+  --surface:    #ffffff;
+  --soft:       #f5ede7;
+  --shadow:     0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-md:  0 10px 15px -3px rgb(0 0 0 / 0.09), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+  --r:          12px;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
 }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button,
-a {
-  touch-action: manipulation;
-}
+button, input, select, textarea { font: inherit; }
+button, a { touch-action: manipulation; }
 
 .app-shell {
   min-height: 100vh;
   padding-bottom: 72px;
+  background: var(--paper);
 }
 
+/* ── Topbar ─────────────────────────────────────────────────── */
 .topbar {
   position: sticky;
   top: 0;
@@ -56,24 +49,20 @@ a {
   justify-content: space-between;
   gap: 16px;
   padding: 14px clamp(16px, 4vw, 42px);
-  background: linear-gradient(90deg, var(--brand), #e06432);
+  background: linear-gradient(90deg, #1a0c0c, #2e1212);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(93, 24, 16, 0.2);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.22);
 }
 
-.brand,
-.ghost-btn,
-.whatsapp-btn {
-  color: inherit;
-  text-decoration: none;
-}
+.brand, .ghost-btn, .whatsapp-btn { color: inherit; text-decoration: none; }
 
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 800;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
@@ -82,39 +71,42 @@ a {
   width: 34px;
   height: 34px;
   place-items: center;
-  border: 2px solid rgba(255, 255, 255, 0.76);
+  border: 1.5px solid rgba(255,255,255,0.45);
   border-radius: 8px;
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  background: rgba(255,255,255,0.07);
 }
 
-.top-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.top-actions { display: flex; align-items: center; gap: 10px; }
 
 .ghost-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.76);
+  min-height: 40px;
+  border: 1.5px solid rgba(255,255,255,0.35);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  padding: 10px 14px;
-  font-weight: 750;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.9);
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.ghost-btn:hover {
+  background: rgba(255,255,255,0.13);
+  border-color: rgba(255,255,255,0.55);
 }
 
 .icon {
   display: inline-grid;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   place-items: center;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 800;
 }
 
@@ -123,116 +115,79 @@ main {
   margin: 0 auto;
 }
 
+/* ── Prompt 1: Tipografía Playfair para h1/h2 ──────────────── */
+h1, h2, h3, p { margin-top: 0; }
+
+h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-bottom: 14px;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-bottom: 8px;
+  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+h3 {
+  margin-bottom: 6px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ── Hero Grid ──────────────────────────────────────────────── */
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
-  gap: 24px;
-  align-items: stretch;
-  padding: 26px 0 14px;
+  grid-template-columns: 1fr minmax(240px, 420px);
+  gap: 32px;
+  align-items: center;
+  padding: 40px 0 24px;
 }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 280px;
-  border-bottom: 1px solid var(--line);
 }
 
 .overline {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: var(--brand);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  margin-bottom: 12px;
-  font-size: clamp(2.15rem, 5.2vw, 4rem);
-  line-height: 0.95;
-  letter-spacing: 0;
-}
-
-h2 {
-  margin-bottom: 8px;
-  font-size: clamp(1.35rem, 2.6vw, 2rem);
-  line-height: 1.12;
-}
-
-h3 {
-  margin-bottom: 8px;
-  font-size: 1rem;
-}
-
 .hero-copy p:not(.overline) {
-  max-width: 620px;
+  max-width: 560px;
   color: var(--muted);
-  font-size: 1.08rem;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
-.hero-actions,
-.quick-grid,
-.top-actions {
-  flex-wrap: wrap;
-}
+.hero-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
 
-.primary-btn,
-.secondary-btn,
-.quick,
-.tab,
-.segment,
-.lesson-row {
-  border-radius: 8px;
-  cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.primary-btn,
-.secondary-btn {
-  min-height: 44px;
-  border: 0;
-  padding: 12px 16px;
-  font-weight: 800;
-}
-
-.primary-btn {
-  background: var(--brand);
-  color: #fff;
-  box-shadow: 0 10px 22px rgba(192, 57, 43, 0.2);
-}
-
-.secondary-btn {
-  border: 1px solid var(--line);
-  background: #fff;
-  color: var(--brand-dark);
-}
-
-.hero-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-}
-
+/* ── Prompt 2: Hero card pizza illustration ─────────────────── */
 .hero-card {
   position: relative;
-  min-height: 280px;
+  min-height: 300px;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--r);
   background:
-    linear-gradient(180deg, rgba(46, 18, 10, 0.08), rgba(46, 18, 10, 0.74)),
+    linear-gradient(180deg, rgba(26, 8, 6, 0.12), rgba(26, 8, 6, 0.72)),
     radial-gradient(circle at 30% 72%, #ffbd5f 0 11%, transparent 23%),
-    linear-gradient(135deg, #2b140f, #8f3a22 48%, #20110c);
-  box-shadow: var(--shadow);
+    linear-gradient(135deg, #1e0a06, #6b2214 48%, #180806);
+  box-shadow: var(--shadow-md);
 }
 
 .hero-photo {
@@ -247,13 +202,11 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(24, 9, 5, 0.02), rgba(24, 9, 5, 0.22));
+  background: linear-gradient(180deg, rgba(20, 6, 4, 0.04), rgba(20, 6, 4, 0.2));
 }
 
 .photo-hero .pizza-pan,
-.photo-hero .pizza-slice {
-  display: none;
-}
+.photo-hero .pizza-slice { display: none; }
 
 .pizza-pan {
   position: absolute;
@@ -280,10 +233,11 @@ h3 {
   position: absolute;
   inset: 0;
   clip-path: polygon(9% 8%, 93% 16%, 47% 96%);
-  background: #d83b24;
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.25);
+  background: #b8321a;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.3);
 }
 
+/* Prompt 2: Costra – degradado horneado tostado */
 .crust {
   position: absolute;
   left: 7%;
@@ -291,47 +245,52 @@ h3 {
   width: 90%;
   height: 42px;
   border-radius: 60px;
-  background: linear-gradient(180deg, #d88b36, #a8571d);
+  background: linear-gradient(180deg, #d4883a 0%, #b05c1e 45%, #8b4010 100%);
   transform: rotate(6deg);
   z-index: 2;
+  box-shadow: inset 0 -3px 8px rgba(0,0,0,0.18);
 }
 
+/* Prompt 2: Queso – mozzarella fundido cremoso */
 .cheese {
   position: absolute;
   inset: 30px 28px 28px 42px;
   clip-path: polygon(0 0, 100% 7%, 43% 100%);
-  background: linear-gradient(135deg, #ffe07a, #f7ad31 58%, #e78924);
+  background: linear-gradient(135deg, #faecc0 0%, #f9e7b9 55%, #f0d68e 100%);
   z-index: 1;
 }
 
-.pep,
-.melt {
+.pep, .melt {
   position: absolute;
   z-index: 3;
   display: block;
 }
 
+/* Prompt 2: Pepperoni – rojo carmín oscuro texturizado */
 .pep {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: radial-gradient(circle at 34% 30%, #ff7a59, #b72320 70%);
-  border: 3px solid rgba(104, 24, 15, 0.22);
+  background: radial-gradient(circle at 34% 30%, #c42820 0%, #8a1210 65%, #6a0e0e 100%);
+  border: 2px solid rgba(60, 8, 8, 0.3);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .p1 { left: 82px; top: 78px; }
 .p2 { left: 137px; top: 110px; }
 .p3 { left: 102px; top: 157px; }
 
+/* Prompt 2: Melt – mozzarella fundido cremoso */
 .melt {
   width: 18px;
   border-radius: 0 0 14px 14px;
-  background: #ffd964;
+  background: linear-gradient(180deg, #f9e7b9, #f0d08a);
 }
 
 .m1 { left: 112px; top: 185px; height: 48px; }
 .m2 { left: 148px; top: 170px; height: 34px; }
 
+/* ── Section Tabs ───────────────────────────────────────────── */
 .section-tabs {
   position: sticky;
   top: 62px;
@@ -339,45 +298,45 @@ h3 {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding: 12px 0;
-  background: rgba(255, 247, 242, 0.94);
-  backdrop-filter: blur(12px);
+  padding: 14px 0;
+  background: rgba(253, 251, 247, 0.95);
+  backdrop-filter: blur(14px);
   scrollbar-width: none;
 }
+.section-tabs::-webkit-scrollbar { display: none; }
 
-.section-tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.tab,
-.segment {
+.tab, .segment {
   flex: 0 0 auto;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   color: var(--muted);
-  padding: 10px 14px;
-  font-size: 0.88rem;
-  font-weight: 760;
+  padding: 9px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+.tab.active, .segment.active {
+  border-bottom: 2px solid var(--brand);
+  background: var(--surface);
+  color: var(--brand);
+  font-weight: 700;
+}
+.tab:hover:not(.active), .segment:hover:not(.active) {
+  background: var(--soft);
+  color: var(--ink);
 }
 
-.tab.active,
-.segment.active {
-  border-color: var(--brand);
-  background: var(--brand);
-  color: #fff;
-}
-
-.dashboard,
-.content-grid {
+/* ── Dashboard ──────────────────────────────────────────────── */
+.dashboard, .content-grid {
   display: grid;
   grid-template-columns: minmax(260px, 0.34fr) minmax(0, 1fr);
   gap: 18px;
 }
+.dashboard { margin: 10px 0 18px; }
 
-.dashboard {
-  margin: 10px 0 18px;
-}
-
+/* ── Prompt 1: Tarjetas base (30%) ─────────────────────────── */
 .progress-panel,
 .quick-panel,
 .lesson-list,
@@ -388,25 +347,20 @@ h3 {
 .support-card,
 .timeline > div {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r);
   background: var(--surface);
-  box-shadow: 0 10px 28px rgba(99, 30, 20, 0.07);
+  box-shadow: var(--shadow);
 }
 
-.progress-panel,
-.quick-panel {
+.progress-panel, .quick-panel {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px;
+  padding: 20px;
 }
 
-.progress-panel p,
-.quick-panel p,
-.card p,
-.recipe-card p,
-.support-card p,
-.timeline p {
+.progress-panel p, .quick-panel p, .card p,
+.recipe-card p, .support-card p, .timeline p {
   color: var(--muted);
 }
 
@@ -418,9 +372,8 @@ h3 {
   flex: 0 0 82px;
   place-items: center;
   border-radius: 50%;
-  background: conic-gradient(var(--brand) var(--pct), #f0ded5 0);
+  background: conic-gradient(var(--brand) var(--pct), #f0ddd5 0);
 }
-
 .ring span {
   display: grid;
   width: 58px;
@@ -429,28 +382,25 @@ h3 {
   border-radius: 50%;
   background: #fff;
   color: var(--brand-dark);
-  font-weight: 850;
+  font-weight: 800;
 }
 
 .bar {
-  height: 8px;
+  height: 6px;
   overflow: hidden;
   border-radius: 999px;
-  background: #f0ded5;
+  background: #f0ddd5;
 }
-
 .bar span {
   display: block;
   width: 0;
   height: 100%;
   border-radius: inherit;
   background: var(--brand);
+  transition: width 200ms ease;
 }
 
-.quick-panel {
-  flex-direction: column;
-  align-items: stretch;
-}
+.quick-panel { flex-direction: column; align-items: stretch; }
 
 .quick-grid {
   display: grid;
@@ -461,14 +411,18 @@ h3 {
 .quick {
   min-height: 54px;
   border: 0;
+  border-radius: var(--r);
   padding: 12px;
   color: #fff;
-  font-weight: 850;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: filter 0.18s;
 }
-
-.quick.cost { background: #af3428; }
-.quick.profit { background: #2f7d4f; }
-.quick.sell { background: #26201d; }
+.quick:hover { filter: brightness(1.09); }
+.quick.cost   { background: linear-gradient(135deg, #8a1c1c, #c0302a); }
+.quick.profit { background: linear-gradient(135deg, #2f7d4f, #3da968); }
+.quick.sell   { background: linear-gradient(135deg, #1e1714, #3a2c26); }
 
 .lesson-list {
   position: sticky;
@@ -476,12 +430,9 @@ h3 {
   align-self: start;
   max-height: calc(100vh - 144px);
   overflow: auto;
-  padding: 16px;
+  padding: 18px;
 }
-
-.lesson-list h2 {
-  font-size: 1.05rem;
-}
+.lesson-list h2 { font-size: 1.05rem; }
 
 .lesson-row {
   display: grid;
@@ -492,58 +443,44 @@ h3 {
   min-height: 48px;
   margin-bottom: 8px;
   border: 1px solid var(--line);
+  border-radius: 8px;
   background: #fff;
   color: var(--ink);
   padding: 8px;
   text-align: left;
-  font-weight: 740;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
 }
-
-.lesson-row .num,
-.section-number {
+.lesson-row .num, .section-number {
   display: grid;
   place-items: center;
   border-radius: 8px;
   background: var(--soft);
   color: var(--brand-dark);
-  font-weight: 850;
+  font-weight: 800;
+}
+.lesson-row .num { width: 32px; height: 32px; }
+.lesson-row .status { color: var(--muted); text-align: right; }
+.lesson-row.active, .lesson-row.done {
+  border-color: rgba(154, 31, 31, 0.3);
+  background: #fdf2f2;
 }
 
-.lesson-row .num {
-  width: 32px;
-  height: 32px;
-}
-
-.lesson-row .status {
-  color: var(--muted);
-  text-align: right;
-}
-
-.lesson-row.active,
-.lesson-row.done {
-  border-color: rgba(192, 57, 43, 0.36);
-  background: #fff1eb;
-}
-
-.lesson-content {
-  min-width: 0;
-}
+.lesson-content { min-width: 0; }
 
 .lesson {
   display: none;
   margin-bottom: 18px;
-  padding: clamp(18px, 3vw, 28px);
+  padding: clamp(20px, 3vw, 32px);
 }
-
-.lesson.active {
-  display: block;
-}
+.lesson.active { display: block; }
 
 .section-head {
   display: flex;
   gap: 14px;
   align-items: flex-start;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .section-number {
@@ -552,95 +489,119 @@ h3 {
   flex: 0 0 44px;
 }
 
-.cards {
-  display: grid;
-  gap: 12px;
+.cards { display: grid; gap: 14px; }
+.cards.two   { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cards.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Prompt 1: Menu cards – border-radius 16px, premium spacing */
+.card, .recipe-card, .support-card { padding: 20px; }
+
+.menu-cards .card {
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 2px;
 }
 
-.cards.two {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.cards.three {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.card,
-.recipe-card,
-.support-card {
-  padding: 16px;
-}
-
-.card h3,
-.recipe-card h3,
-.support-card h3,
-.timeline h3 {
+.card h3, .recipe-card h3, .support-card h3, .timeline h3 {
   color: var(--brand-dark);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
 }
 
-.recipe-card ul,
-.recipe-card ol,
-.dough-card ul,
-.dough-card ol,
-.card ul,
-.card ol {
-  padding-left: 20px;
-}
+.recipe-card ul, .recipe-card ol,
+.dough-card ul, .dough-card ol,
+.card ul, .card ol { padding-left: 20px; }
 
-.tip,
-.warning {
+.tip, .warning {
   margin: 14px 0;
   border-radius: 8px;
-  padding: 12px 14px;
-  color: #412211;
+  padding: 14px 16px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
-
 .tip {
-  border-left: 4px solid var(--gold);
-  background: #fff3d4;
+  border-left: 3px solid var(--gold);
+  background: #fdf8ec;
 }
-
 .warning {
-  border-left: 4px solid var(--brand);
-  background: #ffe8e2;
+  border-left: 3px solid var(--brand);
+  background: #fdf2f2;
+  color: #5a1616;
 }
 
+/* ── Tables ─────────────────────────────────────────────────── */
 .table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r);
   background: #fff;
+  -webkit-overflow-scrolling: touch;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  padding: 12px 14px;
+table { width: 100%; border-collapse: collapse; }
+th, td {
+  padding: 12px 16px;
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
 }
-
 th {
-  background: #2a201d;
+  background: #1e2022;
   color: #fff;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+td { color: var(--muted); font-size: 0.92rem; }
+tr:last-child td { border-bottom: 0; }
 
-td {
-  color: var(--muted);
+/* ── Prompt 2: Image Gallery – galería gourmet ─────────────── */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
 }
 
-tr:last-child td {
-  border-bottom: 0;
+.image-gallery figure {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.image-gallery figure:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }
 
+.image-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.image-gallery figure:hover img {
+  transform: scale(1.04);
+}
+
+/* Prompt 2: figcaption – tipografía cursiva elegante */
+.image-gallery figcaption {
+  padding: 10px 12px;
+  color: #9e8f87;
+  font-style: italic;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+/* ── Dough Cards ────────────────────────────────────────────── */
 .segmented {
   display: flex;
   gap: 8px;
@@ -649,64 +610,20 @@ tr:last-child td {
   padding-bottom: 2px;
 }
 
-.recipe-output {
-  margin-bottom: 14px;
-}
+.recipe-output { margin-bottom: 14px; }
 
-.section-subhead,
-.mini-module {
-  margin-top: 18px;
-}
+.section-subhead, .mini-module { margin-top: 20px; }
+.section-subhead p, .ingredient-picker p { color: var(--muted); }
 
-.section-subhead p,
-.ingredient-picker p {
-  color: var(--muted);
-}
-
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin: 14px 0;
-}
-
-.image-gallery figure {
-  overflow: hidden;
-  margin: 0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-}
-
-.image-gallery img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.image-gallery figcaption {
-  min-height: 44px;
-  padding: 8px 10px;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 750;
-}
-
-.dough-grid {
-  display: grid;
-  gap: 12px;
-  margin-top: 12px;
-}
+.dough-grid { display: grid; gap: 12px; margin-top: 12px; }
 
 .dough-card {
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r);
   background: #fff;
-  box-shadow: 0 10px 28px rgba(99, 30, 20, 0.06);
+  box-shadow: var(--shadow);
 }
-
 .dough-card summary {
   display: grid;
   grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
@@ -715,92 +632,66 @@ tr:last-child td {
   padding: 14px 16px;
   color: var(--brand-dark);
   cursor: pointer;
-  font-weight: 850;
+  font-weight: 700;
   list-style: none;
 }
-
-.dough-card summary::-webkit-details-marker {
-  display: none;
-}
-
+.dough-card summary::-webkit-details-marker { display: none; }
 .dough-card summary b {
   color: var(--muted);
   font-size: 0.88rem;
-  font-weight: 750;
+  font-weight: 600;
 }
-
 .dough-card[open] summary {
   border-bottom: 1px solid var(--line);
-  background: #fff1eb;
+  background: #fdf2f2;
 }
 
-.dough-body {
-  display: grid;
-  gap: 12px;
-  padding: 16px;
-}
+.dough-body { display: grid; gap: 12px; padding: 16px; }
+.dough-body h4 { margin: 0 0 6px; color: var(--ink); }
+.dough-body p, .dough-body li, .recipe-meta { color: var(--muted); }
+.recipe-meta { border-radius: 8px; background: var(--soft); padding: 10px 12px; }
+.recipe-meta.sell { background: #fdf8ec; }
 
-.dough-body h4 {
-  margin: 0 0 6px;
-  color: var(--ink);
-}
-
-.dough-body p,
-.dough-body li,
-.recipe-meta {
-  color: var(--muted);
-}
-
-.recipe-meta {
-  border-radius: 8px;
-  background: var(--soft);
-  padding: 10px 12px;
-}
-
-.recipe-meta.sell {
-  background: #fff3d4;
-}
-
+/* ── Tool Forms ─────────────────────────────────────────────── */
 .tool-form {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   margin-top: 14px;
-  padding: 16px;
+  padding: 20px;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .tool-form label {
   display: grid;
   gap: 6px;
   color: var(--ink);
-  font-weight: 750;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-.tool-form input,
-.tool-form select {
+.tool-form input, .tool-form select {
   min-height: 44px;
-  border: 1px solid #d9c8c0;
+  border: 1.5px solid var(--line);
   border-radius: 8px;
   background: #fff;
   color: var(--ink);
   padding: 10px 12px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.tool-form input:focus, .tool-form select:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(154,31,31,0.1);
 }
 
-.ingredient-picker {
-  display: grid;
-  gap: 8px;
-}
-
-.ingredient-picker h4 {
-  margin: 0;
-  color: var(--brand-dark);
-}
-
+/* ── Ingredient Picker ──────────────────────────────────────── */
+.ingredient-picker { display: grid; gap: 8px; }
+.ingredient-picker h4 { margin: 0; color: var(--brand-dark); }
 .ingredient-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -813,31 +704,30 @@ tr:last-child td {
   gap: 8px;
   align-items: center;
   min-height: 48px;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--line);
   border-radius: 8px;
   background: #fff;
   padding: 8px 10px;
   color: var(--ink);
-  font-weight: 750;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
 }
-
 .ingredient-chip input {
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
-
 .ingredient-chip:has(input:checked) {
-  border-color: rgba(192, 57, 43, 0.5);
-  background: #fff1eb;
+  border-color: rgba(154, 31, 31, 0.45);
+  background: #fdf2f2;
 }
-
 .ingredient-icon {
   display: grid;
   width: 28px;
   height: 28px;
   place-items: center;
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--brand);
   color: #fff;
   font-weight: 900;
@@ -846,41 +736,46 @@ tr:last-child td {
 .copy-box {
   overflow: auto;
   white-space: pre-wrap;
-  border: 1px dashed #caa99b;
+  border: 1px dashed #c8a898;
   border-radius: 8px;
-  background: #fff8ef;
+  background: #fdf8f5;
   color: #3b2a22;
-  padding: 12px;
+  padding: 14px;
+  font-size: 0.88rem;
+  line-height: 1.6;
 }
 
+/* ── Result Grid ────────────────────────────────────────────── */
 .result-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 14px;
+  gap: 12px;
+  margin-top: 16px;
 }
-
 .metric {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r);
   background: #fff;
-  padding: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
 }
-
 .metric span {
   display: block;
   color: var(--muted);
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
-
 .metric strong {
   display: block;
-  margin-top: 4px;
+  margin-top: 6px;
   color: var(--brand-dark);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
+  font-weight: 800;
 }
 
+/* ── Prompt 3: Checklist con estado marcado por CSS ─────────── */
 .checklist {
   display: grid;
   gap: 8px;
@@ -891,85 +786,174 @@ tr:last-child td {
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
   background: #fff;
-  padding: 10px;
-  color: var(--muted);
-  font-weight: 700;
+  padding: 12px 14px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.3s;
 }
+.checklist label:hover { background: var(--soft); }
 
 .checklist input {
   width: 18px;
   height: 18px;
   flex: 0 0 18px;
   accent-color: var(--brand);
+  margin-top: 1px;
 }
 
-.business-checklist {
-  margin-top: 16px;
+/* Prompt 3: Business checklist – texto tachado/gris al marcar */
+.business-checklist { margin-top: 16px; }
+
+.business-checklist label {
+  transition: background 0.25s, border-color 0.25s, color 0.3s, text-decoration 0.3s;
+}
+.business-checklist label:has(input:checked) {
+  background: #f8f4f2;
+  border-color: #d8ccc6;
+  color: #b0a49e;
+  text-decoration: line-through;
+  text-decoration-color: #c8b4ad;
 }
 
+/* ── Prompt 3: Timeline – círculos conectados por línea ─────── */
 .timeline {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 0;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+/* línea discontinua horizontal conectora */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: calc(25% / 2);
+  right: calc(25% / 2);
+  height: 1px;
+  border-top: 2px dashed rgba(154, 31, 31, 0.25);
+  z-index: 0;
 }
 
 .timeline > div {
+  position: relative;
+  z-index: 1;
   padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  margin: 0 6px;
+  box-shadow: var(--shadow);
 }
 
+/* Prompt 3: Número en círculo sólido terracota */
 .timeline span {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   place-items: center;
-  margin-bottom: 10px;
-  border-radius: 8px;
+  margin-bottom: 12px;
+  border-radius: 50%;
   background: var(--brand);
   color: #fff;
-  font-weight: 850;
+  font-weight: 800;
+  font-size: 0.88rem;
+  box-shadow: 0 4px 10px rgba(154, 31, 31, 0.28);
 }
 
-.support-card {
-  background: linear-gradient(135deg, #fff, #fff0e8);
-}
+/* ── Support Card ───────────────────────────────────────────── */
+.support-card { background: linear-gradient(135deg, #fff, #fdf5f0); }
 
 .whatsapp-btn {
   display: inline-flex;
-  min-height: 44px;
+  min-height: 46px;
   align-items: center;
   justify-content: center;
+  border: none;
   border-radius: 8px;
-  background: #1f8f55;
+  background: #25d366;
   color: #fff;
-  padding: 12px 16px;
-  font-weight: 850;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.28);
+}
+.whatsapp-btn:hover {
+  background: #1fb958;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+  transform: translateY(-1px);
+}
+.whatsapp-top {
+  background: rgba(37,211,102,0.12) !important;
+  border: 1.5px solid rgba(37,211,102,0.4) !important;
+  color: #fff !important;
 }
 
+/* ── Template Grid ──────────────────────────────────────────── */
 .template-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 14px;
+  gap: 12px;
+  margin-top: 16px;
 }
-
 .copy-card {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r);
   background: #fff;
-  padding: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.copy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.copy-card h3 { color: var(--brand-dark); font-size: 0.9rem; }
+.copy-card p  { color: var(--muted); font-size: 0.85rem; }
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.primary-btn, .secondary-btn, .quick, .tab, .segment, .lesson-row {
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-.copy-card h3 {
-  color: var(--brand-dark);
+.primary-btn, .secondary-btn {
+  min-height: 44px;
+  border: 0;
+  padding: 12px 18px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: filter 0.18s, box-shadow 0.18s;
 }
 
-.copy-card p {
-  color: var(--muted);
+.primary-btn {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(154, 31, 31, 0.25);
+}
+.primary-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 6px 20px rgba(154, 31, 31, 0.35);
 }
 
+.secondary-btn {
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.secondary-btn:hover { background: var(--soft); border-color: #d0c4bc; }
+
+/* ── Bottom Nav ─────────────────────────────────────────────── */
 .bottom-nav {
   position: fixed;
   right: 0;
@@ -979,105 +963,69 @@ tr:last-child td {
   display: none;
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(12px);
+  background: rgba(253, 251, 247, 0.97);
+  backdrop-filter: blur(16px);
+  padding-bottom: env(safe-area-inset-bottom);
 }
-
 .bottom-nav button {
-  min-height: 58px;
+  min-height: 56px;
   border: 0;
   background: transparent;
   color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: color 0.15s;
 }
+.bottom-nav button.active { color: var(--brand); }
 
-.bottom-nav button.active {
-  color: var(--brand);
-}
+[hidden] { display: none !important; }
 
+/* ── Responsive 920px ───────────────────────────────────────── */
 @media (max-width: 920px) {
-  .hero-grid,
-  .dashboard,
-  .content-grid {
+  .hero-grid, .dashboard, .content-grid {
     grid-template-columns: 1fr;
   }
-
-  .lesson-list {
-    position: relative;
-    top: 0;
-    max-height: none;
-  }
-
-  .cards.three,
-  .timeline,
-  .result-grid,
-  .image-gallery,
-  .template-grid,
-  .ingredient-grid {
+  .lesson-list { position: relative; top: 0; max-height: none; }
+  .cards.three, .timeline, .result-grid,
+  .image-gallery, .template-grid, .ingredient-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
+/* ── Mobile < 768px strict ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .section-tabs { display: none; }
+  .tool-form button { width: 100%; min-height: 48px; }
+  .quick { width: 100%; min-height: 48px; }
+  .table-wrap { overflow-x: auto; scroll-snap-type: x mandatory; }
+  table { min-width: 480px; }
+}
+
+/* ── Responsive 640px ───────────────────────────────────────── */
 @media (max-width: 640px) {
-  main {
-    width: min(100% - 24px, 1180px);
-  }
-
-  .topbar {
-    align-items: flex-start;
-  }
-
-  .top-actions .whatsapp-top {
-    display: none;
-  }
-
-  .hero-grid {
-    gap: 14px;
-    padding-top: 18px;
-  }
-
-  .hero-copy {
-    min-height: auto;
-    padding-bottom: 18px;
-  }
-
-  .hero-card {
-    min-height: 230px;
-  }
-
+  main { width: min(100% - 24px, 1180px); }
+  .topbar { align-items: flex-start; }
+  .top-actions .whatsapp-top { display: none; }
+  .hero-grid { gap: 14px; padding-top: 18px; }
+  .hero-copy { min-height: auto; padding-bottom: 18px; }
+  .hero-card { min-height: 230px; }
   .pizza-slice {
     left: 7%;
     top: 7%;
     transform: scale(0.82) rotate(-16deg);
     transform-origin: top left;
   }
+  .section-tabs { top: 62px; }
+  .cards.two, .cards.three, .timeline, .quick-grid,
+  .result-grid, .form-grid, .image-gallery,
+  .template-grid, .ingredient-grid { grid-template-columns: 1fr; }
+  .dough-card summary { grid-template-columns: 1fr; }
+  .progress-panel { align-items: flex-start; }
+  .bottom-nav { display: grid; }
+  .timeline::before { display: none; }
+}
 
-  .section-tabs {
-    top: 62px;
-  }
-
-  .cards.two,
-  .cards.three,
-  .timeline,
-  .quick-grid,
-  .result-grid,
-  .form-grid,
-  .image-gallery,
-  .template-grid,
-  .ingredient-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dough-card summary {
-    grid-template-columns: 1fr;
-  }
-
-  .progress-panel {
-    align-items: flex-start;
-  }
-
-  .bottom-nav {
-    display: grid;
-  }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
 }
