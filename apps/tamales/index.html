@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
-  <meta name="theme-color" content="#c0392b">
+  <meta name="theme-color" content="#d35400">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Tamales">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>Curso de Tamales - Daily Tips MX</title>
   <meta name="description" content="App PWA de Daily Tips MX para aprender recetas de tamales, calcular costos y vender desde casa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
   <div class="app-shell">
@@ -37,22 +40,25 @@
     <main>
       <section class="hero-grid" id="inicio" data-section="inicio" data-title="Inicio">
         <div class="hero-copy">
-          <p class="overline">Sistema de Producción · Daily Tips MX</p>
-          <h1>Domina la Producción de Tamales Artesanales</h1>
-          <p>Recetas maestras, control de costos y sistema de ventas por preventa — todo en una app que funciona sin internet.</p>
+          <p class="overline">Curso instalable Daily Tips MX</p>
+          <h1>Curso de Tamales</h1>
+          <p>Aprende, calcula y vende tamales desde casa con recetas, costos, pedidos y herramientas listas para usar.</p>
           <div class="hero-actions">
-            <button class="primary-btn" type="button" data-go="recetas">Ver recetas</button>
-            <button class="secondary-btn" type="button" data-go="costos">Calcular costos</button>
+            <button class="primary-btn" type="button" data-go="recetas">
+              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+              Ver recetas
+            </button>
+            <button class="secondary-btn" type="button" data-go="costos">
+              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h.01M8 15h2M12 15h2M16 15h.01M8 18h2M12 18h4"/></svg>
+              Calcular costos
+            </button>
           </div>
         </div>
-        <div class="hero-card" aria-label="Tamal abierto en vaporera">
-          <div class="steam steam-one"></div>
-          <div class="steam steam-two"></div>
-          <div class="pot"></div>
-          <div class="tamale">
-            <span class="husk left"></span>
-            <span class="filling"></span>
-            <span class="husk right"></span>
+        <div class="hero-card photo-hero" aria-label="Tamales reales saliendo de la vaporera">
+          <img src="images/foto-coccion-vaporera.jpg" alt="Tamales reales saliendo de la vaporera en cocina casera">
+          <div class="hero-photo-caption">
+            <strong>Tamales calientes listos para vender</strong>
+            <span>Masa, relleno y vapor bien controlados</span>
           </div>
         </div>
       </section>
@@ -72,17 +78,20 @@
         <article class="progress-panel">
           <div class="ring" data-progress-ring><span id="progressText">0%</span></div>
           <div>
-            <h2>Tu avance en el programa</h2>
+            <h2>Tu progreso del curso</h2>
             <p><span id="progressCount">0</span> de <span id="totalLessons">13</span> secciones base completadas</p>
             <div class="bar"><span id="progressBar"></span></div>
           </div>
         </article>
         <article class="quick-panel">
-          <h2>Herramientas de producción</h2>
+          <h2>Accesos rápidos</h2>
           <div class="quick-grid">
-            <button class="quick cost" type="button" data-go="costos">Calculadora de costos</button>
-            <button class="quick profit" type="button" data-go="ganancias">Calculadora de ganancias</button>
-            <button class="quick sell" type="button" data-go="facebook-whatsapp">Facebook y WhatsApp</button>
+            <button class="quick cost" type="button" data-go="costos"><svg class="quick-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h.01M8 15h2M12 15h2M16 15h.01M8 18h2M12 18h4"/></svg><span>Calculadora de costos</span></button>
+            <button class="quick profit" type="button" data-go="ganancias"><svg class="quick-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16"/><path d="M7 16V9M12 16V5M17 16v-3"/><path d="m7 9 5-4 5 8"/></svg><span>Calculadora de ganancias</span></button>
+            <button class="quick sell" type="button" data-go="facebook-whatsapp"><svg class="quick-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 2 1.5-4.5A8 8 0 1 1 21 12Z"/><path d="M8 11h8M8 15h5"/></svg><span>Facebook y WhatsApp</span></button>
+            <button class="quick combo" type="button" data-go="combos"><svg class="quick-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M8 7a4 4 0 0 1 8 0M4 12h16M9 15h6"/></svg><span>Generador de combos</span></button>
+            <button class="quick photo" type="button" data-go="fotos"><svg class="quick-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h4l1.5-2h5L16 8h4v11H4z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Fotos para inspirarte</span></button>
+            <button class="quick plan" type="button" data-go="plan-7-dias"><svg class="quick-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/></svg><span>Plan 7 días</span></button>
           </div>
         </article>
       </section>
@@ -97,70 +106,134 @@
           <article class="lesson active" id="bienvenida" data-section="bienvenida" data-base="true">
             <div class="section-head">
               <span class="section-number">1</span>
-              <div><h2>Bienvenida al programa</h2><p>Del primer lote a un sistema de ventas por preventa.</p></div>
+              <div><h2>Bienvenida al curso</h2><p>De tu cocina a tus primeros pedidos reales.</p></div>
+            </div>
+            <div class="section-media three-up">
+              <figure><img src="images/foto-preparacion-masa.jpg" alt="Preparación casera de masa para tamales" loading="lazy"><figcaption>Tu cocina como taller de producción</figcaption></figure>
+              <figure><img src="images/foto-coccion-vaporera.jpg" alt="Tamales saliendo de la vaporera" loading="lazy"><figcaption>Cocción con vapor y control</figcaption></figure>
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Torta de tamal para venta callejera" loading="lazy"><figcaption>Inspiración de venta real</figcaption></figure>
             </div>
             <div class="cards two">
-              <div class="card"><h3>Meta principal</h3><p>Producir tu primer lote de 20 a 50 piezas con costo desglosado, precio de venta justificado y entrega confirmada con anticipo.</p></div>
-              <div class="card"><h3>Ruta de trabajo</h3><p>Siete módulos operativos: materia prima, formulación de masa, variedades de relleno, cocción controlada, rentabilidad, canal de venta y gestión de pedidos.</p></div>
+              <div class="card"><h3>Meta principal</h3><p>Preparar un primer lote de 20 a 50 tamales, calcular su costo real y venderlo con anticipo.</p></div>
+              <div class="card"><h3>Ruta de trabajo</h3><p>Aprende ingredientes, masa, rellenos, cocción, costos, ventas y seguimiento por WhatsApp.</p></div>
             </div>
             <div class="checklist" data-checklist>
-              <label><input type="checkbox" value="bienvenida"> Revisé la ruta completa del programa</label>
-              <label><input type="checkbox" value="masa-prueba"> Aplicaré la prueba de flotación para validar mi masa</label>
-              <label><input type="checkbox" value="primer-lote"> Definí la cantidad y variedad de mi primer lote</label>
+              <label><input type="checkbox" value="bienvenida"> Entendí la ruta del curso</label>
+              <label><input type="checkbox" value="masa-prueba"> Haré la prueba del agua con mi masa</label>
+              <label><input type="checkbox" value="primer-lote"> Definí mi primer lote de venta</label>
             </div>
           </article>
 
           <article class="lesson" id="ingredientes" data-section="ingredientes" data-base="true">
-            <div class="section-head"><span class="section-number">2</span><div><h2>Materia prima esencial</h2><p>Control de insumos desde el primer lote.</p></div></div>
+            <div class="section-head"><span class="section-number">2</span><div><h2>Ingredientes básicos</h2><p>Lo mínimo para empezar sin comprar de más.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-salsas-proceso.jpg" alt="Proceso de chiles, tomatillos y salsas para tamales" loading="lazy"><figcaption>Ingredientes, chiles y salsas: base de sabor para vender más</figcaption></figure>
+            </div>
             <div class="table-wrap">
               <table>
                 <thead><tr><th>Ingrediente</th><th>Uso</th><th>Tip de compra</th></tr></thead>
                 <tbody>
-                  <tr><td>Harina de maíz nixtamalizado</td><td>Base de masa</td><td>Mide por lote exacto; el excedente pierde humedad en 48 h.</td></tr>
-                  <tr><td>Manteca o aceite vegetal</td><td>Textura esponjosa</td><td>Batir en frío 5 min duplica el volumen y garantiza masa esponjosa.</td></tr>
-                  <tr><td>Caldo sazonado</td><td>Sabor de la masa</td><td>Caldo bien sazonado es el 40 % del sabor final de la masa.</td></tr>
-                  <tr><td>Hojas de maíz</td><td>Envoltura</td><td>Remoja 35 min; hojas rígidas provocan tamal apretado.</td></tr>
-                  <tr><td>Chiles, tomatillo, jitomate</td><td>Salsas y rellenos</td><td>Compra en temporada: reduce costo 20–30 % vs precio fuera de temporada.</td></tr>
+                  <tr><td>Harina de maíz nixtamalizado</td><td>Base de masa</td><td>Compra por kilo y mide por lote.</td></tr>
+                  <tr><td>Manteca o aceite vegetal</td><td>Textura esponjosa</td><td>Bate primero para airear.</td></tr>
+                  <tr><td>Caldo sazonado</td><td>Sabor de la masa</td><td>Evita agua simple.</td></tr>
+                  <tr><td>Hojas de maíz</td><td>Envoltura</td><td>Remoja 30 a 40 minutos.</td></tr>
+                  <tr><td>Chiles, tomatillo, jitomate</td><td>Salsas y rellenos</td><td>Compra según temporada.</td></tr>
+                  <tr><td>Achiote, comino, laurel, pimienta</td><td>Profundidad de sabor</td><td>Compra en poca cantidad y etiqueta fecha.</td></tr>
+                  <tr><td>Queso Oaxaca, panela, crema</td><td>Rajas y vegetarianos</td><td>Calcula merma por refrigeración.</td></tr>
+                  <tr><td>Piña, cajeta, pasas, cacao</td><td>Tamales dulces</td><td>Escurre frutas para no aguar la masa.</td></tr>
+                  <tr><td>Bolsas kraft, etiquetas, servilletas</td><td>Presentación y entrega</td><td>Inclúyelo en costo por pieza.</td></tr>
                 </tbody>
               </table>
             </div>
-            <div class="tip">Equipo mínimo de producción: vaporera de aluminio, batidora o pala de madera, báscula de cocina (precisión 1 g), recipientes herméticos y termómetro de cocina para verificar vapor interno (95 °C).</div>
+            <div class="tip">Equipo mínimo: vaporera, batidor o pala, báscula o tazas medidoras, trapos limpios, cucharas y recipientes.</div>
           </article>
 
           <article class="lesson" id="masa" data-section="masa" data-base="true">
-            <div class="section-head"><span class="section-number">3</span><div><h2>Formulación de la masa</h2><p>La consistencia determina la calidad del lote completo.</p></div></div>
+            <div class="section-head"><span class="section-number">3</span><div><h2>Preparación de masa</h2><p>La textura correcta vende más que cualquier anuncio.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-preparacion-masa.jpg" alt="Mujer amasando masa para tamales en cocina casera" loading="lazy"><figcaption>Masa aireada, grasa bien integrada y mise en place antes de armar</figcaption></figure>
+            </div>
             <div class="recipe-card">
-              <h3>Fórmula base certificada para 24 piezas</h3>
+              <h3>Masa base infalible para 24 tamales</h3>
+              <h4>Ingredientes y cantidades</h4>
               <ul>
                 <li>500 g harina de maíz nixtamalizado</li>
                 <li>250 g manteca de cerdo, vegetal o mezcla con aceite</li>
                 <li>500 ml caldo tibio bien sazonado</li>
                 <li>1 cucharadita de sal y 1 cucharadita de polvo para hornear</li>
+                <li>24 a 30 hojas de maíz remojadas</li>
               </ul>
+              <h4>Preparación súper explicada</h4>
               <ol>
-                <li>Batido de grasa: bate la manteca 5 min a temperatura ambiente hasta que quede blanca, aireada y duplique su volumen.</li>
-                <li>Incorporación gradual: añade la harina en tres tandas, alternando con caldo tibio (50–55 °C) para una hidratación uniforme.</li>
-                <li>Sazón y leudante: integra sal y polvo para hornear al final para no inhibir el batido de la grasa.</li>
-                <li>Prueba de flotación: toma una bolita de 10 g y sumérgela en agua fría — si flota en 3 segundos, la masa está lista.</li>
+                <li>Remoja las hojas de maíz 35 a 40 minutos en agua caliente.</li>
+                <li>Escurre las hojas y sécalas con trapo limpio para que la masa se adhiera.</li>
+                <li>Calienta el caldo hasta que esté tibio, no hirviendo.</li>
+                <li>Bate la manteca sola 5 a 7 minutos hasta que cambie a tono más claro.</li>
+                <li>Mezcla harina, sal y polvo para hornear en seco.</li>
+                <li>Agrega la harina a la manteca en 3 partes para no apelmazar.</li>
+                <li>Integra caldo poco a poco, batiendo después de cada adición.</li>
+                <li>Revisa textura: debe ser suave, untable y no líquida.</li>
+                <li>Haz prueba del agua; si flota, la masa tiene aire suficiente.</li>
+                <li>Reposa la masa 10 minutos tapada con trapo húmedo antes de armar.</li>
+                <li>Si se seca al armar, agrega 2 cucharadas de caldo tibio y mezcla.</li>
+                <li>Si queda aguada, agrega harina cucharada por cucharada y espera 5 minutos.</li>
               </ol>
             </div>
-            <div class="warning">Control de hidratación: si la masa no flota, agrega caldo tibio 1 cucharada a la vez y reprueba. Si está aguada, incorpora harina y reposa 10 min cubierta con trapo húmedo antes de volver a probar.</div>
+            <div class="recipe-grid">
+              <div class="recipe-detail">
+                <h3>Masa dulce para 24 tamales</h3>
+                <div class="recipe-meta"><span>Preparación 35 min</span><span>Cocción 1 h 10 min a 1 h 20 min</span></div>
+                <h4>Ingredientes</h4>
+                <ul><li>500 g harina de maíz</li><li>220 g mantequilla o manteca vegetal</li><li>450 ml leche tibia</li><li>120 g azúcar</li><li>1 cdita polvo para hornear</li><li>Vainilla, canela y pizca de sal</li><li>Color vegetal rosa o amarillo</li></ul>
+                <h4>Preparación en 10 pasos</h4>
+                <ol><li>Remoja las hojas 35 minutos en agua caliente para que no se quiebren al doblar.</li><li>Bate mantequilla o manteca 6 minutos hasta que se vea más clara y cremosa.</li><li>Mezcla harina, azúcar, polvo para hornear, canela y pizca de sal antes de hidratar.</li><li>Agrega leche tibia en 3 partes; espera 1 minuto entre cada parte para que la harina absorba.</li><li>Añade vainilla y color vegetal gota por gota hasta lograr un tono atractivo.</li><li>Bate 4 minutos más; la masa debe caer pesada pero untable, no líquida.</li><li>Agrega piña, pasas o nuez bien escurridas para evitar que se humedezca de más.</li><li>Unta porciones parejas de 55 a 65 g por hoja para que todos salgan del mismo tamaño.</li><li>Dobla sin apretar demasiado, porque la masa dulce expande un poco con el vapor.</li><li>Cocina 70 a 80 minutos, apaga y reposa 15 minutos antes de moverlos.</li></ol>
+                <div class="tip"><strong>Cocción y sabor:</strong> si el tamal sabe plano, agrega una pizca extra de sal; si se pega a la hoja, le faltan 10 a 15 minutos de vapor.</div>
+              </div>
+              <div class="recipe-detail">
+                <h3>Masa con aceite o vegana para 24 tamales</h3>
+                <div class="recipe-meta"><span>Preparación 30 min</span><span>Cocción 1 h 15 min</span><span>Venta vegana</span></div>
+                <h4>Ingredientes</h4>
+                <ul><li>500 g harina de maíz nixtamalizado</li><li>170 ml aceite vegetal neutro</li><li>520 ml caldo de verduras tibio y bien sazonado</li><li>1 cdita polvo para hornear</li><li>1 cdita sal</li><li>1/2 cdita ajo en polvo opcional</li><li>24 a 30 hojas de maíz remojadas</li></ul>
+                <h4>Preparación en 10 pasos</h4>
+                <ol><li>Remoja hojas 35 a 40 minutos y reserva las más anchas para rellenos jugosos.</li><li>Calienta el caldo de verduras hasta que esté tibio, con sal ligeramente alta.</li><li>Mezcla harina, polvo para hornear, sal y ajo en polvo en un tazón grande.</li><li>Agrega aceite en hilo mientras mezclas con pala o mano limpia.</li><li>Vierte la mitad del caldo y mezcla 2 minutos para hidratar parejo.</li><li>Agrega el resto del caldo poco a poco hasta lograr textura de pasta suave.</li><li>Reposa 8 minutos; la masa vegana espesa después de hidratarse.</li><li>Ajusta con 1 a 2 cucharadas de caldo si cuesta untarla.</li><li>Unta capa delgada, rellena con hongos, frijol, soya o rajas sin crema.</li><li>Cocina al vapor 75 minutos y reposa 10 minutos antes de vender.</li></ol>
+                <div class="tip"><strong>Tip de sabor:</strong> usa caldo de verduras concentrado, laurel y pimienta; el aceite no aporta sabor como la manteca.</div>
+              </div>
+              <div class="recipe-detail">
+                <h3>Tipos de hojas</h3>
+                <div class="recipe-meta"><span>Maíz</span><span>Plátano</span><span>Elote tierno</span></div>
+                <ul>
+                  <li><strong>Hoja de maíz:</strong> para rojos, verdes, rajas, dulces y venta diaria.</li>
+                  <li><strong>Hoja de plátano:</strong> para oaxaqueños, mole y tamales grandes; pásala por calor 10 segundos para suavizar.</li>
+                  <li><strong>Hoja de elote tierno:</strong> para uchepos; es más delicada y necesita menos masa.</li>
+                </ul>
+                <div class="warning">Nunca uses hojas con olor agrio, moho o manchas negras profundas. Si se rompen, úsalas como refuerzo, no como hoja principal.</div>
+              </div>
+            </div>
+            <div class="warning">Si la masa está seca, agrega caldo tibio poco a poco. Si está aguada, agrega harina y deja reposar 10 minutos.</div>
           </article>
 
           <article class="lesson" id="rellenos" data-section="rellenos" data-base="true">
-            <div class="section-head"><span class="section-number">4</span><div><h2>Variedades de relleno</h2><p>Seis perfiles de sabor con diferente punto de precio.</p></div></div>
-            <div class="cards three">
-              <div class="card"><h3>Rojo</h3><p>Salsa de guajillo y ancho con jitomate asado, cebolla y ajo. Proteína: pollo o cerdo deshebrado. El más vendido en temporada fría.</p></div>
-              <div class="card"><h3>Verde</h3><p>Tomatillo tatemado, serrano, cebolla y cilantro fresco. Textura suave, sabor brillante. Alta rotación en pedidos de grupo.</p></div>
-              <div class="card"><h3>Rajas</h3><p>Poblano asado con cebolla cristalizada, crema ácida y queso Oaxaca. Opción sin carne con precio premium justificado.</p></div>
-              <div class="card"><h3>Oaxaqueño</h3><p>Mole negro o coloradito con pollo en hoja de plátano. Mayor costo de producción — precio mínimo recomendado: +40 % sobre el tamal rojo.</p></div>
-              <div class="card"><h3>Dulce</h3><p>Masa enriquecida con leche, mantequilla y azúcar. Relleno: piña en almíbar, pasas o cajeta. Alta rotación en eventos y posadas.</p></div>
-              <div class="card"><h3>Especiales</h3><p>Línea de especialidad: camarón en chipotle (Cuaresma), soya texturizada vegana, uchepos en temporada (ago–oct) y chocolate amargo con cajeta.</p></div>
+            <div class="section-head"><span class="section-number">4</span><div><h2>Rellenos</h2><p>Variedades que se venden todo el año.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-salsas-proceso.jpg" alt="Salsas verde y roja para rellenos de tamales" loading="lazy"><figcaption>Salsas base para rellenos</figcaption></figure>
+              <figure><img src="images/foto-tamal-abierto-vapor.jpg" alt="Tamal abierto con relleno visible" loading="lazy"><figcaption>Relleno visible para foto y venta</figcaption></figure>
+            </div>
+            <div class="recipe-grid">
+              <div class="recipe-detail"><h3>Relleno rojo de pollo o cerdo</h3><div class="recipe-meta"><span>24 tamales</span><span>Preparación 45 min</span><span>Hoja de maíz</span></div><h4>Ingredientes y cantidades</h4><ul><li>500 g carne cocida y deshebrada</li><li>6 chiles guajillo y 3 chiles ancho sin semillas</li><li>4 jitomates maduros</li><li>1/2 cebolla, 3 ajos, 1 pizca de comino</li><li>250 ml caldo de cocción, sal y 1 cda aceite</li></ul><h4>Preparación en 10 pasos</h4><ol><li>Cuece la carne con sal, ajo y cebolla 35 a 45 minutos hasta poder deshebrar.</li><li>Reserva caldo caliente para salsa y masa; no uses agua simple si quieres buen sabor.</li><li>Limpia chiles retirando semillas y venas para controlar picor.</li><li>Tuesta chiles 8 a 10 segundos por lado; si se queman, amargan.</li><li>Hidrata los chiles en agua caliente durante 12 minutos.</li><li>Asa jitomate, cebolla y ajo hasta que tengan manchas doradas.</li><li>Licúa chiles, jitomate, aromáticos, comino y caldo hasta lograr salsa tersa.</li><li>Cuela si venderás a clientes que prefieren textura fina.</li><li>Fríe la salsa 10 minutos en aceite hasta que cambie a rojo profundo.</li><li>Integra carne y cocina 8 minutos; enfría antes de rellenar para no aflojar la masa.</li></ol><div class="tip"><strong>Cocción:</strong> relleno espeso, no caldoso. <strong>Sabor:</strong> debe sentirse un poco intenso porque la masa baja sal y chile.</div></div>
+              <div class="recipe-detail"><h3>Relleno verde de pollo</h3><div class="recipe-meta"><span>24 tamales</span><span>Preparación 35 min</span><span>Hoja de maíz</span></div><h4>Ingredientes y cantidades</h4><ul><li>500 g pollo deshebrado</li><li>600 g tomatillo limpio</li><li>4 a 6 chiles serranos</li><li>1/2 cebolla, 2 ajos, cilantro</li><li>180 ml caldo, sal y 1 cda aceite</li></ul><h4>Preparación en 10 pasos</h4><ol><li>Lava tomatillos hasta quitar la capa pegajosa.</li><li>Hierve tomatillo y serrano 8 minutos, solo hasta cambiar de color.</li><li>Escurre para que la salsa no quede aguada.</li><li>Licúa con cebolla, ajo, cilantro y caldo.</li><li>Calienta aceite y sofríe la salsa 8 a 10 minutos.</li><li>Agrega pollo y mezcla hasta que absorba salsa.</li><li>Ajusta sal cuando la salsa ya redujo.</li><li>Cocina 5 minutos más si ves líquido en el fondo.</li><li>Enfría 10 minutos antes de armar para proteger la masa.</li><li>Rellena con 1 cucharada generosa y cierra sin presionar demasiado.</li></ol><div class="tip"><strong>Cocción:</strong> si el relleno queda aguado, el tamal se abre. <strong>Sabor:</strong> agrega cilantro fresco al final, no lo hiervas de más.</div></div>
+              <div class="recipe-detail"><h3>Rajas con queso</h3><div class="recipe-meta"><span>24 tamales</span><span>Preparación 40 min</span><span>Hoja ancha</span></div><h4>Ingredientes y cantidades</h4><ul><li>6 chiles poblanos grandes</li><li>300 g queso Oaxaca o panela</li><li>200 ml crema espesa</li><li>1/2 cebolla fileteada</li><li>1 cda mantequilla, sal y pimienta</li></ul><h4>Preparación en 10 pasos</h4><ol><li>Asa poblanos directo al fuego hasta quemar la piel externa.</li><li>Mételos en bolsa o recipiente tapado 10 minutos para sudar.</li><li>Pela con cuidado sin lavarlos demasiado para no perder sabor ahumado.</li><li>Abre, retira semillas y corta rajas uniformes.</li><li>Sofríe cebolla con mantequilla 5 minutos.</li><li>Agrega rajas y cocina 4 minutos para concentrar aroma.</li><li>Añade crema espesa, sal y pimienta; cocina solo 2 minutos.</li><li>Enfría el relleno para que la crema no derrita la masa al armar.</li><li>Coloca rajas al centro y queso encima para que funda dentro del tamal.</li><li>Usa hoja ancha o doble hoja y cocina 75 minutos al vapor.</li></ol><div class="tip"><strong>Tip:</strong> no excedas crema. Debe quedar cremoso, no líquido. Para venta, el queso Oaxaca luce mejor al abrirlo.</div></div>
+              <div class="recipe-detail"><h3>Mole u oaxaqueño</h3><div class="recipe-meta"><span>24 tamales grandes</span><span>Preparación 55 min</span><span>Hoja de plátano</span></div><h4>Ingredientes y cantidades</h4><ul><li>600 g pollo cocido y deshebrado</li><li>400 g mole preparado</li><li>250 ml caldo caliente</li><li>24 cuadros de hoja de plátano de 28 x 28 cm</li><li>Ajonjolí opcional y sal</li></ul><h4>Preparación en 10 pasos</h4><ol><li>Calienta el mole a fuego bajo para no quemar azúcar o especias.</li><li>Afloja con caldo poco a poco hasta que quede espeso y brillante.</li><li>Prueba sal después de reducir; muchos moles ya vienen sazonados.</li><li>Integra pollo deshebrado y cocina 8 minutos.</li><li>Pasa cada hoja de plátano por comal o flama 10 a 15 segundos por lado.</li><li>Corta cuadros, limpia con trapo húmedo y retira nervaduras duras.</li><li>Unta masa al centro dejando margen amplio para doblar tipo paquete.</li><li>Agrega pollo con mole sin exceso de líquido.</li><li>Dobla laterales, luego extremos, y acomoda con cierre hacia abajo.</li><li>Cocina 90 minutos por ser pieza grande y reposa 15 minutos.</li></ol><div class="tip"><strong>Sabor:</strong> el mole debe quedar concentrado. <strong>Cocción:</strong> hoja de plátano necesita más tiempo y reposo.</div></div>
+              <div class="recipe-detail"><h3>Relleno dulce de piña, pasas o cajeta</h3><div class="recipe-meta"><span>24 tamales</span><span>Preparación 25 min</span><span>Hoja de maíz limpia</span></div><h4>Ingredientes y cantidades</h4><ul><li>250 g piña en cubitos bien escurrida o 180 g cajeta</li><li>80 g pasas o nuez picada</li><li>1 cdita canela</li><li>1 pizca de sal</li><li>Opcional: 60 g coco rallado</li></ul><h4>Preparación en 10 pasos</h4><ol><li>Escurre fruta en colador 15 minutos para retirar exceso de almíbar.</li><li>Seca con papel si la piña sigue muy húmeda.</li><li>Mezcla fruta con canela, pizca de sal y pasas.</li><li>Si usas cajeta, caliéntala 20 segundos para que sea más fácil porcionar.</li><li>Prepara masa dulce un poco firme para sostener el relleno.</li><li>Unta masa de 55 a 65 g por hoja.</li><li>Agrega 1 cucharada de fruta o una línea pequeña de cajeta.</li><li>No pongas relleno hasta los bordes porque se sale al vapor.</li><li>Dobla con cuidado y acomoda de pie, sin aplastar.</li><li>Cocina 70 a 80 minutos y reposa 15 minutos para que no se rompa.</li></ol><div class="tip"><strong>Tip de venta:</strong> separa dulces de salados en la vaporera para que no absorban aromas de chile o mole.</div></div>
             </div>
           </article>
 
           <article class="lesson" id="recetas" data-section="recetas" data-base="true">
             <div class="section-head"><span class="section-number">5</span><div><h2>Recetas de tamales</h2><p>Selecciona una receta o genera una personalizada.</p></div></div>
+            <div class="section-media three-up">
+              <figure><img src="images/tamales-rojos.png" alt="Tamales rojos abiertos" loading="lazy"><figcaption>Rojos</figcaption></figure>
+              <figure><img src="images/tamales-verdes.png" alt="Tamales verdes abiertos" loading="lazy"><figcaption>Verdes</figcaption></figure>
+              <figure><img src="images/tamales-dulces.png" alt="Tamales dulces rosas" loading="lazy"><figcaption>Dulces</figcaption></figure>
+            </div>
             <div class="segmented" role="tablist" aria-label="Recetas">
               <button class="segment active" type="button" data-recipe="rojos">Rojos</button>
               <button class="segment" type="button" data-recipe="verdes">Verdes</button>
@@ -173,7 +246,17 @@
               <h3>Generador de receta rápida</h3>
               <label>Tipo de relleno
                 <select id="recipeFilling">
-                  <option>Pollo deshebrado</option><option>Carne de cerdo</option><option>Rajas con queso</option><option>Soya texturizada</option><option>Piña en almíbar</option><option>Cajeta con nuez</option>
+                  <option>Pollo deshebrado</option><option>Carne de cerdo</option><option>Rajas con queso</option><option>Soya texturizada</option><option>Piña en almíbar</option><option>Cajeta con nuez</option><option>Camarón en chipotle</option><option>Frijoles con queso</option><option>Mole con pollo</option><option>Uchepos de elote</option><option>Chocolate con nuez</option><option>Guayaba con queso</option>
+                </select>
+              </label>
+              <label>Salsa o estilo
+                <select id="recipeSauce">
+                  <option>Roja guajillo</option><option>Verde tomatillo</option><option>Mole negro</option><option>Chipotle cremoso</option><option>Rajas poblanas</option><option>Dulce con canela</option><option>Sin salsa</option>
+                </select>
+              </label>
+              <label>Color de masa
+                <select id="recipeColor">
+                  <option>Natural</option><option>Roja con achiote</option><option>Verde cilantro</option><option>Rosa dulce</option><option>Amarilla piña</option><option>Chocolate</option>
                 </select>
               </label>
               <label>Cantidad
@@ -185,21 +268,55 @@
           </article>
 
           <article class="lesson" id="coccion" data-section="coccion" data-base="true">
-            <div class="section-head"><span class="section-number">6</span><div><h2>Protocolo de cocción</h2><p>Parámetros críticos para cocción uniforme.</p></div></div>
-            <div class="cards two">
-              <div class="card"><h3>Vaporera</h3><p>Tiempo estándar: 1 h 15 min a 1 h 30 min. Verifica nivel de agua cada 30 min. Prueba de cocción: la hoja se despega limpia y la masa no se pega al tacto.</p></div>
-              <div class="card"><h3>Olla express</h3><p>45 a 55 minutos a presión máxima. Despresurización natural obligatoria — abrir antes de tiempo provoca condensación que ablanda la masa.</p></div>
+            <div class="section-head"><span class="section-number">6</span><div><h2>Cómo cocerlos correctamente</h2><p>Tiempo, vapor y señales de cocción.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-coccion-vaporera.jpg" alt="Tamales cocidos saliendo de vaporera" loading="lazy"><figcaption>Vapor constante</figcaption></figure>
+              <figure><img src="images/foto-tamal-abierto-vapor.jpg" alt="Tamal abierto para revisar cocción" loading="lazy"><figcaption>Hoja se desprende limpia</figcaption></figure>
             </div>
-            <div class="warning">Control térmico obligatorio: no interrumpas la cocción antes de los 60 min. Un descenso brusco de temperatura detiene la gelatinización del almidón y produce masa densa e invendible.</div>
+            <div class="cards two">
+              <div class="card"><h3>Vaporera</h3><p>1 h 15 min a 1 h 30 min. Revisa agua cada 30 minutos. La hoja debe desprenderse limpia.</p></div>
+              <div class="card"><h3>Olla express</h3><p>45 a 55 minutos. Deja bajar la presión naturalmente antes de abrir.</p></div>
+            </div>
+            <div class="recipe-detail">
+              <h3>Guía de cocción, reposo y tipos de hojas</h3>
+              <div class="recipe-meta"><span>Maíz 75-90 min</span><span>Plátano 90-105 min</span><span>Express 45-55 min</span></div>
+              <h4>Proceso correcto en 10 pasos</h4>
+              <ol>
+                <li>Coloca moneda o piedra limpia al fondo; si deja de sonar, falta agua.</li>
+                <li>Cubre la rejilla con hojas sobrantes para proteger la primera capa.</li>
+                <li>Acomoda tamales parados con el doblez hacia dentro para que no se abran.</li>
+                <li>No llenes hasta apretar; deja circulación para el vapor.</li>
+                <li>Cuando hierva fuerte, cuenta 10 minutos a fuego alto para levantar vapor.</li>
+                <li>Baja a fuego medio y mantén vapor constante, sin llama excesiva.</li>
+                <li>Revisa agua cada 30 minutos y agrega agua caliente por la orilla.</li>
+                <li>No abras antes de 60 minutos; el cambio de temperatura endurece la masa.</li>
+                <li>Prueba uno: si la hoja se despega limpia, ya está cocido.</li>
+                <li>Apaga y reposa 10 a 15 minutos para que la masa termine de asentarse.</li>
+              </ol>
+              <h4>Tipos de hojas</h4>
+              <ul>
+                <li><strong>Hoja de maíz seca:</strong> la más común para rojos, verdes, rajas y dulces. Remojo de 35 a 40 minutos.</li>
+                <li><strong>Hoja de plátano:</strong> ideal para oaxaqueños, mole y piezas grandes. Se pasa por fuego 10 a 15 segundos por lado.</li>
+                <li><strong>Hoja de elote tierno:</strong> buena para uchepos. Es delicada, usa menos masa y menor presión al doblar.</li>
+                <li><strong>Doble hoja:</strong> úsala para rellenos jugosos, cremosos o tamales para transportar.</li>
+              </ul>
+              <div class="tip"><strong>Señal profesional:</strong> un tamal bien cocido huele a maíz tostado suave, conserva forma y no deja masa pegada en la hoja.</div>
+            </div>
+            <div class="warning">No abras la vaporera antes de tiempo: el vapor cocina desde adentro y una bajada fuerte de temperatura endurece la masa.</div>
           </article>
 
           <article class="lesson" id="costos" data-section="costos" data-base="true">
             <div class="section-head"><span class="section-number">7</span><div><h2>Calculadora de costos</h2><p>Calcula costo total y costo por tamal.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-preparacion-masa.jpg" alt="Mesa de ingredientes para calcular costos" loading="lazy"><figcaption>Costea ingredientes y tiempo</figcaption></figure>
+              <figure><img src="images/paquete-tamales-venta.png" alt="Paquete de tamales para venta" loading="lazy"><figcaption>Incluye empaque en el precio</figcaption></figure>
+            </div>
             <form class="tool-form" id="costForm">
               <label>Cantidad de tamales <input id="costQty" type="number" value="50" min="0" inputmode="numeric"></label>
               <label>Ingredientes del lote (MXN) <input id="costIngredients" type="number" value="200" min="0" inputmode="decimal"></label>
               <label>Hojas y empaque (MXN) <input id="costPackaging" type="number" value="30" min="0" inputmode="decimal"></label>
               <label>Gas o electricidad (MXN) <input id="costGas" type="number" value="25" min="0" inputmode="decimal"></label>
+              <label>Mano de obra / tiempo (MXN) <input id="costLabor" type="number" value="120" min="0" inputmode="decimal"></label>
               <button class="primary-btn" type="submit">Calcular costo</button>
             </form>
             <div class="finance-result" id="costResult" aria-live="polite"></div>
@@ -207,6 +324,9 @@
 
           <article class="lesson" id="ganancias" data-section="ganancias" data-base="true">
             <div class="section-head"><span class="section-number">8</span><div><h2>Calculadora de ganancias</h2><p>Define precio, margen y utilidad neta.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/paquete-tamales-venta.png" alt="Tamales empaquetados con salsas y bebida para vender" loading="lazy"><figcaption>Sube la ganancia con paquetes, salsa y bebida</figcaption></figure>
+            </div>
             <form class="tool-form" id="profitForm">
               <label>Cantidad de tamales <input id="profitQty" type="number" value="50" min="0" inputmode="numeric"></label>
               <label>Precio de venta por tamal (MXN) <input id="profitPrice" type="number" value="20" min="0" inputmode="decimal"></label>
@@ -217,16 +337,25 @@
           </article>
 
           <article class="lesson" id="ventas" data-section="ventas" data-base="true">
-            <div class="section-head"><span class="section-number">9</span><div><h2>Sistema de venta por preventa</h2><p>Opera sin inventario: produce solo lo ya pagado.</p></div></div>
-            <div class="cards two">
-              <div class="card"><h3>Ciclo semanal</h3><p>Lunes publicas disponibilidad, martes cierras pedidos y cobras anticipos, miércoles produces, jueves entregas y viernes solicitas reseña en estados de WhatsApp.</p></div>
-              <div class="card"><h3>Regla de anticipo</h3><p>Pedidos de 20 piezas o más requieren 50 % de anticipo. Confirma por mensaje escrito con detalles del pedido — esto reduce cancelaciones al mínimo.</p></div>
+            <div class="section-head"><span class="section-number">9</span><div><h2>Cómo vender tamales desde casa</h2><p>Un sistema simple para tomar pedidos sin tienda.</p></div></div>
+            <div class="section-media three-up">
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Venta de torta de tamal en puesto mexicano" loading="lazy"><figcaption>Venta callejera real</figcaption></figure>
+              <figure><img src="images/paquete-tamales-venta.png" alt="Paquete listo para entregar" loading="lazy"><figcaption>Pedido listo para entregar</figcaption></figure>
+              <figure><img src="images/foto-coccion-vaporera.jpg" alt="Tamales calientes para entrega" loading="lazy"><figcaption>Entrega caliente y atractiva</figcaption></figure>
             </div>
-            <div class="tip">Canal de arranque: familia, vecinos y grupos de colonia en los primeros 3 lotes. La consistencia semanal construye lista de clientes recurrentes sin inversión en publicidad.</div>
+            <div class="cards two">
+              <div class="card"><h3>Semana de venta</h3><p>Lunes publicas, martes cierras pedidos, miércoles preparas, jueves entregas y viernes pides reseñas.</p></div>
+              <div class="card"><h3>Anticipo</h3><p>Para pedidos de más de 20 piezas, pide 50% de anticipo y confirma por mensaje.</p></div>
+            </div>
+            <div class="tip">Empieza con familia, vecinas, grupos de colonia y estados de WhatsApp. La constancia pesa más que el presupuesto.</div>
           </article>
 
           <article class="lesson" id="facebook-whatsapp" data-section="facebook-whatsapp" data-base="true">
-            <div class="section-head"><span class="section-number">10</span><div><h2>Generador de publicación lista para usar</h2><p>Copia, pega y publica en menos de 60 segundos.</p></div></div>
+            <div class="section-head"><span class="section-number">10</span><div><h2>Tips para Facebook y WhatsApp</h2><p>Mensajes listos para publicar y responder.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Foto de venta para publicar en redes" loading="lazy"><figcaption>Foto real para generar confianza</figcaption></figure>
+              <figure><img src="images/paquete-tamales-venta.png" alt="Paquete de tamales para anuncio de venta" loading="lazy"><figcaption>Anuncio real: producto, empaque y oferta claros</figcaption></figure>
+            </div>
             <form class="tool-form" id="postForm">
               <label>Sabores disponibles <input id="postFlavors" type="text" value="rojos, verdes, rajas y dulces"></label>
               <label>Zona de entrega <input id="postZone" type="text" value="mi colonia y alrededores"></label>
@@ -238,76 +367,230 @@
           </article>
 
           <article class="lesson" id="actualizaciones" data-section="actualizaciones" data-base="true">
-            <div class="section-head"><span class="section-number">11</span><div><h2>Contenido en crecimiento</h2><p>Nuevas recetas y herramientas sin volver a descargar.</p></div></div>
+            <div class="section-head"><span class="section-number">11</span><div><h2>Actualizaciones incluidas</h2><p>La app queda lista para crecer sin reinstalar.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-salsas-proceso.jpg" alt="Proceso de recetas actualizables de salsas y tamales" loading="lazy"><figcaption>Nuevas recetas, salsas y plantillas pueden entrar en esta misma app</figcaption></figure>
+            </div>
             <div class="cards two">
-              <div class="card"><h3>Contenido vivo</h3><p>Nuevas recetas de temporada, tablas de precios actualizadas y plantillas de venta se publican automáticamente en esta misma app — sin descargas adicionales.</p></div>
-              <div class="card"><h3>Modo offline</h3><p>Tras la primera carga, todo el contenido queda guardado en tu dispositivo. Acceso completo sin internet, ideal para producción en campo.</p></div>
+              <div class="card"><h3>Contenido vivo</h3><p>Nuevas recetas, precios de referencia, temporadas y plantillas se pueden publicar en esta misma ruta.</p></div>
+              <div class="card"><h3>Modo offline</h3><p>Después de la primera carga, el curso queda disponible aunque el teléfono pierda conexión.</p></div>
             </div>
           </article>
 
           <article class="lesson" id="soporte" data-section="soporte" data-base="true">
-            <div class="section-head"><span class="section-number">12</span><div><h2>Soporte directo por WhatsApp</h2><p>Respuesta en menos de 24 horas hábiles.</p></div></div>
+            <div class="section-head"><span class="section-number">12</span><div><h2>Soporte por WhatsApp</h2><p>Ayuda directa para dudas del curso.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-tamal-abierto-vapor.jpg" alt="Tamal abierto para diagnóstico de masa y cocción" loading="lazy"><figcaption>Tip: para pedir soporte, manda foto del tamal abierto y de la masa</figcaption></figure>
+            </div>
             <div class="support-panel">
-              <div><h3>¿Problema con masa, costos o entrega?</h3><p>Abre WhatsApp con mensaje prellenado. Adjunta foto del lote o captura del cálculo — respuesta garantizada en 24 horas hábiles.</p></div>
+              <div><h3>¿Dudas con masa, costos o pedidos?</h3><p>Abre WhatsApp con un mensaje prellenado y agrega fotos o detalles de tu lote.</p></div>
               <a class="whatsapp-btn" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20soporte%20del%20Curso%20de%20Tamales" target="_blank" rel="noopener">Abrir WhatsApp</a>
+            </div>
+            <div class="support-grid">
+              <a class="support-chip" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20tengo%20duda%20con%20la%20masa%20de%20tamales" target="_blank" rel="noopener">Duda con masa</a>
+              <a class="support-chip" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20ayuda%20con%20costos%20y%20precios%20de%20tamales" target="_blank" rel="noopener">Ayuda con costos</a>
+              <a class="support-chip" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20quiero%20vender%20tamales%20por%20WhatsApp" target="_blank" rel="noopener">Vender por WhatsApp</a>
+              <a class="support-chip" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20no%20se%20cuanto%20cobrar%20por%20mis%20tamales" target="_blank" rel="noopener">Cuánto cobrar</a>
             </div>
           </article>
 
           <article class="lesson" id="instalar" data-section="instalar" data-base="true">
-            <div class="section-head"><span class="section-number">13</span><div><h2>Instalar app</h2><p>Acceso instantáneo desde tu pantalla de inicio.</p></div></div>
+            <div class="section-head"><span class="section-number">13</span><div><h2>Instalar app</h2><p>Guarda el curso en tu pantalla de inicio.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-preparacion-masa.jpg" alt="Curso de tamales para usar en cocina" loading="lazy"><figcaption>Consulta el curso mientras produces</figcaption></figure>
+              <figure><img src="images/foto-salsas-proceso.jpg" alt="Recetas disponibles sin conexión" loading="lazy"><figcaption>Guarda recetas y procesos en el teléfono</figcaption></figure>
+            </div>
             <div class="install-panel">
               <button class="primary-btn" type="button" data-install-button>Instalar app</button>
               <div id="installHelp">
-                <p><strong>iPhone:</strong> Safari → botón Compartir → «Agregar a pantalla de inicio».</p>
-                <p><strong>Android:</strong> toca «Instalar app» en el banner o menú del navegador → «Agregar a pantalla principal».</p>
+                <p><strong>iPhone:</strong> toca Compartir en Safari y elige "Agregar a pantalla de inicio".</p>
+                <p><strong>Android:</strong> toca Instalar app o el menú del navegador y elige "Agregar a pantalla principal".</p>
               </div>
             </div>
           </article>
 
           <article class="lesson extra" id="derivados" data-section="derivados">
-            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: derivados de masa</h2><p>Amplía tu menú sin ampliar tu inversión.</p></div></div>
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: derivados de masa</h2><p>Productos para aumentar ticket con la misma base.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-torta-tamal-venta.jpg" alt="Torta de tamal como derivado vendible" loading="lazy"><figcaption>La torta de tamal es un derivado sencillo para vender por pieza</figcaption></figure>
+            </div>
             <div class="cards three">
-              <div class="card"><h3>Gorditas</h3><p>Rellena con frijol, queso o chicharrón. Mismo costo de masa — precio sugerido: $15 a $25.</p></div>
-              <div class="card"><h3>Sopes</h3><p>Base gruesa frita o a comal. Montada con frijoles refritos, crema, queso y salsa. Precio sugerido: $20 a $35.</p></div>
-              <div class="card"><h3>Corundas</h3><p>Forma triangular característica de Michoacán. Diferenciador de menú para clientes que buscan variedad regional.</p></div>
+              <div class="card"><h3>Gorditas</h3><p>Rellena con frijol, queso o chicharrón. Precio sugerido: $15 a $25.</p></div>
+              <div class="card"><h3>Sopes</h3><p>Base gruesa con frijoles, crema, queso y salsa. Precio sugerido: $20 a $35.</p></div>
+              <div class="card"><h3>Corundas</h3><p>Tamales triangulares michoacanos para diferenciar tu menú.</p></div>
             </div>
           </article>
 
+          <article class="lesson extra" id="fotos" data-section="fotos">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Fotos e ideas visuales</h2><p>Referencias para recetas, catálogo y publicaciones.</p></div></div>
+            <div class="photo-gallery">
+              <figure><img src="images/foto-coccion-vaporera.jpg" alt="Tamales en vaporera casera" loading="lazy"><figcaption>Vaporera casera</figcaption></figure>
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Torta de tamal para venta" loading="lazy"><figcaption>Torta de tamal</figcaption></figure>
+              <figure><img src="images/foto-preparacion-masa.jpg" alt="Preparación de masa en cocina casera" loading="lazy"><figcaption>Preparación de masa</figcaption></figure>
+              <figure><img src="images/foto-tamal-abierto-vapor.jpg" alt="Tamal abierto saliendo de vaporera" loading="lazy"><figcaption>Tamal abierto</figcaption></figure>
+              <figure><img src="images/foto-salsas-proceso.jpg" alt="Proceso de salsas para tamales" loading="lazy"><figcaption>Proceso de salsas</figcaption></figure>
+              <figure><img src="images/paquete-tamales-venta.png" alt="Paquete de tamales para redes sociales" loading="lazy"><figcaption>Anuncio de paquete</figcaption></figure>
+              <figure><img src="images/tamales-rojos.png" alt="Tamales rojos abiertos en hoja de maíz" loading="lazy"><figcaption>Rojos para foto principal</figcaption></figure>
+              <figure><img src="images/tamales-verdes.png" alt="Tamales verdes con salsa y cilantro" loading="lazy"><figcaption>Verdes con salsa visible</figcaption></figure>
+              <figure><img src="images/tamales-rajas.png" alt="Tamal de rajas con queso" loading="lazy"><figcaption>Rajas con queso</figcaption></figure>
+              <figure><img src="images/tamales-dulces.png" alt="Tamales dulces rosas con piña y pasas" loading="lazy"><figcaption>Dulces para fiestas</figcaption></figure>
+              <figure><img src="images/tamales-oaxaquenos.png" alt="Tamal oaxaqueño en hoja de plátano con mole" loading="lazy"><figcaption>Oaxaqueños premium</figcaption></figure>
+              <figure><img src="images/paquete-tamales-venta.png" alt="Paquete de tamales con salsas y atole para vender" loading="lazy"><figcaption>Paquete listo para vender</figcaption></figure>
+            </div>
+            <div class="tip">Usa estas ideas: foto de cerca, relleno visible, fondo limpio, luz natural y precio claro en el texto de publicación, no encima de la comida.</div>
+          </article>
+
           <article class="lesson extra" id="bebidas" data-section="bebidas">
-            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: bebidas para acompañar</h2><p>Combos de alto margen para acompañar el pedido.</p></div></div>
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: bebidas para acompañar</h2><p>Combos que suben el ticket.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/paquete-tamales-venta.png" alt="Tamales con bebida para combo" loading="lazy"><figcaption>Combo de tamales + bebida = ticket más alto</figcaption></figure>
+            </div>
             <div class="cards three">
-              <div class="card"><h3>Atole</h3><p>Leche, maicena disuelta en frío, azúcar y canela. Costo por litro: ~$18 MXN. Precio de venta combo: $25–$35.</p></div>
-              <div class="card"><h3>Champurrado</h3><p>Chocolate de mesa, masa disuelta y canela. Demanda máxima: noviembre–febrero. Precio premium justificado.</p></div>
-              <div class="card"><h3>Café de olla</h3><p>Café molido, piloncillo, canela y clavo. Costo mínimo, margen alto. Cierra combos sin elevar complejidad operativa.</p></div>
+              <div class="card"><h3>Atole</h3><p>Leche, maicena disuelta en frío, azúcar y canela. Ideal para combo clásico.</p></div>
+              <div class="card"><h3>Champurrado</h3><p>Chocolate de mesa, masa disuelta y canela. Muy fuerte en temporada fría.</p></div>
+              <div class="card"><h3>Café de olla</h3><p>Café, piloncillo, canela y clavo. Bajo costo y buen margen.</p></div>
             </div>
           </article>
 
           <article class="lesson extra" id="salsas" data-section="salsas">
-            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: salsas</h2><p>Valor agregado sin costo significativo.</p></div></div>
-            <div class="cards three">
-              <div class="card"><h3>Roja rústica</h3><p>Jitomate asado, chile de árbol, ajo, sal y aceite.</p></div>
-              <div class="card"><h3>Verde fresca</h3><p>Tomatillo crudo, serrano, cebolla y cilantro.</p></div>
-              <div class="card"><h3>Cacahuate</h3><p>Cacahuate frito, chile morita, ajo y jitomate.</p></div>
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: salsas</h2><p>Complementos que fidelizan clientes.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-salsas-proceso.jpg" alt="Salsas verde y roja en proceso" loading="lazy"><figcaption>Una buena salsa hace que el cliente regrese</figcaption></figure>
+            </div>
+            <div class="recipe-grid">
+              <div class="recipe-detail"><h3>Salsa roja rústica para servir</h3><div class="recipe-meta"><span>Rinde 750 ml</span><span>25 min</span><span>Picor medio</span></div><h4>Ingredientes y cantidades</h4><ul><li>6 jitomates maduros</li><li>8 chiles de árbol o 4 si quieres suave</li><li>2 chiles guajillo</li><li>2 dientes de ajo</li><li>1/4 cebolla</li><li>1 cdita sal, 2 cdas aceite y 80 ml agua</li></ul><h4>Preparación en 10 pasos</h4><ol><li>Asa jitomates, ajo y cebolla 10 minutos en comal.</li><li>Tuesta chiles de árbol 5 segundos por lado; no los quemes.</li><li>Hidrata guajillo 8 minutos en agua caliente.</li><li>Licúa jitomate, chiles, ajo, cebolla y sal con poca agua.</li><li>Deja textura rústica si la quieres para torta de tamal.</li><li>Calienta aceite y fríe la salsa 6 a 8 minutos.</li><li>Ajusta sal cuando espese, no antes.</li><li>Enfría 10 minutos antes de envasar.</li><li>Guarda en frasco limpio hasta 4 días en refrigerador.</li><li>Sirve aparte para no humedecer el empaque.</li></ol><div class="tip"><strong>Sabor:</strong> debe quedar ahumada y brillante. Para más venta, etiqueta como "salsa roja de la casa".</div></div>
+              <div class="recipe-detail"><h3>Salsa verde cocida</h3><div class="recipe-meta"><span>Rinde 800 ml</span><span>20 min</span><span>Fresca</span></div><h4>Ingredientes y cantidades</h4><ul><li>700 g tomatillo</li><li>4 serranos</li><li>1/3 cebolla</li><li>2 ajos</li><li>1/2 taza cilantro</li><li>1 cdita sal y 1 cda aceite</li></ul><h4>Preparación en 10 pasos</h4><ol><li>Lava tomatillos hasta quitar lo pegajoso.</li><li>Hierve tomatillos y serranos 7 a 8 minutos.</li><li>Retira del agua apenas cambien de color para evitar amargor.</li><li>Licúa con cebolla, ajo y cilantro.</li><li>Calienta aceite en olla pequeña.</li><li>Fríe la salsa 5 minutos para estabilizar sabor.</li><li>Ajusta sal al final.</li><li>Si está ácida, agrega una pizca mínima de azúcar.</li><li>Enfría antes de poner en vasitos.</li><li>Conserva refrigerada y úsala en máximo 3 días.</li></ol><div class="tip"><strong>Uso:</strong> acompaña verdes, rajas y tamales veganos. Si va dentro del tamal, redúcela más para que no moje la masa.</div></div>
+              <div class="recipe-detail"><h3>Salsa de cacahuate y morita</h3><div class="recipe-meta"><span>Rinde 650 ml</span><span>30 min</span><span>Premium</span></div><h4>Ingredientes y cantidades</h4><ul><li>120 g cacahuate natural</li><li>4 chiles morita</li><li>2 jitomates</li><li>1 ajo</li><li>1/4 cebolla</li><li>2 cdas aceite, sal y 120 ml agua</li></ul><h4>Preparación en 10 pasos</h4><ol><li>Fríe cacahuate a fuego bajo 3 a 4 minutos hasta dorar.</li><li>Retira y escurre para que no quede grasosa.</li><li>Tuesta morita 8 segundos por lado.</li><li>Hidrata morita 10 minutos en agua caliente.</li><li>Asa jitomate, ajo y cebolla en comal.</li><li>Licúa todo con agua y sal hasta textura cremosa.</li><li>Fríe la salsa 7 minutos para integrar el aceite del cacahuate.</li><li>Ajusta espesor con agua caliente si queda demasiado densa.</li><li>Enfría y envasa en porciones pequeñas.</li><li>Ofrece como salsa premium para paquetes de 12 o 24 piezas.</li></ol><div class="tip"><strong>Sabor:</strong> debe sentirse tostada, no amarga. Combina excelente con rojos, mole y torta de tamal.</div></div>
             </div>
           </article>
 
           <article class="lesson extra" id="errores" data-section="errores">
-            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: errores y soluciones</h2><p>Protocolo de diagnóstico para corrección en tiempo real.</p></div></div>
+            <div class="section-head"><span class="section-number">+</span><div><h2>Extra: errores y soluciones</h2><p>Diagnóstico rápido de primeros lotes.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-preparacion-masa.jpg" alt="Masa para diagnosticar textura" loading="lazy"><figcaption>Revisa textura de masa</figcaption></figure>
+              <figure><img src="images/foto-tamal-abierto-vapor.jpg" alt="Tamal abierto para revisar cocción" loading="lazy"><figcaption>Revisa cocción por dentro</figcaption></figure>
+            </div>
             <div class="cards two">
-              <div class="card"><h3>Masa pesada</h3><p>Causa: batido insuficiente de grasa o masa muy fría. Solución: bate 3 min más y repite prueba de flotación.</p></div>
-              <div class="card"><h3>Tamales se abren</h3><p>Causa: masa excesivamente húmeda o cocción interrumpida. Solución: regresa a vapor 20 min con tapa sellada.</p></div>
-              <div class="card"><h3>Sin sabor</h3><p>Causa: uso de agua simple o caldo sin sazón. Solución: reemplaza líquido por caldo con sal y prueba antes del armado.</p></div>
-              <div class="card"><h3>Quemados abajo</h3><p>Causa: falta de agua o vaporera sin cama de hojas. Solución: coloca hojas al fondo, añade agua y verifica nivel cada 30 min.</p></div>
+              <div class="card"><h3>Masa pesada</h3><p>Bate más la grasa y repite la prueba del agua.</p></div>
+              <div class="card"><h3>Tamales se abren</h3><p>Faltó cocción o la masa quedó muy húmeda. Regresa 20 minutos a vapor.</p></div>
+              <div class="card"><h3>Sin sabor</h3><p>Usa caldo sazonado y ajusta sal directo en la masa.</p></div>
+              <div class="card"><h3>Quemados abajo</h3><p>Coloca hojas al fondo y revisa agua cada 30 minutos.</p></div>
             </div>
           </article>
 
           <article class="lesson extra" id="temporadas" data-section="temporadas">
             <div class="section-head"><span class="section-number">+</span><div><h2>Extra: temporadas</h2><p>Qué vender durante el año.</p></div></div>
-            <div class="table-wrap"><table><thead><tr><th>Temporada</th><th>Producto fuerte</th><th>Estrategia</th></tr></thead><tbody><tr><td>Diciembre</td><td>Todos los clásicos</td><td>Abre lista de pedidos desde noviembre — la demanda satura en quincena.</td></tr><tr><td>Cuaresma</td><td>Camarón, rajas, veganos</td><td>Sin carne, precio +20 %. Anticipa ingredientes de Cuaresma en enero.</td></tr><tr><td>Agosto a octubre</td><td>Uchepos</td><td>Aprovecha elote fresco local — ventana de 6–8 semanas.</td></tr><tr><td>Día de Muertos</td><td>Mole y oaxaqueños</td><td>Arma paquetes para ofrenda de 12 piezas con etiqueta especial.</td></tr></tbody></table></div>
+            <div class="section-media three-up">
+              <figure><img src="images/tamales-oaxaquenos.png" alt="Tamales oaxaqueños para temporada" loading="lazy"><figcaption>Día de Muertos</figcaption></figure>
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Venta de tamales en calle" loading="lazy"><figcaption>Temporada alta</figcaption></figure>
+              <figure><img src="images/tamales-dulces.png" alt="Tamales dulces de temporada" loading="lazy"><figcaption>Fiestas y regalos</figcaption></figure>
+            </div>
+            <div class="table-wrap"><table><thead><tr><th>Temporada</th><th>Producto fuerte</th><th>Estrategia</th></tr></thead><tbody><tr><td>Diciembre</td><td>Todos los clásicos</td><td>Pedidos desde noviembre.</td></tr><tr><td>Cuaresma</td><td>Camarón, rajas, veganos</td><td>Sin carne, precio premium.</td></tr><tr><td>Agosto a octubre</td><td>Uchepos</td><td>Aprovecha elote fresco.</td></tr><tr><td>Día de Muertos</td><td>Mole y oaxaqueños</td><td>Paquetes para ofrenda.</td></tr></tbody></table></div>
+          </article>
+
+          <article class="lesson extra" id="precios-ciudad" data-section="precios-ciudad">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Precios por ciudad</h2><p>Calcula rango bajo, recomendado y premium.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Precio visible en puesto de tamales" loading="lazy"><figcaption>Observa precios de tu zona</figcaption></figure>
+              <figure><img src="images/paquete-tamales-venta.png" alt="Paquete premium de tamales" loading="lazy"><figcaption>Empaque permite precio premium</figcaption></figure>
+            </div>
+            <form class="tool-form" id="cityPriceForm">
+              <label>Costo por tamal (MXN) <input id="cityUnitCost" type="number" value="8.50" min="0" inputmode="decimal"></label>
+              <label>Tipo de zona
+                <select id="cityZone"><option value="popular">Popular / colonia</option><option value="media">Zona media</option><option value="premium">Oficinas, eventos o zona premium</option></select>
+              </label>
+              <label>Tipo de tamal
+                <select id="cityType"><option value="clasico">Clásico</option><option value="queso">Rajas / queso</option><option value="especial">Especial / oaxaqueño</option><option value="dulce">Dulce</option></select>
+              </label>
+              <button class="primary-btn" type="submit">Sugerir precios</button>
+            </form>
+            <div class="finance-result bright" id="cityPriceResult" aria-live="polite"></div>
+          </article>
+
+          <article class="lesson extra" id="combos" data-section="combos">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Paquetes y combos</h2><p>Arma ofertas listas para vender por WhatsApp.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/paquete-tamales-venta.png" alt="Paquete de tamales con salsas y bebidas" loading="lazy"><figcaption>Foto ideal para publicar combos familiares y por evento</figcaption></figure>
+            </div>
+            <div class="cards three">
+              <div class="card accent-card"><h3>6 tamales</h3><p>Prueba familiar pequeña. Ideal para nuevos clientes.</p></div>
+              <div class="card accent-card green-card"><h3>12 tamales + salsa</h3><p>Paquete más fácil de vender en colonia.</p></div>
+              <div class="card accent-card gold-card"><h3>24 tamales + atole</h3><p>Combo familiar con ticket alto.</p></div>
+            </div>
+            <form class="tool-form" id="comboForm">
+              <label>Precio por tamal (MXN) <input id="comboPrice" type="number" value="22" min="0" inputmode="decimal"></label>
+              <label>Costo bebida/salsa por combo (MXN) <input id="comboExtraCost" type="number" value="35" min="0" inputmode="decimal"></label>
+              <label>Tipo de paquete
+                <select id="comboType"><option value="6">6 tamales</option><option value="12">12 tamales + salsa</option><option value="24">24 tamales + 1L atole</option><option value="50">50 tamales para evento</option></select>
+              </label>
+              <button class="primary-btn" type="submit">Generar combo</button>
+            </form>
+            <div class="copy-box" id="comboOutput" hidden></div>
+            <button class="secondary-btn copy-btn" type="button" data-copy-target="comboOutput" hidden>Copiar combo</button>
+          </article>
+
+          <article class="lesson extra" id="plan-7-dias" data-section="plan-7-dias">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Primeros 7 días de venta</h2><p>Plan práctico para lanzar sin improvisar.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-preparacion-masa.jpg" alt="Producción casera de tamales" loading="lazy"><figcaption>Prepara lote de prueba</figcaption></figure>
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Venta real para lanzar el negocio" loading="lazy"><figcaption>Publica y toma pedidos</figcaption></figure>
+            </div>
+            <div class="timeline">
+              <div><strong>Día 1</strong><span>Elige 3 sabores y calcula ingredientes.</span></div>
+              <div><strong>Día 2</strong><span>Compra insumos, hojas y empaque.</span></div>
+              <div><strong>Día 3</strong><span>Haz lote de prueba y toma fotos.</span></div>
+              <div><strong>Día 4</strong><span>Publica en WhatsApp, Facebook y grupos.</span></div>
+              <div><strong>Día 5</strong><span>Cierra pedidos con anticipo.</span></div>
+              <div><strong>Día 6</strong><span>Produce y confirma entregas.</span></div>
+              <div><strong>Día 7</strong><span>Entrega, pide reseñas y agenda siguiente lote.</span></div>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="descargables" data-section="descargables">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Modo descargable</h2><p>Plantillas rápidas para imprimir o guardar.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-salsas-proceso.jpg" alt="Proceso organizado para convertir en plantillas" loading="lazy"><figcaption>Guarda listas y procesos para repetir cada semana</figcaption></figure>
+            </div>
+            <div class="download-grid">
+              <button class="download-btn" type="button" data-download-template="compras">Descargar lista de compras</button>
+              <button class="download-btn" type="button" data-download-template="costos">Descargar tabla de costos</button>
+              <button class="download-btn" type="button" data-download-template="pedidos">Descargar control de pedidos</button>
+              <button class="download-btn" type="button" data-download-template="checklist">Descargar checklist de lanzamiento</button>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="higiene" data-section="higiene">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Higiene y conservación</h2><p>Buenas prácticas para vender con confianza.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/foto-coccion-vaporera.jpg" alt="Tamales calientes y vaporera limpia" loading="lazy"><figcaption>Control de vapor y calor</figcaption></figure>
+              <figure><img src="images/foto-preparacion-masa.jpg" alt="Mesa de preparación limpia y organizada" loading="lazy"><figcaption>Mesa limpia y ordenada</figcaption></figure>
+            </div>
+            <div class="cards two">
+              <div class="card"><h3>Manipulación</h3><p>Lava manos, usa trapos limpios, separa crudo/cocido y enfría rellenos antes de guardar.</p></div>
+              <div class="card"><h3>Conservación</h3><p>Ambiente: máximo 4 horas. Refrigerador: hasta 5 días. Congelador: hasta 3 meses.</p></div>
+              <div class="card"><h3>Recalentado</h3><p>Al vapor 15 minutos desde refrigerador o 25 minutos si viene congelado.</p></div>
+              <div class="card"><h3>Entrega</h3><p>Entrega caliente o bien refrigerado; evita dejar producto al sol o cerrado con exceso de vapor.</p></div>
+            </div>
+          </article>
+
+          <article class="lesson extra" id="certificado" data-section="certificado">
+            <div class="section-head"><span class="section-number">+</span><div><h2>Certificado de logro</h2><p>Motiva a completar el curso y empezar el negocio.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-coccion-vaporera.jpg" alt="Tamales terminados como logro del curso" loading="lazy"><figcaption>Cuando ya dominas masa, cocción y ventas, estás lista para lanzar</figcaption></figure>
+            </div>
+            <form class="tool-form" id="certificateForm">
+              <label>Nombre para el certificado <input id="certificateName" type="text" placeholder="Tu nombre"></label>
+              <button class="primary-btn" type="submit">Generar certificado</button>
+            </form>
+            <div class="certificate" id="certificateOutput" hidden></div>
           </article>
 
           <article class="lesson extra" id="pedidos" data-section="pedidos">
             <div class="section-head"><span class="section-number">+</span><div><h2>Extra: generador de pedido</h2><p>Confirmación lista para WhatsApp.</p></div></div>
+            <div class="section-media two-up">
+              <figure><img src="images/paquete-tamales-venta.png" alt="Pedido de tamales empacado" loading="lazy"><figcaption>Pedido listo</figcaption></figure>
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Venta y entrega de tamales" loading="lazy"><figcaption>Confirma entrega y anticipo</figcaption></figure>
+            </div>
             <form class="tool-form" id="orderForm">
               <label>Cliente <input id="orderName" type="text" placeholder="Señora María"></label>
               <label>Pedido <textarea id="orderItems" rows="3" placeholder="20 rojos, 10 rajas, 10 dulces"></textarea></label>
@@ -322,6 +605,9 @@
 
           <article class="lesson extra" id="timer" data-section="timer">
             <div class="section-head"><span class="section-number">+</span><div><h2>Extra: timer de cocina</h2><p>Tiempos rápidos para producción.</p></div></div>
+            <div class="section-media">
+              <figure class="wide-photo"><img src="images/foto-coccion-vaporera.jpg" alt="Vaporera de tamales para controlar tiempos" loading="lazy"><figcaption>Usa timer para no abrir la vaporera antes de tiempo</figcaption></figure>
+            </div>
             <div class="timer-grid">
               <button type="button" data-time="2100" data-name="Remojar hojas">Remojar hojas<br><span>35 min</span></button>
               <button type="button" data-time="300" data-name="Batir manteca">Batir manteca<br><span>5 min</span></button>
@@ -337,9 +623,14 @@
 
           <article class="lesson extra" id="faq" data-section="faq">
             <div class="section-head"><span class="section-number">+</span><div><h2>Extra: preguntas frecuentes</h2><p>Respuestas rápidas para operación diaria.</p></div></div>
-            <details><summary>¿Con cuánto dinero puedo empezar?</summary><p>Con $500 a $1,500 MXN produces un lote de 24–50 piezas si ya cuentas con olla y utensilios. El primer lote se vende antes de producirse — opera en preventa para no invertir en inventario.</p></details>
-            <details><summary>¿Cuánto duran los tamales?</summary><p>Temperatura ambiente: 4 h máximo. Refrigeración: hasta 5 días en recipiente hermético. Congelación: hasta 3 meses — recalientan en vapor 15 min sin perder textura.</p></details>
-            <details><summary>¿Puedo preparar masa y rellenos antes?</summary><p>Sí. La masa se mantiene 24 h en refrigeración cubierta con plástico directo. Rellenos de carne: 2–3 días en recipiente hermético. Rellenos de salsa verde: máximo 2 días para conservar frescura.</p></details>
+            <div class="section-media three-up">
+              <figure><img src="images/foto-preparacion-masa.jpg" alt="Dudas frecuentes sobre masa" loading="lazy"><figcaption>Masa</figcaption></figure>
+              <figure><img src="images/foto-tamal-abierto-vapor.jpg" alt="Dudas frecuentes sobre cocción" loading="lazy"><figcaption>Cocción</figcaption></figure>
+              <figure><img src="images/foto-torta-tamal-venta.jpg" alt="Dudas frecuentes sobre venta" loading="lazy"><figcaption>Venta</figcaption></figure>
+            </div>
+            <details><summary>¿Con cuánto dinero puedo empezar?</summary><p>Con $500 a $1,500 MXN puedes hacer un primer lote pequeño si ya tienes olla y utensilios básicos.</p></details>
+            <details><summary>¿Cuánto duran los tamales?</summary><p>A temperatura ambiente, 4 horas. En refrigerador, 5 días. En congelador, hasta 3 meses.</p></details>
+            <details><summary>¿Puedo preparar masa y rellenos antes?</summary><p>Sí. La masa se guarda 24 horas refrigerada y los rellenos 2 a 3 días en recipientes cerrados.</p></details>
           </article>
         </div>
       </section>
@@ -347,7 +638,7 @@
 
     <footer class="footer">
       <strong>Daily Tips MX</strong>
-      <span>Sistema de producción y ventas para emprendedoras de gastronomía artesanal.</span>
+      <span>Hecho para emprendedoras que quieren crecer desde su cocina.</span>
       <span>https://dailytips.lat/apps/tamales/</span>
     </footer>
 
@@ -359,6 +650,6 @@
       <button type="button" data-go="soporte">Soporte</button>
     </nav>
   </div>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=8" defer></script>
 </body>
 </html>
