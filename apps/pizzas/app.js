@@ -203,17 +203,42 @@
     localStorage.setItem(stateKey, JSON.stringify(values));
   }
 
+  function lessonBadge(id, index) {
+    const badges = {
+      bienvenida: "Comenzar",
+      herramientas: "Equipo",
+      masa: "10 Masas",
+      salsas: "6 Salsas",
+      "quesos-ingredientes": "Insumos",
+      recetas: "Generador",
+      "pizzas-vender": "Menú",
+      "dark-kitchen": "Estrategia",
+      costos: "Calculadora",
+      ganancias: "Calculadora",
+      menu: "Precios",
+      "facebook-whatsapp": "Plantillas",
+      actualizaciones: "Bonos",
+      soporte: "WhatsApp",
+      instalar: "PWA"
+    };
+    return badges[id] || `Paso ${index + 1}`;
+  }
+
   function renderLessonList() {
     const list = $("#lessonList");
     if (!list) return;
 
     const progress = new Set(storedProgress());
+    const activeId = $(".lesson.active")?.id || window.location.hash.replace("#", "") || "bienvenida";
     list.innerHTML = baseLessons.map(([id, title], index) => {
-      const done = progress.has(id);
-      return `<button class="lesson-row${done ? " done" : ""}" type="button" data-go="${id}">
+      const isActive = activeId === id;
+      const done = progress.has(id) && !isActive;
+      const classes = ["lesson-row", isActive ? "active" : "", done ? "done completed" : ""].filter(Boolean).join(" ");
+      const badge = done ? "¡Listo!" : lessonBadge(id, index);
+      return `<button class="${classes}" type="button" data-go="${id}">
         <span class="num">${index + 1}</span>
-        <span>${title}</span>
-        <span class="status">${done ? "✓" : "›"}</span>
+        <span class="lesson-title">${title}</span>
+        <span class="lesson-badge">${badge}</span>
       </button>`;
     }).join("");
   }

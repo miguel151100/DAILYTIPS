@@ -6,8 +6,8 @@
   "scope": "/apps/pizzas/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#fdfbf7",
-  "theme_color": "#9a1f1f",
+  "background_color": "#fff7f2",
+  "theme_color": "#c0392b",
   "categories": ["education", "food", "business"],
   "lang": "es-MX",
   "icons": [

@@ -1,9 +1,11 @@
-const CACHE_NAME = "pizzas-daily-tips-v4";
+const CACHE_NAME = "pizzas-daily-tips-v3";
 const APP_SHELL = [
   "/apps/pizzas/",
   "/apps/pizzas/index.html",
   "/apps/pizzas/styles.css",
+  "/apps/pizzas/styles.css?v=3",
   "/apps/pizzas/app.js",
+  "/apps/pizzas/app.js?v=3",
   "/apps/pizzas/manifest.json",
   "/apps/pizzas/icons/icon-192.png",
   "/apps/pizzas/icons/icon-512.png",
@@ -29,22 +31,20 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Network-first: siempre descarga la versión más reciente cuando hay internet.
-// Solo usa el caché como respaldo offline.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-        return response;
-      })
-      .catch(() =>
-        caches.match(event.request).then((cached) =>
-          cached || caches.match("/apps/pizzas/index.html")
-        )
-      )
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
+
+      return fetch(event.request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match("/apps/pizzas/index.html"));
+    })
   );
 });
