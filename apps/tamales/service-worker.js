@@ -1,4 +1,4 @@
-const CACHE_NAME = "tamales-daily-tips-v3";
+const CACHE_NAME = "tamales-daily-tips-v4";
 const APP_SHELL = [
   "/apps/tamales/",
   "/apps/tamales/index.html",
