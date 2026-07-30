@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Cotizaciones">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Generador de Cotizaciones - Daily Tips MX</title>
+  <meta name="description" content="Crea cotizaciones profesionales en minutos: agrega productos o servicios, calcula IVA y descuento, e imprime o envía por WhatsApp a tu cliente.">
+  <link rel="canonical" href="https://dailytips.lat/apps/cotizaciones/">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true">DT</span>
+        <span>Daily Tips MX</span>
+      </a>
+      <div class="top-actions">
+        <button class="ghost-btn" type="button" data-install-button hidden>
+          <span class="icon" aria-hidden="true">&#8595;</span>
+          Instalar app
+        </button>
+        <a class="ghost-btn whatsapp-top" href="https://wa.me/?text=Hola%20Daily%20Tips%20MX,%20necesito%20soporte%20del%20Generador%20de%20Cotizaciones" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">WA</span>
+          Soporte
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <p class="overline">Herramienta gratuita Daily Tips MX</p>
+        <h1>Generador de Cotizaciones</h1>
+        <p class="hero-desc">Arma una cotización profesional para tu cliente en minutos: agrega productos o servicios, calcula descuentos e IVA automáticamente, y compártela por WhatsApp o guárdala en PDF.</p>
+      </section>
+
+      <section class="workspace" aria-label="Editor de cotización">
+        <form class="editor" id="quote-form" autocomplete="off">
+          <div class="panel">
+            <h2>Tu negocio</h2>
+            <div class="field-grid">
+              <label class="field">
+                <span>Nombre del negocio</span>
+                <input type="text" id="biz-name" placeholder="Ej. Pasteles Doña Lupe" required>
+              </label>
+              <label class="field">
+                <span>Teléfono / WhatsApp</span>
+                <input type="tel" id="biz-phone" placeholder="Ej. 5512345678">
+              </label>
+              <label class="field field-wide">
+                <span>Dirección o notas de contacto</span>
+                <input type="text" id="biz-address" placeholder="Ej. CDMX · Entregas a domicilio">
+              </label>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2>Cliente y folio</h2>
+            <div class="field-grid">
+              <label class="field">
+                <span>Nombre del cliente</span>
+                <input type="text" id="client-name" placeholder="Ej. Juan Pérez" required>
+              </label>
+              <label class="field">
+                <span>Teléfono del cliente</span>
+                <input type="tel" id="client-phone" placeholder="Ej. 5598765432">
+              </label>
+              <label class="field">
+                <span>No. de cotización</span>
+                <input type="text" id="quote-number" readonly>
+              </label>
+              <label class="field">
+                <span>Fecha</span>
+                <input type="date" id="quote-date">
+              </label>
+              <label class="field">
+                <span>Válida por (días)</span>
+                <input type="number" id="quote-validity" min="1" value="7">
+              </label>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Productos o servicios</h2>
+              <button class="secondary-btn small" type="button" id="add-item">+ Agregar renglón</button>
+            </div>
+            <div class="items-table" role="table" aria-label="Renglones de la cotización">
+              <div class="items-head" role="row">
+                <span role="columnheader">Descripción</span>
+                <span role="columnheader">Cant.</span>
+                <span role="columnheader">Precio unit.</span>
+                <span role="columnheader">Importe</span>
+                <span role="columnheader" aria-label="Quitar"></span>
+              </div>
+              <div id="items-body"></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2>Totales</h2>
+            <div class="field-grid totals-grid">
+              <label class="field">
+                <span>Descuento (%)</span>
+                <input type="number" id="discount-pct" min="0" max="100" value="0">
+              </label>
+              <label class="field checkbox-field">
+                <input type="checkbox" id="iva-toggle" checked>
+                <span>Incluir IVA (16%)</span>
+              </label>
+              <label class="field field-wide">
+                <span>Notas / condiciones</span>
+                <textarea id="quote-notes" rows="2" placeholder="Ej. 50% de anticipo para apartar fecha. Precios en pesos mexicanos.">50% de anticipo para confirmar el pedido. Precios en pesos mexicanos (MXN).</textarea>
+              </label>
+            </div>
+          </div>
+
+          <div class="editor-actions">
+            <button class="primary-btn" type="button" id="btn-print">Imprimir / Guardar PDF</button>
+            <button class="secondary-btn" type="button" id="btn-whatsapp">Enviar por WhatsApp</button>
+            <button class="ghost-btn" type="button" id="btn-reset">Nueva cotización</button>
+          </div>
+        </form>
+
+        <aside class="preview-wrap" aria-label="Vista previa de la cotización">
+          <div class="preview" id="preview">
+            <div class="preview-head">
+              <div>
+                <p class="preview-biz" id="pv-biz">Nombre del negocio</p>
+                <p class="preview-sub" id="pv-contact">Teléfono · Dirección</p>
+              </div>
+              <div class="preview-meta">
+                <p><strong>Cotización</strong> <span id="pv-number">COT-0001</span></p>
+                <p>Fecha: <span id="pv-date">--</span></p>
+                <p>Válida hasta: <span id="pv-valid">--</span></p>
+              </div>
+            </div>
+
+            <div class="preview-client">
+              <p><strong>Cliente:</strong> <span id="pv-client-name">—</span></p>
+              <p id="pv-client-phone-row"><strong>Tel:</strong> <span id="pv-client-phone">—</span></p>
+            </div>
+
+            <table class="preview-table">
+              <thead>
+                <tr>
+                  <th>Descripción</th>
+                  <th>Cant.</th>
+                  <th>P. unit.</th>
+                  <th>Importe</th>
+                </tr>
+              </thead>
+              <tbody id="pv-items"></tbody>
+            </table>
+
+            <div class="preview-totals">
+              <div><span>Subtotal</span><span id="pv-subtotal">$0.00</span></div>
+              <div id="pv-discount-row"><span>Descuento</span><span id="pv-discount">-$0.00</span></div>
+              <div id="pv-iva-row"><span>IVA (16%)</span><span id="pv-iva">$0.00</span></div>
+              <div class="preview-total"><span>Total</span><span id="pv-total">$0.00</span></div>
+            </div>
+
+            <p class="preview-notes" id="pv-notes"></p>
+            <p class="preview-footer">Generado con el Generador de Cotizaciones · Daily Tips MX</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>&copy; <span id="year"></span> Daily Tips MX. Herramienta de uso libre para tu negocio.</p>
+    </footer>
+  </div>
+
+  <template id="item-row-template">
+    <div class="item-row" role="row">
+      <input type="text" class="item-desc" placeholder="Ej. Pastel de chocolate 20cm" role="cell">
+      <input type="number" class="item-qty" min="0" step="1" value="1" role="cell">
+      <input type="number" class="item-price" min="0" step="0.01" value="0" role="cell">
+      <span class="item-amount" role="cell">$0.00</span>
+      <button type="button" class="item-remove" aria-label="Quitar renglón">&times;</button>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

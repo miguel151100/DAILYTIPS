@@ -1,0 +1,27 @@
+{
+  "name": "Generador de Cotizaciones - Daily Tips MX",
+  "short_name": "Cotizaciones",
+  "description": "Crea cotizaciones profesionales, calcula IVA y descuento, e imprime o comparte por WhatsApp.",
+  "start_url": "/apps/cotizaciones/",
+  "scope": "/apps/cotizaciones/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4faf9",
+  "theme_color": "#0f766e",
+  "categories": ["business", "productivity", "finance"],
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
