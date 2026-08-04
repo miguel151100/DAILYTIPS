@@ -70,10 +70,58 @@ An ML-based FX trading bot: technical features → gradient-boosted classifier
    diversification. That's a deliberate scope cut, not an oversight.
 6. **`bot.py`** — one run = one decision **per configured pair**: loops over
    `data.fetch.resolve_instruments()`, and for each pair with a trained model,
-   checks the shared risk manager, fetches data, gets a signal, and places an
-   order on the practice account if warranted. A pair with no trained model
-   yet is skipped silently, so partial rollout (a handful of pairs trained so
-   far) works fine. Logs to `logs/trades.csv`.
+   checks the shared risk manager, runs the two optional OpenAI-powered
+   filters below, fetches data, gets a signal, and places an order on the
+   practice account if warranted. A pair with no trained model yet is
+   skipped silently, so partial rollout (a handful of pairs trained so far)
+   works fine. Logs to `logs/trades.csv`.
+
+### Optional: OpenAI-powered filters and reports
+
+Three additions, all **off by default** (skipped if `OPENAI_API_KEY` is
+unset) and all **additive, not required** -- training, backtesting, and
+trading all work without any of this:
+
+- **`news/calendar.py`** -- pauses new trades on a pair within
+  `NEWS_BLACKOUT_HOURS` (default 2h, before *or* after) of a high-impact
+  economic release for either of its currencies. **Deliberately does not use
+  the LLM**: "is there a high-impact event soon" is answered directly from
+  the calendar feed's structured fields in code. Asking a language model to
+  interpret that into a decision would add hallucination risk to a safety
+  gate for zero benefit.
+- **`llm/sentiment.py`** -- scores recent news headlines per currency (via
+  GDELT's free API) into a -1..1 sentiment via the OpenAI API, and vetoes a
+  trade if sentiment meaningfully opposes the model's direction
+  (`SENTIMENT_VETO_THRESHOLD`, default -0.5). Cached per currency for
+  `SENTIMENT_CACHE_HOURS` (default 6h) so a run across dozens of pairs
+  doesn't fire dozens of OpenAI calls.
+- **`report.py`** -- reads `logs/trades.csv` and asks the OpenAI API to turn
+  the (code-computed, never LLM-guessed) counts into a plain-language
+  paragraph, saved to `logs/report_{date}.txt`. Describes *activity*
+  (what was opened, where), not *performance* -- there's no realized P&L
+  reconciliation against OANDA's closed-trade history here.
+
+**Why these are advisory filters, not model features**: adding sentiment as
+an 18th input to `features/engineer.py` would require retraining every
+per-pair model, and there's no free historical news archive to validate it
+out-of-sample the way the 17 technical features were. Keeping it as a live
+pre-trade check sidesteps both problems and leaves the tested model
+untouched.
+
+**Fail-open by design**: if the calendar feed or an OpenAI call errors out,
+`bot.py` logs it and trades anyway rather than blocking indefinitely on a
+flaky free third-party feed. The real safety net -- stop-loss, the daily
+circuit breaker, the exposure caps -- doesn't depend on either filter.
+
+**Unverified from this environment**: `api.openai.com`, the ForexFactory-style
+calendar feed, and GDELT are all blocked by this sandbox's network policy
+(confirmed 403s), the same situation as Yahoo Finance above. All three are
+built with dependency-injectable clients and tested against mocks (see
+`tests/test_calendar.py`, `tests/test_sentiment.py`,
+`tests/test_openai_client.py`, `tests/test_report.py`) -- but the exact live
+response schemas haven't been confirmed against the real APIs from here.
+Verify connectivity and field names from your own machine before relying on
+this live.
 
 ### Which currency pairs?
 
@@ -108,6 +156,9 @@ cp .env.example .env
    OANDA_ACCOUNT_ID=your-practice-account-id
    OANDA_ENV=practice
    ```
+4. Optional, only for the news-blackout/sentiment filters and `report.py`:
+   add `OPENAI_API_KEY=your-key` to `.env`. Skip this and everything else
+   still works.
 
 ## Usage
 
@@ -157,6 +208,12 @@ long-running process. Schedule it to run once per candle close via cron,
 matching `config.GRANULARITY` (default `H1`, i.e. hourly):
 ```cron
 0 * * * *  cd /path/to/fx-ai-trader && .venv/bin/python bot.py >> logs/bot.log 2>&1
+```
+
+Generate a plain-language summary of `logs/trades.csv` (requires
+`OPENAI_API_KEY`):
+```bash
+.venv/bin/python report.py
 ```
 
 Run tests:

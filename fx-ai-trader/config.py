@@ -69,3 +69,14 @@ MAX_TOTAL_RISK_FRACTION = float(os.environ.get("FX_MAX_TOTAL_RISK_FRACTION", "0.
 # the one thing that does vary meaningfully by pair) ---
 SPREAD_PIPS = 1.2
 SLIPPAGE_PIPS = 0.3
+
+# --- OpenAI (news-blackout + sentiment advisory filters, plain-language
+# reports -- see llm/ and news/). These are additive risk filters layered on
+# top of the trading bot, not part of the ML model's features: none of them
+# are required for model.train / backtest / bot.py's core loop to work. ---
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
+NEWS_BLACKOUT_HOURS = float(os.environ.get("FX_NEWS_BLACKOUT_HOURS", "2"))
+SENTIMENT_VETO_THRESHOLD = float(os.environ.get("FX_SENTIMENT_VETO_THRESHOLD", "-0.5"))
+SENTIMENT_CACHE_HOURS = float(os.environ.get("FX_SENTIMENT_CACHE_HOURS", "6"))
+SENTIMENT_CACHE_PATH = LOG_DIR / "sentiment_cache.json"
