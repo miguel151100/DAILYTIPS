@@ -21,23 +21,51 @@ OANDA_HOSTS = {
 }
 OANDA_BASE_URL = OANDA_HOSTS[OANDA_ENV]
 
-# --- Instrument / timeframe ---
-INSTRUMENT = os.environ.get("FX_INSTRUMENT", "EUR_USD")
+# --- Instrument universe / timeframe ---
+# FX_INSTRUMENTS: optional comma-separated override (e.g. "EUR_USD,GBP_JPY").
+# Left unset, data.fetch.resolve_instruments() uses every currency pair OANDA
+# itself offers -- read there (not here) to avoid a circular import with
+# data/fetch.py.
 GRANULARITY = os.environ.get("FX_GRANULARITY", "H1")  # OANDA candle granularity
 LABEL_HORIZON = 4  # predict direction N candles ahead
 
 # --- Model ---
-MODEL_PATH = MODEL_DIR / f"{INSTRUMENT}_{GRANULARITY}_model.joblib"
 SIGNAL_THRESHOLD = 0.58  # min predicted probability (either direction) to act on a signal
+
+
+def model_path_for(instrument: str, granularity: str = GRANULARITY):
+    return MODEL_DIR / f"{instrument}_{granularity}_model.joblib"
+
+
+def pip_size_for(instrument: str) -> float:
+    """Standard FX convention: pip = 0.01 when the quote currency is JPY
+    (USD_JPY, EUR_JPY, GBP_JPY, ...), else 0.0001. Getting this wrong silently
+    makes every stop-loss/take-profit/position-size calculation for a JPY
+    pair wrong by a factor of 100."""
+    return 0.01 if instrument.endswith("_JPY") else 0.0001
+
+
+def price_precision_for(instrument: str) -> int:
+    """Decimal places OANDA expects when quoting a price for this instrument:
+    3 for JPY pairs (e.g. 150.123), 5 for everything else (e.g. 1.10234).
+    Sending the wrong precision on an order gets it rejected."""
+    return 3 if instrument.endswith("_JPY") else 5
+
 
 # --- Risk management ---
 RISK_PER_TRADE = 0.01       # fraction of account balance risked per trade
 STOP_LOSS_PIPS = 20
 TAKE_PROFIT_PIPS = 40
 MAX_DAILY_LOSS_FRACTION = 0.03  # circuit breaker: stop trading for the day past this drawdown
-MAX_OPEN_POSITIONS = 1
+MAX_POSITIONS_PER_INSTRUMENT = 1  # don't stack multiple trades on the same pair
+# total risk across ALL simultaneously open positions, approximated as
+# (number of open positions * risk_per_trade) since every position is sized
+# to risk the same fraction of balance. Does NOT account for cross-pair
+# correlation (e.g. EUR/USD and GBP/USD longs both being USD-exposure bets) --
+# a deliberate simplification, not an oversight; see README.
+MAX_TOTAL_RISK_FRACTION = float(os.environ.get("FX_MAX_TOTAL_RISK_FRACTION", "0.05"))
 
-# --- Backtest costs (approximate, EUR_USD typical) ---
+# --- Backtest costs (approximate, majors typical -- see pip_size_for for
+# the one thing that does vary meaningfully by pair) ---
 SPREAD_PIPS = 1.2
 SLIPPAGE_PIPS = 0.3
-PIP_SIZE = 0.0001

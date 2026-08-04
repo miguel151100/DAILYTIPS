@@ -21,11 +21,14 @@ An ML-based FX trading bot: technical features → gradient-boosted classifier
 ## How it works
 
 1. **`data/fetch.py`** — historical candles and live prices from the OANDA
-   v20 REST API (needs an account). **`data/yfinance_source.py`** is a
-   credential-free alternative for historical data (Yahoo Finance, ~730 days
-   of intraday history) so you can train/backtest before an OANDA account
-   exists — not tick-accurate and not used for live prices or order
-   execution, just for getting real (not synthetic) data early.
+   v20 REST API (needs an account), plus `list_tradeable_instruments()` /
+   `resolve_instruments()` for the instrument universe (see "Which currency
+   pairs" below). **`data/yfinance_source.py`** is a credential-free
+   alternative for historical data (Yahoo Finance, ~730 days of intraday
+   history) for any pair (`instrument.replace("_","")+"=X"` — works for
+   virtually any OANDA-style pair Yahoo also lists) so you can train/backtest
+   before an OANDA account exists — not tick-accurate and not used for live
+   prices or order execution, just for getting real (not synthetic) data early.
 2. **`features/engineer.py`** — 17 technical features computed with no
    look-ahead: returns, SMA/EMA distance, RSI, rolling volatility, momentum,
    MACD, Bollinger %B and bandwidth, ATR, and FX session flags (Asia/London/
@@ -33,30 +36,57 @@ An ML-based FX trading bot: technical features → gradient-boosted classifier
    London/NY overlap is real and typically the most volatile part of the
    day). `model/predict.py` reuses the exact same function so live inference
    can never silently drift from what the model was trained on.
-3. **`model/train.py`** — trains a `HistGradientBoostingClassifier` to
-   predict whether price will be higher `LABEL_HORIZON` candles ahead, using
-   **walk-forward validation** (`TimeSeriesSplit`), not a random split — a
-   random split would leak future data into training and produce
+3. **`model/train.py`** — trains one `HistGradientBoostingClassifier` **per
+   currency pair** (`model/saved/{instrument}_{granularity}_model.joblib`) to
+   predict whether that pair's price will be higher `LABEL_HORIZON` candles
+   ahead, using **walk-forward validation** (`TimeSeriesSplit`), not a random
+   split — a random split would leak future data into training and produce
    misleadingly good accuracy on a time series. Also prints a **permutation
    feature importance** report (measured out-of-sample, on the last fold's
-   held-out data) so you can see what the model actually relies on, rather
-   than trusting it blindly.
-4. **`backtest/engine.py`** — replays the same walk-forward folds, but
-   simulates actual trades (with spread + slippage cost, stop-loss /
-   take-profit against intrabar highs/lows) and reports Sharpe ratio, max
-   drawdown, win rate, and profit factor — all strictly out-of-sample.
-   **`backtest/plot.py`** saves the equity curve as a PNG
-   (`logs/equity_curve.png`) so you can see the trajectory, not just the
-   summary numbers.
-5. **`risk/manager.py`** — position sizing (risk a fixed % of balance per
-   trade), stop-loss/take-profit levels, and a **daily-loss circuit
-   breaker** that halts new trades for the rest of the day once losses
-   exceed `MAX_DAILY_LOSS_FRACTION`. Its state is persisted to
-   `logs/risk_state.json` so the breaker survives across separate `bot.py`
-   invocations (see below).
-6. **`bot.py`** — one run = one decision at a candle close: fetch data →
-   signal → risk check → order on the practice account → log to
-   `logs/trades.csv`.
+   held-out data). `train_all(instruments)` batch-trains every pair in the
+   universe, skipping (not aborting on) any pair with too little history.
+4. **`backtest/engine.py`** — `run_backtest` replays one pair's walk-forward
+   folds, simulating actual trades (spread + slippage cost, stop-loss /
+   take-profit against intrabar highs/lows, and the **correct pip size for
+   that pair** — JPY-quoted pairs use 0.01, not 0.0001) and reports Sharpe
+   ratio, max drawdown, win rate, and profit factor, all out-of-sample.
+   `run_portfolio_backtest` does the same across *several* pairs sharing one
+   account: it merges every pair's candidate signals into one chronological
+   timeline and replays them against a single shared risk manager, so the
+   exposure caps below apply across pairs, not per pair in isolation.
+   **`backtest/plot.py`** saves either equity curve as a PNG under `logs/`.
+5. **`risk/manager.py`** — now portfolio-aware: position sizing (risk a
+   fixed % of balance per trade, pip-size-correct per instrument),
+   stop-loss/take-profit levels, a **per-instrument cap**
+   (`MAX_POSITIONS_PER_INSTRUMENT`, default 1 — don't stack trades on the
+   same pair), a **total-exposure cap across all pairs**
+   (`MAX_TOTAL_RISK_FRACTION`, default 5%, approximated as
+   `open_positions * risk_per_trade`), and the same **daily-loss circuit
+   breaker** as before (now portfolio-wide), persisted to
+   `logs/risk_state.json` so it survives across separate `bot.py`
+   invocations. **Known limitation**: the exposure cap does not account for
+   cross-pair correlation — e.g. simultaneous EUR/USD and GBP/USD longs are
+   both USD-exposure bets, so the position count overstates real
+   diversification. That's a deliberate scope cut, not an oversight.
+6. **`bot.py`** — one run = one decision **per configured pair**: loops over
+   `data.fetch.resolve_instruments()`, and for each pair with a trained model,
+   checks the shared risk manager, fetches data, gets a signal, and places an
+   order on the practice account if warranted. A pair with no trained model
+   yet is skipped silently, so partial rollout (a handful of pairs trained so
+   far) works fine. Logs to `logs/trades.csv`.
+
+### Which currency pairs?
+
+"Every currency in the world" isn't something any retail broker actually
+offers — most of the ~180 ISO currencies aren't freely convertible or have no
+liquid retail FX market. What this bot supports is **every currency pair
+OANDA itself lists** (`data.fetch.list_tradeable_instruments()`, filtered to
+`type=="CURRENCY"` on your account — typically ~68-70 pairs: majors, minors,
+and a good number of exotics), fetched dynamically so it stays current
+automatically. Set `FX_INSTRUMENTS=EUR_USD,GBP_JPY,USD_MXN` (comma-separated)
+to restrict to a specific subset instead — useful while you're still
+training/validating a handful of pairs rather than committing to all of them
+at once.
 
 A GitHub Actions workflow (`.github/workflows/fx-ai-trader-tests.yml` at the
 repo root) runs the full test suite on every push or PR touching this
@@ -87,35 +117,44 @@ cp .env.example .env
 .venv/bin/python -c "
 from data.yfinance_source import fetch_candles
 from model.train import run
-run(fetch_candles())
+run(fetch_candles('EUR_USD'), 'EUR_USD')
 "
 ```
-This trains on real EUR/USD price history with no signup required. Prints
-walk-forward accuracy and a feature importance report. Use this to sanity
-check the whole approach before ever touching OANDA.
+Swap `'EUR_USD'` for any pair (`'GBP_JPY'`, `'USD_MXN'`, ...). This trains on
+real price history with no signup required and prints walk-forward accuracy
+plus a feature importance report — use it to sanity check the whole approach
+before ever touching OANDA.
 
 ### Once you have OANDA credentials
 
-Train the model on historical data and see walk-forward accuracy + feature
-importance:
+Train one pair and see walk-forward accuracy + feature importance:
 ```bash
-.venv/bin/python -m model.train
+.venv/bin/python -m model.train EUR_USD
 ```
 
-Run the out-of-sample backtest (do this before ever running `bot.py`) and
-save an equity curve chart to `logs/equity_curve.png`:
+Train every pair in your configured universe (`FX_INSTRUMENTS`, or every pair
+OANDA offers if unset) — continues past any pair with too little history
+rather than aborting the whole batch:
 ```bash
-.venv/bin/python -m backtest.engine
+.venv/bin/python -m model.train --all
 ```
 
-Run the bot once (requires a trained model and valid `.env`):
+Backtest one pair, or the whole portfolio sharing one account's exposure
+caps, saving an equity curve PNG under `logs/` either way:
+```bash
+.venv/bin/python -m backtest.engine EUR_USD
+.venv/bin/python -m backtest.engine --all
+```
+
+Run the bot once (loops over every pair with a trained model; requires valid
+`.env`):
 ```bash
 .venv/bin/python bot.py
 ```
 
-`bot.py` makes one decision per invocation — it is **not** a long-running
-process. Schedule it to run once per candle close via cron, matching
-`config.GRANULARITY` (default `H1`, i.e. hourly):
+`bot.py` makes one decision per invocation, per pair — it is **not** a
+long-running process. Schedule it to run once per candle close via cron,
+matching `config.GRANULARITY` (default `H1`, i.e. hourly):
 ```cron
 0 * * * *  cd /path/to/fx-ai-trader && .venv/bin/python bot.py >> logs/bot.log 2>&1
 ```
@@ -127,7 +166,9 @@ Run tests:
 
 ## Configuration
 
-All tunables (instrument, timeframe, risk-per-trade, stop-loss/take-profit
-pip distances, daily loss limit, signal confidence threshold) live in
+All tunables (timeframe, risk-per-trade, stop-loss/take-profit pip distances,
+daily loss limit, total-exposure cap, signal confidence threshold) live in
 `config.py`, overridable via environment variables — see that file for
-details.
+details. `FX_INSTRUMENTS` (comma-separated) restricts the pair universe;
+pip size and price precision are computed per-instrument automatically
+(`config.pip_size_for`, `config.price_precision_for`) rather than configured.

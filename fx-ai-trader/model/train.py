@@ -100,12 +100,19 @@ def train_final_model(feats: pd.DataFrame) -> HistGradientBoostingClassifier:
     return model
 
 
-def save_model(model, path=config.MODEL_PATH) -> None:
-    joblib.dump(model, path)
+def save_model(model, instrument: str, granularity: str = config.GRANULARITY) -> None:
+    joblib.dump(model, config.model_path_for(instrument, granularity))
 
 
-def run(df: pd.DataFrame, n_splits: int = 5, save: bool = True, report_importance: bool = True) -> list[dict]:
-    """End-to-end: build features, walk-forward validate, train final model, save."""
+def run(
+    df: pd.DataFrame,
+    instrument: str,
+    n_splits: int = 5,
+    save: bool = True,
+    report_importance: bool = True,
+) -> list[dict]:
+    """End-to-end for one instrument: build features, walk-forward validate,
+    train final model, save to model/saved/{instrument}_{granularity}."""
     feats = build_features(df, label_horizon=config.LABEL_HORIZON)
     if len(feats) < (n_splits + 1) * 20:
         raise ValueError(
@@ -130,19 +137,55 @@ def run(df: pd.DataFrame, n_splits: int = 5, save: bool = True, report_importanc
 
     if save:
         final_model = train_final_model(feats)
-        save_model(final_model)
-        print(f"final model trained on {len(feats)} rows, saved to {config.MODEL_PATH}")
+        save_model(final_model, instrument)
+        print(f"final model trained on {len(feats)} rows, saved to {config.model_path_for(instrument)}")
 
     return fold_metrics
 
 
+def train_all(
+    instruments: list[str],
+    n_splits: int = 5,
+    candles_count: int = 5000,
+    fetch_fn=None,
+) -> dict[str, list[dict] | str]:
+    """Batch-train one model per instrument. Continues past a failing pair
+    (e.g. one with too little history, or a data-fetch error) instead of
+    aborting the whole run -- returns per-instrument fold metrics on success,
+    or the error message string on failure, so the caller can see exactly
+    which pairs need attention without losing the ones that worked.
+    """
+    if fetch_fn is None:
+        from data.fetch import fetch_candles as fetch_fn
+
+    results: dict[str, list[dict] | str] = {}
+    for i, instrument in enumerate(instruments, 1):
+        print(f"\n=== [{i}/{len(instruments)}] {instrument} ===")
+        try:
+            candles = fetch_fn(instrument=instrument, count=candles_count)
+            results[instrument] = run(candles, instrument, n_splits=n_splits)
+        except Exception as e:
+            print(f"  skipped: {e}")
+            results[instrument] = str(e)
+
+    succeeded = [k for k, v in results.items() if not isinstance(v, str)]
+    failed = [k for k, v in results.items() if isinstance(v, str)]
+    print(f"\ntrain_all done: {len(succeeded)} trained, {len(failed)} skipped")
+    if failed:
+        print(f"skipped: {', '.join(failed)}")
+    return results
+
+
 if __name__ == "__main__":
-    from data.fetch import fetch_candles
+    from data.fetch import fetch_candles, resolve_instruments
 
-    try:
-        candles = fetch_candles(count=5000)
-    except RuntimeError as e:
-        print(f"error: {e}", file=sys.stderr)
-        sys.exit(1)
-
-    run(candles)
+    if len(sys.argv) > 1 and sys.argv[1] == "--all":
+        train_all(resolve_instruments())
+    else:
+        instrument = sys.argv[1] if len(sys.argv) > 1 else "EUR_USD"
+        try:
+            candles = fetch_candles(instrument=instrument, count=5000)
+        except RuntimeError as e:
+            print(f"error: {e}", file=sys.stderr)
+            sys.exit(1)
+        run(candles, instrument)

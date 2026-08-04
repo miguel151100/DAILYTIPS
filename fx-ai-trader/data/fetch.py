@@ -1,4 +1,5 @@
 """Fetch historical candles and live prices from the OANDA v20 REST API."""
+import os
 from datetime import datetime, timezone
 
 import pandas as pd
@@ -39,7 +40,7 @@ def _candles_to_frame(candles: list[dict]) -> pd.DataFrame:
 
 
 def fetch_candles(
-    instrument: str = config.INSTRUMENT,
+    instrument: str = "EUR_USD",
     granularity: str = config.GRANULARITY,
     count: int = _MAX_CANDLES_PER_REQUEST,
     from_time: str | None = None,
@@ -87,7 +88,7 @@ def fetch_candles(
     return full[full.index <= end]
 
 
-def fetch_latest_price(instrument: str = config.INSTRUMENT) -> dict:
+def fetch_latest_price(instrument: str = "EUR_USD") -> dict:
     """Fetch the current bid/ask price for an instrument."""
     url = f"{config.OANDA_BASE_URL}/v3/accounts/{config.OANDA_ACCOUNT_ID}/pricing"
     params = {"instruments": instrument}
@@ -101,7 +102,33 @@ def fetch_latest_price(instrument: str = config.INSTRUMENT) -> dict:
     }
 
 
+def list_tradeable_instruments() -> list[str]:
+    """Every currency pair OANDA itself offers on this account (~68-70 pairs:
+    majors, minors, and a good number of exotics), fetched dynamically so this
+    stays current if OANDA adds or removes instruments. This is the honest
+    version of "every currency in the world" -- no retail broker actually
+    trades all ~180 ISO currencies; most aren't freely convertible or have no
+    liquid retail FX market at all.
+    """
+    url = f"{config.OANDA_BASE_URL}/v3/accounts/{config.OANDA_ACCOUNT_ID}/instruments"
+    resp = requests.get(url, headers=_headers(), timeout=30)
+    resp.raise_for_status()
+    instruments = resp.json()["instruments"]
+    return sorted(i["name"] for i in instruments if i["type"] == "CURRENCY")
+
+
+def resolve_instruments() -> list[str]:
+    """The instrument universe to train/trade: FX_INSTRUMENTS env var
+    (comma-separated, e.g. "EUR_USD,GBP_JPY") if set -- useful for testing
+    against a handful of pairs -- else every pair list_tradeable_instruments()
+    returns."""
+    override = os.environ.get("FX_INSTRUMENTS", "")
+    if override:
+        return [s.strip() for s in override.split(",") if s.strip()]
+    return list_tradeable_instruments()
+
+
 if __name__ == "__main__":
     df = fetch_candles(count=500)
     print(df.tail())
-    print(f"Fetched {len(df)} candles for {config.INSTRUMENT} {config.GRANULARITY}")
+    print(f"Fetched {len(df)} candles")

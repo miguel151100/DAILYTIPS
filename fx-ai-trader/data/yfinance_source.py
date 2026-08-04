@@ -5,24 +5,29 @@ credentials at all -- useful for training/backtesting against real market
 data before an OANDA practice account is set up. Yahoo's intraday data is
 limited to roughly the last 730 days, and is not a perfect substitute for a
 broker feed (it isn't tick-accurate and has occasional gaps), but it's real
-EUR/USD price action, not synthetic data.
+price action, not synthetic data.
 """
 import pandas as pd
 import yfinance as yf
 
-_YF_SYMBOL = {
-    "EUR_USD": "EURUSD=X",
-    "GBP_USD": "GBPUSD=X",
-    "USD_JPY": "USDJPY=X",
-}
+
+def _to_yahoo_ticker(instrument: str) -> str:
+    """OANDA-style "XXX_YYY" -> Yahoo's "XXXYYY=X" convention, which covers
+    essentially any FX pair (majors, minors, most exotics) Yahoo also lists.
+    An instrument with no underscore is assumed to already be a raw ticker
+    and is passed through unchanged."""
+    if "_" in instrument:
+        return instrument.replace("_", "") + "=X"
+    return instrument
 
 
 def fetch_candles(instrument: str = "EUR_USD", interval: str = "1h", period: str = "730d") -> pd.DataFrame:
     """Fetch OHLC candles from Yahoo Finance for an OANDA-style instrument
-    name (e.g. "EUR_USD"), returned in the same schema as data.fetch.fetch_candles:
-    a DataFrame indexed by UTC time with open/high/low/close/volume columns.
+    name (e.g. "EUR_USD", "USD_MXN", "GBP_JPY"), returned in the same schema
+    as data.fetch.fetch_candles: a DataFrame indexed by UTC time with
+    open/high/low/close/volume columns.
     """
-    symbol = _YF_SYMBOL.get(instrument, instrument)
+    symbol = _to_yahoo_ticker(instrument)
     raw = yf.download(
         symbol, interval=interval, period=period, auto_adjust=False, progress=False, multi_level_index=False
     )

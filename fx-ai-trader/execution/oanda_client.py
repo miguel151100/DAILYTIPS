@@ -37,18 +37,25 @@ def get_account_summary() -> dict:
     return resp.json()["account"]
 
 
-def get_open_trade_count() -> int:
+def get_open_trades_by_instrument() -> dict[str, int]:
+    """Currently open trade count per instrument, straight from the broker
+    (the source of truth) -- used to resync the risk manager's per-instrument
+    and portfolio-wide exposure state on every bot run."""
     _guard_practice_only()
     url = f"{config.OANDA_BASE_URL}/v3/accounts/{config.OANDA_ACCOUNT_ID}/openTrades"
     resp = requests.get(url, headers=_headers(), timeout=30)
     resp.raise_for_status()
-    return len(resp.json()["trades"])
+    counts: dict[str, int] = {}
+    for trade in resp.json()["trades"]:
+        counts[trade["instrument"]] = counts.get(trade["instrument"], 0) + 1
+    return counts
 
 
 def place_market_order(instrument: str, units: float, stop_loss_price: float, take_profit_price: float) -> dict:
     """`units` positive opens a long, negative opens a short. Attaches
     stop-loss and take-profit orders atomically on fill."""
     _guard_practice_only()
+    precision = config.price_precision_for(instrument)
     url = f"{config.OANDA_BASE_URL}/v3/accounts/{config.OANDA_ACCOUNT_ID}/orders"
     body = {
         "order": {
@@ -57,8 +64,8 @@ def place_market_order(instrument: str, units: float, stop_loss_price: float, ta
             "units": str(int(units)),
             "timeInForce": "FOK",
             "positionFill": "DEFAULT",
-            "stopLossOnFill": {"price": f"{stop_loss_price:.5f}"},
-            "takeProfitOnFill": {"price": f"{take_profit_price:.5f}"},
+            "stopLossOnFill": {"price": f"{stop_loss_price:.{precision}f}"},
+            "takeProfitOnFill": {"price": f"{take_profit_price:.{precision}f}"},
         }
     }
     resp = requests.post(url, headers=_headers(), json=body, timeout=30)

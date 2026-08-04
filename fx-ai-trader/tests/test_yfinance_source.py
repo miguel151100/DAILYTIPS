@@ -55,7 +55,16 @@ def test_fetch_candles_raises_on_empty_response(monkeypatch):
         yfinance_source.fetch_candles(instrument="EUR_USD")
 
 
-def test_unknown_instrument_passed_through_as_raw_ticker(monkeypatch):
+@pytest.mark.parametrize(
+    "instrument,expected_ticker",
+    [
+        ("EUR_USD", "EURUSD=X"),
+        ("USD_MXN", "USDMXN=X"),
+        ("GBP_JPY", "GBPJPY=X"),
+        ("XAU_USD", "XAUUSD=X"),
+    ],
+)
+def test_any_oanda_style_pair_derives_the_yahoo_ticker(monkeypatch, instrument, expected_ticker):
     seen = {}
 
     def fake_download(ticker, **kwargs):
@@ -63,6 +72,19 @@ def test_unknown_instrument_passed_through_as_raw_ticker(monkeypatch):
         return _fake_yahoo_raw()
 
     monkeypatch.setattr(yfinance_source.yf, "download", fake_download)
-    yfinance_source.fetch_candles(instrument="XAU_USD")
+    yfinance_source.fetch_candles(instrument=instrument)
 
-    assert seen["ticker"] == "XAU_USD"
+    assert seen["ticker"] == expected_ticker
+
+
+def test_ticker_with_no_underscore_passed_through_unchanged(monkeypatch):
+    seen = {}
+
+    def fake_download(ticker, **kwargs):
+        seen["ticker"] = ticker
+        return _fake_yahoo_raw()
+
+    monkeypatch.setattr(yfinance_source.yf, "download", fake_download)
+    yfinance_source.fetch_candles(instrument="EURUSD=X")
+
+    assert seen["ticker"] == "EURUSD=X"
