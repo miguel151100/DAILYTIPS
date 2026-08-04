@@ -30,7 +30,16 @@ GRANULARITY = os.environ.get("FX_GRANULARITY", "H1")  # OANDA candle granularity
 LABEL_HORIZON = 4  # predict direction N candles ahead
 
 # --- Model ---
-SIGNAL_THRESHOLD = 0.58  # min predicted probability (either direction) to act on a signal
+# min predicted probability (either direction) to act on a signal. Lower =
+# trades more often, on weaker signals -- NOT the same as "wins more often".
+# On synthetic no-edge data, dropping this from 0.58 to 0.51 raised trade
+# count ~47% (1597 -> 2354) while total return got worse, not better (-86.8%
+# -> -92.4%): more trades just means paying the spread more often when there
+# is no real edge behind the extra signals. Re-run that same comparison
+# (backtest.engine with different `threshold` values) against real data
+# before trusting a lowered default -- synthetic data can't tell you the
+# right number, only that "lower != better" isn't automatic.
+SIGNAL_THRESHOLD = float(os.environ.get("FX_SIGNAL_THRESHOLD", "0.53"))
 
 
 def model_path_for(instrument: str, granularity: str = GRANULARITY):
@@ -53,17 +62,25 @@ def price_precision_for(instrument: str) -> int:
 
 
 # --- Risk management ---
-RISK_PER_TRADE = 0.01       # fraction of account balance risked per trade
-STOP_LOSS_PIPS = 20
-TAKE_PROFIT_PIPS = 40
-MAX_DAILY_LOSS_FRACTION = 0.03  # circuit breaker: stop trading for the day past this drawdown
-MAX_POSITIONS_PER_INSTRUMENT = 1  # don't stack multiple trades on the same pair
+# All of these are env-tunable so "more aggressive" or "more conservative"
+# is a .env edit, not a code change. STOP_LOSS_PIPS / TAKE_PROFIT_PIPS /
+# MAX_DAILY_LOSS_FRACTION are the actual safety rails (they cap how much a
+# single trade or a single day can lose) -- loosen those deliberately, not
+# as a side effect of wanting more trade frequency.
+RISK_PER_TRADE = float(os.environ.get("FX_RISK_PER_TRADE", "0.01"))  # fraction of balance risked per trade
+STOP_LOSS_PIPS = float(os.environ.get("FX_STOP_LOSS_PIPS", "20"))
+TAKE_PROFIT_PIPS = float(os.environ.get("FX_TAKE_PROFIT_PIPS", "40"))
+MAX_DAILY_LOSS_FRACTION = float(os.environ.get("FX_MAX_DAILY_LOSS_FRACTION", "0.03"))
+MAX_POSITIONS_PER_INSTRUMENT = int(os.environ.get("FX_MAX_POSITIONS_PER_INSTRUMENT", "1"))
 # total risk across ALL simultaneously open positions, approximated as
 # (number of open positions * risk_per_trade) since every position is sized
 # to risk the same fraction of balance. Does NOT account for cross-pair
 # correlation (e.g. EUR/USD and GBP/USD longs both being USD-exposure bets) --
-# a deliberate simplification, not an oversight; see README.
-MAX_TOTAL_RISK_FRACTION = float(os.environ.get("FX_MAX_TOTAL_RISK_FRACTION", "0.05"))
+# a deliberate simplification, not an oversight; see README. Raised from the
+# original 5% default to 10% so a lower SIGNAL_THRESHOLD (more qualifying
+# signals across the portfolio) can actually act on more of them concurrently
+# instead of the old cap throttling it straight back down.
+MAX_TOTAL_RISK_FRACTION = float(os.environ.get("FX_MAX_TOTAL_RISK_FRACTION", "0.10"))
 
 # --- Backtest costs (approximate, majors typical -- see pip_size_for for
 # the one thing that does vary meaningfully by pair) ---

@@ -225,7 +225,38 @@ Run tests:
 
 All tunables (timeframe, risk-per-trade, stop-loss/take-profit pip distances,
 daily loss limit, total-exposure cap, signal confidence threshold) live in
-`config.py`, overridable via environment variables — see that file for
-details. `FX_INSTRUMENTS` (comma-separated) restricts the pair universe;
-pip size and price precision are computed per-instrument automatically
-(`config.pip_size_for`, `config.price_precision_for`) rather than configured.
+`config.py`, overridable via environment variables (see `.env.example`) —
+see that file's comments for details. `FX_INSTRUMENTS` (comma-separated)
+restricts the pair universe; pip size and price precision are computed
+per-instrument automatically (`config.pip_size_for`, `config.price_precision_for`)
+rather than configured.
+
+### How aggressively it trades
+
+`FX_SIGNAL_THRESHOLD` (default `0.53`) is the main dial: the minimum
+predicted probability, either direction, before the bot acts. Lower it and
+the bot trades more often, on weaker signals -- **that is not the same as
+trading more profitably.** On synthetic no-edge data, dropping the threshold
+from 0.58 to 0.51 raised trade count ~47% while total return got *worse*
+(-86.8% → -92.4%): more trades just means paying the spread more often when
+there's no real edge behind the extra signals.
+
+```bash
+# empirically compare thresholds on your own (real) data before picking one
+.venv/bin/python -c "
+from data.fetch import fetch_candles
+from backtest.engine import run_backtest
+candles = fetch_candles(instrument='EUR_USD', count=5000)
+for t in (0.51, 0.53, 0.55, 0.58):
+    r = run_backtest(candles, instrument='EUR_USD', threshold=t)
+    print(f'threshold={t}: n_trades={r[\"n_trades\"]} total_return={r[\"total_return\"]*100:.1f}%')
+"
+```
+
+`FX_MAX_TOTAL_RISK_FRACTION` (default `0.10`) caps how much of the account
+can be at risk across all simultaneously open positions -- raised alongside
+the lower threshold so more qualifying signals can actually be acted on
+instead of the old, tighter cap throttling them straight back down.
+`FX_MAX_DAILY_LOSS_FRACTION` and the stop-loss/take-profit pip distances are
+the actual safety rails; loosen those deliberately; they aren't meant to
+move just because you want more trade frequency.
