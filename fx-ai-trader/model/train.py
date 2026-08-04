@@ -1,0 +1,109 @@
+"""Train the direction-prediction model with walk-forward validation.
+
+Walk-forward (as opposed to a random train/test split) is essential for time
+series: each fold trains only on data that precedes its test window, so the
+model is never evaluated on data it could have seen the "future" of during
+training. A random split would leak future information into training and
+produce misleadingly good accuracy.
+"""
+import sys
+
+import joblib
+import pandas as pd
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.model_selection import TimeSeriesSplit
+from sklearn.metrics import accuracy_score, roc_auc_score
+
+import config
+from features.engineer import FEATURE_COLUMNS, build_features
+
+
+def _make_model() -> HistGradientBoostingClassifier:
+    return HistGradientBoostingClassifier(
+        max_iter=200,
+        max_depth=4,
+        learning_rate=0.05,
+        l2_regularization=1.0,
+        random_state=42,
+    )
+
+
+def walk_forward_validate(feats: pd.DataFrame, n_splits: int = 5) -> list[dict]:
+    """Evaluate the model across `n_splits` chronological folds.
+
+    Returns a list of per-fold metrics dicts (accuracy, roc_auc, n_train, n_test).
+    """
+    X = feats[FEATURE_COLUMNS].values
+    y = feats["label"].values
+
+    tscv = TimeSeriesSplit(n_splits=n_splits)
+    results = []
+    for fold, (train_idx, test_idx) in enumerate(tscv.split(X)):
+        model = _make_model()
+        model.fit(X[train_idx], y[train_idx])
+        preds = model.predict(X[test_idx])
+        probs = model.predict_proba(X[test_idx])[:, 1]
+
+        metrics = {
+            "fold": fold,
+            "n_train": len(train_idx),
+            "n_test": len(test_idx),
+            "accuracy": accuracy_score(y[test_idx], preds),
+        }
+        # roc_auc undefined if a fold's test set has only one class
+        if len(set(y[test_idx])) > 1:
+            metrics["roc_auc"] = roc_auc_score(y[test_idx], probs)
+        else:
+            metrics["roc_auc"] = float("nan")
+        results.append(metrics)
+    return results
+
+
+def train_final_model(feats: pd.DataFrame) -> HistGradientBoostingClassifier:
+    """Fit on the full available dataset -- call only after walk-forward
+    validation shows acceptable out-of-sample performance."""
+    model = _make_model()
+    model.fit(feats[FEATURE_COLUMNS].values, feats["label"].values)
+    return model
+
+
+def save_model(model, path=config.MODEL_PATH) -> None:
+    joblib.dump(model, path)
+
+
+def run(df: pd.DataFrame, n_splits: int = 5, save: bool = True) -> list[dict]:
+    """End-to-end: build features, walk-forward validate, train final model, save."""
+    feats = build_features(df, label_horizon=config.LABEL_HORIZON)
+    if len(feats) < (n_splits + 1) * 20:
+        raise ValueError(
+            f"Not enough data ({len(feats)} rows) for {n_splits}-fold walk-forward "
+            "validation. Fetch more history or reduce n_splits."
+        )
+
+    fold_metrics = walk_forward_validate(feats, n_splits=n_splits)
+    for m in fold_metrics:
+        print(
+            f"fold {m['fold']}: n_train={m['n_train']:>5} n_test={m['n_test']:>4} "
+            f"accuracy={m['accuracy']:.4f} roc_auc={m['roc_auc']:.4f}"
+        )
+    avg_acc = sum(m["accuracy"] for m in fold_metrics) / len(fold_metrics)
+    print(f"\nmean walk-forward accuracy: {avg_acc:.4f} (0.50 = coin flip)")
+
+    if save:
+        final_model = train_final_model(feats)
+        save_model(final_model)
+        print(f"final model trained on {len(feats)} rows, saved to {config.MODEL_PATH}")
+
+    return fold_metrics
+
+
+if __name__ == "__main__":
+    from data.fetch import fetch_candles
+
+    try:
+        candles = fetch_candles(count=5000)
+    except RuntimeError as e:
+        print(f"error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    run(candles)
