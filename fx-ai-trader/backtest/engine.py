@@ -89,7 +89,9 @@ def run_backtest(
             equity_curve.append(balance)
 
     periods_per_year = _periods_per_year(config.GRANULARITY)
-    return summarize(trade_pnls, equity_curve, periods_per_year)
+    summary = summarize(trade_pnls, equity_curve, periods_per_year)
+    summary["equity_curve"] = equity_curve
+    return summary
 
 
 def _periods_per_year(granularity: str) -> float:
@@ -101,8 +103,14 @@ def _periods_per_year(granularity: str) -> float:
 
 if __name__ == "__main__":
     from data.fetch import fetch_candles
+    from backtest.plot import plot_equity_curve
 
     candles = fetch_candles(count=5000)
     results = run_backtest(candles)
     for k, v in results.items():
-        print(f"{k}: {v}")
+        if k != "equity_curve":
+            print(f"{k}: {v}")
+
+    plot_path = config.LOG_DIR / "equity_curve.png"
+    plot_equity_curve(results["equity_curve"], plot_path)
+    print(f"\nequity curve plot saved to {plot_path}")

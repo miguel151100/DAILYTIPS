@@ -6,5 +6,7 @@ model/saved/*.pkl
 model/saved/*.joblib
 logs/*.csv
 logs/*.log
+logs/*.png
+logs/*.json
 .venv/
 venv/

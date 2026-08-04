@@ -11,6 +11,7 @@ import sys
 import joblib
 import pandas as pd
 from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.inspection import permutation_importance
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import accuracy_score, roc_auc_score
 
@@ -59,6 +60,38 @@ def walk_forward_validate(feats: pd.DataFrame, n_splits: int = 5) -> list[dict]:
     return results
 
 
+def feature_importance_report(feats: pd.DataFrame, n_splits: int = 5, n_repeats: int = 10) -> pd.DataFrame:
+    """Permutation importance measured on the *last* walk-forward fold's
+    held-out test set -- i.e. strictly out-of-sample. This is what the model
+    actually relies on to generalize, which is not the same as importance
+    measured on training data (that can just reflect memorized noise).
+    """
+    X = feats[FEATURE_COLUMNS].values
+    y = feats["label"].values
+
+    tscv = TimeSeriesSplit(n_splits=n_splits)
+    train_idx, test_idx = list(tscv.split(X))[-1]
+
+    model = _make_model()
+    model.fit(X[train_idx], y[train_idx])
+
+    scoring = "roc_auc" if len(set(y[test_idx])) > 1 else "accuracy"
+    result = permutation_importance(
+        model, X[test_idx], y[test_idx], n_repeats=n_repeats, random_state=42, scoring=scoring
+    )
+    return (
+        pd.DataFrame(
+            {
+                "feature": FEATURE_COLUMNS,
+                "importance_mean": result.importances_mean,
+                "importance_std": result.importances_std,
+            }
+        )
+        .sort_values("importance_mean", ascending=False)
+        .reset_index(drop=True)
+    )
+
+
 def train_final_model(feats: pd.DataFrame) -> HistGradientBoostingClassifier:
     """Fit on the full available dataset -- call only after walk-forward
     validation shows acceptable out-of-sample performance."""
@@ -71,7 +104,7 @@ def save_model(model, path=config.MODEL_PATH) -> None:
     joblib.dump(model, path)
 
 
-def run(df: pd.DataFrame, n_splits: int = 5, save: bool = True) -> list[dict]:
+def run(df: pd.DataFrame, n_splits: int = 5, save: bool = True, report_importance: bool = True) -> list[dict]:
     """End-to-end: build features, walk-forward validate, train final model, save."""
     feats = build_features(df, label_horizon=config.LABEL_HORIZON)
     if len(feats) < (n_splits + 1) * 20:
@@ -88,6 +121,12 @@ def run(df: pd.DataFrame, n_splits: int = 5, save: bool = True) -> list[dict]:
         )
     avg_acc = sum(m["accuracy"] for m in fold_metrics) / len(fold_metrics)
     print(f"\nmean walk-forward accuracy: {avg_acc:.4f} (0.50 = coin flip)")
+
+    if report_importance:
+        print("\nfeature importance (permutation, out-of-sample, last fold):")
+        importance = feature_importance_report(feats, n_splits=n_splits)
+        for _, row in importance.iterrows():
+            print(f"  {row['feature']:<16} {row['importance_mean']:+.4f} (+/- {row['importance_std']:.4f})")
 
     if save:
         final_model = train_final_model(feats)

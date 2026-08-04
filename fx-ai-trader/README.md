@@ -21,20 +21,33 @@ An ML-based FX trading bot: technical features → gradient-boosted classifier
 ## How it works
 
 1. **`data/fetch.py`** — historical candles and live prices from the OANDA
-   v20 REST API.
-2. **`features/engineer.py`** — technical features (returns, SMA/EMA
-   distance, RSI, rolling volatility, momentum) computed with no look-ahead;
-   `model/predict.py` reuses the exact same function so live inference can
-   never silently drift from what the model was trained on.
+   v20 REST API (needs an account). **`data/yfinance_source.py`** is a
+   credential-free alternative for historical data (Yahoo Finance, ~730 days
+   of intraday history) so you can train/backtest before an OANDA account
+   exists — not tick-accurate and not used for live prices or order
+   execution, just for getting real (not synthetic) data early.
+2. **`features/engineer.py`** — 17 technical features computed with no
+   look-ahead: returns, SMA/EMA distance, RSI, rolling volatility, momentum,
+   MACD, Bollinger %B and bandwidth, ATR, and FX session flags (Asia/London/
+   New York, based on UTC hour — sessions deliberately overlap since the
+   London/NY overlap is real and typically the most volatile part of the
+   day). `model/predict.py` reuses the exact same function so live inference
+   can never silently drift from what the model was trained on.
 3. **`model/train.py`** — trains a `HistGradientBoostingClassifier` to
    predict whether price will be higher `LABEL_HORIZON` candles ahead, using
    **walk-forward validation** (`TimeSeriesSplit`), not a random split — a
    random split would leak future data into training and produce
-   misleadingly good accuracy on a time series.
+   misleadingly good accuracy on a time series. Also prints a **permutation
+   feature importance** report (measured out-of-sample, on the last fold's
+   held-out data) so you can see what the model actually relies on, rather
+   than trusting it blindly.
 4. **`backtest/engine.py`** — replays the same walk-forward folds, but
    simulates actual trades (with spread + slippage cost, stop-loss /
    take-profit against intrabar highs/lows) and reports Sharpe ratio, max
    drawdown, win rate, and profit factor — all strictly out-of-sample.
+   **`backtest/plot.py`** saves the equity curve as a PNG
+   (`logs/equity_curve.png`) so you can see the trajectory, not just the
+   summary numbers.
 5. **`risk/manager.py`** — position sizing (risk a fixed % of balance per
    trade), stop-loss/take-profit levels, and a **daily-loss circuit
    breaker** that halts new trades for the rest of the day once losses
@@ -44,6 +57,10 @@ An ML-based FX trading bot: technical features → gradient-boosted classifier
 6. **`bot.py`** — one run = one decision at a candle close: fetch data →
    signal → risk check → order on the practice account → log to
    `logs/trades.csv`.
+
+A GitHub Actions workflow (`.github/workflows/fx-ai-trader-tests.yml` at the
+repo root) runs the full test suite on every push or PR touching this
+folder.
 
 ## Setup
 
@@ -64,12 +81,29 @@ cp .env.example .env
 
 ## Usage
 
-Train the model on historical data and see walk-forward accuracy:
+### Before you have an OANDA account: train/backtest on real data via Yahoo Finance
+
+```bash
+.venv/bin/python -c "
+from data.yfinance_source import fetch_candles
+from model.train import run
+run(fetch_candles())
+"
+```
+This trains on real EUR/USD price history with no signup required. Prints
+walk-forward accuracy and a feature importance report. Use this to sanity
+check the whole approach before ever touching OANDA.
+
+### Once you have OANDA credentials
+
+Train the model on historical data and see walk-forward accuracy + feature
+importance:
 ```bash
 .venv/bin/python -m model.train
 ```
 
-Run the out-of-sample backtest (do this before ever running `bot.py`):
+Run the out-of-sample backtest (do this before ever running `bot.py`) and
+save an equity curve chart to `logs/equity_curve.png`:
 ```bash
 .venv/bin/python -m backtest.engine
 ```

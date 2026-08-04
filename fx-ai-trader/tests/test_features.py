@@ -1,12 +1,21 @@
 import numpy as np
 import pandas as pd
 
-from features.engineer import FEATURE_COLUMNS, build_features, _rsi
+from features.engineer import FEATURE_COLUMNS, build_features, _atr, _rsi
 
 
-def _make_df(prices) -> pd.DataFrame:
-    idx = pd.date_range("2024-01-01", periods=len(prices), freq="h")
-    return pd.DataFrame({"close": prices}, index=idx)
+def _make_df(prices, start="2024-01-01", intrabar_range=0.0002) -> pd.DataFrame:
+    prices = np.asarray(prices, dtype=float)
+    idx = pd.date_range(start, periods=len(prices), freq="h")
+    return pd.DataFrame(
+        {
+            "open": prices,
+            "high": prices + intrabar_range,
+            "low": prices - intrabar_range,
+            "close": prices,
+        },
+        index=idx,
+    )
 
 
 def test_build_features_no_nans_and_expected_columns():
@@ -53,3 +62,61 @@ def test_rsi_bounds():
     rsi = _rsi(close).dropna()
     assert len(rsi) > 0
     assert (rsi >= 0).all() and (rsi <= 100).all()
+
+
+def test_macd_is_positive_in_a_sustained_uptrend():
+    prices = np.linspace(1.0, 1.5, 200)
+    df = _make_df(prices)
+    feats = build_features(df, label_horizon=4)
+
+    # fast EMA leads price up faster than the slow EMA in a steady uptrend
+    assert (feats["macd_norm"] > 0).all()
+
+
+def test_bollinger_pct_b_is_neutral_on_a_flat_series():
+    prices = np.full(100, 1.2345)
+    df = _make_df(prices)
+    feats = build_features(df, label_horizon=4)
+
+    # zero-width band (no volatility) -> defined as neutral, not NaN
+    assert (feats["bb_pct_b"] == 0.5).all()
+    assert (feats["bb_bandwidth"] == 0.0).all()
+
+
+def test_bollinger_pct_b_above_half_in_a_sustained_uptrend():
+    prices = np.linspace(1.0, 1.5, 200)
+    df = _make_df(prices)
+    feats = build_features(df, label_horizon=4)
+
+    # price consistently running above its rolling mean -> upper half of the band
+    assert (feats["bb_pct_b"] > 0.5).all()
+
+
+def test_atr_reflects_intrabar_range():
+    prices = np.linspace(1.0, 1.1, 100)
+    narrow = _make_df(prices, intrabar_range=0.0001)
+    wide = _make_df(prices, intrabar_range=0.0010)
+
+    atr_narrow = _atr(narrow["high"], narrow["low"], narrow["close"]).dropna()
+    atr_wide = _atr(wide["high"], wide["low"], wide["close"]).dropna()
+
+    assert (atr_narrow > 0).all()
+    assert (atr_wide > atr_narrow).all()
+
+
+def test_session_flags_match_expected_utc_hours():
+    prices = np.linspace(1.0, 1.1, 48)
+    df = _make_df(prices, start="2024-01-01 00:00")  # 48 hourly candles = exactly 2 UTC days
+    feats = build_features(df, label_horizon=1)
+
+    for ts, row in feats.iterrows():
+        hour = ts.hour
+        assert row["session_asia"] == float(0 <= hour < 9)
+        assert row["session_london"] == float(8 <= hour < 17)
+        assert row["session_ny"] == float(13 <= hour < 22)
+
+    # sanity check the overlap window is real: 13:00-16:59 UTC has both London and NY set
+    overlap_rows = feats.between_time("13:00", "16:59")
+    assert len(overlap_rows) > 0
+    assert (overlap_rows["session_london"] == 1).all()
+    assert (overlap_rows["session_ny"] == 1).all()
