@@ -1,0 +1,9 @@
+{
+  "name": "dailytips",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sitio DailyTips + WhatsApp chatbot (Vercel Serverless Functions)",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0"
+  }
+}
