@@ -100,19 +100,19 @@ def train_final_model(feats: pd.DataFrame) -> HistGradientBoostingClassifier:
     return model
 
 
-def save_model(model, instrument: str, granularity: str = config.GRANULARITY) -> None:
-    joblib.dump(model, config.model_path_for(instrument, granularity))
+def save_model(model, symbol: str, interval: str = config.BINANCE_INTERVAL) -> None:
+    joblib.dump(model, config.model_path_for(symbol, interval))
 
 
 def run(
     df: pd.DataFrame,
-    instrument: str,
+    symbol: str,
     n_splits: int = 5,
     save: bool = True,
     report_importance: bool = True,
 ) -> list[dict]:
-    """End-to-end for one instrument: build features, walk-forward validate,
-    train final model, save to model/saved/{instrument}_{granularity}."""
+    """End-to-end for one symbol: build features, walk-forward validate,
+    train final model, save to model/saved/{symbol}_{interval}."""
     feats = build_features(df, label_horizon=config.LABEL_HORIZON)
     if len(feats) < (n_splits + 1) * 20:
         raise ValueError(
@@ -137,36 +137,36 @@ def run(
 
     if save:
         final_model = train_final_model(feats)
-        save_model(final_model, instrument)
-        print(f"final model trained on {len(feats)} rows, saved to {config.model_path_for(instrument)}")
+        save_model(final_model, symbol)
+        print(f"final model trained on {len(feats)} rows, saved to {config.model_path_for(symbol)}")
 
     return fold_metrics
 
 
 def train_all(
-    instruments: list[str],
+    symbols: list[str],
     n_splits: int = 5,
-    candles_count: int = 5000,
+    candles_count: int = 1500,
     fetch_fn=None,
 ) -> dict[str, list[dict] | str]:
-    """Batch-train one model per instrument. Continues past a failing pair
+    """Batch-train one model per symbol. Continues past a failing symbol
     (e.g. one with too little history, or a data-fetch error) instead of
-    aborting the whole run -- returns per-instrument fold metrics on success,
-    or the error message string on failure, so the caller can see exactly
-    which pairs need attention without losing the ones that worked.
+    aborting the whole run -- returns per-symbol fold metrics on success, or
+    the error message string on failure, so the caller can see exactly which
+    symbols need attention without losing the ones that worked.
     """
     if fetch_fn is None:
         from data.fetch import fetch_candles as fetch_fn
 
     results: dict[str, list[dict] | str] = {}
-    for i, instrument in enumerate(instruments, 1):
-        print(f"\n=== [{i}/{len(instruments)}] {instrument} ===")
+    for i, symbol in enumerate(symbols, 1):
+        print(f"\n=== [{i}/{len(symbols)}] {symbol} ===")
         try:
-            candles = fetch_fn(instrument=instrument, count=candles_count)
-            results[instrument] = run(candles, instrument, n_splits=n_splits)
+            candles = fetch_fn(symbol=symbol, count=candles_count)
+            results[symbol] = run(candles, symbol, n_splits=n_splits)
         except Exception as e:
             print(f"  skipped: {e}")
-            results[instrument] = str(e)
+            results[symbol] = str(e)
 
     succeeded = [k for k, v in results.items() if not isinstance(v, str)]
     failed = [k for k, v in results.items() if isinstance(v, str)]
@@ -177,15 +177,15 @@ def train_all(
 
 
 if __name__ == "__main__":
-    from data.fetch import fetch_candles, resolve_instruments
+    from data.fetch import fetch_candles, resolve_symbols
 
     if len(sys.argv) > 1 and sys.argv[1] == "--all":
-        train_all(resolve_instruments())
+        train_all(resolve_symbols())
     else:
-        instrument = sys.argv[1] if len(sys.argv) > 1 else "EUR_USD"
+        symbol = sys.argv[1] if len(sys.argv) > 1 else "BTCUSDT"
         try:
-            candles = fetch_candles(instrument=instrument, count=5000)
+            candles = fetch_candles(symbol=symbol, count=1500)
         except RuntimeError as e:
             print(f"error: {e}", file=sys.stderr)
             sys.exit(1)
-        run(candles, instrument)
+        run(candles, symbol)

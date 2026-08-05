@@ -1,4 +1,4 @@
-"""Central configuration for the FX trading bot."""
+"""Central configuration for the crypto futures trading bot."""
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -11,81 +11,72 @@ LOG_DIR = BASE_DIR / "logs"
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
-# --- OANDA API ---
-OANDA_API_TOKEN = os.environ.get("OANDA_API_TOKEN", "")
-OANDA_ACCOUNT_ID = os.environ.get("OANDA_ACCOUNT_ID", "")
-OANDA_ENV = os.environ.get("OANDA_ENV", "practice")  # "practice" or "live" -- never default to live
-OANDA_HOSTS = {
-    "practice": "https://api-fxpractice.oanda.com",
-    "live": "https://api-fxtrade.oanda.com",
+# --- Binance Futures API ---
+BINANCE_API_KEY = os.environ.get("BINANCE_API_KEY", "")
+BINANCE_API_SECRET = os.environ.get("BINANCE_API_SECRET", "")
+BINANCE_ENV = os.environ.get("BINANCE_ENV", "testnet")  # "testnet" or "live" -- never default to live
+BINANCE_HOSTS = {
+    "testnet": "https://testnet.binancefuture.com",
+    "live": "https://fapi.binance.com",
 }
-OANDA_BASE_URL = OANDA_HOSTS[OANDA_ENV]
+BINANCE_BASE_URL = BINANCE_HOSTS[BINANCE_ENV]
 
-# --- Instrument universe / timeframe ---
-# FX_INSTRUMENTS: optional comma-separated override (e.g. "EUR_USD,GBP_JPY").
-# Left unset, data.fetch.resolve_instruments() uses every currency pair OANDA
-# itself offers -- read there (not here) to avoid a circular import with
-# data/fetch.py.
-GRANULARITY = os.environ.get("FX_GRANULARITY", "H1")  # OANDA candle granularity
+# --- Symbol universe / timeframe ---
+# BINANCE_SYMBOLS: optional comma-separated override (e.g. "BTCUSDT,ETHUSDT").
+# Left unset, data.fetch.resolve_symbols() uses every USDT-margined perpetual
+# Binance itself lists -- read there (not here) to avoid a circular import.
+BINANCE_INTERVAL = os.environ.get("BINANCE_INTERVAL", "1h")  # Binance kline interval
 LABEL_HORIZON = 4  # predict direction N candles ahead
 
 # --- Model ---
 # min predicted probability (either direction) to act on a signal. Lower =
 # trades more often, on weaker signals -- NOT the same as "wins more often".
-# On synthetic no-edge data, dropping this from 0.58 to 0.51 raised trade
-# count ~47% (1597 -> 2354) while total return got worse, not better (-86.8%
-# -> -92.4%): more trades just means paying the spread more often when there
-# is no real edge behind the extra signals. Re-run that same comparison
-# (backtest.engine with different `threshold` values) against real data
-# before trusting a lowered default -- synthetic data can't tell you the
-# right number, only that "lower != better" isn't automatic.
-SIGNAL_THRESHOLD = float(os.environ.get("FX_SIGNAL_THRESHOLD", "0.53"))
+# On synthetic no-edge data, dropping this raised trade count while total
+# return got worse, not better: more trades just means paying fees more
+# often when there is no real edge behind the extra signals. Re-run that
+# same comparison (backtest.engine with different `threshold` values)
+# against real data before trusting a lowered default.
+SIGNAL_THRESHOLD = float(os.environ.get("SIGNAL_THRESHOLD", "0.53"))
 
 
-def model_path_for(instrument: str, granularity: str = GRANULARITY):
-    return MODEL_DIR / f"{instrument}_{granularity}_model.joblib"
-
-
-def pip_size_for(instrument: str) -> float:
-    """Standard FX convention: pip = 0.01 when the quote currency is JPY
-    (USD_JPY, EUR_JPY, GBP_JPY, ...), else 0.0001. Getting this wrong silently
-    makes every stop-loss/take-profit/position-size calculation for a JPY
-    pair wrong by a factor of 100."""
-    return 0.01 if instrument.endswith("_JPY") else 0.0001
-
-
-def price_precision_for(instrument: str) -> int:
-    """Decimal places OANDA expects when quoting a price for this instrument:
-    3 for JPY pairs (e.g. 150.123), 5 for everything else (e.g. 1.10234).
-    Sending the wrong precision on an order gets it rejected."""
-    return 3 if instrument.endswith("_JPY") else 5
+def model_path_for(symbol: str, interval: str = BINANCE_INTERVAL):
+    return MODEL_DIR / f"{symbol}_{interval}_model.joblib"
 
 
 # --- Risk management ---
 # All of these are env-tunable so "more aggressive" or "more conservative"
-# is a .env edit, not a code change. STOP_LOSS_PIPS / TAKE_PROFIT_PIPS /
+# is a .env edit, not a code change. STOP_LOSS_PERCENT / TAKE_PROFIT_PERCENT /
 # MAX_DAILY_LOSS_FRACTION are the actual safety rails (they cap how much a
 # single trade or a single day can lose) -- loosen those deliberately, not
 # as a side effect of wanting more trade frequency.
-RISK_PER_TRADE = float(os.environ.get("FX_RISK_PER_TRADE", "0.01"))  # fraction of balance risked per trade
-STOP_LOSS_PIPS = float(os.environ.get("FX_STOP_LOSS_PIPS", "20"))
-TAKE_PROFIT_PIPS = float(os.environ.get("FX_TAKE_PROFIT_PIPS", "40"))
-MAX_DAILY_LOSS_FRACTION = float(os.environ.get("FX_MAX_DAILY_LOSS_FRACTION", "0.03"))
-MAX_POSITIONS_PER_INSTRUMENT = int(os.environ.get("FX_MAX_POSITIONS_PER_INSTRUMENT", "1"))
+#
+# Percent-of-entry-price, not pips: crypto prices span orders of magnitude
+# (BTC ~$60,000, a small-cap token ~$0.002) so a fixed price distance like
+# forex's "pip" doesn't generalize -- a percentage does.
+RISK_PER_TRADE = float(os.environ.get("RISK_PER_TRADE", "0.01"))  # fraction of balance risked per trade
+STOP_LOSS_PERCENT = float(os.environ.get("STOP_LOSS_PERCENT", "0.015"))   # 1.5%
+TAKE_PROFIT_PERCENT = float(os.environ.get("TAKE_PROFIT_PERCENT", "0.03"))  # 3%
+MAX_DAILY_LOSS_FRACTION = float(os.environ.get("MAX_DAILY_LOSS_FRACTION", "0.03"))
+MAX_POSITIONS_PER_INSTRUMENT = int(os.environ.get("MAX_POSITIONS_PER_INSTRUMENT", "1"))
 # total risk across ALL simultaneously open positions, approximated as
 # (number of open positions * risk_per_trade) since every position is sized
-# to risk the same fraction of balance. Does NOT account for cross-pair
-# correlation (e.g. EUR/USD and GBP/USD longs both being USD-exposure bets) --
-# a deliberate simplification, not an oversight; see README. Raised from the
-# original 5% default to 10% so a lower SIGNAL_THRESHOLD (more qualifying
-# signals across the portfolio) can actually act on more of them concurrently
-# instead of the old cap throttling it straight back down.
-MAX_TOTAL_RISK_FRACTION = float(os.environ.get("FX_MAX_TOTAL_RISK_FRACTION", "0.10"))
+# to risk the same fraction of balance. Does NOT account for cross-symbol
+# correlation (e.g. BTCUSDT and ETHUSDT longs both being "crypto market up"
+# bets) -- a deliberate simplification, not an oversight; see README.
+MAX_TOTAL_RISK_FRACTION = float(os.environ.get("MAX_TOTAL_RISK_FRACTION", "0.10"))
 
-# --- Backtest costs (approximate, majors typical -- see pip_size_for for
-# the one thing that does vary meaningfully by pair) ---
-SPREAD_PIPS = 1.2
-SLIPPAGE_PIPS = 0.3
+# --- Leverage / margin (futures-specific -- forex, as built here, never had
+# a liquidation mechanism to worry about; futures does). Low leverage keeps
+# the liquidation price far from any reasonable stop-loss, and ISOLATED
+# margin means a losing position can only lose its own allocated margin, not
+# the whole account. Raise these deliberately, not by accident. ---
+BINANCE_LEVERAGE = int(os.environ.get("BINANCE_LEVERAGE", "2"))
+BINANCE_MARGIN_TYPE = os.environ.get("BINANCE_MARGIN_TYPE", "ISOLATED")  # "ISOLATED" or "CROSSED"
+
+# --- Backtest costs (Binance Futures taker fee + assumed slippage, both as
+# a fraction of price -- see STOP_LOSS_PERCENT above for why percent-based) ---
+TAKER_FEE_PERCENT = float(os.environ.get("TAKER_FEE_PERCENT", "0.0004"))  # 0.04%, standard tier
+SLIPPAGE_PERCENT = float(os.environ.get("SLIPPAGE_PERCENT", "0.0005"))    # 0.05%
 
 # --- OpenAI (news-blackout + sentiment advisory filters, plain-language
 # reports -- see llm/ and news/). These are additive risk filters layered on
@@ -93,7 +84,7 @@ SLIPPAGE_PIPS = 0.3
 # are required for model.train / backtest / bot.py's core loop to work. ---
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
-NEWS_BLACKOUT_HOURS = float(os.environ.get("FX_NEWS_BLACKOUT_HOURS", "2"))
-SENTIMENT_VETO_THRESHOLD = float(os.environ.get("FX_SENTIMENT_VETO_THRESHOLD", "-0.5"))
-SENTIMENT_CACHE_HOURS = float(os.environ.get("FX_SENTIMENT_CACHE_HOURS", "6"))
+NEWS_BLACKOUT_HOURS = float(os.environ.get("NEWS_BLACKOUT_HOURS", "2"))
+SENTIMENT_VETO_THRESHOLD = float(os.environ.get("SENTIMENT_VETO_THRESHOLD", "-0.5"))
+SENTIMENT_CACHE_HOURS = float(os.environ.get("SENTIMENT_CACHE_HOURS", "6"))
 SENTIMENT_CACHE_PATH = LOG_DIR / "sentiment_cache.json"

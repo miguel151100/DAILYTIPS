@@ -15,8 +15,8 @@ class Signal:
     time: pd.Timestamp
 
 
-def load_model(instrument: str, granularity: str = config.GRANULARITY):
-    path = config.model_path_for(instrument, granularity)
+def load_model(symbol: str, interval: str = config.BINANCE_INTERVAL):
+    path = config.model_path_for(symbol, interval)
     if not path.exists():
         raise FileNotFoundError(
             f"No trained model at {path}. Run `python -m model.train` (or train_all) first."
@@ -25,7 +25,7 @@ def load_model(instrument: str, granularity: str = config.GRANULARITY):
 
 
 def latest_signal(
-    df: pd.DataFrame, instrument: str, model=None, threshold: float = config.SIGNAL_THRESHOLD
+    df: pd.DataFrame, symbol: str, model=None, threshold: float = config.SIGNAL_THRESHOLD
 ) -> Signal:
     """Compute the trade signal for the most recent candle in `df`.
 
@@ -35,7 +35,7 @@ def latest_signal(
     horizon trims real, usable rows off the tail.
     """
     if model is None:
-        model = load_model(instrument)
+        model = load_model(symbol)
 
     # Live inference has no future candle to build a label from -- use the
     # same feature computation as training (compute_feature_columns) but skip

@@ -38,13 +38,13 @@ class _FakeClient:
 
 _FIELDNAMES = [
     "time",
-    "instrument",
+    "symbol",
     "direction",
     "probability_up",
     "entry_price",
     "stop_price",
     "target_price",
-    "units",
+    "quantity",
     "balance_before",
 ]
 
@@ -57,16 +57,16 @@ def _write_trades_csv(path, rows):
             writer.writerow(row)
 
 
-def _trade_row(instrument="EUR_USD", direction="long"):
+def _trade_row(symbol="BTCUSDT", direction="long"):
     return {
         "time": "2024-06-01T10:00:00",
-        "instrument": instrument,
+        "symbol": symbol,
         "direction": direction,
         "probability_up": 0.62,
-        "entry_price": 1.1000,
-        "stop_price": 1.0980,
-        "target_price": 1.1040,
-        "units": 50000,
+        "entry_price": 60000.0,
+        "stop_price": 59100.0,
+        "target_price": 61800.0,
+        "quantity": 0.05,
         "balance_before": 10000,
     }
 
@@ -81,21 +81,21 @@ def test_read_trades_parses_existing_csv(tmp_path):
 
     trades = _read_trades(path)
     assert len(trades) == 1
-    assert trades[0]["instrument"] == "EUR_USD"
+    assert trades[0]["symbol"] == "BTCUSDT"
 
 
-def test_summarize_trades_counts_by_instrument_and_direction():
+def test_summarize_trades_counts_by_symbol_and_direction():
     trades = [
-        _trade_row("EUR_USD", "long"),
-        _trade_row("EUR_USD", "short"),
-        _trade_row("USD_JPY", "long"),
+        _trade_row("BTCUSDT", "long"),
+        _trade_row("BTCUSDT", "short"),
+        _trade_row("ETHUSDT", "long"),
     ]
     summary = summarize_trades(trades)
 
     assert summary["n_trades"] == 3
-    assert summary["by_instrument"] == {"EUR_USD": 2, "USD_JPY": 1}
+    assert summary["by_symbol"] == {"BTCUSDT": 2, "ETHUSDT": 1}
     assert summary["by_direction"] == {"long": 2, "short": 1}
-    assert summary["instruments_traded"] == ["EUR_USD", "USD_JPY"]
+    assert summary["symbols_traded"] == ["BTCUSDT", "ETHUSDT"]
 
 
 def test_generate_report_skips_llm_call_when_no_trades():
@@ -108,13 +108,13 @@ def test_generate_report_skips_llm_call_when_no_trades():
 
 def test_generate_report_calls_llm_with_trade_summary():
     client = _FakeClient(reply="Resumen generado.")
-    trades = [_trade_row("EUR_USD", "long")]
+    trades = [_trade_row("BTCUSDT", "long")]
 
     report = generate_report(trades=trades, client=client)
 
     assert report == "Resumen generado."
     prompt = client.completions.last_call["messages"][-1]["content"]
-    assert "EUR_USD" in prompt
+    assert "BTCUSDT" in prompt
     assert "1" in prompt  # n_trades
 
 

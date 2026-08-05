@@ -14,20 +14,22 @@ from model.train import _make_model
 from risk.manager import RiskManager
 
 
-def _simulate_trade(df: pd.DataFrame, entry_idx: int, horizon: int, direction: str, pip_size: float) -> float:
+def _simulate_trade(df: pd.DataFrame, entry_idx: int, horizon: int, direction: str) -> float:
     """Simulate one trade opened at df.index[entry_idx], held up to `horizon`
     candles, honoring stop-loss/take-profit against intrabar high/low, exiting
     at the horizon's close otherwise. Returns P&L in price units per unit size
-    (i.e. price delta net of spread/slippage), not yet scaled by position size.
+    (i.e. price delta net of fees/slippage), not yet scaled by position size.
+    Cost and stop/target distances are percent-of-entry-price -- see
+    config.py's comments on why crypto uses percent instead of forex's pips.
     """
     entry_close = df["close"].iloc[entry_idx]
-    cost = (config.SPREAD_PIPS / 2 + config.SLIPPAGE_PIPS) * pip_size
+    cost = entry_close * (config.TAKER_FEE_PERCENT + config.SLIPPAGE_PERCENT)
     window = df.iloc[entry_idx + 1 : entry_idx + 1 + horizon]
 
     if direction == "long":
         entry_price = entry_close + cost
-        stop = entry_price - config.STOP_LOSS_PIPS * pip_size
-        target = entry_price + config.TAKE_PROFIT_PIPS * pip_size
+        stop = entry_price * (1 - config.STOP_LOSS_PERCENT)
+        target = entry_price * (1 + config.TAKE_PROFIT_PERCENT)
         for _, bar in window.iterrows():
             if bar["low"] <= stop:
                 return stop - cost - entry_price
@@ -37,8 +39,8 @@ def _simulate_trade(df: pd.DataFrame, entry_idx: int, horizon: int, direction: s
         return exit_price - entry_price
     else:  # short
         entry_price = entry_close - cost
-        stop = entry_price + config.STOP_LOSS_PIPS * pip_size
-        target = entry_price - config.TAKE_PROFIT_PIPS * pip_size
+        stop = entry_price * (1 + config.STOP_LOSS_PERCENT)
+        target = entry_price * (1 - config.TAKE_PROFIT_PERCENT)
         for _, bar in window.iterrows():
             if bar["high"] >= stop:
                 return entry_price - (stop + cost)
@@ -49,10 +51,10 @@ def _simulate_trade(df: pd.DataFrame, entry_idx: int, horizon: int, direction: s
 
 
 def _generate_candidates(
-    df: pd.DataFrame, instrument: str, n_splits: int, threshold: float, label_horizon: int
+    df: pd.DataFrame, symbol: str, n_splits: int, threshold: float, label_horizon: int
 ) -> list[tuple]:
-    """Walk-forward train/predict over one instrument's history, returning
-    out-of-sample (entry_time, instrument, direction, entry_idx) candidates --
+    """Walk-forward train/predict over one symbol's history, returning
+    out-of-sample (entry_time, symbol, direction, entry_idx) candidates --
     same folding logic as model.train.walk_forward_validate, just kept here
     too since the backtest needs the raw per-row probabilities, not just
     aggregate fold metrics."""
@@ -76,46 +78,46 @@ def _generate_candidates(
             else:
                 continue
             entry_time = feat_index[local_i]
-            candidates.append((entry_time, instrument, direction, df.index.get_loc(entry_time)))
+            candidates.append((entry_time, symbol, direction, df.index.get_loc(entry_time)))
     return candidates
 
 
 def run_backtest(
     df: pd.DataFrame,
-    instrument: str = "EUR_USD",
+    symbol: str = "BTCUSDT",
     n_splits: int = 5,
     starting_balance: float = 10_000.0,
     threshold: float = config.SIGNAL_THRESHOLD,
     label_horizon: int = config.LABEL_HORIZON,
 ) -> dict:
-    """Single-instrument out-of-sample backtest. For multiple pairs sharing
-    one account's exposure limits, use run_portfolio_backtest instead."""
-    pip_size = config.pip_size_for(instrument)
-    candidates = _generate_candidates(df, instrument, n_splits, threshold, label_horizon)
+    """Single-symbol out-of-sample backtest. For multiple symbols sharing one
+    account's exposure limits, use run_portfolio_backtest instead."""
+    candidates = _generate_candidates(df, symbol, n_splits, threshold, label_horizon)
 
     balance = starting_balance
     equity_curve = [balance]
     trade_pnls = []
 
-    for _entry_time, _instrument, direction, entry_idx in candidates:
-        price_pnl = _simulate_trade(df, entry_idx, label_horizon, direction, pip_size)
+    for _entry_time, _symbol, direction, entry_idx in candidates:
+        entry_price = df["close"].iloc[entry_idx]
+        price_pnl = _simulate_trade(df, entry_idx, label_horizon, direction)
 
         risk_amount = balance * config.RISK_PER_TRADE
-        units = risk_amount / (config.STOP_LOSS_PIPS * pip_size)
+        units = risk_amount / (entry_price * config.STOP_LOSS_PERCENT)
         trade_pnl = price_pnl * units
 
         balance += trade_pnl
         trade_pnls.append(trade_pnl)
         equity_curve.append(balance)
 
-    periods_per_year = _periods_per_year(config.GRANULARITY)
+    periods_per_year = _periods_per_year(config.BINANCE_INTERVAL)
     summary = summarize(trade_pnls, equity_curve, periods_per_year)
     summary["equity_curve"] = equity_curve
     return summary
 
 
 def run_portfolio_backtest(
-    instrument_data: dict[str, pd.DataFrame],
+    symbol_data: dict[str, pd.DataFrame],
     n_splits: int = 5,
     starting_balance: float = 10_000.0,
     threshold: float = config.SIGNAL_THRESHOLD,
@@ -124,14 +126,14 @@ def run_portfolio_backtest(
     max_positions_per_instrument: int = config.MAX_POSITIONS_PER_INSTRUMENT,
     max_total_risk_fraction: float = config.MAX_TOTAL_RISK_FRACTION,
 ) -> dict:
-    """Backtest several instruments sharing ONE account: walk-forward trains
-    and generates out-of-sample candidate signals per instrument exactly like
-    run_backtest, then merges every instrument's candidates into a single
+    """Backtest several symbols sharing ONE account: walk-forward trains and
+    generates out-of-sample candidate signals per symbol exactly like
+    run_backtest, then merges every symbol's candidates into a single
     chronological timeline and replays it against one shared RiskManager --
-    so the total-exposure cap and daily circuit breaker apply across pairs,
-    not per pair in isolation (a pair-by-pair backtest would pretend every
-    instrument had its own separate account, which overstates how much
-    capital you could actually put to work at once).
+    so the total-exposure cap and daily circuit breaker apply across
+    symbols, not per symbol in isolation (a symbol-by-symbol backtest would
+    pretend every symbol had its own separate account, which overstates how
+    much capital you could actually put to work at once).
 
     A trade's holding window (label_horizon candles from entry) is treated as
     the time it occupies an exposure slot, even though its P&L is resolved
@@ -141,8 +143,8 @@ def run_portfolio_backtest(
     usually longer than, the trade is actually at risk.
     """
     candidates = []
-    for instrument, df in instrument_data.items():
-        candidates.extend(_generate_candidates(df, instrument, n_splits, threshold, label_horizon))
+    for symbol, df in symbol_data.items():
+        candidates.extend(_generate_candidates(df, symbol, n_splits, threshold, label_horizon))
     candidates.sort(key=lambda c: c[0])
 
     risk_manager = RiskManager(
@@ -154,69 +156,73 @@ def run_portfolio_backtest(
     balance = starting_balance
     equity_curve = [balance]
     trade_pnls = []
-    open_until: list[tuple] = []  # (close_time, instrument)
+    open_until: list[tuple] = []  # (close_time, symbol)
     current_date = None
 
-    for entry_time, instrument, direction, entry_idx in candidates:
+    for entry_time, symbol, direction, entry_idx in candidates:
         entry_date = entry_time.date()
         if entry_date != current_date:
             current_date = entry_date
             risk_manager.start_new_day(balance)
 
         still_open = []
-        for close_time, inst in open_until:
+        for close_time, sym in open_until:
             if close_time <= entry_time:
-                risk_manager.register_close(inst, balance)
+                risk_manager.register_close(sym, balance)
             else:
-                still_open.append((close_time, inst))
+                still_open.append((close_time, sym))
         open_until = still_open
 
-        if not risk_manager.can_open_trade(balance, instrument):
+        if not risk_manager.can_open_trade(balance, symbol):
             continue
 
-        df = instrument_data[instrument]
-        pip_size = config.pip_size_for(instrument)
-        price_pnl = _simulate_trade(df, entry_idx, label_horizon, direction, pip_size)
-        units = risk_manager.position_size(balance, instrument)
+        df = symbol_data[symbol]
+        entry_price = df["close"].iloc[entry_idx]
+        price_pnl = _simulate_trade(df, entry_idx, label_horizon, direction)
+        units = risk_manager.position_size(balance, entry_price)
         trade_pnl = price_pnl * units
 
         balance += trade_pnl
         trade_pnls.append(trade_pnl)
         equity_curve.append(balance)
 
-        risk_manager.register_open(instrument)
+        risk_manager.register_open(symbol)
         close_idx = min(entry_idx + label_horizon, len(df.index) - 1)
-        open_until.append((df.index[close_idx], instrument))
+        open_until.append((df.index[close_idx], symbol))
 
-    periods_per_year = _periods_per_year(config.GRANULARITY)
+    periods_per_year = _periods_per_year(config.BINANCE_INTERVAL)
     summary = summarize(trade_pnls, equity_curve, periods_per_year)
     summary["equity_curve"] = equity_curve
     return summary
 
 
-def _periods_per_year(granularity: str) -> float:
-    hours_per_candle = {"H1": 1, "H4": 4, "D": 24, "M15": 0.25, "M5": 5 / 60, "M1": 1 / 60}
-    hours = hours_per_candle.get(granularity, 1)
-    # forex trades ~24h/day, ~5 days/week
-    return (24 / hours) * 252
+def _periods_per_year(interval: str) -> float:
+    hours_per_candle = {
+        "1m": 1 / 60, "3m": 3 / 60, "5m": 5 / 60, "15m": 15 / 60, "30m": 30 / 60,
+        "1h": 1, "2h": 2, "4h": 4, "6h": 6, "8h": 8, "12h": 12,
+        "1d": 24, "3d": 72, "1w": 168,
+    }
+    hours = hours_per_candle.get(interval, 1)
+    # crypto trades 24/7/365, unlike forex's ~5-day trading week
+    return (24 / hours) * 365
 
 
 if __name__ == "__main__":
     import sys
 
     from backtest.plot import plot_equity_curve
-    from data.fetch import fetch_candles, resolve_instruments
+    from data.fetch import fetch_candles, resolve_symbols
 
     if len(sys.argv) > 1 and sys.argv[1] == "--all":
-        instruments = resolve_instruments()
-        instrument_data = {i: fetch_candles(instrument=i, count=5000) for i in instruments}
-        results = run_portfolio_backtest(instrument_data)
+        symbols = resolve_symbols()
+        symbol_data = {s: fetch_candles(symbol=s, count=1500) for s in symbols}
+        results = run_portfolio_backtest(symbol_data)
         plot_path = config.LOG_DIR / "portfolio_equity_curve.png"
     else:
-        instrument = sys.argv[1] if len(sys.argv) > 1 else "EUR_USD"
-        candles = fetch_candles(instrument=instrument, count=5000)
-        results = run_backtest(candles, instrument=instrument)
-        plot_path = config.LOG_DIR / f"{instrument}_equity_curve.png"
+        symbol = sys.argv[1] if len(sys.argv) > 1 else "BTCUSDT"
+        candles = fetch_candles(symbol=symbol, count=1500)
+        results = run_backtest(candles, symbol=symbol)
+        plot_path = config.LOG_DIR / f"{symbol}_equity_curve.png"
 
     for k, v in results.items():
         if k != "equity_curve":

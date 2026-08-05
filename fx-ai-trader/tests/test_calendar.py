@@ -53,45 +53,47 @@ def test_high_impact_window_true_when_event_is_soon():
     now = pd.Timestamp("2024-06-01T10:00:00Z")
     events = [_event("USD", "High", "2024-06-01T11:00:00Z")]  # 1 hour ahead
 
-    assert high_impact_window(events, "EUR_USD", now, hours_ahead=2) is True
+    # BTCUSDT is USDT-margined -- USD-denominated macro news is relevant
+    assert high_impact_window(events, {"USD"}, now, hours_ahead=2) is True
 
 
 def test_high_impact_window_true_for_a_recent_past_event_too():
     now = pd.Timestamp("2024-06-01T10:00:00Z")
     events = [_event("USD", "High", "2024-06-01T09:00:00Z")]  # 1 hour ago
 
-    assert high_impact_window(events, "EUR_USD", now, hours_ahead=2) is True
+    assert high_impact_window(events, {"USD"}, now, hours_ahead=2) is True
 
 
 def test_high_impact_window_false_when_event_is_far_outside_window():
     now = pd.Timestamp("2024-06-01T10:00:00Z")
     events = [_event("USD", "High", "2024-06-02T10:00:00Z")]  # 24 hours ahead
 
-    assert high_impact_window(events, "EUR_USD", now, hours_ahead=2) is False
+    assert high_impact_window(events, {"USD"}, now, hours_ahead=2) is False
 
 
 def test_high_impact_window_false_for_unrelated_currency():
     now = pd.Timestamp("2024-06-01T10:00:00Z")
-    events = [_event("JPY", "High", "2024-06-01T11:00:00Z")]  # soon, but not EUR or USD
+    events = [_event("JPY", "High", "2024-06-01T11:00:00Z")]  # soon, but not in the given set
 
-    assert high_impact_window(events, "EUR_USD", now, hours_ahead=2) is False
+    assert high_impact_window(events, {"USD"}, now, hours_ahead=2) is False
 
 
 def test_high_impact_window_false_for_low_impact_event():
     now = pd.Timestamp("2024-06-01T10:00:00Z")
     events = [_event("USD", "Low", "2024-06-01T11:00:00Z")]
 
-    assert high_impact_window(events, "EUR_USD", now, hours_ahead=2) is False
+    assert high_impact_window(events, {"USD"}, now, hours_ahead=2) is False
 
 
-def test_high_impact_window_checks_either_currency_in_the_pair():
+def test_high_impact_window_checks_any_currency_in_the_given_set():
     now = pd.Timestamp("2024-06-01T10:00:00Z")
     events = [_event("EUR", "High", "2024-06-01T11:00:00Z")]
 
-    # EUR is the base currency of EUR_USD -- still relevant
-    assert high_impact_window(events, "EUR_USD", now, hours_ahead=2) is True
+    # a caller checking multiple currencies at once (e.g. a forex pair) --
+    # EUR being in the set is enough, even though USD is also in it
+    assert high_impact_window(events, {"EUR", "USD"}, now, hours_ahead=2) is True
 
 
 def test_high_impact_window_false_with_no_events():
     now = pd.Timestamp("2024-06-01T10:00:00Z")
-    assert high_impact_window([], "EUR_USD", now) is False
+    assert high_impact_window([], {"USD"}, now) is False

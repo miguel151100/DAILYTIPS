@@ -1,11 +1,11 @@
-"""Currency sentiment scoring: recent news headlines (via GDELT's free,
-keyless DOC 2.0 API) summarized into a single -1..1 score by the OpenAI API.
+"""Asset sentiment scoring: recent news headlines (via GDELT's free, keyless
+DOC 2.0 API) summarized into a single -1..1 score by the OpenAI API.
 
-Cached per CURRENCY (not per pair -- EUR/USD and EUR/GBP share EUR
-sentiment) with a TTL, so a run across dozens of pairs doesn't fire a GDELT +
-OpenAI call per pair every time bot.py runs. This is an advisory filter
-layered on top of the trading bot, not a model feature -- see bot.py and the
-README for why.
+Cached per ASSET (not per symbol -- BTCUSDT and BTCUSDC would share BTC
+sentiment) with a TTL, so a run across dozens of symbols doesn't fire a
+GDELT + OpenAI call per symbol every time bot.py runs. This is an advisory
+filter layered on top of the trading bot, not a model feature -- see bot.py
+and the README for why.
 
 NOTE: like news/calendar.py, GDELT's domain is blocked by this sandbox's
 network policy, so the live response schema is unverified from here --
@@ -22,17 +22,20 @@ from llm.openai_client import complete
 
 _GDELT_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
 
-# reasonable search terms for majors; generic fallback for anything else --
-# hand-tuning queries for all ~68 OANDA pairs' currencies isn't practical
+# reasonable search terms for majors (crypto assets plus the fiat/stablecoin
+# side of a USDT-margined position); generic fallback for anything else --
+# hand-tuning queries for every possible Binance quote/base asset isn't
+# practical
 _KEYWORDS_BY_CURRENCY = {
+    "BTC": "Bitcoin BTC price",
+    "ETH": "Ethereum ETH price",
+    "BNB": "Binance Coin BNB",
+    "SOL": "Solana SOL crypto",
+    "XRP": "XRP Ripple crypto",
+    # USDT/USDC/BUSD-margined positions are USD-macro-sensitive (Fed policy,
+    # CPI) -- bot.py maps stablecoin quote assets to "USD" before calling
+    # get_sentiment, so this key covers that case
     "USD": "US dollar Federal Reserve",
-    "EUR": "euro ECB eurozone",
-    "GBP": "British pound Bank of England",
-    "JPY": "Japanese yen Bank of Japan",
-    "AUD": "Australian dollar RBA",
-    "NZD": "New Zealand dollar RBNZ",
-    "CAD": "Canadian dollar Bank of Canada",
-    "CHF": "Swiss franc SNB",
 }
 
 _SENTIMENT_SYSTEM_PROMPT = (
@@ -45,7 +48,7 @@ _SENTIMENT_SYSTEM_PROMPT = (
 
 def fetch_headlines(currency: str, max_records: int = 10) -> list[str]:
     """Recent news headlines mentioning `currency`, via GDELT's free DOC 2.0 API."""
-    query = _KEYWORDS_BY_CURRENCY.get(currency, f"{currency} currency")
+    query = _KEYWORDS_BY_CURRENCY.get(currency, f"{currency} cryptocurrency")
     params = {
         "query": query,
         "mode": "artlist",

@@ -62,14 +62,17 @@ def fetch_calendar_events(url: str = _CALENDAR_URL) -> list[dict]:
 
 
 def high_impact_window(
-    events: list[dict], instrument: str, now, hours_ahead: float = config.NEWS_BLACKOUT_HOURS
+    events: list[dict], currencies: set[str], now, hours_ahead: float = config.NEWS_BLACKOUT_HOURS
 ) -> bool:
-    """True if either currency in `instrument` (e.g. "EUR_USD" -> EUR, USD)
-    has a High-impact calendar event within `hours_ahead` hours of `now`, in
-    either direction (before *or* after -- volatility doesn't stop the
-    instant a release prints, and this also covers releases that already
-    happened moments ago)."""
-    currencies = set(instrument.split("_"))
+    """True if any currency in `currencies` has a High-impact calendar event
+    within `hours_ahead` hours of `now`, in either direction (before *or*
+    after -- volatility doesn't stop the instant a release prints, and this
+    also covers releases that already happened moments ago).
+
+    Takes an explicit currency set rather than parsing an instrument/symbol
+    string itself -- that parsing is exchange-specific (a forex "EUR_USD" vs.
+    a Binance "BTCUSDT" derive their relevant currencies completely
+    differently) and belongs with the caller, not here."""
     now = _to_utc_timestamp(now)
     window_start = now - pd.Timedelta(hours=hours_ahead)
     window_end = now + pd.Timedelta(hours=hours_ahead)
