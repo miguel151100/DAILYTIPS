@@ -6,6 +6,8 @@ model is never evaluated on data it could have seen the "future" of during
 training. A random split would leak future information into training and
 produce misleadingly good accuracy.
 """
+from __future__ import annotations
+
 import sys
 
 import joblib
