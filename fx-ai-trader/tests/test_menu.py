@@ -1,6 +1,6 @@
 import pytest
 
-from menu import OPCIONES, _interpretar_backtest, _interpretar_entrenamiento
+from menu import OPCIONES, _interpretar_backtest, _interpretar_entrenamiento, _mostrar_comparacion_accuracy
 
 
 def test_interpretar_entrenamiento_sin_ventaja(capsys):
@@ -46,6 +46,31 @@ def test_interpretar_backtest_positivo(capsys):
     salida = capsys.readouterr().out
     assert "positivo" in salida.lower()
     assert "PERDIDO" not in salida
+
+
+def test_comparacion_accuracy_ordena_de_mejor_a_peor(capsys):
+    resultados = {
+        "BTCUSDT": [{"accuracy": 0.48}, {"accuracy": 0.47}],
+        "ETHUSDT": [{"accuracy": 0.55}, {"accuracy": 0.57}],
+        "SOLUSDT": "not enough data",
+    }
+    _mostrar_comparacion_accuracy(resultados, ["BTCUSDT", "ETHUSDT"])
+    salida = capsys.readouterr().out
+    assert salida.index("ETHUSDT") < salida.index("BTCUSDT")
+    assert "ETHUSDT es el más prometedor" in salida
+
+
+def test_comparacion_accuracy_ninguno_supera_umbral(capsys):
+    resultados = {"BTCUSDT": [{"accuracy": 0.48}], "ETHUSDT": [{"accuracy": 0.49}]}
+    _mostrar_comparacion_accuracy(resultados, ["BTCUSDT", "ETHUSDT"])
+    salida = capsys.readouterr().out
+    assert "Ningún símbolo superó 0.53" in salida
+
+
+def test_comparacion_accuracy_sin_exitosos_no_imprime_nada(capsys):
+    _mostrar_comparacion_accuracy({}, [])
+    salida = capsys.readouterr().out
+    assert salida == ""
 
 
 def test_opciones_del_menu_tienen_descripcion_y_funcion():

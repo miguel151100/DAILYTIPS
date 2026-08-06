@@ -86,12 +86,48 @@ def entrenar_un_simbolo() -> None:
     _interpretar_entrenamiento(fold_metrics)
 
 
+def _mostrar_comparacion_accuracy(resultados: dict, exitosos: list[str]) -> None:
+    if not exitosos:
+        return
+    print("\nComparación de precisión promedio (walk-forward), de mejor a peor:")
+    print(f"  {'símbolo':<14} {'accuracy':>10}")
+    tabla = sorted(
+        ((s, sum(m["accuracy"] for m in resultados[s]) / len(resultados[s])) for s in exitosos),
+        key=lambda par: par[1],
+        reverse=True,
+    )
+    for simbolo, promedio in tabla:
+        marca = " <- por encima de 0.53" if promedio >= 0.53 else ""
+        print(f"  {simbolo:<14} {promedio:>10.4f}{marca}")
+    if all(promedio < 0.53 for _, promedio in tabla):
+        print(
+            "\n⚠️  Ningún símbolo superó 0.53 de precisión -- ninguno mostró ventaja clara "
+            "sobre adivinar al azar con esta configuración. Antes de correr el backtest de "
+            "portafolio (opción 4), considera que probablemente todos salgan negativos igual "
+            "que BTCUSDT."
+        )
+    else:
+        mejor_simbolo, _ = tabla[0]
+        print(
+            f"\n👉  {mejor_simbolo} es el más prometedor -- correlo en la opción 3 "
+            "(backtest de un símbolo) para ver si esa ventaja sobrevive comisiones y "
+            "slippage, antes de sacar conclusiones."
+        )
+
+
 def entrenar_todos_los_simbolos() -> None:
     from data.fetch import resolve_symbols
     from model.train import train_all
 
     simbolos = resolve_symbols()
     print(f"\nEntrenando {len(simbolos)} símbolos: {', '.join(simbolos)}")
+    if len(simbolos) > 20:
+        print(
+            f"⚠️  Son {len(simbolos)} símbolos (todo lo que ofrece Binance Futures en USDT) -- "
+            "esto puede tardar mucho y descargar bastante. Si solo quieres comparar unos "
+            "pocos, cancela, agrega BINANCE_SYMBOLS=BTCUSDT,ETHUSDT,SOLUSDT,... a tu .env "
+            "y vuelve a intentar."
+        )
     if not _pedir_confirmacion("Esto puede tardar varios minutos. ¿Continuar?"):
         print("Cancelado.")
         return
@@ -101,6 +137,7 @@ def entrenar_todos_los_simbolos() -> None:
     print(f"\nEntrenados con éxito: {len(exitosos)}  |  Saltados: {len(fallidos)}")
     if fallidos:
         print(f"Saltados: {', '.join(fallidos)}")
+    _mostrar_comparacion_accuracy(resultados, exitosos)
 
 
 def correr_backtest() -> None:
