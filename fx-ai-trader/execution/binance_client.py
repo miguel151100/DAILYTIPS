@@ -11,6 +11,8 @@ fails) leaves a naked position -- callers should treat a raised exception
 from this function as "go check the account/positions manually," not "safe
 to retry blindly."
 """
+from __future__ import annotations
+
 import hashlib
 import hmac
 import os

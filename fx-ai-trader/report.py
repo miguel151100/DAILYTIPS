@@ -8,6 +8,8 @@ history, which this script doesn't do. The report describes activity, not
 performance; check backtest/engine.py results or your Binance testnet
 account statement for actual P&L.
 """
+from __future__ import annotations
+
 import csv
 from collections import Counter
 from datetime import datetime, timezone

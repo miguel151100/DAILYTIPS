@@ -12,6 +12,8 @@ network policy, so the live response schema is unverified from here --
 tested against mocks; confirm against a real response before relying on this
 live.
 """
+from __future__ import annotations
+
 import json
 from datetime import datetime, timezone
 

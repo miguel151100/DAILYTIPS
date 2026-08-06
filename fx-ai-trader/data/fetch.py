@@ -5,6 +5,8 @@ Unlike OANDA, none of this needs an API key -- Binance's market-data
 endpoints (klines, ticker, exchangeInfo) are public. Only account state and
 order placement (execution/binance_client.py) require signed requests.
 """
+from __future__ import annotations
+
 import os
 
 import pandas as pd

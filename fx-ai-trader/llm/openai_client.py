@@ -2,6 +2,8 @@
 optional advisory filters (llm/sentiment.py) and report.py -- nothing in the
 core train/backtest/trade loop depends on this module.
 """
+from __future__ import annotations
+
 import config
 
 

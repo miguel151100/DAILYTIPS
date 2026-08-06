@@ -22,6 +22,8 @@ news sentiment (LLM-scored, cached per asset). Both are additive risk
 reduction on top of the existing model + risk manager, not requirements --
 if either errors out, the bot logs it and trades anyway.
 """
+from __future__ import annotations
+
 import csv
 import json
 from datetime import datetime, timezone
