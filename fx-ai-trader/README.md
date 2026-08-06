@@ -209,6 +209,17 @@ cp .env.example .env
 
 ## Usage
 
+### Menú interactivo en español
+
+Si no quieres escribir comandos, corre esto y elige opciones de una lista
+(entrenar, backtest, reporte, bot) — todo el texto y las interpretaciones
+de resultados están en español:
+```bash
+.venv/bin/python menu.py
+```
+Es solo una envoltura sobre los comandos de abajo; no cambia ninguna lógica
+de trading.
+
 ### Before you have testnet credentials: train/backtest on real data
 
 Binance's market-data endpoints need no API key at all, so this works
